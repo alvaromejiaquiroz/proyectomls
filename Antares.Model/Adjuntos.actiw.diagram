@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activeRecordMapping dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Adjuntos">
+  <modelMoniker Id="ecba13a9-22fe-418e-a718-b0bed58988ad" />
+  <nestedChildShapes>
+    <classShape Id="032bbe6c-d96b-4398-9f95-b0c5a1e7d783" absoluteBounds="5, 0.625, 1.5, 1.7035424804687502">
+      <modelClassMoniker name="/ecba13a9-22fe-418e-a718-b0bed58988ad/Adjunto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f026f32-982e-45c2-8c50-8b0f755f436f" absoluteBounds="5.015, 1.0350000000000001, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="16254e4c-832f-41a1-89ca-972ea10cc12a" absoluteBounds="2.5, 0.5, 1.5, 1.2105004882812502">
+      <modelClassMoniker name="/ecba13a9-22fe-418e-a718-b0bed58988ad/SolicitudAdjuntos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1fb874d9-98df-481f-8c74-e3c59c72b48e" absoluteBounds="2.515, 0.91, 1.4700000000000002, 0.70050048828125011" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</activeRecordMapping>

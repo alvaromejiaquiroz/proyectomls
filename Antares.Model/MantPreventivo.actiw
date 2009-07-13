@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model dslVersion="1.0.0.0" Id="07acef07-c95e-4ba3-8d25-fa98d0380505" xmlns="http://schemas.microsoft.com/dsltools/ActiveWriter">
+  <additionalImports>AAEAAAD/////AQAAAAAAAAAMAgAAAF1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkRzbCwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTkwNTE0MTM5NmRkYjA3OTkEAQAAAKEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tBbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydCwgQWx0aW5vcmVuLkFjdGl2ZVdyaXRlci5Ec2wsIFZlcnNpb249MS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj05MDUxNDEzOTZkZGIwNzk5XV0DAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgQAAB9BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydFtdAgAAAAgICQMAAAAAAAAAAAAAAAcDAAAAAAEAAAAAAAAABB1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydAIAAAAL</additionalImports>
+  <classes>
+    <modelClass name="TareasRealizadas" schema="dbo" table="Tareas_Realizadas">
+      <properties>
+        <modelProperty Id="541c3ef0-40db-482c-9ae5-29f832098c40" name="Id" column="id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="ca9dc1cc-5adf-4d97-b913-1a5aeaabf166" name="IdDestino" column="id_destino" columnType="Int32" length="0" notNull="true" />
+        <modelProperty Id="7584e3a4-05a6-4746-9e40-9e0417a04f27" name="IdTarea" column="id_tarea" columnType="Int32" length="0" notNull="true" />
+        <modelProperty Id="362d9bd7-d113-4c00-904b-f4efffd35f7e" name="IdEmpleados" column="id_Empleados" columnType="Int32" length="0" notNull="true" />
+        <modelProperty Id="1f865844-7893-47f6-a6a9-5f3392749feb" name="Fecha" column="fecha" columnType="AnsiChar" length="0" notNull="true" />
+        <modelProperty Id="f3e849ff-463e-4aa6-8289-6818e933ab23" name="Duracion" column="duracion" columnType="AnsiChar" length="0" />
+        <modelProperty Id="2015784d-fe12-45f9-b7d3-e872c82736a3" name="Semana" column="semana" columnType="AnsiChar" length="0" />
+        <modelProperty Id="d80d226a-164e-4b1d-9614-2a5f2632f53b" name="TipoTarea" column="Tipo_Tarea" columnType="AnsiChar" length="0" />
+        <modelProperty Id="2bf44a56-7c9a-4a10-8457-fcfe4fe05db8" name="Comentarios" column="Comentarios" columnType="AnsiChar" length="0" />
+        <modelProperty Id="ab4b2829-dbd5-4085-8bcc-4d8dc863ba2f" name="IdxInforme" column="idx_Informe" columnType="AnsiChar" length="0" notNull="true" />
+        <modelProperty Id="08412c6c-c8e3-4269-bbf6-d5869e9ffc75" name="BatchId" column="batch_id" columnType="Int32" length="0" notNull="true" />
+      </properties>
+    </modelClass>
+    <modelClass name="Solicitud_Relacion">
+      <properties>
+        <modelProperty Id="af3e08be-9acc-4037-9415-8041f1a95611" name="IdSolRel" columnType="Int32" length="0" keyType="PrimaryKey" />
+        <modelProperty Id="27e99d96-22da-48d4-a600-f2f948a65872" name="IdSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="25066b44-300f-4333-b967-704fda476609" name="IdSolicitud_Relacionada" columnType="Int32" length="0" notNull="true" unique="true" />
+      </properties>
+    </modelClass>
+    <modelClass name="Estados">
+      <properties>
+        <modelProperty Id="649287ea-3b89-4a4c-8f81-eed17843755d" name="IdEstado" columnType="Int16" length="0" keyType="PrimaryKey" />
+        <modelProperty Id="6c89373b-c864-4672-8e83-c0313e931872" name="Detalle" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="TareasHoras" schema="dbo" table="Tareas_Horas">
+      <properties>
+        <modelProperty Id="8d68f2b3-b3a1-4d91-8dfc-75693ad04ecc" name="Id" column="id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="60d3d502-6417-48d5-a000-75ad6d3bdbfc" name="IdTarea" column="id_tarea" columnType="Int32" length="0" />
+        <modelProperty Id="6f163b07-a041-4dea-83b7-1df5783bffd0" name="IdEmpleados" column="id_Empleados" columnType="Int32" length="0" />
+        <modelProperty Id="0212e61f-3119-42d1-8da0-53ceb57da08d" name="IdTipotarea" column="id_TipoTarea" columnType="Int32" length="0" />
+        <modelProperty Id="cd06620b-45d9-46c7-9c4f-4645ad9efe86" name="Fecha" column="fecha" columnType="DateTime" length="0" />
+        <modelProperty Id="dfc74632-906a-44c2-b8a6-c6edebf3b8a5" name="Duracion" column="duracion" columnType="Double" length="0" />
+        <modelProperty Id="a8caefcd-5fbc-45cb-b69a-00dcb33b8b98" name="Semana" column="semana" columnType="Int32" length="0" />
+        <modelProperty Id="a965656c-5895-4d85-949d-dc499b61f0a7" name="Comentarios" column="Comentarios" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="VehiculosKilometros">
+      <properties>
+        <modelProperty Id="b13a5fde-cac7-4c5f-8068-986f05a3617f" name="IdVehiculosKilometros" columnType="Int64" length="0" keyType="PrimaryKey" />
+        <modelProperty Id="dbec552f-5315-46ee-8375-2877602df2f9" name="IdSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="07cc1414-efd3-4481-879d-e0c7a2800cd2" name="IdVehiculoSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="63c51e28-a2c8-4026-b9aa-dc0795d7f165" name="Kilometros" columnType="Double" length="0" />
+        <modelProperty Id="d3998345-06be-43af-9a65-23f9615c84a6" name="Tiempo" columnType="Double" length="0" />
+        <modelProperty Id="5b596cdf-0b85-4590-b22b-3a9d7d6cf409" name="Fecha" columnType="DateTime" length="0" />
+      </properties>
+    </modelClass>
+  </classes>
+</model>

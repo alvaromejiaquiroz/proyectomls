@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activeRecordMapping dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Gos.Events">
+  <modelMoniker Id="49894087-b156-4bd6-af22-c9ecee19ab16" />
+  <nestedChildShapes>
+    <classShape Id="39a7cc34-8e9d-4b9c-9eac-a5de36f43f33" absoluteBounds="0.5, 1.375, 1.5, 1.5391951497395833">
+      <modelClassMoniker name="/49894087-b156-4bd6-af22-c9ecee19ab16/Events" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aa2f7e2d-8080-49c3-8987-e02353073f72" absoluteBounds="0.515, 1.7850000000000001, 1.4700000000000002, 1.029195149739583" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</activeRecordMapping>

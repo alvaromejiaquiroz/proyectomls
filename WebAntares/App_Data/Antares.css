@@ -1,0 +1,26 @@
+﻿
+
+
+ul#solDetalle
+{
+    background-color: #FFFFCC;
+    border: 1px solid #86AEAE;
+    font-family: verdana;
+    font-size: small;
+    color: #333333;
+    border:1;
+}
+
+
+ul#solDetalle li span
+{
+	font-weight: bold;
+	width: 110px;
+	display:block;
+	float:left;
+}
+
+ul#solDetalle
+{
+	list-style-type: none;
+}

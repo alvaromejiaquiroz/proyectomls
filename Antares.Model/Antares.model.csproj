@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{579C0B3C-462E-49BA-A471-046ECC05B23D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Antares.model</RootNamespace>
+    <AssemblyName>Antares.model</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.ActiveRecord, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\Castle.ActiveRecord.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\Castle.Components.Validator.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy, Version=1.1.5.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.0.3, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=1.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Nullables, Version=1.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\Nullables.dll</HintPath>
+    </Reference>
+    <Reference Include="Nullables.NHibernate, Version=1.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\Nullables.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adjuntos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Adjuntos.actiw</DependentUpon>
+    </Compile>
+    <Compile Include="CommonFunctions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MantPreventivo.cs">
+      <DependentUpon>MantPreventivo.actiw</DependentUpon>
+      <SubType>Code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Modelo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelo.actiw</DependentUpon>
+    </Compile>
+    <Compile Include="Personal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiciosAfectados.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Solicitud.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SolicitudCapacitacion.cs" />
+    <Compile Include="SolicitudFrancosCompensatorios.cs" />
+    <Compile Include="SolicitudLicencias.cs" />
+    <Compile Include="SolicitudRecursosEmpleados.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SolicitudRecursosVehiculos.cs" />
+    <Compile Include="SolicitudRendicionPersonaHoras.cs" />
+    <Compile Include="SolicitudRendicionVehiculosHoras.cs" />
+    <Compile Include="SolicitudTarea.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TipoSolicitud.cs" />
+    <Compile Include="Vehiculos.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Adjuntos.actiw">
+      <Generator>ActiveWriterCodeGenerator</Generator>
+      <LastGenOutput>Adjuntos.cs</LastGenOutput>
+    </None>
+    <None Include="Adjuntos.actiw.diagram">
+      <DependentUpon>Adjuntos.actiw</DependentUpon>
+    </None>
+    <None Include="MantPreventivo.actiw">
+      <Generator>ActiveWriterCodeGenerator</Generator>
+      <LastGenOutput>MantPreventivo.cs</LastGenOutput>
+    </None>
+    <None Include="MantPreventivo.actiw.diagram">
+      <DependentUpon>MantPreventivo.actiw</DependentUpon>
+    </None>
+    <None Include="Modelo.actiw">
+      <Generator>ActiveWriterCodeGenerator</Generator>
+      <LastGenOutput>Modelo.cs</LastGenOutput>
+    </None>
+    <None Include="Modelo.actiw.diagram">
+      <DependentUpon>Modelo.actiw</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

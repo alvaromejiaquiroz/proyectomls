@@ -1,0 +1,1 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="jDatePick.ascx.cs" Inherits="Controles_jDatePick" %><asp:TextBox ID="ctlDate" runat="server" style="width:70px;"></asp:TextBox>
