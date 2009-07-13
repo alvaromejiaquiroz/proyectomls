@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model dslVersion="1.0.0.0" Id="a1e66a9e-98c2-49fc-b4e1-0d219b563a4f" xmlns="http://schemas.microsoft.com/dsltools/ActiveWriter">
+  <additionalImports>AAEAAAD/////AQAAAAAAAAAMAgAAAF1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkRzbCwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTkwNTE0MTM5NmRkYjA3OTkEAQAAAKEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tBbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydCwgQWx0aW5vcmVuLkFjdGl2ZVdyaXRlci5Ec2wsIFZlcnNpb249MS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj05MDUxNDEzOTZkZGIwNzk5XV0DAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgQAAB9BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydFtdAgAAAAgICQMAAAAAAAAAAAAAAAcDAAAAAAEAAAAAAAAABB1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydAIAAAAL</additionalImports>
+  <classes>
+    <modelClass name="Perfiles" schema="dbo" table="Perfiles">
+      <properties>
+        <modelProperty Id="1829a31a-4217-4587-aa37-ddb9980f1ff3" name="IdPerfil" column="IdPerfil" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="7eca2e3f-8986-4d55-83fb-ca55da3048f3" name="Detalle" column="Detalle" length="0" notNull="true" />
+      </properties>
+    </modelClass>
+    <modelClass name="Usuarios" schema="dbo" table="usuarios">
+      <targets>
+        <manyToOneRelation Id="59c43f68-143e-496a-9b3d-5035c2812656">
+          <modelClassMoniker name="/a1e66a9e-98c2-49fc-b4e1-0d219b563a4f/Perfiles" />
+        </manyToOneRelation>
+      </targets>
+      <properties>
+        <modelProperty Id="d2ebf592-9a89-4f98-9d75-e804682af0a8" name="IdUsuario" column="IdUsuario" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="f0e6da3b-d067-4f1e-9abb-e09ec10e4ed9" name="Nombre" column="Nombre" length="0" />
+        <modelProperty Id="7d0c97e7-7bce-400d-b369-792de170cfd1" name="LoginName" column="loginName" length="0" />
+        <modelProperty Id="82f030dd-ddc0-439a-8bc4-f5ce9c16ee34" name="Password" column="Password" length="0" />
+        <modelProperty Id="29a5ee3e-4f3c-4c6e-b6db-b58c52cc7ffb" name="IdPerfil" column="IdPerfil" columnType="Int32" length="0" />
+        <modelProperty Id="26218566-d8de-477b-95a4-a52860908d6e" name="Perfiles" column="Perfiles" columnType="Int32" length="0" />
+        <modelProperty Id="a0868b15-ec08-4569-a7e4-c84cce2c7f79" name="Foto" column="Foto" length="0" />
+      </properties>
+    </modelClass>
+  </classes>
+</model>

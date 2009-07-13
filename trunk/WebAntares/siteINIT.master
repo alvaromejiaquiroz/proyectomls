@@ -1,0 +1,31 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="siteINIT.master.cs"  Inherits="site2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Antares</title>
+    
+    
+</head>
+<body >
+<img alt="" src="./images/LogoAntares.png" />
+    <form id="form1" runat="server">
+  
+  
+  	
+    <table >
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <tr>
+            <td >
+            <div id="login"> 
+                <asp:ContentPlaceHolder ID="PageContainer" runat="server">
+                </asp:ContentPlaceHolder>
+                </div>
+            </td>
+        </tr>
+    </table>
+  
+      </form>
+</body>
+</html>

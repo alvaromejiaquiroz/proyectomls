@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activeRecordMapping dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Gos.Usuarios">
+  <modelMoniker Id="a1e66a9e-98c2-49fc-b4e1-0d219b563a4f" />
+  <nestedChildShapes>
+    <classShape Id="eb0f8b26-2ffe-44c7-b5a6-2d2e3e8c7efa" absoluteBounds="2.5, 0.5, 1.5, 1.0461531575520833">
+      <modelClassMoniker name="/a1e66a9e-98c2-49fc-b4e1-0d219b563a4f/Perfiles" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1545151c-29d7-4d19-9335-3eb68491d9dc" absoluteBounds="2.515, 0.91, 1.4700000000000002, 0.53615315755208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="451cfa00-59f5-4234-9517-8d52dd7d5618" absoluteBounds="0.5, 0.625, 1.5, 1.8678898111979168">
+      <modelClassMoniker name="/a1e66a9e-98c2-49fc-b4e1-0d219b563a4f/Usuarios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9f012cff-1a3f-40ef-90fc-16ce082ffd33" absoluteBounds="0.515, 1.0350000000000001, 1.4700000000000002, 1.3578898111979165" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <manyToOneConnector edgePoints="[(2 : 1.08557657877604); (2.5 : 1.08557657877604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <manyToOneRelationMoniker Id="59c43f68-143e-496a-9b3d-5035c2812656" />
+      <relativeChildShapes />
+      <nodes>
+        <classShapeMoniker Id="451cfa00-59f5-4234-9517-8d52dd7d5618" />
+        <classShapeMoniker Id="eb0f8b26-2ffe-44c7-b5a6-2d2e3e8c7efa" />
+      </nodes>
+    </manyToOneConnector>
+  </nestedChildShapes>
+</activeRecordMapping>

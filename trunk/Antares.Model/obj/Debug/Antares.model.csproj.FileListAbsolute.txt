@@ -1,0 +1,150 @@
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\antares.model.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\antares.model.pdb
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Castle.ActiveRecord.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Castle.Components.Validator.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Castle.Core.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Castle.DynamicProxy.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Iesi.Collections.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\log4net.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\NHibernate.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Nullables.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Nullables.NHibernate.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\NHibernate.xml
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Castle.DynamicProxy.xml
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Iesi.Collections.xml
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Nullables.xml
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\log4net.xml
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Castle.Core.xml
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Castle.ActiveRecord.xml
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Castle.Components.Validator.xml
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\Nullables.NHibernate.xml
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\es\Castle.Components.Validator.resources.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\fr\Castle.Components.Validator.resources.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\it\Castle.Components.Validator.resources.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\lt\Castle.Components.Validator.resources.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\lv\Castle.Components.Validator.resources.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\nl\Castle.Components.Validator.resources.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\bin\Debug\pt\Castle.Components.Validator.resources.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\obj\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\obj\Debug\antares.model.dll
+D:\Documents and Settings\yapsga.TERNIUM\My Documents\Visual Studio 2008\Projects\antares.model\obj\Debug\antares.model.pdb
+D:\Antares\Antares\Antares.Model\obj\Debug\ResolveAssemblyReference.cache
+D:\Antares\Antares\Antares.Model\bin\Debug\Antares.model.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\Antares.model.pdb
+D:\Antares\Antares\Antares.Model\bin\Debug\Castle.ActiveRecord.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\Castle.Components.Validator.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\Castle.Core.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\Castle.DynamicProxy.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\Iesi.Collections.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\log4net.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\NHibernate.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\Nullables.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\Nullables.NHibernate.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\NHibernate.xml
+D:\Antares\Antares\Antares.Model\bin\Debug\Castle.DynamicProxy.xml
+D:\Antares\Antares\Antares.Model\bin\Debug\Iesi.Collections.xml
+D:\Antares\Antares\Antares.Model\bin\Debug\Nullables.xml
+D:\Antares\Antares\Antares.Model\bin\Debug\log4net.xml
+D:\Antares\Antares\Antares.Model\bin\Debug\Castle.Core.xml
+D:\Antares\Antares\Antares.Model\bin\Debug\Castle.ActiveRecord.xml
+D:\Antares\Antares\Antares.Model\bin\Debug\Castle.Components.Validator.xml
+D:\Antares\Antares\Antares.Model\bin\Debug\Nullables.NHibernate.xml
+D:\Antares\Antares\Antares.Model\bin\Debug\es\Castle.Components.Validator.resources.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\fr\Castle.Components.Validator.resources.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\it\Castle.Components.Validator.resources.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\lt\Castle.Components.Validator.resources.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\lv\Castle.Components.Validator.resources.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\nl\Castle.Components.Validator.resources.dll
+D:\Antares\Antares\Antares.Model\bin\Debug\pt\Castle.Components.Validator.resources.dll
+D:\Antares\Antares\Antares.Model\obj\Debug\Antares.model.dll
+D:\Antares\Antares\Antares.Model\obj\Debug\Antares.model.pdb
+D:\gGos\Antares\Antares.Model\bin\Debug\Antares.model.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\Antares.model.pdb
+D:\gGos\Antares\Antares.Model\bin\Debug\Castle.ActiveRecord.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\Castle.Components.Validator.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\Castle.Core.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\Castle.DynamicProxy.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\Iesi.Collections.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\log4net.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\NHibernate.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\Nullables.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\Nullables.NHibernate.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\NHibernate.xml
+D:\gGos\Antares\Antares.Model\bin\Debug\Castle.DynamicProxy.xml
+D:\gGos\Antares\Antares.Model\bin\Debug\Iesi.Collections.xml
+D:\gGos\Antares\Antares.Model\bin\Debug\Nullables.xml
+D:\gGos\Antares\Antares.Model\bin\Debug\log4net.xml
+D:\gGos\Antares\Antares.Model\bin\Debug\Castle.Core.xml
+D:\gGos\Antares\Antares.Model\bin\Debug\Castle.ActiveRecord.xml
+D:\gGos\Antares\Antares.Model\bin\Debug\Castle.Components.Validator.xml
+D:\gGos\Antares\Antares.Model\bin\Debug\Nullables.NHibernate.xml
+D:\gGos\Antares\Antares.Model\bin\Debug\es\Castle.Components.Validator.resources.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\fr\Castle.Components.Validator.resources.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\it\Castle.Components.Validator.resources.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\lt\Castle.Components.Validator.resources.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\lv\Castle.Components.Validator.resources.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\nl\Castle.Components.Validator.resources.dll
+D:\gGos\Antares\Antares.Model\bin\Debug\pt\Castle.Components.Validator.resources.dll
+D:\gGos\Antares\Antares.Model\obj\Debug\ResolveAssemblyReference.cache
+D:\gGos\Antares\Antares.Model\obj\Debug\Antares.model.dll
+D:\gGos\Antares\Antares.Model\obj\Debug\Antares.model.pdb
+D:\temp\Antares\Antares.Model\bin\Debug\Antares.model.dll
+D:\temp\Antares\Antares.Model\bin\Debug\Antares.model.pdb
+D:\temp\Antares\Antares.Model\bin\Debug\Castle.ActiveRecord.dll
+D:\temp\Antares\Antares.Model\bin\Debug\Castle.Components.Validator.dll
+D:\temp\Antares\Antares.Model\bin\Debug\Castle.Core.dll
+D:\temp\Antares\Antares.Model\bin\Debug\Castle.DynamicProxy.dll
+D:\temp\Antares\Antares.Model\bin\Debug\Iesi.Collections.dll
+D:\temp\Antares\Antares.Model\bin\Debug\log4net.dll
+D:\temp\Antares\Antares.Model\bin\Debug\NHibernate.dll
+D:\temp\Antares\Antares.Model\bin\Debug\Nullables.dll
+D:\temp\Antares\Antares.Model\bin\Debug\Nullables.NHibernate.dll
+D:\temp\Antares\Antares.Model\bin\Debug\NHibernate.xml
+D:\temp\Antares\Antares.Model\bin\Debug\Castle.DynamicProxy.xml
+D:\temp\Antares\Antares.Model\bin\Debug\Iesi.Collections.xml
+D:\temp\Antares\Antares.Model\bin\Debug\Nullables.xml
+D:\temp\Antares\Antares.Model\bin\Debug\log4net.xml
+D:\temp\Antares\Antares.Model\bin\Debug\Castle.Core.xml
+D:\temp\Antares\Antares.Model\bin\Debug\Castle.ActiveRecord.xml
+D:\temp\Antares\Antares.Model\bin\Debug\Castle.Components.Validator.xml
+D:\temp\Antares\Antares.Model\bin\Debug\Nullables.NHibernate.xml
+D:\temp\Antares\Antares.Model\bin\Debug\es\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares.Model\bin\Debug\fr\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares.Model\bin\Debug\it\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares.Model\bin\Debug\lt\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares.Model\bin\Debug\lv\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares.Model\bin\Debug\nl\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares.Model\bin\Debug\pt\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares.Model\obj\Debug\ResolveAssemblyReference.cache
+D:\temp\Antares\Antares.Model\obj\Debug\Antares.model.dll
+D:\temp\Antares\Antares.Model\obj\Debug\Antares.model.pdb
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Antares.model.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Antares.model.pdb
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Castle.ActiveRecord.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Castle.Components.Validator.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Castle.Core.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Castle.DynamicProxy.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Iesi.Collections.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\log4net.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\NHibernate.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Nullables.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Nullables.NHibernate.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\NHibernate.xml
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Castle.DynamicProxy.xml
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Iesi.Collections.xml
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Nullables.xml
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\log4net.xml
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Castle.Core.xml
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Castle.ActiveRecord.xml
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Castle.Components.Validator.xml
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\Nullables.NHibernate.xml
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\es\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\fr\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\it\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\lt\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\lv\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\nl\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares\Antares.Model\bin\Debug\pt\Castle.Components.Validator.resources.dll
+D:\temp\Antares\Antares\Antares.Model\obj\Debug\ResolveAssemblyReference.cache
+D:\temp\Antares\Antares\Antares.Model\obj\Debug\Antares.model.dll
+D:\temp\Antares\Antares\Antares.Model\obj\Debug\Antares.model.pdb
