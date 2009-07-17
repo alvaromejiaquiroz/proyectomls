@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="Solicitudes" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
     CodeFile="Solicitudes.aspx.cs" Inherits="Solicitudes_Solicitudes" %>
 
-<%@ Register Src="../Controles/cboTipoSolicitud.ascx" TagName="cboTipoSolicitud"
+<%@ Register Src="~/Controles/cboTipoSolicitud.ascx" TagName="cboTipoSolicitud"
     TagPrefix="uc1" %>
-<%@ Register src="../Controles/CboGeneric.ascx" tagname="CboGeneric" tagprefix="uc2" %>
+<%@ Register src="~/Controles/CboGeneric.ascx" tagname="CboGeneric" tagprefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>

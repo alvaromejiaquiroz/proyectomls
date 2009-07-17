@@ -5,10 +5,12 @@
 <head id="Head1" runat="server">
     <title>Antares</title>
     
-    
+
 </head>
 <body >
-<img alt="" src="./images/LogoAntares.png" />
+
+     <img  src="../images/LogoAntares.png" alt="" style="width:100px;height:80px;" /> 
+
     <form id="form1" runat="server">
   
   

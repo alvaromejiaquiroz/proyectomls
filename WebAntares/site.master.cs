@@ -18,6 +18,7 @@ public partial class site : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string appPath; 
         if (Session.IsNewSession || BiFactory.User ==null)
         {
             if (Request.RawUrl.ToLower().IndexOf("login.aspx") == -1)
@@ -28,11 +29,12 @@ public partial class site : System.Web.UI.MasterPage
         }
         if (!Page.IsCallback)
         {
+            appPath = HttpContext.Current.Request.ApplicationPath;
         
             if (Context.User.Identity.IsAuthenticated) { 
             
                 UsuariosEmpleados Relacion = Antares.model.UsuariosEmpleados.FindOne(Expression.Eq("IdUsuarios", BiFactory.User.IdUsuario));
-                Imagen_Usuario.ImageUrl = "../images/Empleados/NN.jpg";
+                Imagen_Usuario.ImageUrl = "~/images/Empleados/NN.jpg";
 
                 if (Relacion != null)
                 {
@@ -41,7 +43,7 @@ public partial class site : System.Web.UI.MasterPage
                     if (Empleado.Foto != null )
                     {
 
-                        Imagen_Usuario.ImageUrl = "/images/Empleados/" + Empleado.Foto;
+                        Imagen_Usuario.ImageUrl = "~/images/Empleados/" + Empleado.Foto;
                     }
                 }
                 else

@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
     CodeFile="Intervencion.aspx.cs" Inherits="_Default" %>
 
-<%@ Register src="../Controles/jDatePick.ascx" tagname="jDatePick" tagprefix="uc1" %>
+<%@ Register src="~/Controles/jDatePick.ascx" tagname="jDatePick" tagprefix="uc1" %>
 
 
-<%@ Register src="../Controles/cboTipoSolicitud.ascx" tagname="cboTipoSolicitud" tagprefix="uc2" %>
+<%@ Register src="~/Controles/cboTipoSolicitud.ascx" tagname="cboTipoSolicitud" tagprefix="uc2" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
