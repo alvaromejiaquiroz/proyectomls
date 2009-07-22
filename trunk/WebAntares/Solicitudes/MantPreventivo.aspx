@@ -25,7 +25,7 @@
                 })
             });
         }
-        
+                       
         </script>
 
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
@@ -317,11 +317,8 @@
             </asp:UpdatePanel>
         </div>
         <div id="divadjuntos">
-            <asp:UpdatePanel ID="UpdateAdjuntos" runat="server">
-                <ContentTemplate>
-                         </ContentTemplate>
-            </asp:UpdatePanel>
-            <table>
+            
+                    <table>
                         <tr>
                             <td valign="top" >
                                 Datos Ajuntos
@@ -347,7 +344,7 @@
                                 &nbsp;</td>
                         </tr>
                     </table>
-       
+             
         </div>
         <div id="divPresupuesto">
             <asp:UpdatePanel ID="UpdatePanelPresupuesto" runat="server">

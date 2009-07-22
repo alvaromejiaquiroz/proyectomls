@@ -22,9 +22,10 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         base.OnInitComplete(e);
     }
 
+    
+
     protected void Page_Load(object sender, EventArgs e)
     {
-            
         if (!Page.IsPostBack)
         {
             CargarCombos();
@@ -46,11 +47,9 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                     cboSitios.Enabled = false;
 
                 }
-
             }
-
-
         }
+
     }
 
     private void LoadDataComplementaria()
