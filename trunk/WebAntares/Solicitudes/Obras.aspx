@@ -1,15 +1,18 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="Obras.aspx.cs" Inherits="Solicitudes_Obras" Title="Obras e Instalaciones" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
+    CodeFile="Obras.aspx.cs" Inherits="Solicitudes_Obras"  %>
 
-<%@ Register src="../Controles/SolDetalle.ascx" tagname="SolDetalle" tagprefix="uc2" %>
+
+<%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle"    TagPrefix="uc2" %>
+<%@ Register Src="../Controles/cboSitios.ascx"  TagName="cboSitios"     TagPrefix="uc3" %>
+<%@ Register Src="../Controles/Adjuntos.ascx"   TagName="Adjuntos"      TagPrefix="uc4" %>
+
 <%@ Register src="../Controles/jDatePick.ascx" tagname="jDatePick" tagprefix="uc1" %>
-<%@ Register src="../Controles/uploadFile.ascx" tagname="uploadFile" tagprefix="uc3" %>
-<%@ Register src="../Controles/Adjuntos.ascx" tagname="Adjuntos" tagprefix="uc4" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" Runat="Server">
 
     
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(function() {
             $('#Solapas').tabs();
             
@@ -27,11 +30,12 @@
             });
         }
         
-        </script>
-
+</script>
+        
 <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
-    </asp:ScriptManagerProxy>
-    <uc2:SolDetalle ID="SolDetalle1" runat="server" />
+</asp:ScriptManagerProxy>
+ 
+   <uc2:SolDetalle ID="SolDetalle2" runat="server" />
     
    <div id="Solapas">
         <ul>
@@ -122,12 +126,18 @@
                         <asp:TextBox ID="txtDescripcionTareas" runat="server" Width="250px" 
                             Height="190px" TextMode="MultiLine"></asp:TextBox>
                     </td></tr>
-                <tr><td>Fecha de Inicio</td><td>
-                    <uc1:jDatePick ID="dtpInicio"  Name = "desde" runat="server" CustomScript="customRange" />
-                    </td></tr>
-                <tr><td>Fecha de Entrega</td><td>
-                    <uc1:jDatePick ID="dtpFin" name = "hasta" runat="server" CustomScript="customRange"/>
-                    </td></tr>
+                <tr>
+                <td>Fecha de Inicio</td>
+                    <td>
+                        <uc1:jDatePick ID="dtpInicio"  Name="desde" runat="server" CustomScript="customRange"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fecha de Entrega</td>
+                    <td>
+                        <uc1:jDatePick ID="dtpFin" name = "hasta" runat="server" CustomScript="customRange"/>
+                    </td>
+                </tr>
                 <tr><td valign="top">Requisitos de Aprobacion</td><td>
                     <asp:TextBox ID="txtRequisitoAprova" runat="server" Width="254px" Height="85px" 
                         TextMode="MultiLine"></asp:TextBox>
@@ -142,7 +152,7 @@
             
         </div>
         <div id="divtblPersonas">
-            <asp:UpdatePanel ID="UpdatePersonas" runat="server">
+             <asp:UpdatePanel ID="UpdatePersonas" runat="server">
                 <ContentTemplate>
                     <table>
                          <tr>
@@ -183,7 +193,7 @@
                             </td>
                             <td valign="top" style="width: 509px">
                                 <asp:Button ID="btnAsignaEmpleadoSolicitud" runat="server" Text="Asignar Empleados"
-                                    OnClick="btnAsignaEmpleadoSolicitud_Click" />
+                                    OnClick="btnAsignarEmpleadoSolicitud_Click" />
                             </td>
                             <td valign="top">
                                 &nbsp;
@@ -324,71 +334,63 @@
         </div>
         <div id="divAdjuntos">
             <table id="Table1">
-            <tr><td>
-                    <uc3:uploadFile ID="uploadFile2" runat="server" />
-                                
-                    <uc4:Adjuntos ID="Adjuntos2" runat="server" />
-                    </td></tr>
+                <tr>
+                        <td><uc4:Adjuntos ID="Adjuntos2" runat="server" />                     </td>
+                 </tr>
             </table>
         </div>
         <div id="divFin">
           <table>
-        <tr>
-            <td valign="top">
-                &nbsp;
-            </td>
-            <td style="width: 509px" valign="top">
-                <asp:Button ID="btnAceptarSolicitud" runat="server" 
-                    Text="Confirmar Solicitud" onclick="btnAceptarSolicitud_Click" 
-                     />
-            </td>
-            <td valign="top">
-                &nbsp;
-            </td>
-            <td valign="top">
-                &nbsp;
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                &nbsp;</td>
-            <td style="width: 509px" valign="top">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                    ControlToValidate="txtContacto" ErrorMessage="RequiredFieldValidator" 
-                    ToolTip="Ingrese el Nombre y Apellido de la Persona a Contactar en el Cliente ">Ingrese 
-                el Nombre y Apellido del Contacto en el Cliente</asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
-                    ControlToValidate="txtMail" ErrorMessage="RegularExpressionValidator" 
-                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">Ingrese 
-                una Direccion de Correo Electronica Valida</asp:RegularExpressionValidator>
-                <asp:RangeValidator ID="RangeValidator1" runat="server" 
-                    ControlToValidate="txtPresupuesto" ErrorMessage="RangeValidator" 
-                    MaximumValue="100000" MinimumValue="0" Type="Currency">Ingrese el Monto en 
-                Pesos</asp:RangeValidator>
-            </td>
-            <td valign="top">
-                &nbsp;</td>
-            <td valign="top">
-                &nbsp;</td>
-        </tr>
-    </table>
+                        <tr>
+                            <td valign="top">
+                                &nbsp;
+                            </td>
+                            <td style="width: 509px" valign="top">
+                                <asp:Button ID="btnAceptarSolicitud" runat="server" 
+                                    Text="Confirmar Solicitud" onclick="btnAceptarSolicitud_Click" 
+                                     />
+                            </td>
+                            <td valign="top">
+                                &nbsp;
+                            </td>
+                            <td valign="top">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                &nbsp;</td>
+                            <td style="width: 509px" valign="top">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                    ControlToValidate="txtContacto" ErrorMessage="RequiredFieldValidator" 
+                                    ToolTip="Ingrese el Nombre y Apellido de la Persona a Contactar en el Cliente ">Ingrese 
+                                el Nombre y Apellido del Contacto en el Cliente</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                                    ControlToValidate="txtMail" ErrorMessage="RegularExpressionValidator" 
+                                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">Ingrese 
+                                una Direccion de Correo Electronica Valida</asp:RegularExpressionValidator>
+                                <asp:RangeValidator ID="RangeValidator1" runat="server" 
+                                    ControlToValidate="txtPresupuesto" ErrorMessage="RangeValidator" 
+                                    MaximumValue="100000" MinimumValue="0" Type="Currency">Ingrese el Monto en 
+                                Pesos</asp:RangeValidator>
+                            </td>
+                            <td valign="top">
+                                &nbsp;</td>
+                            <td valign="top">
+                                &nbsp;</td>
+                        </tr>
+          </table>
          </div>
-        </div>
-        
-       
-    <script>
+    </div>
+   
+   <script type="text/javascript">
         //funcion adicional para controlar el rango de fechas
-
         function customRange(input) {
             return { minDate: (input.id == hasta ? $("#" + desde).datepicker("getDate") : null),
                 maxDate: (input.id == desde ? $("#" + hasta).datepicker("getDate") : null)
             };
         } 
-
-
     </script>
-
-    
        
 </asp:Content>
 

@@ -65,7 +65,9 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             txtContactoCliente.Text = sol.Contacto;
             txtMailContacto.Text = sol.ContactoMail;
             txtNroOrdenCliente.Text = sol.NroOrdenCte;
+            txtTelefonoContacto.Text = sol.ContactoTel;
             txtPresupuesto.Text = sol_p.Presupuesto;
+
             Adjuntos1.ListaAdjuntos(sol.Id_Solicitud.ToString());
         }
 
@@ -252,7 +254,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
         FillSolicitudEmpleados();
 }
-
     protected void btnAsignaVehiculoSolicitud_Click(object sender, EventArgs e)
     {
         int id_Sol = BiFactory.Sol.Id_Solicitud;
@@ -310,9 +311,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             TransactionScope TX = new TransactionScope();
             try
             {
-                
-                            
-
+    
                 sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
                 sol.Contacto = txtContactoCliente.Text;
                 sol.NroOrdenCte = txtNroOrdenCliente.Text;
@@ -364,6 +363,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
         sol.Contacto = txtContactoCliente.Text;
         sol.NroOrdenCte = txtNroOrdenCliente.Text;
+        sol.ContactoTel = txtTelefonoContacto.Text;
+
         sol.Status = eEstados.Pendiente.ToString();
         //sol.IdResponsable = cboResponsable.ValueInt;
         sol.Update();

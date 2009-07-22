@@ -5,8 +5,12 @@
     <siteMapNode title="Administracion" roles="1,4">
       <siteMapNode url="~/usuarios/usuarios.aspx" title="Usuarios"  description=""  roles="administrators, editors"/>
     </siteMapNode>
-    
-    <siteMapNode title="Tiempos" roles="1,4">
+
+    <siteMapNode title="Facturas y Pagos" roles="1,4">
+          <siteMapNode title="Facturas"  url="~/Administracion/Facturas.aspx" roles="administrators, editors,2"/>
+     </siteMapNode>
+
+      <siteMapNode title="Tiempos" roles="1,4">
         <siteMapNode title="Mis Tiempos"  url="~/solicitudes/TiemposPersonal.aspx" roles="administrators, editors,2"/>
     </siteMapNode>
     
@@ -27,6 +31,7 @@
 
           <siteMapNode title="Prueba Persona Horas"          url="~/solicitudes/PersonaHoras.aspx" roles="2"/>
           <siteMapNode title="Test Time Picker"          url="~/solicitudes/testdate.aspx" roles="2"/>
+          <siteMapNode title="Reporte HTML"          url="~/reportes/mostrarsolicitud.aspx" roles="2"/>
       </siteMapNode>
 
 
