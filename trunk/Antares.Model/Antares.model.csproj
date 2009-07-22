@@ -79,6 +79,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Adjuntos.actiw</DependentUpon>
     </Compile>
+    <Compile Include="Administracion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Administracion.actiw</DependentUpon>
+    </Compile>
     <Compile Include="CommonFunctions.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -125,6 +130,13 @@
     </None>
     <None Include="Adjuntos.actiw.diagram">
       <DependentUpon>Adjuntos.actiw</DependentUpon>
+    </None>
+    <None Include="Administracion.actiw">
+      <Generator>ActiveWriterCodeGenerator</Generator>
+      <LastGenOutput>Administracion.cs</LastGenOutput>
+    </None>
+    <None Include="Administracion.actiw.diagram">
+      <DependentUpon>Administracion.actiw</DependentUpon>
     </None>
     <None Include="MantPreventivo.actiw">
       <Generator>ActiveWriterCodeGenerator</Generator>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model dslVersion="1.0.0.0" Id="281434b9-46fd-4979-a854-c9e0bfd473f7" xmlns="http://schemas.microsoft.com/dsltools/ActiveWriter">
+  <additionalImports>AAEAAAD/////AQAAAAAAAAAMAgAAAF1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkRzbCwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTkwNTE0MTM5NmRkYjA3OTkEAQAAAKEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tBbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydCwgQWx0aW5vcmVuLkFjdGl2ZVdyaXRlci5Ec2wsIFZlcnNpb249MS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj05MDUxNDEzOTZkZGIwNzk5XV0DAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgQAAB9BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydFtdAgAAAAgICQMAAAAAAAAAAAAAAAcDAAAAAAEAAAAAAAAABB1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydAIAAAAL</additionalImports>
+  <classes>
+    <modelClass name="Proveedores" schema="dbo" table="Proveedores">
+      <properties>
+        <modelProperty Id="f0cfae24-e077-47df-b27e-5260fa1436fe" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="6e51a1f5-ad41-4f25-a198-4700d7e5d853" name="Descripcion" column="Descripcion" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="FacturaEstados" schema="dbo" table="Factura_Estados">
+      <properties>
+        <modelProperty Id="18f8debd-3984-41c4-8048-3f56128dfb8e" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="c44f8a5b-1053-48cb-b2ea-e4971977b6af" name="Descripcion" column="Descripcion" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="PagosEfectuados" schema="dbo" table="Pagos_Efectuados">
+      <properties>
+        <modelProperty Id="fbcc881a-3c63-45ad-ac77-910545738863" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="147b0fa6-2c4b-4a54-960b-efce7c9544f7" name="FechaPago" column="Fecha_Pago" columnType="DateTime" length="0" />
+        <modelProperty Id="7f4b0705-4933-4d4a-a721-c421266c38e3" name="IdProveedor" column="Id_Proveedor" columnType="Int32" length="0" />
+        <modelProperty Id="ccc1a324-09cb-4422-a326-9e917d4a27f9" name="FacturaProveedor" column="Factura_Proveedor" columnType="Int32" length="0" />
+        <modelProperty Id="1c9f46dc-78b7-4ecf-96c6-9aab002e6b28" name="NroPago" column="Nro_Pago" columnType="Int32" length="0" />
+        <modelProperty Id="6521709e-ddcd-4a69-a029-cbcf318cff48" name="IdBanco" column="Id_Banco" columnType="Int32" length="0" />
+        <modelProperty Id="a7b96152-2268-48e1-a01d-82ef735e9e02" name="IdFormaPago" column="Id_Forma_Pago" columnType="Int32" length="0" />
+        <modelProperty Id="f4551c3c-bc7c-43b2-9716-302294d6fc87" name="ImportePago" column="Importe_Pago" columnType="Decimal" length="0" />
+        <modelProperty Id="315764a0-5125-4945-acf8-6fcc50dba922" name="ReciboPagoCliente" column="Recibo_Pago_Cliente" length="0" />
+        <modelProperty Id="559e78bc-128a-487c-83cd-6f6d87073d46" name="FechaActualizacion" column="Fecha_Actualizacion" columnType="Timestamp" length="0" />
+        <modelProperty Id="509c202c-946f-406f-8355-59ee6bcad8be" name="Comentarios" column="Comentarios" length="0" />
+        <modelProperty Id="bc7f66b8-a9ab-485e-a723-cfe61aba4849" name="EstadoPago" column="Estado_Pago" length="0" />
+        <modelProperty Id="9fdf1963-ab74-43d8-8f7d-36d1b2025ef3" name="IngresadoCaja" column="Ingresado_Caja" columnType="Boolean" length="0" />
+        <modelProperty Id="55bc7f0f-7412-4657-a44e-a7acfb73f320" name="ConciliadoBanco" column="Conciliado_Banco" columnType="Boolean" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="Facturas" schema="dbo" table="Facturas">
+      <properties>
+        <modelProperty Id="eb0327b9-5d1d-44f0-8779-14d7ed0d8447" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="4af9b30e-a896-45ca-bf1a-8ebc20ff0afa" name="IdFacturaEstados" column="Id_Factura_Estados" columnType="Int32" length="0" />
+        <modelProperty Id="9f72f12b-6ee5-4860-b319-ebbe6066cea8" name="IdProveedor" column="Id_Proveedor" columnType="Int32" length="0" />
+        <modelProperty Id="a4cbee69-2874-4e01-b7a1-741626ef2764" name="Fecha" column="Fecha" columnType="DateTime" length="0" />
+        <modelProperty Id="06ecfaf2-4c44-47bd-a312-7e3b64e49866" name="NFactura" column="n_factura" length="0" />
+        <modelProperty Id="403ccc5a-e968-4896-8a98-1fd2902f974e" name="Descripcion" column="descripcion" length="0" />
+        <modelProperty Id="d8748de2-7769-40d3-a38b-15366084d6b1" name="FechaRecepcionFactura" column="Fecha_Recepcion_Factura" columnType="DateTime" length="0" />
+        <modelProperty Id="753d2628-de23-4463-b3fc-982383e289a7" name="PlazoPago" column="Plazo_Pago" length="0" />
+        <modelProperty Id="c810819c-be07-4bb1-960d-fd7e284311fd" name="ImporteGravado" column="Importe_Gravado" columnType="Decimal" length="0" />
+        <modelProperty Id="c6607e47-1410-4bb2-a959-747ee7be3cab" name="ImporteNoGravado" column="Importe_no_Gravado" columnType="Decimal" length="0" />
+        <modelProperty Id="bff530ed-3a24-43bc-ac6a-9854a5d94d2f" name="PorcentajeIva" column="Porcentaje_Iva" columnType="Decimal" length="0" />
+        <modelProperty Id="f32e2f63-bd6f-4f92-84ad-64357f90a9cc" name="ImporteTotal" column="Importe_Total" columnType="Decimal" length="0" />
+        <modelProperty Id="3953890d-1477-4f3f-95f8-523a596ecda7" name="MontoRetencion" column="Monto_Retencion" columnType="Decimal" length="0" />
+        <modelProperty Id="af17b04f-2055-4366-babf-99f66566a19a" name="FechaActualizacion" column="Fecha_Actualizacion" columnType="DateTime" insert="false" length="0" update="false" />
+      </properties>
+    </modelClass>
+  </classes>
+</model>
