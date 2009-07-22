@@ -11,12 +11,28 @@ using System.Web.UI.HtmlControls;
 public partial class Controles_Adjuntos : System.Web.UI.UserControl
 {
     public Solicitud sol;
+
+    private TipoSolicitudEnum _tipoSolicitud;
+
+    public TipoSolicitudEnum TipoSol
+    {
+        get { return _tipoSolicitud; }
+        set { _tipoSolicitud = value; }
+    }
     
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            iUploadFrame.Attributes.Add("src", "../Html/MantPreventivoUpload.htm");
+            string html = string.Empty;
+            switch (TipoSol)
+            {
+                case TipoSolicitudEnum.MantenimientoPreventivo:
+                    html = "MantPreventivoUpload";
+                    break;
+            }
+
+            iUploadFrame.Attributes.Add("src", "../Html/" + html + ".htm");
             iUploadFrame.Attributes.Add("onload", "iUploadFrameLoad()");
             Page.ClientScript.RegisterStartupScript(GetType(), "UploadScript", ClientScriptHelper.UploadFrameLoad(iUploadFrame.ClientID, btnUpload.ClientID));
         }
