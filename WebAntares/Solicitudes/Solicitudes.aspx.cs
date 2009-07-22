@@ -80,7 +80,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                 Response.Redirect("./SolicitudesCambioEstado.aspx");
                 break;
             case "Visualizar_Reporte":
-                Response.Redirect("./Reportes.aspx?id=" + IdSolicitud.ToString());
+                Response.Redirect("~/Reportes/MostrarSolicitud.aspx?id=" + IdSolicitud.ToString());
                 break;
             case "Editar":
                //switch (BiFactory.Sol.Tipo.)
@@ -89,7 +89,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                 Response.Redirect("./intervencion.aspx?id=" + IdSolicitud.ToString() +"&Ac=e");
                 break;
             case "Imprimir":
-                Response.Redirect("./Reportes.aspx?id=" + IdSolicitud.ToString());
+                Response.Redirect("~/Reportes/MostrarSolicitud.aspx?id=" + IdSolicitud.ToString());
+                //Response.Redirect("./Reportes.aspx?id=" + IdSolicitud.ToString());
                 break;
         }
 
@@ -269,7 +270,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         }
     }
 
-        //    if (valorResponsable == eEstados.Realizado.ToString())
+    //    if (valorResponsable == eEstados.Realizado.ToString())
         //    {
 
 

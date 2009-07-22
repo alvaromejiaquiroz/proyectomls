@@ -6,6 +6,7 @@
 <%@ Register Src="../Controles/cboSitios.ascx" TagName="cboSitios" TagPrefix="uc3" %>
 <%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
 <%@ Register src="../Controles/CboGeneric.ascx" tagname="CboGeneric" tagprefix="uc5" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
 
     <script type="text/javascript">
@@ -42,15 +43,14 @@
             <li><a href="#divFin"><span>Confirmación</span></a></li>    
         </ul>
         <div id="divtblTareas">
-            
-            <table id="tblTareas">
+       
+             <table id="tblTareas">
                 <tr>
                     <td valign="top" >
                         <asp:Label ID="Label2" runat="server" Text="Sitio"></asp:Label>
                     </td>
                     <td valign="top" >
-                          <asp:DropDownList ID="cboSitios" runat="server" AutoPostBack="false" Width="200px">
-                                </asp:DropDownList>
+                          <asp:DropDownList ID="cboSitios" runat="server" AutoPostBack="false" Width="200px">  </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
@@ -81,7 +81,7 @@
                 <tr>
                     <td valign="top" colspan="2" style="text-align: center;">
                      <asp:UpdatePanel ID="UpdateTareas" runat="server">
-                         <ContentTemplate>
+                        <ContentTemplate> 
                         <asp:GridView ID="gvTareas" runat="server" AutoGenerateColumns="false" OnRowDeleting="GridView1_RowDeleting"
                             OnSelectedIndexChanged="gvTareas_SelectedIndexChanged">
                             <Columns>
@@ -101,12 +101,12 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                        </ContentTemplate>
-                        </asp:UpdatePanel>
+            </ContentTemplate>
+            </asp:UpdatePanel>         
                     </td>
                 </tr>
             </table>
-
+            
         </div>
         <div id="divtblPersonas">
             <asp:UpdatePanel ID="UpdatePersonas" runat="server">

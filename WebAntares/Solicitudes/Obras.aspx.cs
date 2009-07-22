@@ -70,7 +70,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
 
 
     }
-    protected void btnAsignaEmpleadoSolicitud_Click(object sender, EventArgs e)
+    protected void btnAsignarEmpleadoSolicitud_Click(object sender, EventArgs e)
     {
         int id_sol = BiFactory.Sol.Id_Solicitud;
         int id_empleado;
@@ -169,9 +169,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
     {
         Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
         if (ValidaSolicitud() && !(Solicitud.ExisteObra(sol.Id_Solicitud.ToString())) )
-        {
-
-            
+        {            
             TransactionScope TX = new TransactionScope();
             try
             {

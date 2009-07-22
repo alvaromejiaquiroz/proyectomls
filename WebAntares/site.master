@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Antares</title>
-    <link href="../App_Themes/antares/msvs_template_simple_tables.css" rel="stylesheet" type="text/css" />
+    <link href="~/App_Themes/antares/msvs_template_simple_tables.css" rel="stylesheet" type="text/css" />
 
     <script src="../Libs/jquery-1.2.6.js" type="text/javascript"></script>
 

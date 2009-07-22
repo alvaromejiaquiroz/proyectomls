@@ -121,8 +121,7 @@
         </div>
         <div id="divtblPlazo">
             <table>
-                <table>
-                    <tr>
+              <tr>
                         <td valign="top">
                             <asp:Label ID="Label13" runat="server" Text="Plazo Atencion"></asp:Label>
                         </td>
