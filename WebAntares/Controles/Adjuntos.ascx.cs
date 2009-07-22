@@ -6,18 +6,34 @@ using System.Web.UI.WebControls;
 using Antares.model;
 using NHibernate.Expression;
 using WebAntares;
+using System.Web.UI.HtmlControls;
 
 public partial class Controles_Adjuntos : System.Web.UI.UserControl
 {
     public Solicitud sol;
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-        if (sol != null)
+        if (!Page.IsPostBack)
         {
-            FillAdjuntos();
+            iUploadFrame.Attributes.Add("src", "../Html/MantPreventivoUpload.htm");
+            iUploadFrame.Attributes.Add("onload", "iUploadFrameLoad()");
+            Page.ClientScript.RegisterStartupScript(GetType(), "UploadScript", ClientScriptHelper.UploadFrameLoad(iUploadFrame.ClientID, btnUpload.ClientID));
+        }
+        FillAdjuntos();
+        if (Request.Files.Count == 1)
+        {
+            Guardar();
+            Response.Write("Cargando...");
+            Response.End();
         }
     }
+            
+    protected void btnUpload_Click(object sender, EventArgs e)
+    {
+        
+    }
+
     public bool Guardar()
     {
         Adjunto adj = new Adjunto();
@@ -34,23 +50,23 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
         string sFileDir = Server.MapPath("~/upload/");
 
 
-        if ((File1.PostedFile != null) && (File1.PostedFile.ContentLength > 0))
+        if ((Request.Files[0] != null) && (Request.Files[0].ContentLength > 0))
         {
             //determine file name
-            string sFileName = System.IO.Path.GetFileName(File1.PostedFile.FileName);
+            string sFileName = System.IO.Path.GetFileName(Request.Files[0].FileName);
             try
             {
-                if (File1.PostedFile.ContentLength <= lMaxFileSize)
+                if (Request.Files[0].ContentLength <= lMaxFileSize)
                 {
                     //Save File on disk
                     sFileName = System.Guid.NewGuid().ToString();
-                    File1.PostedFile.SaveAs(sFileDir + sFileName);
+                    Request.Files[0].SaveAs(sFileDir + sFileName);
                     //relacionar el adjunto
                     adj.PathFile = sFileDir + sFileName;
                     adj.Date = System.DateTime.Now;
-                    adj.FileName = File1.FileName;
-                    adj.Size = File1.PostedFile.ContentLength;
-                    adj.ContentType = File1.PostedFile.ContentType;
+                    adj.FileName = Request.Files[0].FileName;
+                    adj.Size = Request.Files[0].ContentLength;
+                    adj.ContentType = Request.Files[0].ContentType;
 
                     adj.Save();
 
@@ -83,20 +99,7 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
         gvFiles.DataKeyNames = new string[] { "IdAdjunto" };
         gvFiles.DataBind();
     }
-    protected void cmdUpload_Click(object sender, EventArgs e)
-    {
-        Guardar();
-    }
-    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        Adjunto t = Adjunto.FindFirst(Expression.Eq("IdAdjunto", int.Parse(gvFiles.DataKeys[e.RowIndex].Value.ToString())));
-        SolicitudAdjuntos sadj = SolicitudAdjuntos.FindFirst(Expression.Eq("IdAdjunto", t.IdAdjunto));
-
-        t.Delete();
-        sadj.Delete();
-
-        FillAdjuntos();
-    }
+        
     public void ListaAdjuntos(string idSol)
     {
         Solicitud sol = Solicitud.Find(int.Parse(idSol));
@@ -110,4 +113,23 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
 
     }
 
+    protected void gvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        Adjunto t = Adjunto.FindFirst(Expression.Eq("IdAdjunto", int.Parse(gvFiles.DataKeys[e.RowIndex].Value.ToString())));
+        SolicitudAdjuntos sadj = SolicitudAdjuntos.FindFirst(Expression.Eq("IdAdjunto", t.IdAdjunto));
+
+        t.Delete();
+        sadj.Delete();
+
+        uniqueId = 1;
+        FillAdjuntos();
+    }
+
+    int uniqueId = 1;
+
+    protected void gvFiles_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        e.Row.ID = "FileRow" + uniqueId.ToString();
+        uniqueId += 1;
+    }
 }
