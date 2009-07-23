@@ -1,4 +1,4 @@
-ï»¿<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
+<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
     CodeFile="MantCorrectivo.aspx.cs" Inherits="Solicitudes_MantPreventivo" %>
 
 <%@ Register Src="../Controles/jDatePick.ascx" TagName="jDatePick" TagPrefix="uc1" %>
@@ -31,13 +31,13 @@
             <li><a href="#divtblComplemento"><span>Datos Complementarios</span></a></li>
             <li><a href="#divadjuntos"><span>Adjuntos </span></a></li>
             <li><a href="#divPresupuesto"><span>Presupuesto</span></a></li>
-            <li><a href="#divFin"><span>ConfirmaciÃ³n</span></a></li>
+            <li><a href="#divFin"><span>Confirmación</span></a></li>
         </ul>
         <div id="divtblFalla">
                 <table  id="tResponsable" style="text-align: left; vertical-align: middle">
                 <tr>
                 <td valign="top" >
-                    <asp:Label ID="Label15" runat="server" Text="ReportÃ³ Falla"  
+                    <asp:Label ID="Label15" runat="server" Text="Reportó Falla"  
                         ></asp:Label>
 
                 </td>
