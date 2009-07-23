@@ -334,9 +334,11 @@
         </div>
         <div id="divAdjuntos">
             <table id="Table1">
-                <tr>
+
+                 <tr>
                         <td><uc4:Adjuntos ID="Adjuntos2" runat="server" />                     </td>
                  </tr>
+
             </table>
         </div>
         <div id="divFin">
