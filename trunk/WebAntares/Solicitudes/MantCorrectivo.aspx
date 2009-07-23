@@ -323,37 +323,7 @@
        
         </div>
         <div id="divadjuntos">
-            <asp:UpdatePanel ID="UpdateAdjuntos" runat="server">
-                <ContentTemplate>
-                         </ContentTemplate>
-            </asp:UpdatePanel>
-            <table>
-                        <tr>
-                            <td valign="top" >
-                                Datos Ajuntos
-                            </td>
-                            <td valign="top" >
-                                &nbsp;</td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top" >
-                                <uc4:Adjuntos ID="Adjuntos1" runat="server" />
-                            </td>
-                            <td valign="top" >
-                                &nbsp;</td>
-                            <td valign="top">
-                                &nbsp;</td>
-                            <td valign="top">
-                                &nbsp;</td>
-                        </tr>
-                    </table>
-       
+            <uc4:Adjuntos ID="Adjuntos1" runat="server" TipoSol="MantenimientoCorrectivo" />
         </div>
         <div id="divFin">
         <asp:Button ID="btnAceptarSolicitud" runat="server" Text="Confirmar Solicitud" OnClick="btnAceptarSolicitud_Click" />
