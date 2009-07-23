@@ -13,7 +13,12 @@ using Castle.ActiveRecord;
 
 public partial class Solicitudes_Obras : System.Web.UI.Page
 {
-    
+    protected override void OnInitComplete(EventArgs e)
+    {
+        Adjuntos2.sol = BiFactory.Sol;
+        base.OnInitComplete(e);
+    }
+	
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
