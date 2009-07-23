@@ -336,7 +336,7 @@
             <table id="Table1">
 
                  <tr>
-                        <td><uc4:Adjuntos ID="Adjuntos2" runat="server" />                     </td>
+                        <td><uc4:Adjuntos ID="Adjuntos2" runat="server" TipoSol="Obras" />                     </td>
                  </tr>
 
             </table>
