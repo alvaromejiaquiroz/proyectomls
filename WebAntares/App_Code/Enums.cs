@@ -10,5 +10,5 @@ using System.Web.UI.WebControls.WebParts;
 
 public enum TipoSolicitudEnum
 {
-    MantenimientoPreventivo = 1, MantenimientoCorrectivo = 2
+    MantenimientoPreventivo = 1, MantenimientoCorrectivo = 2, MantenimientoPreventivoRendicion = 3, MantenimientoCorrectivoRendicion = 4, Obras = 5, ReporteObras = 6
 }

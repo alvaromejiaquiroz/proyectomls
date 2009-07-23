@@ -449,7 +449,7 @@
                         </tr>
                         <tr>
                             <td valign="top" >
-                                <uc4:Adjuntos ID="Adjuntos1" runat="server" />
+                                <uc4:Adjuntos ID="Adjuntos1" runat="server" TipoSol="MantenimientoCorrectivoRendicion" />
                             </td>
                             <td valign="top" >
                                 &nbsp;</td>

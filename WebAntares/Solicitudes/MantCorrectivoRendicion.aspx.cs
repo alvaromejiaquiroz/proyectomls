@@ -16,6 +16,11 @@ using Castle.ActiveRecord;
 /// </summary>
 public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 {
+    protected override void OnInitComplete(EventArgs e)
+    {
+        Adjuntos1.sol = BiFactory.Sol;
+        base.OnInitComplete(e);
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
