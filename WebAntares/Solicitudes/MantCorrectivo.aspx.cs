@@ -16,12 +16,16 @@ using Castle.ActiveRecord;
 /// </summary>
 public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 {
+	protected override void OnInitComplete(EventArgs e)
+    {
+        Adjuntos1.sol = BiFactory.Sol;
+        base.OnInitComplete(e);
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            
             CargarCombos();
             FillServicios();
             FillSolicitudEmpleados();
@@ -34,10 +38,9 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     private void FillCorrectiva()
     {
         Solicitud sol = BiFactory.Sol;
-        try
+        SolicitudCorrectivo Sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+        if (Sol_Cor != null)
         {
-
-            SolicitudCorrectivo Sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
             cmbPlazoAtencion.SelectedValue = Sol_Cor.IdPlazoAtencion.ToString();
             txtReportoFalla.Text = Sol_Cor.PersonaReportoFalla;
             txtFalla.Text = Sol_Cor.FallaReportada;
@@ -45,11 +48,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             txtCausa.Text = Sol_Cor.CausaPosible;
             cmbPlazoAtencion.SelectedValue = Sol_Cor.IdPlazoAtencion.ToString();
         }
-        catch (Exception e)
-        {
-
-        }
-    }
+	}
 
     private void LoadDataComplementaria()
     {
