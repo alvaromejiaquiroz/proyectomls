@@ -22,7 +22,7 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
+        if (!IsPostBack)
         {
             string html = string.Empty;
             switch (TipoSol)
@@ -30,13 +30,31 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
                 case TipoSolicitudEnum.MantenimientoPreventivo:
                     html = "MantPreventivoUpload";
                     break;
+                case TipoSolicitudEnum.MantenimientoCorrectivo:
+                    html = "MantCorrectivoUpload";
+                    break;
+                case TipoSolicitudEnum.MantenimientoPreventivoRendicion:
+                    html = "MantPreventivoRendicionUpload";
+                    break;
+                case TipoSolicitudEnum.MantenimientoCorrectivoRendicion:
+                    html = "MantCorrectivoRendicionUpload";
+                    break;
+                case TipoSolicitudEnum.Obras:
+                    html = "ObrasUpload";
+                    break;
+                case TipoSolicitudEnum.ReporteObras:
+                    html = "ReporteObrasUpload";
+                    break;
             }
 
             iUploadFrame.Attributes.Add("src", "../Html/" + html + ".htm");
             iUploadFrame.Attributes.Add("onload", "iUploadFrameLoad()");
             Page.ClientScript.RegisterStartupScript(GetType(), "UploadScript", ClientScriptHelper.UploadFrameLoad(iUploadFrame.ClientID, btnUpload.ClientID));
         }
-        FillAdjuntos();
+        if (sol != null)
+        {
+            FillAdjuntos();
+        }
         if (Request.Files.Count == 1)
         {
             Guardar();
@@ -110,7 +128,6 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
 
     private void FillAdjuntos()
     {
-
         gvFiles.DataSource = sol.GetAdjuntos();
         gvFiles.DataKeyNames = new string[] { "IdAdjunto" };
         gvFiles.DataBind();
@@ -119,14 +136,12 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
     public void ListaAdjuntos(string idSol)
     {
         Solicitud sol = Solicitud.Find(int.Parse(idSol));
-
         if (sol != null)
         {
             gvFiles.DataSource = sol.GetAdjuntos(idSol);
             gvFiles.DataKeyNames = new string[] { "IdAdjunto" };
             gvFiles.DataBind();
         }
-
     }
 
     protected void gvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)

@@ -397,7 +397,7 @@
                                 &nbsp; Datos Ajuntos
                             </td>
                             <td valign="top" style="width: 509px">
-                                <uc4:Adjuntos ID="Adjuntos1" runat="server" />
+                                <uc4:Adjuntos ID="Adjuntos1" runat="server" TipoSol="MantenimientoPreventivoRendicion" />
                             </td>
                             <td valign="top">
                                 &nbsp;

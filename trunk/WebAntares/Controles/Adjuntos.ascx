@@ -3,13 +3,10 @@
 <asp:UpdatePanel ID="UpdateAdjuntos" runat="server">
     <ContentTemplate>
         <div>
-            <asp:Label ID="Label1" runat="server" Text="Archivo"></asp:Label>
-        </div>
-        <div>
-            <iframe id="iUploadFrame" runat="server" name="iUploadFrame" src="../Html/MantPreventivoUpload.htm" height="100px" scrolling="no" frameborder="0"></iframe>
+            <iframe id="iUploadFrame" runat="server" name="iUploadFrame" height="100px" scrolling="no" frameborder="0"></iframe>
         </div>
         <asp:Button id="btnUpload" runat="server" style="visibility:hidden;" 
-                onclick="btnUpload_Click" />
+                onclick="btnUpload_Click" CausesValidation="false" />
         <div>
             <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
         </div>
@@ -29,6 +26,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-        </asp:GridView>       
+        </asp:GridView>
     </ContentTemplate>
 </asp:UpdatePanel>

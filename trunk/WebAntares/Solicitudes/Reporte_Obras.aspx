@@ -417,7 +417,7 @@
             <tr><td>
                     <uc3:uploadFile ID="uploadFile1" runat="server" />
                                 
-                    <uc4:Adjuntos ID="Adjuntos1" runat="server" />
+                    <uc4:Adjuntos ID="Adjuntos1" runat="server" TipoSol="ReporteObras" />
                     </td></tr>
             </table>
         </div>

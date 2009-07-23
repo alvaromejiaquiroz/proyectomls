@@ -10,7 +10,11 @@
 
 <%@ Register src="../Controles/FechayHora.ascx" tagname="FechayHora" tagprefix="uc2" %>
 
+<%@ Register src="../Controles/Adjuntos.ascx" tagname="Adjuntos" tagprefix="uc3" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" Runat="Server">
+    
+    <uc3:Adjuntos ID="Adjuntos1" runat="server" TipoSol="MantenimientoPreventivo" />
     
     <uc2:FechayHora ID="FechayHora1" runat="server" />
     
