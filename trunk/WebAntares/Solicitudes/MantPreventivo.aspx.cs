@@ -301,13 +301,10 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     
     protected void btnAceptarSolicitud_Click(object sender, EventArgs e)
     {
-
         Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
 
         if (ValidaSolicitud())
         {
-
-
             TransactionScope TX = new TransactionScope();
             try
             {
@@ -318,9 +315,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                 sol.Status = eEstados.Pendiente.ToString();
                 sol.ContactoMail = txtMailContacto.Text;
                 sol.ContactoTel = txtTelefonoContacto.Text;
-
-
-
+                
                 SolicitudPreventivo Sol_P = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
 
                 if (Sol_P == null)
@@ -337,6 +332,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                 sol.Save();
                 Sol_P.Save();
                 TX.VoteCommit();
+                Response.Redirect("./Solicitudes.aspx");
 
             }
             catch (Exception oEx)
@@ -349,12 +345,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             {
                 TX.Dispose();
             }
-
-
         }
-        Response.Redirect("./Solicitudes.aspx");
-    
-
+        //Response.Redirect("./Solicitudes.aspx");
     }
 
     private void SaveSolicitud()
@@ -436,8 +428,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         bool Valida = true;
         string Msg = "";
         string idSol = BiFactory.Sol.Id_Solicitud.ToString();
-
-
+        
         if (!Solicitud.TieneResponsable(idSol))
         {
             Valida = false;
