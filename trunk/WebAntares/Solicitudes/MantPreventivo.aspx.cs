@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using NHibernate.Expression;
 using Castle.ActiveRecord.Framework;
 using Castle.ActiveRecord;
+using System.Collections;
 /// <summary>
 /// Mantenimiento PREVENTIVO
 /// 
@@ -18,12 +19,10 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 {
     protected override void OnInitComplete(EventArgs e)
     {
-        Adjuntos1.sol = BiFactory.Sol;
+        ucAdjuntos.sol = BiFactory.Sol;
         base.OnInitComplete(e);
     }
-
     
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -68,72 +67,40 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             txtTelefonoContacto.Text = sol.ContactoTel;
             txtPresupuesto.Text = sol_p.Presupuesto;
 
-            Adjuntos1.ListaAdjuntos(sol.Id_Solicitud.ToString());
+            ucAdjuntos.ListaAdjuntos(sol.Id_Solicitud.ToString());
         }
 
     }
 
     protected void btnAgregarTarea_Click(object sender, EventArgs e)
     {
-        if (validar())
+        if (IsValid)
         {
             int id_Sol = BiFactory.Sol.Id_Solicitud;
             int id_Tarea;
 
-            for (int i = 0; i < lstTareasaRealizar.Items.Count; i++)
+            for (int i = 0; i < lstTareas.Items.Count; i++)
             {
-                if (lstTareasaRealizar.Items[i].Selected)
+                if (lstTareas.Items[i].Selected)
                 {
-                    id_Tarea = int.Parse(lstTareasaRealizar.Items[i].Value);
+                    id_Tarea = int.Parse(lstTareas.Items[i].Value);
 
-                     if (!SolicitudTareas.ExisteTareaEnSolicitud( id_Sol , id_Tarea ))
-                    
+                    if (!SolicitudTareas.ExisteTareaEnSolicitud( id_Sol , id_Tarea ))
                     {
-
                         SolicitudTareas t = new SolicitudTareas();
                         t.IdTarea = id_Tarea;
-                        t.FechaInicio = jDatePick1.Fecha;
-                        t.FechaFin = jDatePick2.Fecha;
+                        t.FechaInicio = DateTime.Parse(txtDesde.Text);
+                        t.FechaFin = DateTime.Parse(txtHasta.Text);
                         t.IdSolicitud = id_Sol;
                         t.Save();
                         cboSitios.Enabled = false;
-
                     }
                 }
             }
-
+            FillTareas();
         }
-        FillTareas();
-
     }
-    public bool validar()
-    {
-        string stext = "";
-
-        if (cboSitios.SelectedIndex == -1)
-        {
-            stext = System.Environment.NewLine + "Debe seleccionar un Sitio";
-        }
-
-        if (jDatePick1.Text == "")
-        {
-            stext += System.Environment.NewLine + "Falta ingresar la Fecha de inicio";
-        }
-
-        if (jDatePick2.Text == "")
-        {
-            stext += System.Environment.NewLine + "Falta ingresar la Fecha de hasta";
-        }
-
-        HtmlGenericControl lb = (HtmlGenericControl)Master.FindControl("divMensajes");
-        if (lb != null)
-        {
-            lb.InnerText = stext;
-        }
-
-        return stext.Length == 0;
-    }
-    
+        
     private void FillTareas()
     {
         gvTareas.DataSource = SolicitudTareas.GetReader(BiFactory.Sol.Id_Solicitud);
@@ -150,8 +117,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         {
             cboSitios.Items.Add(new ListItem(sitio.Descripcion, sitio.IdSitio.ToString()));
         }
-
-
     }
 
     public void CargarCombos()
@@ -160,9 +125,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
    
         foreach (Antares.model.Tareas t in Antares.model.Tareas.FindAll())
         {
-            lstTareasaRealizar.Items.Add(new ListItem(t.Tarea, t.Id.ToString()));
+            lstTareas.Items.Add(new ListItem(t.Tarea, t.Id.ToString()));
         }
-
 
         foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.FindAll())
         {
@@ -177,21 +141,16 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         cmbResponsable.Items.Add(new ListItem("Seleccione...", "-1"));
         foreach (Antares.model.Personal responsable in Antares.model.Personal.FindAll())
         {
-            cmbResponsable.Items.Add(new ListItem(responsable.Apellido + "," + responsable.Nombres, responsable.IdEmpleados.ToString()));
+            cmbResponsable.Items.Add(new ListItem(responsable.Apellido + ", " + responsable.Nombres, responsable.IdEmpleados.ToString()));
         }
-        
-
-
-
     }
 
-    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    protected void gvTareas_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SolicitudTareas t;
         t = SolicitudTareas.FindFirst(Expression.Eq("Id", int.Parse(gvTareas.DataKeys[e.RowIndex].Value.ToString())));
         t.Delete();
-        t = null;
-
+        
         t = SolicitudTareas.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
 
         if (t == null)
@@ -201,20 +160,15 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
         FillTareas();
     }
-
-    protected void gvTareas_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
+        
     protected void btnAsignaEmpleadoSolicitud_Click(object sender, EventArgs e)
     {
         int id_sol = BiFactory.Sol.Id_Solicitud;
         int id_empleado;
 
-        if (cmbResponsable.SelectedIndex > 0)
+        if (cmbResponsable.SelectedIndex >= 0)
         {
             id_empleado = int.Parse(cmbResponsable.SelectedValue);
-
 
             if (!SolicitudRecursosEmpleados.ExisteEmpleadoEnSolicitud(id_sol, id_empleado))
             {
@@ -226,16 +180,12 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                 t.Responsable = true;
                 t.Save();
             }
-
-
         }
 
         for (int i = 0; i < lstEmpleadosSolicitud.Items.Count; i++)
         {
-
             if (lstEmpleadosSolicitud.Items[i].Selected)
             {
-
                 id_empleado = Int32.Parse(lstEmpleadosSolicitud.Items[i].Value);
 
                 if (!SolicitudRecursosEmpleados.ExisteEmpleadoEnSolicitud(id_sol, id_empleado))
@@ -250,40 +200,35 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             }
 
         }
-
-
         FillSolicitudEmpleados();
-}
+    }
+
     protected void btnAsignaVehiculoSolicitud_Click(object sender, EventArgs e)
     {
-        int id_Sol = BiFactory.Sol.Id_Solicitud;
-        int id_Vehiculo;
-
-
-        for (int i = 0; i < lstVehiculos.Items.Count; i++)
+        if (IsValid)
         {
-            if (lstVehiculos.Items[i].Selected)
+            int id_Sol = BiFactory.Sol.Id_Solicitud;
+            int id_Vehiculo;
+            for (int i = 0; i < lstVehiculos.Items.Count; i++)
             {
-                id_Vehiculo = int.Parse(lstVehiculos.Items[i].Value);
-
-                if (!SolicitudRecursosVehiculos.ExisteVehiculoEnSolicitud(id_Sol, id_Vehiculo))
+                if (lstVehiculos.Items[i].Selected)
                 {
-
-                    SolicitudRecursosVehiculos t = new SolicitudRecursosVehiculos();
-                    t.IdVehiculo = int.Parse(lstVehiculos.Items[i].Value.ToString());
-                    t.IdSolicitud = BiFactory.Sol.Id_Solicitud;
-                    t.Save();
+                    id_Vehiculo = int.Parse(lstVehiculos.Items[i].Value);
+                    if (!SolicitudRecursosVehiculos.ExisteVehiculoEnSolicitud(id_Sol, id_Vehiculo))
+                    {
+                        SolicitudRecursosVehiculos t = new SolicitudRecursosVehiculos();
+                        t.IdVehiculo = int.Parse(lstVehiculos.Items[i].Value.ToString());
+                        t.IdSolicitud = BiFactory.Sol.Id_Solicitud;
+                        t.Save();
+                    }
                 }
-
             }
+            FillSolicitudVehiculos();
         }
-
-        FillSolicitudVehiculos();
     }
+
     private void FillSolicitudEmpleados()
     {
-      
-      
         DataTable dt = new DataTable();
         gvSolicitudPersonas.DataSource = dt;
         gvSolicitudPersonas.DataBind();
@@ -292,6 +237,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         gvSolicitudPersonas.DataKeyNames = new string[] { "Id" };
         gvSolicitudPersonas.DataBind();
     }
+
     private void FillSolicitudVehiculos()
     {
         gvSolicitudVehiculos.DataSource = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
@@ -303,12 +249,11 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     {
         Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
 
-        if (ValidaSolicitud())
+        if (EsSolicitudValida())
         {
             TransactionScope TX = new TransactionScope();
             try
             {
-    
                 sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
                 sol.Contacto = txtContactoCliente.Text;
                 sol.NroOrdenCte = txtNroOrdenCliente.Text;
@@ -325,19 +270,17 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                 }
 
                 sol.Status = eEstados.Pendiente.ToString();
-                Sol_P.IdSitio = cboSitios.SelectedIndex;
-                Sol_P.FechaFin = jDatePick2.Text;
-                Sol_P.FechaInicio = jDatePick1.Text;
+                Sol_P.IdSitio = int.Parse(cboSitios.SelectedValue);
+                Sol_P.FechaFin = txtDesde.Text;
+                Sol_P.FechaInicio = txtHasta.Text;
                 Sol_P.Presupuesto = txtPresupuesto.Text;
                 sol.Save();
                 Sol_P.Save();
                 TX.VoteCommit();
                 Response.Redirect("./Solicitudes.aspx");
-
             }
-            catch (Exception oEx)
+            catch (Exception)
             {
-
                 TX.VoteRollBack();
                 throw;
             }
@@ -346,7 +289,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                 TX.Dispose();
             }
         }
-        //Response.Redirect("./Solicitudes.aspx");
     }
 
     private void SaveSolicitud()
@@ -362,6 +304,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         sol.Update();
         Response.Redirect("./Solicitudes.aspx");
     }
+
     protected void gvPersonas_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SolicitudRecursosEmpleados p = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudPersonas.DataKeys[e.RowIndex].Value.ToString())));
@@ -369,41 +312,49 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         FillSolicitudEmpleados();
 
     }
+
     protected void gvSolicitudVehiculos_rowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SolicitudRecursosVehiculos v = SolicitudRecursosVehiculos.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudVehiculos.DataKeys[e.RowIndex].Value.ToString())));
         v.Delete();
         FillSolicitudVehiculos();
     }
+
     protected void cmbResponsable_SelectedIndexChanged(object sender, EventArgs e)
     {
-        int IdDelResponsable = Int32.Parse(cmbResponsable.SelectedValue);
-        lstEmpleadosSolicitud.Items.Clear();
-        CargaListaEmpleados(IdDelResponsable);
-
-        lstEmpleadosSolicitud.Enabled = true;
+        int idResponsable = int.Parse(cmbResponsable.SelectedValue);
+        if (idResponsable == -1)
+        {
+            litPersonal.Visible = false;
+            lstEmpleadosSolicitud.Visible = false;
+            btnAsignaEmpleadoSolicitud.Visible = false;
+        }
+        else
+        {
+            lstEmpleadosSolicitud.Items.Clear();
+            CargaListaEmpleados(idResponsable);
+            litPersonal.Visible = true;
+            lstEmpleadosSolicitud.Visible = true;
+            btnAsignaEmpleadoSolicitud.Visible = true;
+        }
     }
+
     protected void CargaListaEmpleados(int IdDelResponsable)
     {
-
         //foreach (Antares.model.Personal persona in Antares.model.Personal.FindAll(Expression.Sql(" Id_Empleados <> " + IdDelResponsable.ToString())))
         foreach (Antares.model.Personal persona in Antares.model.Personal.FindAll())
         {
             if (persona.IdEmpleados != IdDelResponsable)
             {
-                lstEmpleadosSolicitud.Items.Add(new ListItem(persona.Apellido + "," + persona.Nombres, persona.IdEmpleados.ToString()));
+                lstEmpleadosSolicitud.Items.Add(new ListItem(persona.Apellido + ", " + persona.Nombres, persona.IdEmpleados.ToString()));
             }
-
         }
-
-
     }
+
     protected void gvSolicitudPersonas_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-
             int valorResponsable = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Responsable"));
             if (valorResponsable == 1)
             {
@@ -412,44 +363,44 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                 e.Row.BackColor = System.Drawing.Color.LightGoldenrodYellow;
                 e.Row.Cells[2].Visible = true;
                 e.Row.Cells[2].Text = "R";
-
             }
             else
             {
                 e.Row.Cells[2].Text = string.Empty;
-
             }
-
         }
-
     }
-    protected Boolean ValidaSolicitud()
+
+    protected bool EsSolicitudValida()
     {
-        bool Valida = true;
-        string Msg = "";
+        bool esValida = true;
+        List<string> errores = new List<string>();
         string idSol = BiFactory.Sol.Id_Solicitud.ToString();
-        
         if (!Solicitud.TieneResponsable(idSol))
         {
-            Valida = false;
-            Msg = System.Environment.NewLine + "Para Confirmar una Solicitud debe Asignar un Responsable";
+            esValida = false;
+            errores.Add("Debe asignar al menos un responsable.");
         }
-
-
         if (!Solicitud.TieneVehiculosAsignados(idSol))
         {
-            Valida = false;
-            Msg = System.Environment.NewLine + "Para Confirmar una Solicitud debe asignar al menos un Vehiculo";
+            esValida = false;
+            errores.Add("Debe asignar al menos un vehículo.");
         }
-
-        HtmlGenericControl lb = (HtmlGenericControl)Master.FindControl("divMensajes");
-        if (lb != null)
+        if (!esValida)
         {
-            lb.InnerText = Msg;
+            blErrores.DataSource = errores;
+            blErrores.DataBind();
         }
-
-        return Valida;
-
+        return esValida;
     }
-    
+
+    protected void cvTareas_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        args.IsValid = lstTareas.SelectedIndex >= 0;
+    }
+
+    protected void cvVehiculos_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        args.IsValid = lstVehiculos.SelectedIndex >= 0;
+    }
 }
