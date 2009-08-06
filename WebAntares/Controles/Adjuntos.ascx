@@ -14,15 +14,13 @@
             OnRowDeleting="gvFiles_RowDeleting" OnRowDataBound="gvFiles_RowDataBound">
             <Columns>
                 <asp:BoundField DataField="IdAdjunto" HeaderText="Id" ReadOnly="True" Visible="false" />
-                <asp:BoundField DataField="FileName" HeaderText="Archivo" Visible="true" />
-                <asp:BoundField DataField="Date" HeaderText="Fecha" />
-                <asp:BoundField DataField="size" HeaderText="Tamaño" />
-                <asp:TemplateField>
+                <asp:BoundField DataField="FileName" HeaderText="Archivo" Visible="true" HeaderStyle-HorizontalAlign="Center" />
+                <asp:BoundField DataField="Date" HeaderText="Fecha" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" />
+                <asp:BoundField DataField="size" HeaderText="Tamaño" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+                <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                     <ItemTemplate>
-                        <div id="noprint1">
-                            <asp:ImageButton ID="imgAdjunto" runat="server" CausesValidation="False" CommandName="Delete"
-                                ImageUrl="~/Images/delete.gif" Text="Delete" />
-                        </div>
+                        <asp:ImageButton ID="imgAdjunto" runat="server" CausesValidation="False" CommandName="Delete"
+                            ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

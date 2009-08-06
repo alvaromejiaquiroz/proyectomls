@@ -22,35 +22,32 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        string html = string.Empty;
+        switch (TipoSol)
         {
-            string html = string.Empty;
-            switch (TipoSol)
-            {
-                case TipoSolicitudEnum.MantenimientoPreventivo:
-                    html = "MantPreventivoUpload";
-                    break;
-                case TipoSolicitudEnum.MantenimientoCorrectivo:
-                    html = "MantCorrectivoUpload";
-                    break;
-                case TipoSolicitudEnum.MantenimientoPreventivoRendicion:
-                    html = "MantPreventivoRendicionUpload";
-                    break;
-                case TipoSolicitudEnum.MantenimientoCorrectivoRendicion:
-                    html = "MantCorrectivoRendicionUpload";
-                    break;
-                case TipoSolicitudEnum.Obras:
-                    html = "ObrasUpload";
-                    break;
-                case TipoSolicitudEnum.ReporteObras:
-                    html = "ReporteObrasUpload";
-                    break;
-            }
-
-            iUploadFrame.Attributes.Add("src", "../Html/" + html + ".htm");
-            iUploadFrame.Attributes.Add("onload", "iUploadFrameLoad()");
-            Page.ClientScript.RegisterStartupScript(GetType(), "UploadScript", ClientScriptHelper.UploadFrameLoad(iUploadFrame.ClientID, btnUpload.ClientID));
+            case TipoSolicitudEnum.MantenimientoPreventivo:
+                html = "MantPreventivoUpload";
+                break;
+            case TipoSolicitudEnum.MantenimientoCorrectivo:
+                html = "MantCorrectivoUpload";
+                break;
+            case TipoSolicitudEnum.MantenimientoPreventivoRendicion:
+                html = "MantPreventivoRendicionUpload";
+                break;
+            case TipoSolicitudEnum.MantenimientoCorrectivoRendicion:
+                html = "MantCorrectivoRendicionUpload";
+                break;
+            case TipoSolicitudEnum.Obras:
+                html = "ObrasUpload";
+                break;
+            case TipoSolicitudEnum.ReporteObras:
+                html = "ReporteObrasUpload";
+                break;
         }
+
+        iUploadFrame.Attributes.Add("src", "../Html/" + html + ".htm");
+        iUploadFrame.Attributes.Add("onload", "iUploadFrameLoad()");
+        Page.ClientScript.RegisterStartupScript(GetType(), "UploadScript", ClientScriptHelper.UploadFrameLoad(iUploadFrame.ClientID, btnUpload.ClientID));
         if (sol != null)
         {
             FillAdjuntos();

@@ -1,378 +1,290 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
     CodeFile="MantPreventivo.aspx.cs" Inherits="Solicitudes_MantPreventivo" %>
 
-<%@ Register Src="../Controles/jDatePick.ascx" TagName="jDatePick" TagPrefix="uc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
-<%@ Register Src="../Controles/cboSitios.ascx" TagName="cboSitios" TagPrefix="uc3" %>
 <%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
-<%@ Register src="../Controles/CboGeneric.ascx" tagname="CboGeneric" tagprefix="uc5" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
-
-    <script type="text/javascript">
-        $(function() {
-            $('#Solapas').tabs();
-            
-
-        });
-
-        //extender
-        jQuery.fn.gboton = function() {
-            this.each(function() {
-                var $$ = $("<input name='buton' value='test'>");
-                $(this).html($$);
-                $(this).click(function() {
-                alert($$.val());
-                })
-            });
-        }
-                       
-        </script>
-
-    <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
+    <asp:ScriptManagerProxy ID="smMantenimientoPreventivo" runat="server">
     </asp:ScriptManagerProxy>
-    <uc2:SolDetalle ID="SolDetalle1" runat="server" />
-    <div id="Solapas">
-        <ul>
-            <li><a href="#divtblTareas"><span>Tareas</span></a></li>
-            <li><a href="#divtblPersonas"><span>Personal</span></a></li>
-            <li><a href="#divvehiculos"><span>Vehiculos</span></a></li>
-            <li><a href="#divtblComplemento"><span>Datos Complementarios</span></a></li>
-            <li><a href="#divadjuntos"><span>Adjuntos </span></a></li>
-            <li><a href="#divPresupuesto"><span>Presupuesto</span></a></li>
-            <li><a href="#divFin"><span>Confirmación</span></a></li>    
-        </ul>
-        <div id="divtblTareas">
-       
-             <table id="tblTareas">
-                <tr>
-                    <td valign="top" >
-                        <asp:Label ID="Label2" runat="server" Text="Sitio"></asp:Label>
-                    </td>
-                    <td valign="top" >
-                          <asp:DropDownList ID="cboSitios" runat="server" AutoPostBack="false" Width="200px">  </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td >
-                        <asp:Label ID="Label3" runat="server" Text="Fecha de Realizacion Propuesta"></asp:Label>
-                    </td>
-                    <td>
-                        <uc1:jDatePick ID="jDatePick1" runat="server" Name="desde" CustomScript="customRange" />
-                        <uc1:jDatePick ID="jDatePick2" runat="server" Name="hasta" CustomScript="customRange" />
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top" >
-                        <asp:Label ID="Label1" runat="server" Text="Tareas a Realizar"></asp:Label>
-                    </td>
-                    <td valign="top" >
-                        <asp:ListBox ID="lstTareasaRealizar" runat="server" Width="324px" 
-                            SelectionMode="Multiple" Height="174px">
-                        </asp:ListBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top" style="text-align: center;" colspan="2">
-                        <asp:Button ID="btnAgregarTarea" runat="server" OnClick="btnAgregarTarea_Click" Text="Agregar Tarea" />
-                        <asp:Button ID="Button1" runat="server" Text="Cancelar" />
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top" colspan="2" style="text-align: center;">
-                     <asp:UpdatePanel ID="UpdateTareas" runat="server">
-                        <ContentTemplate> 
-                        <asp:GridView ID="gvTareas" runat="server" AutoGenerateColumns="false" OnRowDeleting="GridView1_RowDeleting"
-                            OnSelectedIndexChanged="gvTareas_SelectedIndexChanged">
-                            <Columns>
-                                <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" visible="false"/>
-                                <asp:BoundField DataField="Id_solicitud" HeaderText="Id_solicitud" ReadOnly="True" visible="false"/>
-                                <asp:BoundField DataField="Id_tarea" HeaderText="Id_tarea" ReadOnly="True" visible="false"/>    
-                                <asp:BoundField DataField="Inicio" HeaderText="Inicio" />
-                                <asp:BoundField DataField="Inicio" HeaderText="Fin" />
-                                <asp:BoundField DataField="tarea" HeaderText="Tarea" />
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <div id="noprint">
-                                            <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" CommandName="Delete"
-                                                ImageUrl="~/Images/delete.gif" Text="Delete" />
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+    <uc2:SolDetalle ID="ucSolDetalle" runat="server" />
+    <cc1:TabContainer ID="tcMantenimientoPreventivo" runat="server" Height="450px">
+        <cc1:TabPanel ID="tpTareas" HeaderText="Tareas" runat="server">
+            <ContentTemplate>
+                <asp:UpdatePanel ID="upTareas" runat="server">
+                    <ContentTemplate>
+                        <table id="tblTareas" width="100%">
+                            <tr>
+                                <td>
+                                    Sitio
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="cboSitios" runat="server">
+                                    </asp:DropDownList>
+                                    <asp:CompareValidator ID="cvSitios" runat="server" ErrorMessage="Debe seleccionar un sitio."
+                                        ControlToValidate="cboSitios" Display="None" Operator="NotEqual" ValueToCompare="-1"
+                                        ValidationGroup="tareas"></asp:CompareValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Fecha de Realización Propuesta
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txtDesde" runat="server" MaxLength="10" Width="80px"></asp:TextBox>
+                                    <asp:ImageButton ID="imgDesde" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.gif" />
+                                    <cc1:CalendarExtender ID="ceDesde" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgDesde"
+                                        TargetControlID="txtDesde">
+                                    </cc1:CalendarExtender>
+                                    <asp:RequiredFieldValidator ID="rfvDesde" runat="server" ErrorMessage="Debe ingresar la fecha desde."
+                                        ControlToValidate="txtDesde" Display="None" ValidationGroup="tareas"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="cvDesde" runat="server" ErrorMessage="La fecha desde no es válida."
+                                        ControlToValidate="txtDesde" Display="None" Operator="DataTypeCheck" Type="Date"
+                                        ValidationGroup="tareas"></asp:CompareValidator>
+                                    <asp:TextBox ID="txtHasta" runat="server" MaxLength="10" Width="80px"></asp:TextBox>
+                                    <asp:ImageButton ID="imgHasta" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.gif" />
+                                    <cc1:CalendarExtender ID="ceHasta" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgHasta"
+                                        TargetControlID="txtHasta">
+                                    </cc1:CalendarExtender>
+                                    <asp:RequiredFieldValidator ID="rfvHasta" runat="server" ErrorMessage="Debe ingresar la fecha hasta."
+                                        ControlToValidate="txtHasta" Display="None" ValidationGroup="tareas"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="cvHasta" runat="server" ErrorMessage="La fecha hasta no es válida."
+                                        ControlToValidate="txtHasta" Display="None" Operator="DataTypeCheck" Type="Date"
+                                        ValidationGroup="tareas"></asp:CompareValidator>
+                                    <asp:CompareValidator ID="cvFecha" runat="server" ErrorMessage="La fecha de desde debe ser menor o igual que la fecha hasta."
+                                        ControlToCompare="txtHasta" ControlToValidate="txtDesde" Display="None" Operator="LessThanEqual"
+                                        Type="Date" ValidationGroup="tareas"></asp:CompareValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tareas a Realizar
+                                </td>
+                                <td>
+                                    <asp:ListBox ID="lstTareas" runat="server" SelectionMode="Multiple" Height="174px">
+                                    </asp:ListBox>
+                                    <asp:CustomValidator ID="cvTareas" runat="server" ErrorMessage="Debe seleccionar al menos una tarea."
+                                        Display="None" ValidationGroup="tareas" OnServerValidate="cvTareas_ServerValidate"></asp:CustomValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" colspan="2">
+                                    <asp:Button ID="btnAgregarTarea" runat="server" OnClick="btnAgregarTarea_Click" Text="Agregar Tarea"
+                                        ValidationGroup="tareas" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:GridView ID="gvTareas" runat="server" AutoGenerateColumns="false" OnRowDeleting="gvTareas_RowDeleting"
+                                        Width="90%">
+                                        <Columns>
+                                            <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
+                                            <asp:BoundField DataField="Id_solicitud" Visible="false" />
+                                            <asp:BoundField DataField="Id_tarea" Visible="false" />
+                                            <asp:BoundField DataField="tarea" HeaderText="Tarea" HeaderStyle-HorizontalAlign="Center" />
+                                            <asp:BoundField DataField="Inicio" HeaderText="Inicio" HeaderStyle-HorizontalAlign="Center"
+                                                ItemStyle-HorizontalAlign="Center" />
+                                            <asp:BoundField DataField="Fin" HeaderText="Fin" HeaderStyle-HorizontalAlign="Center"
+                                                ItemStyle-HorizontalAlign="Center" />
+                                            <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
+                                                        ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </td>
+                            </tr>
+                        </table>
+                        <div>
+                            <asp:ValidationSummary ID="vsTareas" runat="server" ValidationGroup="tareas" />
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </ContentTemplate>
-            </asp:UpdatePanel>         
-                    </td>
-                </tr>
-            </table>
-            
-        </div>
-        <div id="divtblPersonas">
-            <asp:UpdatePanel ID="UpdatePersonas" runat="server">
-                <ContentTemplate>
-                    <table>
-                         <tr>
-                            <td valign="top">
-                                <asp:Label ID="Label4" runat="server" Text="Responsable"></asp:Label>
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:DropDownList ID="cmbResponsable" runat="server" AutoPostBack="True" 
-                                    onselectedindexchanged="cmbResponsable_SelectedIndexChanged" Width="247px">
-                                </asp:DropDownList>
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                <asp:Label ID="Label5" runat="server" Text="Personal"></asp:Label>
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" 
-                                    Height="136px" Width="321px" AutoPostBack="True">
-                                </asp:ListBox>
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:Button ID="btnAsignaEmpleadoSolicitud" runat="server" Text="Asignar Empleados"
-                                    OnClick="btnAsignaEmpleadoSolicitud_Click" />
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td style="width: 509px" valign="top">
-                                                        <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
-                                    OnRowDeleting="gvPersonas_RowDeleting" 
-                                    OnRowDataBound="gvSolicitudPersonas_RowDataBound">
-                                    <Columns>
-                                        <asp:BoundField DataField="Id" HeaderText="Id" Visible ="false" />
-                                        <asp:BoundField DataField="Empleado" HeaderText="Empleado" />
-                                        <asp:BoundField DataField="Responsable" HeaderText="Responsable" /> 
-                                        <asp:TemplateField   Visible="false"  HeaderText="Responsable">
-                                        <ItemTemplate>
-                                            <asp:Image  ID="responsable" ImageUrl="~/Images/engranaje.gif" runat="server" CausesValidation="False"  />
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <div ID="noprint0">
-                                                    <asp:ImageButton ID="ImageButton3" runat="server" CausesValidation="False" 
-                                                        CommandName="Delete" ImageUrl="~/Images/delete.gif" Text="Delete" />
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                    </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div id="divvehiculos">
-            <asp:UpdatePanel ID="UpdateVehiculos" runat="server">
-                <ContentTemplate>
-                    <table>
-                        <tr>
-                            <td valign="top">
-                                <asp:Label ID="Label6" runat="server" Text="Vehiculos"></asp:Label>
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:ListBox ID="lstVehiculos" runat="server" SelectionMode="Multiple" 
-                                    Height="147px" Width="349px"></asp:ListBox>
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td style="width: 509px" valign="top">
-                                <asp:Button ID="btnAsignaVehiculoSolicitud" runat="server" Text="Asigna Vehiculos"
-                                    OnClick="btnAsignaVehiculoSolicitud_Click" />
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False" 
-                                    OnRowDeleting="gvSolicitudVehiculos_rowDeleting">
-                                    <Columns>
-                                        <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
-                                        <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" Visible="False" />
-                                        <asp:BoundField DataField="Vehiculo" HeaderText="Vehiculo" />
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <div id="noprint1">
-                                                    <asp:ImageButton ID="ImageButton4" runat="server" CausesValidation="False" CommandName="Delete"
-                                                        ImageUrl="~/Images/delete.gif" Text="Delete" />
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </td>
-                        </tr>
-                    </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div id="divtblComplemento">
-            <asp:UpdatePanel ID="UpdateComplemento" runat="server">
-                <ContentTemplate>
-                      <table>
-                <tr>
-                    <td valign="top" >
-                        <asp:Label ID="Label7" runat="server" Text="Datos Complementarios"></asp:Label>
-                    </td>
-                    <td valign="top" >
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td valign="top" >
-                        Cliente</td>
-                    <td valign="top" >
-                        <asp:DropDownList ID="cmbClientes" runat="server" Height="34px" Width="210px">
-                        </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top" >
-                        <asp:Label ID="Label9" runat="server" Text="Contacto Cliente"></asp:Label>
-                    </td>
-                    <td valign="top" >
-                        <asp:TextBox ID="txtContactoCliente" runat="server" style="margin-left: 0px" 
-                            Width="210px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top" >
-                        <asp:Label ID="Label10" runat="server" Text="Nro.Orden"></asp:Label>
-                        
-                        
-                      
-                    </td>
-                    <td valign="top" >
-                        <asp:TextBox ID="txtNroOrdenCliente" runat="server" Width="210px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top" >
-                        Telefono Contacto</td>
-                    <td valign="top" >
-                        <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="210px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top" >
-                        E-Mail Contacto</td>
-                    <td valign="top" >
-                        <asp:TextBox ID="txtMailContacto" runat="server" Width="210px"></asp:TextBox>
-                    </td>
-                </tr>
-            </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div id="divadjuntos">
-            <uc4:Adjuntos ID="Adjuntos1" runat="server" TipoSol="MantenimientoPreventivo" />
-        </div>
-        <div id="divPresupuesto">
-            <asp:UpdatePanel ID="UpdatePanelPresupuesto" runat="server">
-                <ContentTemplate>
-                         <table>
-                             <tr>
-                                 <td >
-                                     Presupuesto</td>
-                                 <td >
-                                     <asp:TextBox ID="txtPresupuesto" CssClass="numeric" runat="server"></asp:TextBox>
-                                 </td>
-                                 <td >
-                                     &nbsp;
-                                 </td>
-                                 <td >
-                                     &nbsp;
-                                 </td>
-                             </tr>
-                         </table>
-                         </ContentTemplate>
-            </asp:UpdatePanel>
-       
-        </div>
-        <div id="divFin">
-         <table>
-        <tr>
-            <td valign="top">
-                &nbsp;
-            </td>
-            <td style="width: 509px" valign="top">
-                <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
-                    Text="Confirmar Solicitud" />
-            </td>
-            <td valign="top">
-                &nbsp;
-            </td>
-            <td valign="top">
-                &nbsp;
-            </td>
-        </tr>
-    </table>
-
-        </div>
+        </cc1:TabPanel>
+        <cc1:TabPanel ID="tpPersonal" HeaderText="Personal" runat="server">
+            <ContentTemplate>
+                <asp:UpdatePanel ID="upPersonas" runat="server">
+                    <ContentTemplate>
+                        <table>
+                            <tr>
+                                <td>
+                                    Responsable
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="cmbResponsable" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbResponsable_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Literal ID="litPersonal" runat="server" Text="Personal" Visible="false"></asp:Literal>
+                                </td>
+                                <td>
+                                    <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="136px"
+                                        Visible="false"></asp:ListBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" colspan="2">
+                                    <asp:Button ID="btnAsignaEmpleadoSolicitud" runat="server" Text="Asignar Empleados"
+                                        OnClick="btnAsignaEmpleadoSolicitud_Click" Visible="false" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
+                                        OnRowDeleting="gvPersonas_RowDeleting" OnRowDataBound="gvSolicitudPersonas_RowDataBound">
+                                        <Columns>
+                                            <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
+                                            <asp:BoundField DataField="Empleado" HeaderText="Empleado" HeaderStyle-HorizontalAlign="Center" />
+                                            <asp:BoundField DataField="Responsable" HeaderText="Responsable" HeaderStyle-HorizontalAlign="Center"
+                                                ItemStyle-HorizontalAlign="Center" />
+                                            <asp:TemplateField Visible="false" HeaderText="Responsable">
+                                                <ItemTemplate>
+                                                    <asp:Image ID="imgResponsable" ImageUrl="~/Images/engranaje.gif" runat="server" CausesValidation="False" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
+                                                        ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </td>
+                            </tr>
+                        </table>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </ContentTemplate>
+        </cc1:TabPanel>
+        <cc1:TabPanel ID="tpVehiculos" HeaderText="Vehículos" runat="server">
+            <ContentTemplate>
+                <asp:UpdatePanel ID="upVehiculos" runat="server">
+                    <ContentTemplate>
+                        <table>
+                            <tr>
+                                <td>
+                                    Vehículos
+                                </td>
+                                <td>
+                                    <asp:ListBox ID="lstVehiculos" runat="server" SelectionMode="Multiple" Height="147px">
+                                    </asp:ListBox>
+                                    <asp:CustomValidator ID="cvVehiculos" runat="server" ErrorMessage="Debe seleccionar al menos un vehículo."
+                                        Display="None" ValidationGroup="vehiculos" OnServerValidate="cvVehiculos_ServerValidate"></asp:CustomValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" colspan="2">
+                                    <asp:Button ID="btnAsignaVehiculoSolicitud" runat="server" Text="Asignar Vehiculo"
+                                        OnClick="btnAsignaVehiculoSolicitud_Click" ValidationGroup="vehiculos" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False"
+                                        OnRowDeleting="gvSolicitudVehiculos_rowDeleting">
+                                        <Columns>
+                                            <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
+                                            <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" Visible="False" />
+                                            <asp:BoundField DataField="Vehiculo" HeaderText="Vehiculo" HeaderStyle-HorizontalAlign="Center" />
+                                            <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
+                                                        ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </td>
+                            </tr>
+                        </table>
+                        <div>
+                            <asp:ValidationSummary ID="vsVehiculos" runat="server" ValidationGroup="vehiculos" />
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </ContentTemplate>
+        </cc1:TabPanel>
+        <cc1:TabPanel ID="tpComplemento" HeaderText="Complemento" runat="server">
+            <ContentTemplate>
+                <table>
+                    <tr>
+                        <td>
+                            Cliente
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="cmbClientes" runat="server">
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Contacto Cliente
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtContactoCliente" runat="server" Width="210px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nro.Orden
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtNroOrdenCliente" runat="server" Width="210px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Teléfono Contacto
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="210px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            E-Mail Contacto
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtMailContacto" runat="server" Width="210px"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+            </ContentTemplate>
+        </cc1:TabPanel>
+        <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
+            <ContentTemplate>
+                    <uc4:Adjuntos ID="ucAdjuntos" runat="server" TipoSol="MantenimientoPreventivo" />
+            </ContentTemplate>
+        </cc1:TabPanel>
+        <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
+            <ContentTemplate>
+                <table>
+                    <tr>
+                        <td>
+                            Monto
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtPresupuesto" CssClass="numeric" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+            </ContentTemplate>
+        </cc1:TabPanel>
+        <cc1:TabPanel ID="tpConfirmacion" HeaderText="Confirmación" runat="server">
+            <ContentTemplate>
+               <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
+                     Text="Confirmar Solicitud" />
+            </ContentTemplate>
+        </cc1:TabPanel>
+    </cc1:TabContainer>
+    <div>
+        <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">
+        </asp:BulletedList>
     </div>
-    
-
-    <script type="text/javascript">
-        //funcion adicional para controlar el rango de fechas
-
-        function customRange(input) {
-            return { minDate: (input.id == hasta ? $("#" + desde).datepicker("getDate") : null),
-                maxDate: (input.id == desde ? $("#" + hasta).datepicker("getDate") : null)
-            };
-        } 
-
-
-    </script>
 </asp:Content>
