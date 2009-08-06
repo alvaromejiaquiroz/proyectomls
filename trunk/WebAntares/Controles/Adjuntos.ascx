@@ -11,7 +11,7 @@
             <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
         </div>
         <asp:GridView ID="gvFiles" runat="server" AutoGenerateColumns="False" 
-            OnRowDeleting="gvFiles_RowDeleting" OnRowDataBound="gvFiles_RowDataBound">
+            OnRowDeleting="gvFiles_RowDeleting" OnRowDataBound="gvFiles_RowDataBound" Width="100%">
             <Columns>
                 <asp:BoundField DataField="IdAdjunto" HeaderText="Id" ReadOnly="True" Visible="false" />
                 <asp:BoundField DataField="FileName" HeaderText="Archivo" Visible="true" HeaderStyle-HorizontalAlign="Center" />

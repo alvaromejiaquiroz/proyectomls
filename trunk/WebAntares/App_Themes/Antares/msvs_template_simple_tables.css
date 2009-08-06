@@ -5,15 +5,12 @@ HTML Tags
 body {
 	font-family:Geneva, Arial, Helvetica, sans-serif;
 	color:#666666;
-	margin:15px 40px;
+	margin:0px 0px 0px 0px;
 	background: #EAEAEA;/*url(bg-main.gif) repeat-x;*/
 	font-size:.72em;
 	}
 
-#content p, #content-right p, table {
-	margin:0px 1px 20px 0px;
-    width: 600px;
-}
+
 
 #content-right img {
 	border:none;
