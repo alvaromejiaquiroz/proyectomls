@@ -138,7 +138,7 @@
 	
 -->
     <table border="0" cellspacing="0" cellpadding="0" id="content-container">
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="True" EnableScriptLocalization="True">
         </asp:ScriptManager>
         <tr>
             <td id="content-left" class="style2">

@@ -13,12 +13,8 @@ using NHibernate;
 using NHibernate.Expression;
 using WebAntares;
 
-public delegate void cboSelected(string aselec);
-
 public partial class Controles_cboEmpresas : System.Web.UI.UserControl
 {
-    public event cboSelected seleciona;   
-
     public string value
     {
         get { return ddlTipo.SelectedValue; }
@@ -55,12 +51,4 @@ public partial class Controles_cboEmpresas : System.Web.UI.UserControl
             ddlTipo.Items.Add(new ListItem(t.Descripcion, t.IdTiposolicitud.ToString()));
         }
     }
-    protected void ddlTipo_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (seleciona != null)
-        { // El evento se lanza como cualquier delegado
-                   seleciona.Invoke("select");
-        }
-    }
-  
 }

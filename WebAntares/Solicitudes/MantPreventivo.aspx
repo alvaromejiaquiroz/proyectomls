@@ -5,15 +5,13 @@
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
 <%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
-    <asp:ScriptManagerProxy ID="smMantenimientoPreventivo" runat="server">
-    </asp:ScriptManagerProxy>
     <uc2:SolDetalle ID="ucSolDetalle" runat="server" />
     <cc1:TabContainer ID="tcMantenimientoPreventivo" runat="server" Height="450px">
         <cc1:TabPanel ID="tpTareas" HeaderText="Tareas" runat="server">
             <ContentTemplate>
                 <asp:UpdatePanel ID="upTareas" runat="server">
                     <ContentTemplate>
-                        <table id="tblTareas" width="100%">
+                        <table id="tblTareas" width="600px">
                             <tr>
                                 <td>
                                     Sitio
@@ -76,7 +74,7 @@
                             <tr>
                                 <td colspan="2">
                                     <asp:GridView ID="gvTareas" runat="server" AutoGenerateColumns="false" OnRowDeleting="gvTareas_RowDeleting"
-                                        Width="90%">
+                                        Width="100%">
                                         <Columns>
                                             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
                                             <asp:BoundField DataField="Id_solicitud" Visible="false" />
@@ -108,7 +106,7 @@
             <ContentTemplate>
                 <asp:UpdatePanel ID="upPersonas" runat="server">
                     <ContentTemplate>
-                        <table>
+                        <table width="600px">
                             <tr>
                                 <td>
                                     Responsable
@@ -136,7 +134,7 @@
                             <tr>
                                 <td colspan="2">
                                     <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
-                                        OnRowDeleting="gvPersonas_RowDeleting" OnRowDataBound="gvSolicitudPersonas_RowDataBound">
+                                        OnRowDeleting="gvPersonas_RowDeleting" OnRowDataBound="gvSolicitudPersonas_RowDataBound" Width="100%">
                                         <Columns>
                                             <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
                                             <asp:BoundField DataField="Empleado" HeaderText="Empleado" HeaderStyle-HorizontalAlign="Center" />
@@ -166,7 +164,7 @@
             <ContentTemplate>
                 <asp:UpdatePanel ID="upVehiculos" runat="server">
                     <ContentTemplate>
-                        <table>
+                        <table width="600px">
                             <tr>
                                 <td>
                                     Vehículos
@@ -187,7 +185,7 @@
                             <tr>
                                 <td colspan="2">
                                     <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False"
-                                        OnRowDeleting="gvSolicitudVehiculos_rowDeleting">
+                                        OnRowDeleting="gvSolicitudVehiculos_rowDeleting" Width="100%">
                                         <Columns>
                                             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
                                             <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" Visible="False" />
@@ -259,7 +257,9 @@
         </cc1:TabPanel>
         <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
             <ContentTemplate>
+                <div style="width:600px">
                     <uc4:Adjuntos ID="ucAdjuntos" runat="server" TipoSol="MantenimientoPreventivo" />
+                </div>
             </ContentTemplate>
         </cc1:TabPanel>
         <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
@@ -280,11 +280,11 @@
             <ContentTemplate>
                <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
                      Text="Confirmar Solicitud" />
+               <div>
+                    <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">
+                    </asp:BulletedList>
+                </div>
             </ContentTemplate>
         </cc1:TabPanel>
     </cc1:TabContainer>
-    <div>
-        <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">
-        </asp:BulletedList>
-    </div>
 </asp:Content>
