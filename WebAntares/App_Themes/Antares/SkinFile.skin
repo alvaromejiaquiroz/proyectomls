@@ -18,15 +18,16 @@ no se permite que haya varios SkinId por tipo de control en el mismo tema.
 runat="server" 
 CellPadding="2" 
 ForeColor="#333333" 
-GridLines="horizontal" 
+GridLines="Both" 
+Font-Names="Verdana"
 >
     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-    <RowStyle BackColor="#FFFFFF" ForeColor="#333333" Font-Size="8" />
+    <RowStyle BackColor="#FFFFFF" ForeColor="#333333" Font-Size="10px" HorizontalAlign="Left" />
     <EditRowStyle BackColor="#999999" />
     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
     <PagerStyle BackColor="#28477" ForeColor="White" HorizontalAlign="Center" />
-    <HeaderStyle BackColor="#8B8B7A" Font-Bold="True" ForeColor="#FFFFFF" HorizontalAlign="Left" Wrap="False" />
-    <AlternatingRowStyle BackColor="#EAEAEA" ForeColor="#284775" />
+    <HeaderStyle BackColor="#8B8B7A" Font-Bold="True" ForeColor="#FFFFFF" Wrap="False" />
+    <AlternatingRowStyle BackColor="#EAEAEA" ForeColor="#284775" Font-Size="10px" HorizontalAlign="Left" />
 
 </asp:GridView>
 

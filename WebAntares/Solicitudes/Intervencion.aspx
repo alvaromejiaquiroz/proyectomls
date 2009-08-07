@@ -5,14 +5,14 @@
     
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
     <table width="700px">
-        <tr>
+        <tr class="header_custom">
             <td align="center" colspan="2">
-                Ingreso de Solicitud de Intervención
+                Ingreso de solicitud de intervención
             </td>
         </tr>
         <tr>
             <td>
-               Tipo de Solicitud
+               Tipo de solicitud
             </td>
             <td>
                 <uc1:cboTipoSolicitud ID="ucTipoSolicitud" runat="server" />
@@ -24,16 +24,16 @@
         </tr>
         <tr>
             <td>
-                Título de Referencia
+                Título de referencia
             </td>
             <td>
-                <asp:TextBox ID="txtTitulo" runat="server" Height="135px" Width="467px" TextMode="MultiLine"></asp:TextBox>
+                <asp:TextBox ID="txtTitulo" runat="server" Height="135px" Width="467px" TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvTitulo" runat="server" ErrorMessage="Debe ingresar el título de referencia." Display="None" ControlToValidate="txtTitulo" ValidationGroup="intervencion"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
             <td>
-                Cargada Por
+                Cargada por
             </td>
             <td>
                 <asp:Label ID="lblUserLogueado" runat="server"></asp:Label>
@@ -49,7 +49,7 @@
         </tr>
         <tr>
             <td align="center" colspan="2">
-                <asp:Button ID="btnAceptar" runat="server" OnClick="btnAceptar_Click" Text="Siguiente" ValidationGroup="intervencion" />
+                <asp:Button ID="btnAceptar" runat="server" CssClass="button_custom" OnClick="btnAceptar_Click" Text="Siguiente" ValidationGroup="intervencion" />
             </td>
         </tr>
     </table>
