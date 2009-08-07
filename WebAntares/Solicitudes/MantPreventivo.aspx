@@ -225,15 +225,17 @@
                             Contacto Cliente
                         </td>
                         <td>
-                            <asp:TextBox ID="txtContactoCliente" runat="server" Width="210px"></asp:TextBox>
+                            <asp:TextBox ID="txtContactoCliente" runat="server" Width="210px" ValidationGroup="solicitud"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvContactoCliente" runat="server" ErrorMessage="Debe ingresar el contacto de cliente." Display="None" ValidationGroup="solicitud" ControlToValidate="txtContactoCliente"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Nro.Orden
+                            Nro. de Orden
                         </td>
                         <td>
-                            <asp:TextBox ID="txtNroOrdenCliente" runat="server" Width="210px"></asp:TextBox>
+                            <asp:TextBox ID="txtNroOrdenCliente" runat="server" Width="210px" ValidationGroup="solicitud"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvNroOrdenCliente" runat="server" ErrorMessage="Debe ingresar el nro. de orden del cliente." Display="None" ValidationGroup="solicitud" ControlToValidate="txtNroOrdenCliente"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -241,7 +243,8 @@
                             Teléfono Contacto
                         </td>
                         <td>
-                            <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="210px"></asp:TextBox>
+                            <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="210px" ValidationGroup="solicitud"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvTelefonoContacto" runat="server" ErrorMessage="Debe ingresar el teléfono de contacto." Display="None" ValidationGroup="solicitud" ControlToValidate="txtTelefonoContacto"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -249,7 +252,12 @@
                             E-Mail Contacto
                         </td>
                         <td>
-                            <asp:TextBox ID="txtMailContacto" runat="server" Width="210px"></asp:TextBox>
+                            <asp:TextBox ID="txtMailContacto" runat="server" Width="210px" ValidationGroup="solicitud"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvMailContacto" runat="server" ErrorMessage="Debe ingresar el e-mail de contacto." Display="None" ValidationGroup="solicitud" ControlToValidate="txtMailContacto"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="revMailContacto" runat="server" 
+                                ErrorMessage="El e-mail de contacto no es válido" Display="None" 
+                                ValidationGroup="solicitud" ControlToValidate="txtMailContacto" 
+                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         </td>
                     </tr>
                 </table>
@@ -270,7 +278,9 @@
                             Monto
                         </td>
                         <td>
-                            <asp:TextBox ID="txtPresupuesto" CssClass="numeric" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvPresupuesto" runat="server" ErrorMessage="Debe ingresar el monto del presupuesto." Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"></asp:RequiredFieldValidator>
+                            <asp:CompareValidator ID="cvPresupuesto" runat="server" ErrorMessage="El monto del presupuesto no es válido." Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto" Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
                         </td>
                     </tr>
                 </table>
@@ -279,10 +289,11 @@
         <cc1:TabPanel ID="tpConfirmacion" HeaderText="Confirmación" runat="server">
             <ContentTemplate>
                <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
-                     Text="Confirmar Solicitud" />
+                     Text="Confirmar Solicitud" ValidationGroup="solicitud" />
                <div>
                     <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">
                     </asp:BulletedList>
+                    <asp:ValidationSummary ID="vsSolicitud" runat="server" ValidationGroup="solicitud" />
                 </div>
             </ContentTemplate>
         </cc1:TabPanel>
