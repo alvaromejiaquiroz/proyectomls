@@ -249,7 +249,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     {
         Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
 
-        if (EsSolicitudValida())
+        if (IsValid && EsSolicitudValida())
         {
             TransactionScope TX = new TransactionScope();
             try
@@ -271,8 +271,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
                 sol.Status = eEstados.Pendiente.ToString();
                 Sol_P.IdSitio = int.Parse(cboSitios.SelectedValue);
-                Sol_P.FechaFin = txtDesde.Text;
-                Sol_P.FechaInicio = txtHasta.Text;
+                Sol_P.FechaFin = DateTime.Now.ToString();
+                Sol_P.FechaInicio = DateTime.Now.ToString();
                 Sol_P.Presupuesto = txtPresupuesto.Text;
                 sol.Save();
                 Sol_P.Save();
@@ -290,21 +290,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             }
         }
     }
-
-    private void SaveSolicitud()
-    {
-        Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
-        sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
-        sol.Contacto = txtContactoCliente.Text;
-        sol.NroOrdenCte = txtNroOrdenCliente.Text;
-        sol.ContactoTel = txtTelefonoContacto.Text;
-
-        sol.Status = eEstados.Pendiente.ToString();
-        //sol.IdResponsable = cboResponsable.ValueInt;
-        sol.Update();
-        Response.Redirect("./Solicitudes.aspx");
-    }
-
+        
     protected void gvPersonas_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SolicitudRecursosEmpleados p = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudPersonas.DataKeys[e.RowIndex].Value.ToString())));
@@ -376,12 +362,18 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         bool esValida = true;
         List<string> errores = new List<string>();
         string idSol = BiFactory.Sol.Id_Solicitud.ToString();
+        if (gvTareas.Rows.Count == 0)
+        {
+            esValida = false;
+            errores.Add("Debe seleccionar al menos una tarea.");
+        }
         if (!Solicitud.TieneResponsable(idSol))
         {
             esValida = false;
             errores.Add("Debe asignar al menos un responsable.");
         }
-        if (!Solicitud.TieneVehiculosAsignados(idSol))
+        //if (!Solicitud.TieneVehiculosAsignados(idSol))
+        if (gvSolicitudVehiculos.Rows.Count == 0)
         {
             esValida = false;
             errores.Add("Debe asignar al menos un vehículo.");
