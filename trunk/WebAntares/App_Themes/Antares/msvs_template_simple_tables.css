@@ -3,11 +3,11 @@ HTML Tags
 ******************/
 
 body {
-	font-family:Geneva, Arial, Helvetica, sans-serif;
+	font-family:Verdana;
 	color:#666666;
 	margin:0px 0px 0px 0px;
 	background: #EAEAEA;/*url(bg-main.gif) repeat-x;*/
-	font-size:.72em;
+	font-size:10px;
 	}
 
 
@@ -471,4 +471,30 @@ img.photosmall {
  position:absolute; elevation:below;
  
  
+}
+
+.button_custom
+{
+	background-color:#FFFBFF;
+	border-color:#CCCCCC;
+	border-style:solid;
+	border-width:1px;
+    font-family:Verdana;
+    font-size:10px;
+    color:#284775;
+}
+
+.header_custom
+{
+	background-color:#FFC515;
+	font-weight:bold;
+	font-family:Verdana;
+    font-size:10px;
+    color:#666666;
+}
+
+.text_custom
+{
+	font-family:Verdana;
+    font-size:10px;
 }

@@ -2,9 +2,9 @@
 
 
 <ul id="solDetalle">
-<li><span>Solicitud:</span><%Response.Write(WebAntares.BiFactory.Sol.Id_Solicitud.ToString()); %></li>
-<li><span>Tipo:</span><%try { Response.Write(WebAntares.BiFactory.Sol.Tipo.Descripcion); }
+<li class="text_custom"><span>Solicitud:</span><%Response.Write(WebAntares.BiFactory.Sol.Id_Solicitud.ToString()); %></li>
+<li class="text_custom"><span class="text_custom">Tipo:</span><%try { Response.Write(WebAntares.BiFactory.Sol.Tipo.Descripcion); }
            catch (Exception) { };%></li>
-           <li><span>Detalle:</span><%Response.Write(WebAntares.BiFactory.Sol.Descripcion); %></li>
-           <li><span visible="false">Relacionada:</span><%Response.Write(WebAntares.BiFactory.Sol.RelacionadaCon); %></li>
+           <li class="text_custom"><span>Detalle:</span><%Response.Write(WebAntares.BiFactory.Sol.Descripcion); %></li>
+           <li class="text_custom"><span visible="false">Relacionada:</span><%Response.Write(WebAntares.BiFactory.Sol.RelacionadaCon); %></li>
 </ul>
