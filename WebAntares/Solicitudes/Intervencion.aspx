@@ -27,7 +27,7 @@
                 Título de referencia
             </td>
             <td>
-                <asp:TextBox ID="txtTitulo" runat="server" Height="135px" Width="467px" TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
+                <asp:TextBox ID="txtTitulo" runat="server" Height="80px" Width="467px" TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvTitulo" runat="server" ErrorMessage="Debe ingresar el título de referencia." Display="None" ControlToValidate="txtTitulo" ValidationGroup="intervencion"></asp:RequiredFieldValidator>
             </td>
         </tr>
