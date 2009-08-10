@@ -134,7 +134,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         }
         foreach (Antares.model.Empresas emp in Antares.model.Empresas.FindAll())
         {
-            cmbClientes.Items.Add(new ListItem(emp.Nombre + "(" + emp.Localidad + ")", emp.IdEmpresa.ToString()));
+            cmbClientes.Items.Add(new ListItem(emp.Nombre + "(" + emp.Localidad + ") ", emp.IdEmpresa.ToString()));
         }
 
         cmbResponsable.Items.Clear();
@@ -247,10 +247,9 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     
     protected void btnAceptarSolicitud_Click(object sender, EventArgs e)
     {
-        Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
-
         if (IsValid && EsSolicitudValida())
         {
+            Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
             TransactionScope TX = new TransactionScope();
             try
             {

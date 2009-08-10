@@ -4,7 +4,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
 <%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
+<asp:Content ID="cMantenimientoPreventivo" ContentPlaceHolderID="PageContainer" runat="Server">
     <table width="700px">
         <tr class="header_custom">
             <td align="center">
@@ -42,7 +42,7 @@
                                             </td>
                                             <td>
                                                 <asp:TextBox ID="txtDesde" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                                <asp:ImageButton ID="imgDesde" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.gif" />
+                                                <asp:ImageButton ID="imgDesde" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
                                                 <cc1:CalendarExtender ID="ceDesde" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgDesde"
                                                     TargetControlID="txtDesde">
                                                 </cc1:CalendarExtender>
@@ -52,7 +52,7 @@
                                                     ControlToValidate="txtDesde" Display="None" Operator="DataTypeCheck" Type="Date"
                                                     ValidationGroup="tareas"></asp:CompareValidator>
                                                 <asp:TextBox ID="txtHasta" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                                <asp:ImageButton ID="imgHasta" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.gif" />
+                                                <asp:ImageButton ID="imgHasta" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
                                                 <cc1:CalendarExtender ID="ceHasta" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgHasta"
                                                     TargetControlID="txtHasta">
                                                 </cc1:CalendarExtender>
