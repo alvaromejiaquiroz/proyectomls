@@ -1,11 +1,11 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
+<%@ Page Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
     CodeFile="MantCorrectivo.aspx.cs" Inherits="Solicitudes_MantCorrectivo" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
 <%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
 <asp:Content ID="cMantenimientoCorrectivo" ContentPlaceHolderID="PageContainer" runat="Server">
-    <table width="700px">
+    <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center">
                 Solicitud de mantenimiento correctivo
@@ -23,7 +23,11 @@
                         <ContentTemplate>
                             <table class="text_custom" width="600px">
                                 <tr>
-                                    <td>
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
                                         Reportó falla
                                     </td>
                                     <td>
@@ -33,7 +37,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-left: 20px">
                                         Causa probable
                                     </td>
                                     <td>
@@ -44,7 +48,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-left: 20px">
                                         Fecha de reporte
                                     </td>
                                     <td>
@@ -149,7 +153,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-left: 20px">
                                         Falla
                                     </td>
                                     <td>
@@ -168,7 +172,11 @@
                                 <ContentTemplate>
                                     <table class="text_custom" width="600px">
                                         <tr>
-                                            <td valign="top">
+                                            <td colspan="2" style="height: 20px">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top" style="padding-left: 20px">
                                                 Servicios
                                             </td>
                                             <td>
@@ -214,7 +222,11 @@
                         <ContentTemplate>
                             <table class="text_custom" width="600px">
                                 <tr>
-                                    <td>
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
                                         Plazo de atención
                                     </td>
                                     <td>
@@ -231,7 +243,11 @@
                                 <ContentTemplate>
                                     <table width="600px" class="text_custom">
                                         <tr>
-                                            <td>
+                                            <td colspan="2" style="height: 20px">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 20px">
                                                 Responsable
                                             </td>
                                             <td>
@@ -241,7 +257,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
+                                            <td style="padding-left: 20px">
                                                 <asp:Literal ID="litPersonal" runat="server" Text="Personal" Visible="false"></asp:Literal>
                                             </td>
                                             <td>
@@ -291,7 +307,11 @@
                                 <ContentTemplate>
                                     <table width="600px" class="text_custom">
                                         <tr>
-                                            <td valign="top">
+                                            <td colspan="2" style="height: 20px">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top" style="padding-left: 20px">
                                                 Vehículos
                                             </td>
                                             <td>
@@ -337,7 +357,11 @@
                         <ContentTemplate>
                             <table class="text_custom" width="600px">
                                 <tr>
-                                    <td>
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
                                         Cliente
                                     </td>
                                     <td>
@@ -346,7 +370,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-left: 20px">
                                         Contacto de cliente
                                     </td>
                                     <td>
@@ -357,7 +381,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-left: 20px">
                                         Nro. de orden
                                     </td>
                                     <td>
@@ -368,7 +392,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-left: 20px">
                                         Teléfono de contacto
                                     </td>
                                     <td>
@@ -379,7 +403,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-left: 20px">
                                         E-mail de contacto
                                     </td>
                                     <td>
@@ -406,7 +430,11 @@
                         <ContentTemplate>
                             <table class="text_custom" width="600px">
                                 <tr>
-                                    <td>
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
                                         Monto
                                     </td>
                                     <td>
@@ -424,8 +452,10 @@
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpConfirmacion" HeaderText="Confirmación" runat="server">
                         <ContentTemplate>
-                            <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
-                                Text="Confirmar Solicitud" ValidationGroup="solicitud" CssClass="button_custom" />
+                            <div style="width:100%;text-align:center;margin-top:30px">
+                                <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
+                                    Text="Confirmar solicitud" ValidationGroup="solicitud" CssClass="button_custom" />
+                            </div>
                             <div class="text_custom">
                                 <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">
                                 </asp:BulletedList>
