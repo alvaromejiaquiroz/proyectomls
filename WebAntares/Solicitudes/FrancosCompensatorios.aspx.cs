@@ -20,29 +20,26 @@ public partial class Solicitudes_FrancosCompensatorios : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            fillSol();
+            FillSol();
         }
-
     }
 
-    private void fillSol()
+    private void FillSol()
     {
         Fc = SolicitudFrancosCompensatorios.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
         if (Fc != null)
         {
-            txtDescripcion.Text = Fc.Descripcion.ToString();
-            txtDuracion.Text = Fc.Duracion.ToString();
-            //dtpFin.Text = Fc.FechaFin.ToString();
-            dtpInicio.Text = Fc.FechaInicio.ToString();
-            txtConsentimiento.Text = Fc.ConElConsentimiento.ToString();
+            txtDescripcion.Text = Fc.Descripcion;
+            txtDuracion.Text = Fc.Duracion;
+            txtFecha.Text = Fc.FechaInicio;
+            txtConsentimiento.Text = Fc.ConElConsentimiento;
         }
     }
+
     protected void Button1_Click(object sender, EventArgs e)
     {
-
-        if (RadioButtonList1.SelectedValue == "Si")
+        if (IsValid)
         {
-
             Solicitud Sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
             Sol.Descripcion = txtDescripcion.Text;
             Sol.Status = eEstados.Pendiente.ToString();
@@ -53,31 +50,12 @@ public partial class Solicitudes_FrancosCompensatorios : System.Web.UI.Page
 
             Fc.IdSolicitud = BiFactory.Sol.Id_Solicitud;
             Fc.Descripcion = txtDescripcion.Text; 
-            Fc.FechaInicio = dtpInicio.Text;
-            //Fc.FechaFin = dtpFin.Text;
+            Fc.FechaInicio = txtFecha.Text;
             Fc.Duracion = txtDuracion.Text;
             Fc.ConElConsentimiento = txtConsentimiento.Text;
             Fc.IdEmpleado = BiFactory.Empleado.IdEmpleados;
             Fc.SaveAndFlush();
             Response.Redirect("./Solicitudes.aspx");
         }
-        else
-        {
-
-
-            string stext = "";
-
-            stext = System.Environment.NewLine + "Debe Confirmar Para poder Continuar";
-
-            HtmlGenericControl lb = (HtmlGenericControl)Master.FindControl("divMensajesGrilla");
-            if (lb != null)
-            {
-                lb.InnerText = stext;
-            }
-            //   return stext.Length == 0;
-        }
-
-
-
     }
 }

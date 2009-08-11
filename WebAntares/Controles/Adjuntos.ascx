@@ -4,7 +4,11 @@
     <ContentTemplate>
         <table width="600px" class="text_custom">
             <tr>
-                <td valign="top">
+                <td colspan="2" style="height: 20px">
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="padding-left: 20px">
                     Archivo adjunto
                 </td>
                 <td>

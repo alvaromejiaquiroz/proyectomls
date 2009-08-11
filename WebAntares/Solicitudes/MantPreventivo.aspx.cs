@@ -250,43 +250,30 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         if (IsValid && EsSolicitudValida())
         {
             Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
-            TransactionScope TX = new TransactionScope();
-            try
-            {
-                sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
-                sol.Contacto = txtContactoCliente.Text;
-                sol.NroOrdenCte = txtNroOrdenCliente.Text;
-                sol.Status = eEstados.Pendiente.ToString();
-                sol.ContactoMail = txtMailContacto.Text;
-                sol.ContactoTel = txtTelefonoContacto.Text;
-                
-                SolicitudPreventivo Sol_P = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+            
+            sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
+            sol.Contacto = txtContactoCliente.Text;
+            sol.NroOrdenCte = txtNroOrdenCliente.Text;
+            sol.Status = eEstados.Pendiente.ToString();
+            sol.ContactoMail = txtMailContacto.Text;
+            sol.ContactoTel = txtTelefonoContacto.Text;
+            
+            SolicitudPreventivo Sol_P = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
 
-                if (Sol_P == null)
-                {
-                    Sol_P = new SolicitudPreventivo();
-                    Sol_P.IdSolicitud = sol.Id_Solicitud;
-                }
+            if (Sol_P == null)
+            {
+                Sol_P = new SolicitudPreventivo();
+                Sol_P.IdSolicitud = sol.Id_Solicitud;
+            }
 
-                sol.Status = eEstados.Pendiente.ToString();
-                Sol_P.IdSitio = int.Parse(cboSitios.SelectedValue);
-                Sol_P.FechaFin = DateTime.Now.ToString();
-                Sol_P.FechaInicio = DateTime.Now.ToString();
-                Sol_P.Presupuesto = txtPresupuesto.Text;
-                sol.Save();
-                Sol_P.Save();
-                TX.VoteCommit();
-                Response.Redirect("./Solicitudes.aspx");
-            }
-            catch (Exception)
-            {
-                TX.VoteRollBack();
-                throw;
-            }
-            finally
-            {
-                TX.Dispose();
-            }
+            sol.Status = eEstados.Pendiente.ToString();
+            Sol_P.IdSitio = int.Parse(cboSitios.SelectedValue);
+            Sol_P.FechaFin = DateTime.Now.ToString();
+            Sol_P.FechaInicio = DateTime.Now.ToString();
+            Sol_P.Presupuesto = txtPresupuesto.Text;
+            sol.Save();
+            Sol_P.Save();
+            Response.Redirect("./Solicitudes.aspx");
         }
     }
         
@@ -371,7 +358,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             esValida = false;
             errores.Add("Debe asignar al menos un responsable.");
         }
-        //if (!Solicitud.TieneVehiculosAsignados(idSol))
         if (gvSolicitudVehiculos.Rows.Count == 0)
         {
             esValida = false;

@@ -216,56 +216,43 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         if (IsValid && EsSolicitudValida())
         {
             Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
-            TransactionScope TX = new TransactionScope();
-            try
+            
+            for (int i = 0; i < lstServiciosAfectados.Items.Count; i++)
             {
-                for (int i = 0; i < lstServiciosAfectados.Items.Count; i++)
+                if (lstServiciosAfectados.Items[i].Selected)
                 {
-                    if (lstServiciosAfectados.Items[i].Selected)
-                    {
-                        SolicitudServiciosAfectados t = new SolicitudServiciosAfectados();
-                        t.IdServicioAfectado = int.Parse(lstServiciosAfectados.Items[i].Value.ToString());
-                        t.IdSolicitud = BiFactory.Sol.Id_Solicitud;
-                        t.Save();
-                    }
+                    SolicitudServiciosAfectados t = new SolicitudServiciosAfectados();
+                    t.IdServicioAfectado = int.Parse(lstServiciosAfectados.Items[i].Value.ToString());
+                    t.IdSolicitud = BiFactory.Sol.Id_Solicitud;
+                    t.Save();
                 }
-                
-                sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
-                sol.Contacto = txtContactoCliente.Text;
-                sol.NroOrdenCte = txtNroOrdenCliente.Text;
-                sol.Status = eEstados.Pendiente.ToString();
-                sol.ContactoMail = txtMailContacto.Text;
-                sol.ContactoTel = txtTelefonoContacto.Text;
-                
-                SolicitudCorrectivo Sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+            }
+            
+            sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
+            sol.Contacto = txtContactoCliente.Text;
+            sol.NroOrdenCte = txtNroOrdenCliente.Text;
+            sol.Status = eEstados.Pendiente.ToString();
+            sol.ContactoMail = txtMailContacto.Text;
+            sol.ContactoTel = txtTelefonoContacto.Text;
+            
+            SolicitudCorrectivo Sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
 
-                if (Sol_Cor == null)
-                {
-                    Sol_Cor = new SolicitudCorrectivo();
-                    Sol_Cor.IdSolicitud = sol.Id_Solicitud;
-                }
-                Sol_Cor.IdPlazoAtencion = int.Parse(cmbPlazoAtencion.SelectedValue);
-                Sol_Cor.PersonaReportoFalla = txtReportoFalla.Text;
-                Sol_Cor.FallaReportada = txtFalla.Text;
-                Sol_Cor.FechanotificacionCliente = DateTime.Parse(txtFechaReporte.Text).AddHours(double.Parse(ddlHoraReporte.SelectedValue)).AddMinutes(double.Parse(ddlMinutosReporte.SelectedValue));
-                Sol_Cor.CausaPosible = txtCausa.Text;
-                Sol_Cor.Presupuesto = txtPresupuesto.Text;
-                
-                sol.Save();
-                Sol_Cor.Save();
-                TX.VoteCommit();
-                Response.Redirect("./Solicitudes.aspx");
-            }
-            catch (Exception)
+            if (Sol_Cor == null)
             {
-
-                TX.VoteRollBack();
-                throw;
+                Sol_Cor = new SolicitudCorrectivo();
+                Sol_Cor.IdSolicitud = sol.Id_Solicitud;
             }
-            finally
-            {
-                TX.Dispose();
-            }
+            Sol_Cor.IdPlazoAtencion = int.Parse(cmbPlazoAtencion.SelectedValue);
+            Sol_Cor.PersonaReportoFalla = txtReportoFalla.Text;
+            Sol_Cor.FallaReportada = txtFalla.Text;
+            Sol_Cor.FechanotificacionCliente = DateTime.Parse(txtFechaReporte.Text).AddHours(double.Parse(ddlHoraReporte.SelectedValue)).AddMinutes(double.Parse(ddlMinutosReporte.SelectedValue));
+            Sol_Cor.CausaPosible = txtCausa.Text;
+            Sol_Cor.Presupuesto = txtPresupuesto.Text;
+            
+            sol.Save();
+            Sol_Cor.Save();
+            
+            Response.Redirect("./Solicitudes.aspx");
         }
     }
 

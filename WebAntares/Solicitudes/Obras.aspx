@@ -1,398 +1,326 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
     CodeFile="Obras.aspx.cs" Inherits="Solicitudes_Obras"  %>
 
-
-<%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle"    TagPrefix="uc2" %>
-<%@ Register Src="../Controles/cboSitios.ascx"  TagName="cboSitios"     TagPrefix="uc3" %>
-<%@ Register Src="../Controles/Adjuntos.ascx"   TagName="Adjuntos"      TagPrefix="uc4" %>
-
-<%@ Register src="../Controles/jDatePick.ascx" tagname="jDatePick" tagprefix="uc1" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" Runat="Server">
-
-    
-
-<script type="text/javascript">
-        $(function() {
-            $('#Solapas').tabs();
-            
-
-        });
-
-        //extender
-        jQuery.fn.gboton = function() {
-            this.each(function() {
-                var $$ = $("<input name='buton' value='test'>");
-                $(this).html($$);
-                $(this).click(function() {
-                alert($$.val());
-                })
-            });
-        }
-        
-</script>
-        
-<asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
-</asp:ScriptManagerProxy>
- 
-   <uc2:SolDetalle ID="SolDetalle2" runat="server" />
-    
-   <div id="Solapas">
-        <ul>
-            <li><a href="#divtblCliente"><span>Cliente</span></a></li>
-            <li><a href="#divtblTareas"><span>Tareas</span></a></li>
-            <li><a href="#divtblPersonas"><span>Personal</span></a></li>
-            <li><a href="#divVehiculos"><span>Vehiculos</span></a></li>
-            <li><a href="#divPresupuesto"><span>Presupuesto</span></a></li>
-            <li><a href="#divAdjuntos"><span>Adjuntos</span></a></li>
-            <li><a href="#divFin"><span>Confirmación</span></a></li>
-        </ul>
-        <div id="divtblCliente">
-            <asp:UpdatePanel ID="UpdateCliente" runat="server">
-                <ContentTemplate>
-                    <table>
-                        <tr> <td style="width: 402px">
-                            <table style="width:100%;">
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
+<%@ Register Src="../Controles/Adjuntos.ascx"   TagName="Adjuntos" TagPrefix="uc4" %>
+<asp:Content ID="cObras" ContentPlaceHolderID="PageContainer" Runat="Server">
+    <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
+        <tr class="header_custom">
+            <td align="center">
+                Solicitud de obras e instalaciones
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <uc2:SolDetalle ID="ucSolDetalle" runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <cc1:TabContainer ID="tcObras" runat="server" Height="450px">
+                    <cc1:TabPanel ID="tpCliente" HeaderText="Cliente" runat="server">
+                        <ContentTemplate>
+                            <table class="text_custom" width="600px">
                                 <tr>
-                                    <td style="width: 166px">
-                                        Cliente</td>
-                                    <td style="width: 212px">
-                                        <asp:DropDownList ID="cmbCliente" runat="server" Width="254px">
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Cliente
+                                    </td>
+                                    <td>
+                                        <asp:DropDownList ID="cmbCliente" runat="server" CssClass="text_custom">
                                         </asp:DropDownList>
                                     </td>
-                                    <td>
-                                        &nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 166px">
-                                        Numero de Orden de Compra
-                                        <br />
-                                        o Contrato&nbsp;
-                                    </td>
-                                    <td style="width: 212px">
-                                        <asp:TextBox ID="txtnroOC" runat="server" Width="254px"></asp:TextBox>
+                                    <td style="padding-left: 20px">
+                                        Número de orden de compra o contrato
                                     </td>
                                     <td>
-                                        &nbsp;</td>
+                                        <asp:TextBox ID="txtOrdenCompra" runat="server" Width="254px" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvOrdenCompra" runat="server" ErrorMessage="Debe ingresar el número de orden de compra o contrato."
+                                            ControlToValidate="txtOrdenCompra" Display="None" ValidationGroup="solicitud"></asp:RequiredFieldValidator>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 166px">
-                                        Contacto</td>
-                                    <td style="width: 212px">
-                                        <asp:TextBox ID="txtContacto" runat="server" Width="254px"></asp:TextBox>
+                                    <td style="padding-left: 20px">
+                                        Contacto
                                     </td>
                                     <td>
-                                        &nbsp;</td>
+                                        <asp:TextBox ID="txtContacto" runat="server" Width="254px" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvContacto" runat="server" ErrorMessage="Debe ingresar el contacto."
+                                            ControlToValidate="txtContacto" Display="None" ValidationGroup="solicitud"></asp:RequiredFieldValidator>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 166px">
-                                        EMail del Contacto</td>
-                                    <td style="width: 212px">
-                                        <asp:TextBox ID="txtMail" runat="server" Width="254px" Height="22px"></asp:TextBox>
+                                    <td style="padding-left: 20px">
+                                        E-Mail de contacto
                                     </td>
                                     <td>
-                                        &nbsp;</td>
+                                        <asp:TextBox ID="txtMail" runat="server" Width="254px" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvMail" runat="server" ErrorMessage="Debe ingresar el e-mail de contacto."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtMail"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="revMail" runat="server" ErrorMessage="El e-mail de contacto no es válido"
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtMail"
+                                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 166px">
-                                        Telefono Contacto</td>
-                                    <td style="width: 212px">
-                                        <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="254px"></asp:TextBox>
+                                    <td style="padding-left: 20px">
+                                        Teléfono de contacto
                                     </td>
                                     <td>
-                                        &nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 166px">
-                                        &nbsp;</td>
-                                    <td style="width: 212px">
-                                        &nbsp;</td>
-                                    <td>
-                                        &nbsp;</td>
+                                        <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="254px" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvTelefonoContacto" runat="server" ErrorMessage="Debe ingresar el teléfono de contacto."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtTelefonoContacto"></asp:RequiredFieldValidator>
+                                    </td>
                                 </tr>
                             </table>
-                            </td></tr>
-                    </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div id="divtblTareas">
-        <asp:UpdatePanel ID="UpdatePanelTareas" runat="server">
-        <ContentTemplate>
-            <table id="tblTareas">
-                <tr><td valign="top">Descripcion Tareas
-                    <br />
-                    Solicitadas</td><td>
-                        <asp:TextBox ID="txtDescripcionTareas" runat="server" Width="250px" 
-                            Height="190px" TextMode="MultiLine"></asp:TextBox>
-                    </td></tr>
-                <tr>
-                <td>Fecha de Inicio</td>
-                    <td>
-                        <uc1:jDatePick ID="dtpInicio"  Name="desde" runat="server" CustomScript="customRange"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Fecha de Entrega</td>
-                    <td>
-                        <uc1:jDatePick ID="dtpFin" name = "hasta" runat="server" CustomScript="customRange"/>
-                    </td>
-                </tr>
-                <tr><td valign="top">Requisitos de Aprobacion</td><td>
-                    <asp:TextBox ID="txtRequisitoAprova" runat="server" Width="254px" Height="85px" 
-                        TextMode="MultiLine"></asp:TextBox>
-                    </td></tr>
-                <tr><td valign="top">Requisitos de Ingreso</td><td>
-                    <asp:TextBox ID="txtRequisitoIngreso" runat="server" Width="254px" Height="85px" TextMode="MultiLine" ></asp:TextBox>
-                    </td></tr>
-                
-            </table>
-            </ContentTemplate>
-            </asp:UpdatePanel>
-            
-        </div>
-        <div id="divtblPersonas">
-             <asp:UpdatePanel ID="UpdatePersonas" runat="server">
-                <ContentTemplate>
-                    <table>
-                         <tr>
-                            <td valign="top">
-                                <asp:Label ID="Label4" runat="server" Text="Responsable"></asp:Label>
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:DropDownList ID="cmbResponsable" runat="server" AutoPostBack="True" 
-                                    onselectedindexchanged="cmbResponsable_SelectedIndexChanged" Width="247px">
-                                </asp:DropDownList>
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                <asp:Label ID="Label5" runat="server" Text="Personal"></asp:Label>
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" 
-                                    Height="136px" Width="321px" AutoPostBack="True">
-                                </asp:ListBox>
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:Button ID="btnAsignaEmpleadoSolicitud" runat="server" Text="Asignar Empleados"
-                                    OnClick="btnAsignarEmpleadoSolicitud_Click" />
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td style="width: 509px" valign="top">
-                                                        <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
-                                    OnRowDeleting="gvPersonas_RowDeleting" 
-                                    OnRowDataBound="gvSolicitudPersonas_RowDataBound">
-                                    <Columns>
-                                        <asp:BoundField DataField="Id" HeaderText="Id" Visible ="false" />
-                                        <asp:BoundField DataField="Empleado" HeaderText="Empleado" />
-                                        <asp:BoundField DataField="Responsable" HeaderText="Responsable" /> 
-                                        <asp:TemplateField   Visible="false"  HeaderText="Responsable">
-                                        <ItemTemplate>
-                                            <asp:Image  ID="responsable" ImageUrl="~/Images/engranaje.gif" runat="server" CausesValidation="False"  />
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <div ID="noprint0">
-                                                    <asp:ImageButton ID="ImageButton3" runat="server" CausesValidation="False" 
-                                                        CommandName="Delete" ImageUrl="~/Images/delete.gif" Text="Delete" />
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                    </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div id="divVehiculos">
-            <asp:UpdatePanel ID="UpdateVehiculos" runat="server">
-                <ContentTemplate>
-                    <table>
-                        <tr>
-                            <td valign="top">
-                                <asp:Label ID="Label6" runat="server" Text="Vehiculos"></asp:Label>
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:ListBox ID="lstVehiculos" runat="server" SelectionMode="Multiple" 
-                                    Height="147px" Width="349px"></asp:ListBox>
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td style="width: 509px" valign="top">
-                                <asp:Button ID="btnAsignaVehiculoSolicitud" runat="server" Text="Asigna Vehiculos"
-                                    OnClick="btnAsignaVehiculoSolicitud_Click" />
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top" style="width: 509px">
-                                <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False"
-                                    OnRowDeleting="gvSolicitudVehiculos_RowDeleting" >
-                                  
-                                    <Columns>
-                                        <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" />
-                                        <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" Visible="False" />
-                                        <asp:BoundField DataField="Vehiculo" HeaderText="Vehiculo" />
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <div id="noprint1">
-                                                    <asp:ImageButton ID="ImageButton4" runat="server" CausesValidation="False" CommandName="Delete"
-                                                        ImageUrl="~/Images/delete.gif" Text="Delete" />
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </td>
-                        </tr>
-                    </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div id="divPresupuesto">
-            <asp:UpdatePanel ID="PanelPresupuesto" runat="server">
-                <ContentTemplate>
-                    <table>
-                        <tr> <td>
-                            <table style="width:118%;">
+                        </ContentTemplate>
+                    </cc1:TabPanel>
+                    <cc1:TabPanel ID="tpTareas" HeaderText="Tareas" runat="server">
+                        <ContentTemplate>
+                            <table class="text_custom" width="600px">
                                 <tr>
-                                    <td>
-                                        Presupuesto&nbsp; </td>
-                                    <td>
-                                        <asp:TextBox ID="txtPresupuesto" runat="server" Width="254px" CssClass="numeric"></asp:TextBox>
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Descripción de tareas solicitadas
                                     </td>
                                     <td>
-                                        &nbsp;</td>
+                                        <asp:TextBox ID="txtDescripcionTareas" runat="server" Width="250px" 
+                                            Height="64px" TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvDescripcionTareas" runat="server" ErrorMessage="Debe ingresar la descripción de tareas solicitadas."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtDescripcionTareas"></asp:RequiredFieldValidator>
+                                    </td>
                                 </tr>
                                 <tr>
+                                    <td style="padding-left: 20px">
+                                        Fecha de inicio
+                                    </td>
                                     <td>
-                                        &nbsp;</td>
+                                        <asp:TextBox ID="txtInicio" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
+                                        <asp:ImageButton ID="imgInicio" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                                        <cc1:CalendarExtender ID="ceInicio" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgInicio"
+                                            TargetControlID="txtInicio">
+                                        </cc1:CalendarExtender>
+                                        <asp:RequiredFieldValidator ID="rfvInicio" runat="server" ErrorMessage="Debe ingresar la fecha de inicio."
+                                            ControlToValidate="txtInicio" Display="None" ValidationGroup="solicitud"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ID="cvInicio" runat="server" ErrorMessage="La fecha de inicio no es válida."
+                                            ControlToValidate="txtInicio" Display="None" Operator="DataTypeCheck" Type="Date"
+                                            ValidationGroup="solicitud"></asp:CompareValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Fecha de entrega
+                                    </td>
                                     <td>
-                                        &nbsp;</td>
+                                        <asp:TextBox ID="txtEntrega" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
+                                        <asp:ImageButton ID="imgEntrega" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                                        <cc1:CalendarExtender ID="ceEntrega" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgEntrega"
+                                            TargetControlID="txtEntrega">
+                                        </cc1:CalendarExtender>
+                                        <asp:RequiredFieldValidator ID="rfvEntrega" runat="server" ErrorMessage="Debe ingresar la fecha de entrega."
+                                            ControlToValidate="txtEntrega" Display="None" ValidationGroup="solicitud"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ID="cvEntrega" runat="server" ErrorMessage="La fecha de entrega no es válida."
+                                            ControlToValidate="txtEntrega" Display="None" Operator="DataTypeCheck" Type="Date"
+                                            ValidationGroup="solicitud"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="cvFechas" runat="server" ErrorMessage="La fecha de inicio debe ser menor o igual que la fecha de entrega."
+                                            ControlToCompare="txtEntrega" ControlToValidate="txtInicio" Display="None" Operator="LessThanEqual"
+                                            Type="Date" ValidationGroup="solicitud"></asp:CompareValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Requisitos de aprobación
+                                    </td>
                                     <td>
-                                        &nbsp;</td>
+                                        <asp:TextBox ID="txtRequisitosAprovacion" runat="server" Width="254px" Height="64px" 
+                                            TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvRequisitosAprovacion" runat="server" ErrorMessage="Debe ingresar los requisitos de aprobación."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtRequisitosAprovacion"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Requisitos de ingreso
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtRequisitoIngreso" runat="server" Width="254px" Height="64px" TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvRequisitoIngreso" runat="server" ErrorMessage="Debe ingresar los requisitos de ingreso."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtRequisitoIngreso"></asp:RequiredFieldValidator>
+                                    </td>
                                 </tr>
                             </table>
-                            </td></tr>
-                    </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-        <div id="divAdjuntos">
-            <table id="Table1">
-
-                 <tr>
-                        <td><uc4:Adjuntos ID="Adjuntos2" runat="server" TipoSol="Obras" />                     </td>
-                 </tr>
-
-            </table>
-        </div>
-        <div id="divFin">
-          <table>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td style="width: 509px" valign="top">
-                                <asp:Button ID="btnAceptarSolicitud" runat="server" 
-                                    Text="Confirmar Solicitud" onclick="btnAceptarSolicitud_Click" 
-                                     />
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                &nbsp;</td>
-                            <td style="width: 509px" valign="top">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                                    ControlToValidate="txtContacto" ErrorMessage="RequiredFieldValidator" 
-                                    ToolTip="Ingrese el Nombre y Apellido de la Persona a Contactar en el Cliente ">Ingrese 
-                                el Nombre y Apellido del Contacto en el Cliente</asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
-                                    ControlToValidate="txtMail" ErrorMessage="RegularExpressionValidator" 
-                                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">Ingrese 
-                                una Direccion de Correo Electronica Valida</asp:RegularExpressionValidator>
-                                <asp:RangeValidator ID="RangeValidator1" runat="server" 
-                                    ControlToValidate="txtPresupuesto" ErrorMessage="RangeValidator" 
-                                    MaximumValue="100000" MinimumValue="0" Type="Currency">Ingrese el Monto en 
-                                Pesos</asp:RangeValidator>
-                            </td>
-                            <td valign="top">
-                                &nbsp;</td>
-                            <td valign="top">
-                                &nbsp;</td>
-                        </tr>
-          </table>
-         </div>
-    </div>
-   
-   <script type="text/javascript">
-        //funcion adicional para controlar el rango de fechas
-        function customRange(input) {
-            return { minDate: (input.id == hasta ? $("#" + desde).datepicker("getDate") : null),
-                maxDate: (input.id == desde ? $("#" + hasta).datepicker("getDate") : null)
-            };
-        } 
-    </script>
-       
+                        </ContentTemplate>
+                    </cc1:TabPanel>
+                    <cc1:TabPanel ID="tpPersonal" HeaderText="Personal" runat="server">
+                        <ContentTemplate>
+                            <asp:UpdatePanel ID="upPersonas" runat="server">
+                                <ContentTemplate>
+                                    <table width="600px" class="text_custom">
+                                        <tr>
+                                            <td colspan="2" style="height: 20px">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 20px">
+                                                Responsable
+                                            </td>
+                                            <td>
+                                                <asp:DropDownList ID="cmbResponsable" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbResponsable_SelectedIndexChanged" CssClass="text_custom">
+                                                </asp:DropDownList>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 20px">
+                                                <asp:Literal ID="litPersonal" runat="server" Text="Personal" Visible="false"></asp:Literal>
+                                            </td>
+                                            <td>
+                                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="150px"
+                                                    Visible="false" CssClass="text_custom"></asp:ListBox>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2">
+                                                <asp:Button ID="btnAsignaEmpleadoSolicitud" runat="server" Text="Asignar empleado"
+                                                    OnClick="btnAsignaEmpleadoSolicitud_Click" Visible="false" CssClass="button_custom" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
+                                                    OnRowDeleting="gvPersonas_RowDeleting" OnRowDataBound="gvSolicitudPersonas_RowDataBound"
+                                                    Width="100%">
+                                                    <Columns>
+                                                        <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
+                                                        <asp:BoundField DataField="Empleado" HeaderText="Empleado" HeaderStyle-HorizontalAlign="Center" />
+                                                        <asp:BoundField DataField="Responsable" HeaderText="Responsable" HeaderStyle-HorizontalAlign="Center"
+                                                            ItemStyle-HorizontalAlign="Center" />
+                                                        <asp:TemplateField Visible="false" HeaderText="Responsable">
+                                                            <ItemTemplate>
+                                                                <asp:Image ID="imgResponsable" ImageUrl="~/Images/engranaje.gif" runat="server" CausesValidation="False" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
+                                                                    ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
+                    <cc1:TabPanel ID="tpVehiculos" HeaderText="Vehículos" runat="server">
+                        <ContentTemplate>
+                            <asp:UpdatePanel ID="upVehiculos" runat="server">
+                                <ContentTemplate>
+                                    <table width="600px" class="text_custom">
+                                        <tr>
+                                            <td colspan="2" style="height: 20px">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top" style="padding-left: 20px">
+                                                Vehículos
+                                            </td>
+                                            <td>
+                                                <asp:ListBox ID="lstVehiculos" runat="server" SelectionMode="Multiple" Height="150px" CssClass="text_custom">
+                                                </asp:ListBox>
+                                                <asp:CustomValidator ID="cvVehiculos" runat="server" ErrorMessage="Debe seleccionar al menos un vehículo."
+                                                    Display="None" ValidationGroup="vehiculos" OnServerValidate="cvVehiculos_ServerValidate"></asp:CustomValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2">
+                                                <asp:Button ID="btnAsignaVehiculoSolicitud" runat="server" Text="Asignar vehículo"
+                                                    OnClick="btnAsignaVehiculoSolicitud_Click" ValidationGroup="vehiculos" CssClass="button_custom" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False"
+                                                    OnRowDeleting="gvSolicitudVehiculos_RowDeleting" Width="100%">
+                                                    <Columns>
+                                                        <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
+                                                        <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" Visible="False" />
+                                                        <asp:BoundField DataField="Vehiculo" HeaderText="Vehiculo" HeaderStyle-HorizontalAlign="Center" />
+                                                        <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
+                                                                    ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="text_custom">
+                                        <asp:ValidationSummary ID="vsVehiculos" runat="server" ValidationGroup="vehiculos" />
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
+                    <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
+                        <ContentTemplate>
+                            <table class="text_custom" width="600px">
+                                <tr>
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Monto
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvPresupuesto" runat="server" ErrorMessage="Debe ingresar el monto del presupuesto."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ID="cvPresupuesto" runat="server" ErrorMessage="El monto del presupuesto no es válido."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"
+                                            Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
+                    <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
+                        <ContentTemplate>
+                            <div style="width: 600px">
+                                <uc4:Adjuntos ID="ucAdjuntos" runat="server" TipoSol="MantenimientoPreventivo" />
+                            </div>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
+                    <cc1:TabPanel ID="tpConfirmacion" HeaderText="Confirmación" runat="server">
+                        <ContentTemplate>
+                            <div style="width:100%;text-align:center;margin-top:30px">
+                                <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
+                                    Text="Confirmar solicitud" ValidationGroup="solicitud" CssClass="button_custom" />
+                            </div>
+                            <div class="text_custom">
+                                <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">
+                                </asp:BulletedList>
+                                <asp:ValidationSummary ID="vsSolicitud" runat="server" ValidationGroup="solicitud" />
+                            </div>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
+                </cc1:TabContainer>
+            </td>
+        </tr>
+    </table>
 </asp:Content>
 
