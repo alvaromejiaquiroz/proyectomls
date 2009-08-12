@@ -55,18 +55,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
     {
         System.Data.Common.DbDataReader reader = Antares.model.Solicitud.GetReader(txtNroSolicitud.Text.ToString(), cboTipoSolicitud1.value, cboPersonal.Value, cmbEstados.SelectedValue.ToString());
 
-        if (reader.HasRows)
-        {
-            GridView1.DataSource = reader;
-            GridView1.DataBind();
-        }
-        else
-        {
-            lblMensaje.Text = "No hay solicitudes";
-            divMensajesGrilla.Visible = true;
-            
-        }
-        
+        GridView1.DataSource = reader;
+      
     }
 
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -176,10 +166,11 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
     
     protected void cmdBuscar_Click(object sender, EventArgs e)
     {
-        
-        GridView1.DataSource = Antares.model.Solicitud.GetReader(txtNroSolicitud.Text.ToString(), cboTipoSolicitud1.value, cboPersonal.Value, cmbEstados.SelectedValue.ToString());
-        GridView1.DataBind();
-        txtNroSolicitud.Text = string.Empty;
+        if (IsValid)
+        {
+            GridView1.DataSource = Antares.model.Solicitud.GetReader(txtNroSolicitud.Text.ToString(), cboTipoSolicitud1.value, cboPersonal.Value, cmbEstados.SelectedValue.ToString());
+            GridView1.DataBind();
+        }
     }
 
     protected void GridView1_DataBound(object sender, EventArgs e)
@@ -187,14 +178,13 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         if (BiFactory.User.IdPerfil == 1)
         {
             GridView1.Columns[11].Visible = true;
-           
         }
         else
         {
             GridView1.Columns[11].Visible = false;
         }
-
     }
+
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         /*
@@ -232,23 +222,24 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             {
 
                 case "Anulada":
-                        e.Row.Cells[4].BackColor = System.Drawing.ColorTranslator.FromHtml("#FF0000");
+                    e.Row.Cells[4].Font.Bold = true;
+                        e.Row.Cells[4].ForeColor = System.Drawing.Color.Red;
                         imgEditar.Visible = false;
                         imgEstado.Visible = false;
                         imgReporte.Visible = false;
                         break;
                     
                 case "Pendiente":
-
-                        e.Row.Cells[4].BackColor = System.Drawing.ColorTranslator.FromHtml("#FFAF6E");
-                        e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
+                        e.Row.Cells[4].Font.Bold = true;
+                        e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFAF6E");
+                        //e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
                         break;
 
                 case "Realizado":
-                    
+                        e.Row.Cells[4].Font.Bold = true;
                         imgEditar.Visible = false;
                         imgEstado.Visible = false;
-                        e.Row.Cells[4].BackColor = System.Drawing.ColorTranslator.FromHtml("#66FF99");
+                        e.Row.Cells[4].ForeColor = System.Drawing.Color.Green;
                         if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Reporte")) != null)
                         {
                             imgReporte.Visible = true;
@@ -256,12 +247,14 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         break;
                     
                 case "Reprogramado":
-                        e.Row.Cells[4].BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFF66");
+                        e.Row.Cells[4].Font.Bold = true;
+                        e.Row.Cells[4].ForeColor = System.Drawing.Color.Blue;
                         break;
                 case "Suspendido":
+                        e.Row.Cells[4].Font.Bold = true;
                     imgEditar.Visible = false;
                     imgEstado.Visible = false;
-                    e.Row.Cells[4].BackColor = System.Drawing.Color.LightGray;
+                    e.Row.Cells[4].ForeColor = System.Drawing.Color.Gray;
                     break;
 
                 default: break;

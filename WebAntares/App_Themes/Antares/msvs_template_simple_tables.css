@@ -6,7 +6,6 @@ body {
 	font-family:Verdana;
 	color:#666666;
 	margin:0px 0px 0px 0px;
-	background: #EAEAEA;/*url(bg-main.gif) repeat-x;*/
 	font-size:10px;
 	}
 
@@ -81,48 +80,56 @@ LINKS
 
 /* LINK VISTED HOVER ACTIVE selectors must remain in this order to work */
 a:link {
-	color:#FF6600;
-	}
-
-a:visited {
-	color:#CC6600;
-	}
-
-a:hover {
-	color:#FF3300;
+	color:#000000;
 	text-decoration:none;
 	}
 
+a:visited {
+	color:#000000;
+	text-decoration:none;
+	}
+
+a:hover {
+	color:#000000;
+	text-decoration:underline;
+	}
+
 a:active {
-	color:#669966;
+	color:#000000;
+	text-decoration:none;
 	}
 
 /* LINK VISTED HOVER ACTIVE selectors must remain in this order to work */
 #mainnav-container a:link {
-	color:#FF0000;
+	color:#000000;
+	text-decoration:none;
 	}
 
 #mainnav-container a:visited {
-	color:#FF0000;
+	color:#000000;
+	text-decoration:none;
 	}
 
 #mainnav-container a:hover {
-	color:#FF6633;
+	color:#000000;
 	text-decoration:none;
 	}
 
 #mainnav-container a:active {
-	color:#669966;
+	color:#000000;
+	text-decoration:none;
 	}
 
 /* All link states are selected with an "a" */
 #header
 {
-	color: #CC6600;
+	color: #000000;
+	text-decoration:none;
 }
 
 #breadcrumb-container a {
-	color:#FF6600;
+	color:#000000;
+	text-decoration:none;
 	}
 
 /******************
@@ -179,7 +186,6 @@ LAYOUT STYLES
 	border-right: 1px solid #7F7F7F;
 	border-left: 1px solid #EDEDED;
 	margin-bottom: 1px;
-	background: #EAEAEA; /*#AAAAAA url(bg-topnav.gif) repeat-x;*/
 	table-layout: fixed;
 	border-right-color: #666666;
 	border-bottom-color: #666666;
@@ -195,17 +201,14 @@ LAYOUT STYLES
 
 #header
 {
-    Background-position: #EAEAEA; /*#580808 url(bg-header.gif) repeat-x;*/
-	margin-bottom: 2px;
-	width: 100%;
+    width: 100%;
 	padding: 0px;
 	height: 10px;
-	background: #EAEAEA;
 	vertical-align:top;
 	color: #FFFFFF;
 	table-layout: fixed;
 	font-weight: bold;
-	border-bottom:2px solid #444444;
+	border-bottom:1px solid #000000;
 }
 #header_user
 {
@@ -288,7 +291,6 @@ LAYOUT STYLES
 	border-left:1px solid #EDEDED;
 	margin-bottom:1px;
 	/*background: #CFC9CF url(bg-topnav.gif) repeat-x;*/
-	background: #EAEAEA; /* barra abajo del titulo y del logo */
 	table-layout:fixed;
 	}
 
@@ -304,17 +306,15 @@ LAYOUT STYLES
 
 #content-container {
 	width:100%;
-	border-bottom:2px solid #7F7F7F;
-	border-right:1px solid #7F7F7F;
+	border-bottom:1px solid #000000;
 	padding:0px;
 	margin:0px 0px 0px 0px;
 	table-layout:fixed;
 	}
 
 #content-left {
-	background-color:#EAEAEA; /* contenedor de la barra donde esta el menu */
 	width:250px;
-	padding:10px;
+	padding:10px 5px 10px 10px;
 	vertical-align:top;
 	}
 
@@ -327,7 +327,7 @@ LAYOUT STYLES
 
 #content {
 	background-color:#FFFFFF;
-	padding:1px;
+	padding:10px 10px 10px 5px;
 	border-left:1px fixed #D0D0BF;
 	border-right:1px fixed #D0D0BF;
 	vertical-align:top;
@@ -360,11 +360,8 @@ LAYOUT STYLES
 #footer {
 	width:100%;
 	padding:10px;
-	border-bottom:2px solid #7F7F7F;
-	border-right:1px solid #7F7F7F;
-	border-left:1px solid #EDEDED;
+	border-bottom:1px solid #000000;
 	text-align:center;
-	background: #EAEAEA;
 	table-layout:fixed;
 	}
 
