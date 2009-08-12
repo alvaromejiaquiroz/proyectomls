@@ -133,15 +133,25 @@
    CONTENT CONTAINER
 	
 -->
-    <table border="0" cellspacing="0" cellpadding="0" id="content-container">
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="True"
             EnableScriptLocalization="True">
         </asp:ScriptManager>
+    <table border="0" cellspacing="0" cellpadding="0" id="content-container">
         <tr>
-            <td id="content-left" class="style2">
-                <ul runat="server" id="ulMenu" />
-                <div id="menu" runat="server" align="left">
-                </div>
+            <td id="content-left">
+                <table width="100%" style="border-style: solid; border-color: #000000; border-width: 1px">
+                    <tr class="header_custom">
+                        <td align="center">
+                            Menú principal
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:20px">
+                            <div id="menu" runat="server" align="left">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </td>
             <td id="content">
                 <!--style="height: 400px; width: 100%"> -->
