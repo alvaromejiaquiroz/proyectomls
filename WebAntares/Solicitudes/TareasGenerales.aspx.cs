@@ -78,7 +78,15 @@ public partial class Solicitudes_TareasGenerales : System.Web.UI.Page
         tarea_general.IdTipotarea = int.Parse(cmbTipoTarea.SelectedItem.Value);
         tarea_general.IdEmpleado = BiFactory.Empleado.IdEmpleados;
         tarea_general.SaveAndFlush();
+        pnlSolicitud.Visible = false;
 
-        Response.Redirect("./Solicitudes.aspx");
+        ucTareasGenerales.Numero = tarea_general.IdSolicitud.ToString();
+        ucTareasGenerales.Titulo = Sol.Descripcion;
+        ucTareasGenerales.Tipo = cmbTipoTarea.SelectedItem.Text;
+        ucTareasGenerales.FechaInicio = tarea_general.FechaInicio;
+        ucTareasGenerales.FechaFin = tarea_general.FechaFin;
+        ucTareasGenerales.Duracion = tarea_general.Duracion;
+        ucTareasGenerales.Descripcion = tarea_general.Descripcion;
+        ucTareasGenerales.Visible = true;
     }
 }
