@@ -96,34 +96,32 @@
     <form id="form1" runat="server">
     <table border="0" cellspacing="0" cellpadding="0" id="header">
         <tr>
+            <td id="header_logo" style="width:125px">
+                <img alt="Antares" src="../images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
+            </td>
+            <td align="right" style="width:740px">
+                <div class="header_custom" style="height:40px;vertical-align:middle;font-size:20px;padding-right:20px;padding-top:20px">
+                    Sistema de gestión de tareas
+                </div>
+            </td>
             <td>
-                <div>
-                    <table>
-                        <tr>
-                            <td>
-                                <div id="foto_usuario">
-                                    <asp:Image ID="Imagen_Usuario" runat="server" class="Imagen_Usuario" />
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <asp:LoginName ID="ucLoginName" runat="server" ForeColor="#000000" Font-Bold="false" CssClass="text_custom" />
-                                </div>
-                                <div>
-                                    <asp:LoginStatus ID="ucLoginStatus" runat="server" ForeColor="#000000" CssClass="text_custom" OnLoggingOut="LoginStatus1_LoggingOut" />
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-            <td id="header_titulo">
-                <div id="slogan">
-                    Sistema de Gestión de Tareas
-                </div>
-            </td>
-            <td id="header_logo">
-                <img alt="" src="../images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
+                <table>
+                    <tr>
+                        <td>
+                            <div id="foto_usuario">
+                                <asp:Image ID="Imagen_Usuario" runat="server" class="Imagen_Usuario" />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <asp:LoginName ID="ucLoginName" runat="server" ForeColor="#000000" Font-Bold="false" CssClass="text_custom" />
+                            </div>
+                            <div>
+                                <asp:LoginStatus ID="ucLoginStatus" runat="server" ForeColor="#000000" CssClass="text_custom" OnLoggingOut="LoginStatus1_LoggingOut" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>

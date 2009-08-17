@@ -215,7 +215,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                 imgEliminar.Visible = true;
 
             }
-
+            Image imgStatus = (Image)e.Row.FindControl("imgStatus");
             
             string valorResponsable = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Status"));
             switch (valorResponsable)
@@ -223,42 +223,49 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
                 case "Anulada":
                     e.Row.Cells[4].Font.Bold = true;
-                        e.Row.Cells[4].ForeColor = System.Drawing.Color.Red;
+                        //e.Row.Cells[4].ForeColor = System.Drawing.Color.Red;
                         imgEditar.Visible = false;
                         imgEstado.Visible = false;
                         imgReporte.Visible = false;
+                        imgStatus.ImageUrl = "../images/gray.gif";
+                        imgStatus.ToolTip = "Anulado";
                         break;
                     
                 case "Pendiente":
-                        e.Row.Cells[4].Font.Bold = true;
-                        e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFAF6E");
+                        //e.Row.Cells[4].Font.Bold = true;
+                        //e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFAF6E");
                         //e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
+                        imgStatus.ImageUrl = "../images/orange.gif";
+                        imgStatus.ToolTip = "Pendiente";
                         break;
 
                 case "Realizado":
-                        e.Row.Cells[4].Font.Bold = true;
+                        //e.Row.Cells[4].Font.Bold = true;
                         imgEditar.Visible = false;
                         imgEstado.Visible = false;
-                        e.Row.Cells[4].ForeColor = System.Drawing.Color.Green;
+                        //e.Row.Cells[4].ForeColor = System.Drawing.Color.Green;
                         if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Reporte")) != null)
                         {
                             imgReporte.Visible = true;
                         }
+                        imgStatus.ImageUrl = "../images/green.gif";
+                        imgStatus.ToolTip = "Realizado";
                         break;
                     
                 case "Reprogramado":
-                        e.Row.Cells[4].Font.Bold = true;
-                        e.Row.Cells[4].ForeColor = System.Drawing.Color.Blue;
+                        //e.Row.Cells[4].Font.Bold = true;
+                        //e.Row.Cells[4].ForeColor = System.Drawing.Color.Blue;
+                        imgStatus.ImageUrl = "../images/yellow.gif";
+                        imgStatus.ToolTip = "Reprogramado";
                         break;
                 case "Suspendido":
-                        e.Row.Cells[4].Font.Bold = true;
-                    imgEditar.Visible = false;
-                    imgEstado.Visible = false;
-                    e.Row.Cells[4].ForeColor = System.Drawing.Color.Gray;
-                    break;
-
-                default: break;
-
+                        //e.Row.Cells[4].Font.Bold = true;
+                        imgEditar.Visible = false;
+                        imgEstado.Visible = false;
+                        //e.Row.Cells[4].ForeColor = System.Drawing.Color.Gray;
+                        imgStatus.ImageUrl = "../images/red.gif";
+                        imgStatus.ToolTip = "Suspendido";
+                        break;
             }
         }
     }

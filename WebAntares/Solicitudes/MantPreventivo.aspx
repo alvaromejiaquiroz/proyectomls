@@ -4,7 +4,9 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
 <%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
+<%@ Register src="../Controles/MantenimientoPreventivo.ascx" tagname="MantenimientoPreventivo" tagprefix="uc1" %>
 <asp:Content ID="cMantenimientoPreventivo" ContentPlaceHolderID="PageContainer" runat="Server">
+    <asp:Panel ID="pnlMantenimientoPreventivo" runat="server">
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center">
@@ -82,9 +84,17 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td colspan="2" style="height: 20px">
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td align="center" colspan="2">
                                                 <asp:Button ID="btnAgregarTarea" runat="server" OnClick="btnAgregarTarea_Click" Text="Agregar tarea"
                                                     ValidationGroup="tareas" CssClass="button_custom" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="height: 20px">
                                             </td>
                                         </tr>
                                         <tr>
@@ -146,26 +156,28 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td colspan="2" style="height: 20px">
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td align="center" colspan="2">
                                                 <asp:Button ID="btnAsignaEmpleadoSolicitud" runat="server" Text="Asignar empleado"
                                                     OnClick="btnAsignaEmpleadoSolicitud_Click" Visible="false" CssClass="button_custom" />
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td colspan="2" style="height: 20px">
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td colspan="2">
                                                 <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
-                                                    OnRowDeleting="gvPersonas_RowDeleting" OnRowDataBound="gvSolicitudPersonas_RowDataBound"
-                                                    Width="100%">
+                                                    OnRowDeleting="gvPersonas_RowDeleting" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
                                                         <asp:BoundField DataField="Empleado" HeaderText="Empleado" HeaderStyle-HorizontalAlign="Center" />
-                                                        <asp:BoundField DataField="Responsable" HeaderText="Responsable" HeaderStyle-HorizontalAlign="Center"
+                                                        <asp:CheckBoxField DataField="Responsable" HeaderText="Responsable" HeaderStyle-HorizontalAlign="Center"
                                                             ItemStyle-HorizontalAlign="Center" />
-                                                        <asp:TemplateField Visible="false" HeaderText="Responsable">
-                                                            <ItemTemplate>
-                                                                <asp:Image ID="imgResponsable" ImageUrl="~/Images/engranaje.gif" runat="server" CausesValidation="False" />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
@@ -202,9 +214,17 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td colspan="2" style="height: 20px">
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td align="center" colspan="2">
                                                 <asp:Button ID="btnAsignaVehiculoSolicitud" runat="server" Text="Asignar vehículo"
                                                     OnClick="btnAsignaVehiculoSolicitud_Click" ValidationGroup="vehiculos" CssClass="button_custom" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="height: 20px">
                                             </td>
                                         </tr>
                                         <tr>
@@ -342,4 +362,6 @@
             </td>
         </tr>
     </table>
+    </asp:Panel>
+    <uc1:MantenimientoPreventivo ID="ucMantenimientoPreventivo" runat="server" Visible="false" Imprimible="false" />
 </asp:Content>

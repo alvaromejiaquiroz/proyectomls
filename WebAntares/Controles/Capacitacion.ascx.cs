@@ -9,7 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 
-public partial class Controles_TareasGenerales : System.Web.UI.UserControl
+public partial class Controles_Capacitacion : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -18,10 +18,10 @@ public partial class Controles_TareasGenerales : System.Web.UI.UserControl
 
     protected void btnFinalizar_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListaTareasGenerales.aspx");
+        Response.Redirect("ListaCapacitacion.aspx");
     }
 
-    public string Numero 
+    public string Numero
     {
         set { litNumero.Text = value; }
     }
@@ -31,9 +31,9 @@ public partial class Controles_TareasGenerales : System.Web.UI.UserControl
         set { litTitulo.Text = value; }
     }
 
-    public string Tipo
+    public string Nivel
     {
-        set { litTipo.Text = value; }
+        set { litNivel.Text = value; }
     }
 
     public string FechaInicio
@@ -51,14 +51,29 @@ public partial class Controles_TareasGenerales : System.Web.UI.UserControl
         set { litDuracion.Text = value; }
     }
 
-    public string Descripcion
+    public string AreaEstudios
     {
-        set { litDescripcion.Text = value; }
+        set { litAreaEstudios.Text = value; }
+    }
+
+    public string Instructor
+    {
+        set { litInstructor.Text = value; }
+    }
+
+    public string EntidadEducativa
+    {
+        set { litEntidadEducativa.Text = value; }
+    }
+
+    public string PuntuacionExamen
+    {
+        set { litPuntuacionExamen.Text = value; }
     }
 
     public bool Imprimible
     {
-        set 
+        set
         {
             btnFinalizar.Visible = !value;
             pnlImprimir.Visible = value;

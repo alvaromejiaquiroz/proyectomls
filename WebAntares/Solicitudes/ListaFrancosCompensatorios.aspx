@@ -22,7 +22,7 @@
                         <asp:BoundField DataField="FechaFin" HeaderText="Fecha de fin" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="Descripcion" HeaderText="Descripción" HeaderStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="Duracion" HeaderText="Duración" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
-                        <asp:BoundField DataField="ConElConsentimiento" HeaderText="Con el consentimiento de" HeaderStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="ConElConsentimiento" HeaderText="Consentimiento de" HeaderStyle-HorizontalAlign="Center" />
                         <asp:CommandField HeaderText="Editar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                             ButtonType="Image" EditImageUrl="~/images/b_edit.gif" EditText="Editar" ShowCancelButton="False"
                             ShowEditButton="True" />

@@ -75,7 +75,16 @@ public partial class Solicitudes_Licencias : System.Web.UI.Page
             sol_Lic.IdEmpleado = BiFactory.Empleado.IdEmpleados;
             sol_Lic.Save();
 
-            Response.Redirect("./ListaLicencias.aspx");
+            pnlLicencias.Visible = false;
+
+            ucLicencias.Numero = sol_Lic.IdSolicitud.ToString();
+            ucLicencias.Titulo = BiFactory.Sol.Descripcion;
+            ucLicencias.Tipo = cmbTipoLicencia.SelectedItem.Text;
+            ucLicencias.FechaInicio = sol_Lic.FechaInicio;
+            ucLicencias.FechaFin = sol_Lic.FechaFin;
+            ucLicencias.Duracion = sol_Lic.Duracion;
+            ucLicencias.Descripcion = sol_Lic.Descripcion;
+            ucLicencias.Visible = true;
         }
     }
 }

@@ -55,7 +55,16 @@ public partial class Solicitudes_FrancosCompensatorios : System.Web.UI.Page
             Fc.ConElConsentimiento = txtConsentimiento.Text;
             Fc.IdEmpleado = BiFactory.Empleado.IdEmpleados;
             Fc.SaveAndFlush();
-            Response.Redirect("./Solicitudes.aspx");
+
+            pnlFrancosCompensatorios.Visible = false;
+
+            ucFrancosCompensatorios.Numero = Fc.IdSolicitud.ToString();
+            ucFrancosCompensatorios.Titulo = Sol.Descripcion;
+            ucFrancosCompensatorios.Fecha = Fc.FechaInicio;
+            ucFrancosCompensatorios.Duracion = Fc.Duracion;
+            ucFrancosCompensatorios.Descripcion = Fc.Descripcion;
+            ucFrancosCompensatorios.ConsentimientoDe = Fc.ConElConsentimiento;
+            ucFrancosCompensatorios.Visible = true;
         }
     }
 }
