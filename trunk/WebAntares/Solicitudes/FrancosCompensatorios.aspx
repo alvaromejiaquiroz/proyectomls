@@ -3,7 +3,10 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register src="../Controles/SolDetalle.ascx" tagname="SolDetalle" tagprefix="uc2" %>
 
+<%@ Register src="../Controles/FrancosCompensatorios.ascx" tagname="FrancosCompensatorios" tagprefix="uc1" %>
+
 <asp:Content ID="cFrancosCompensatorios" ContentPlaceHolderID="PageContainer" Runat="Server">
+    <asp:Panel ID="pnlFrancosCompensatorios" runat="server">
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center" colspan="2">
@@ -84,5 +87,7 @@
             </td>
         </tr>
     </table>
+    </asp:Panel>
+    <uc1:FrancosCompensatorios ID="ucFrancosCompensatorios" runat="server" Visible="false" Imprimible="true" />
 </asp:Content>
 

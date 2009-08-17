@@ -78,13 +78,22 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
         Cap.AreaEstudio = txtAreaEstudios.Text;
         Cap.IdEmpleado = BiFactory.Empleado.IdEmpleados;
         Cap.SaveAndFlush();
-        Response.Redirect("./ListaCapacitacion.aspx");
-        Sol = null;
-    }
 
-    protected void btnCancelar_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("./ListaCapacitacion.aspx");
+        pnlCapacitacion.Visible = false;
+
+        ucCapacitacion.Numero = Cap.IdSolicitud.ToString();
+        ucCapacitacion.Titulo = Cap.Descripcion;
+        ucCapacitacion.Nivel = Cap.Nivel;
+        ucCapacitacion.FechaInicio = Cap.FechaInicio;
+        ucCapacitacion.FechaFin = Cap.FechaFin;
+        ucCapacitacion.Duracion = Cap.Duracion;
+        ucCapacitacion.AreaEstudios = Cap.AreaEstudio;
+        ucCapacitacion.Instructor = Cap.Instructor;
+        ucCapacitacion.EntidadEducativa = Cap.EntidadEducativa;
+        ucCapacitacion.PuntuacionExamen = Cap.PuntuacionExamen;
+        ucCapacitacion.Visible = true;
+
+        Sol = null;
     }
 
     private void CargarCombos()

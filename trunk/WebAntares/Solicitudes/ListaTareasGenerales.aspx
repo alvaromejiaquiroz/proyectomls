@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="ListaTareasGenerales.aspx.cs"
     Inherits="Solicitudes_ListaTareasGenerales" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
+<asp:Content ID="cListaTareasGenerales" ContentPlaceHolderID="PageContainer" runat="Server">
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center">

@@ -45,6 +45,9 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             txtReportoFalla.Text = Sol_Cor.PersonaReportoFalla;
             txtFalla.Text = Sol_Cor.FallaReportada;
             txtCausa.Text = Sol_Cor.CausaPosible;
+            txtFechaReporte.Text = Sol_Cor.FechanotificacionCliente.ToShortDateString();
+            ddlHoraReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Hour.ToString();
+            ddlMinutosReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Minute.ToString();
             cmbPlazoAtencion.SelectedValue = Sol_Cor.IdPlazoAtencion.ToString();
         }
 	}
@@ -251,8 +254,27 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             
             sol.Save();
             Sol_Cor.Save();
-            
-            Response.Redirect("./Solicitudes.aspx");
+
+            pnlMantenimientoCorrectivo.Visible = false;
+
+            ucMantenimientoCorrectivo.Numero = Sol_Cor.IdSolicitud.ToString();
+            ucMantenimientoCorrectivo.Titulo = sol.Descripcion;
+            ucMantenimientoCorrectivo.ReportoFalla = Sol_Cor.PersonaReportoFalla;
+            ucMantenimientoCorrectivo.CausaProbable = Sol_Cor.CausaPosible;
+            ucMantenimientoCorrectivo.FechaReporte = Sol_Cor.FechanotificacionCliente.ToString("dd/MM/yyyy HH:mm");
+            ucMantenimientoCorrectivo.Falla = Sol_Cor.FallaReportada;
+            ucMantenimientoCorrectivo.Servicios = SolicitudServiciosAfectados.GetServiciosAfectados(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoCorrectivo.Plazo = cmbPlazoAtencion.SelectedItem.Text;
+            ucMantenimientoCorrectivo.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoCorrectivo.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoCorrectivo.Cliente = cmbClientes.SelectedItem.Text;
+            ucMantenimientoCorrectivo.ContactoCliente = sol.Contacto;
+            ucMantenimientoCorrectivo.NroOrden = sol.NroOrdenCte;
+            ucMantenimientoCorrectivo.TelefonoContacto = sol.ContactoTel;
+            ucMantenimientoCorrectivo.MailContacto = sol.ContactoMail;
+            ucMantenimientoCorrectivo.Adjuntos = sol.GetAdjuntos();
+            ucMantenimientoCorrectivo.Monto = Sol_Cor.Presupuesto;
+            ucMantenimientoCorrectivo.Visible = true;
         }
     }
 
@@ -316,25 +338,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             }
         }
     }
-
-    protected void gvSolicitudPersonas_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            int valorResponsable = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Responsable"));
-            if (valorResponsable == 1)
-            {
-                e.Row.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-                e.Row.Cells[2].Visible = true;
-                e.Row.Cells[2].Text = "R";
-            }
-            else
-            {
-                e.Row.Cells[2].Text = string.Empty;
-            }
-        }
-    }
-    
+        
     protected bool EsSolicitudValida()
     {
         bool esValida = true;

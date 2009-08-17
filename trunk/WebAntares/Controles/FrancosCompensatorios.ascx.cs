@@ -9,7 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 
-public partial class Controles_TareasGenerales : System.Web.UI.UserControl
+public partial class Controles_FrancosCompensatorios : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -18,10 +18,10 @@ public partial class Controles_TareasGenerales : System.Web.UI.UserControl
 
     protected void btnFinalizar_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListaTareasGenerales.aspx");
+        Response.Redirect("ListaFrancosCompensatorios.aspx");
     }
 
-    public string Numero 
+    public string Numero
     {
         set { litNumero.Text = value; }
     }
@@ -31,21 +31,11 @@ public partial class Controles_TareasGenerales : System.Web.UI.UserControl
         set { litTitulo.Text = value; }
     }
 
-    public string Tipo
+    public string Fecha
     {
-        set { litTipo.Text = value; }
+        set { litFecha.Text = value; }
     }
-
-    public string FechaInicio
-    {
-        set { litFechaInicio.Text = value; }
-    }
-
-    public string FechaFin
-    {
-        set { litFechaFin.Text = value; }
-    }
-
+    
     public string Duracion
     {
         set { litDuracion.Text = value; }
@@ -56,9 +46,14 @@ public partial class Controles_TareasGenerales : System.Web.UI.UserControl
         set { litDescripcion.Text = value; }
     }
 
+    public string ConsentimientoDe
+    {
+        set { litConsentimientoDe.Text = value; }
+    }
+
     public bool Imprimible
     {
-        set 
+        set
         {
             btnFinalizar.Visible = !value;
             pnlImprimir.Visible = value;

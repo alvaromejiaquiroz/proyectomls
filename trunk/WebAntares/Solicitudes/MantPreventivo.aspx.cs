@@ -134,7 +134,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         }
         foreach (Antares.model.Empresas emp in Antares.model.Empresas.FindAll())
         {
-            cmbClientes.Items.Add(new ListItem(emp.Nombre + "(" + emp.Localidad + ") ", emp.IdEmpresa.ToString()));
+            cmbClientes.Items.Add(new ListItem(emp.Nombre + " (" + emp.Localidad + ") ", emp.IdEmpresa.ToString()));
         }
 
         cmbResponsable.Items.Clear();
@@ -273,7 +273,24 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             Sol_P.Presupuesto = txtPresupuesto.Text;
             sol.Save();
             Sol_P.Save();
-            Response.Redirect("./Solicitudes.aspx");
+            
+            pnlMantenimientoPreventivo.Visible = false;
+
+            ucMantenimientoPreventivo.Numero = Sol_P.IdSolicitud.ToString();
+            ucMantenimientoPreventivo.Titulo = sol.Descripcion;
+            ucMantenimientoPreventivo.Sitio = cboSitios.SelectedItem.Text;
+            ucMantenimientoPreventivo.Tareas = SolicitudTareas.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoPreventivo.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoPreventivo.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoPreventivo.Cliente = cmbClientes.SelectedItem.Text;
+            ucMantenimientoPreventivo.ContactoCliente = sol.Contacto;
+            ucMantenimientoPreventivo.NroOrden = sol.NroOrdenCte;
+            ucMantenimientoPreventivo.TelefonoContacto = sol.ContactoTel;
+            ucMantenimientoPreventivo.MailContacto = sol.ContactoMail;
+            ucMantenimientoPreventivo.Adjuntos = sol.GetAdjuntos();
+            ucMantenimientoPreventivo.Monto = Sol_P.Presupuesto;
+
+            ucMantenimientoPreventivo.Visible = true;
         }
     }
         
@@ -322,27 +339,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             }
         }
     }
-
-    protected void gvSolicitudPersonas_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            int valorResponsable = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Responsable"));
-            if (valorResponsable == 1)
-            {
-                //Image imgResponsable = (Image)e.Row.FindControl("imgResponsable");
-                //imgResponsable.Visible = true;
-                e.Row.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-                e.Row.Cells[2].Visible = true;
-                e.Row.Cells[2].Text = "R";
-            }
-            else
-            {
-                e.Row.Cells[2].Text = string.Empty;
-            }
-        }
-    }
-
+    
     protected bool EsSolicitudValida()
     {
         bool esValida = true;
