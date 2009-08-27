@@ -1187,238 +1187,6 @@ namespace Antares.model {
         }
     }
     
-    [ActiveRecord("Solicitud", Schema="dbo")]
-    public partial class Solicitud : ActiveRecordBase<Solicitud> {
-        
-        private int _id_Solicitud;
-        
-        private int _idTipoSolicitud;
-        
-        private System.DateTime _fechaCreacion;
-        
-        private int _idUsuarioCreador;
-        
-        private string _status;
-        
-        private string _descripcion;
-        
-        private int _idCliente;
-        
-        private string _contacto;
-        
-        private string _contactoMail;
-        
-        private string _contactoTel;
-        
-        private string _nroOrdenCte;
-        
-        private string _aprobadorReprosusp;
-        
-        private string _fechaSuspencion;
-        
-        private string _fechaReprogramacion;
-        
-        private string _proximaFechaInicio;
-        
-        private string _proximaFechaFin;
-        
-        private int _idResponsable;
-        
-        private string _causa;
-        
-        private string _reporte;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id_Solicitud", ColumnType="Int32")]
-        public virtual int Id_Solicitud {
-            get {
-                return this._id_Solicitud;
-            }
-            set {
-                this._id_Solicitud = value;
-            }
-        }
-        
-        [Property("IdTipoSolicitud", ColumnType="Int32")]
-        public virtual int IdTipoSolicitud {
-            get {
-                return this._idTipoSolicitud;
-            }
-            set {
-                this._idTipoSolicitud = value;
-            }
-        }
-        
-        [Property("FechaCreacion", ColumnType="Timestamp")]
-        public virtual System.DateTime FechaCreacion {
-            get {
-                return this._fechaCreacion;
-            }
-            set {
-                this._fechaCreacion = value;
-            }
-        }
-        
-        [Property("IdUsuarioCreador", ColumnType="Int32")]
-        public virtual int IdUsuarioCreador {
-            get {
-                return this._idUsuarioCreador;
-            }
-            set {
-                this._idUsuarioCreador = value;
-            }
-        }
-        
-        [Property("Status", ColumnType="String")]
-        public virtual string Status {
-            get {
-                return this._status;
-            }
-            set {
-                this._status = value;
-            }
-        }
-        
-        [Property("Descripcion", ColumnType="String")]
-        public virtual string Descripcion {
-            get {
-                return this._descripcion;
-            }
-            set {
-                this._descripcion = value;
-            }
-        }
-        
-        [Property("IdCliente", ColumnType="Int32")]
-        public virtual int IdCliente {
-            get {
-                return this._idCliente;
-            }
-            set {
-                this._idCliente = value;
-            }
-        }
-        
-        [Property("Contacto", ColumnType="String")]
-        public virtual string Contacto {
-            get {
-                return this._contacto;
-            }
-            set {
-                this._contacto = value;
-            }
-        }
-        
-        [Property("Contacto_Mail", ColumnType="String")]
-        public virtual string ContactoMail {
-            get {
-                return this._contactoMail;
-            }
-            set {
-                this._contactoMail = value;
-            }
-        }
-        
-        [Property("Contacto_Tel", ColumnType="String")]
-        public virtual string ContactoTel {
-            get {
-                return this._contactoTel;
-            }
-            set {
-                this._contactoTel = value;
-            }
-        }
-        
-        [Property("NroOrdenCte", ColumnType="String")]
-        public virtual string NroOrdenCte {
-            get {
-                return this._nroOrdenCte;
-            }
-            set {
-                this._nroOrdenCte = value;
-            }
-        }
-        
-        [Property("Aprobador_ReproSusp", ColumnType="String")]
-        public virtual string AprobadorReprosusp {
-            get {
-                return this._aprobadorReprosusp;
-            }
-            set {
-                this._aprobadorReprosusp = value;
-            }
-        }
-        
-        [Property("Fecha_Suspencion", ColumnType="String")]
-        public virtual string FechaSuspencion {
-            get {
-                return this._fechaSuspencion;
-            }
-            set {
-                this._fechaSuspencion = value;
-            }
-        }
-        
-        [Property("Fecha_Reprogramacion", ColumnType="String")]
-        public virtual string FechaReprogramacion {
-            get {
-                return this._fechaReprogramacion;
-            }
-            set {
-                this._fechaReprogramacion = value;
-            }
-        }
-        
-        [Property("Proxima_Fecha_inicio", ColumnType="String")]
-        public virtual string ProximaFechaInicio {
-            get {
-                return this._proximaFechaInicio;
-            }
-            set {
-                this._proximaFechaInicio = value;
-            }
-        }
-        
-        [Property("Proxima_Fecha_Fin", ColumnType="String")]
-        public virtual string ProximaFechaFin {
-            get {
-                return this._proximaFechaFin;
-            }
-            set {
-                this._proximaFechaFin = value;
-            }
-        }
-        
-        [Property("IdResponsable", ColumnType="Int32")]
-        public virtual int IdResponsable {
-            get {
-                return this._idResponsable;
-            }
-            set {
-                this._idResponsable = value;
-            }
-        }
-        
-        [Property("Causa", ColumnType="String")]
-        public virtual string Causa {
-            get {
-                return this._causa;
-            }
-            set {
-                this._causa = value;
-            }
-        }
-        
-        [Property("Reporte", ColumnType="String")]
-        public virtual string Reporte {
-            get {
-                return this._reporte;
-            }
-            set {
-                this._reporte = value;
-            }
-        }
-    }
-    
     [ActiveRecord("Solicitud_Recursos_Empleados", Schema="dbo")]
     public partial class SolicitudRecursosEmpleados : ActiveRecordBase<SolicitudRecursosEmpleados> {
         
@@ -2619,6 +2387,250 @@ namespace Antares.model {
             }
             set {
                 this._idEmpleado = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud", Schema="dbo")]
+    public partial class Solicitud : ActiveRecordBase<Solicitud> {
+        
+        private int _id_Solicitud;
+        
+        private int _idTipoSolicitud;
+        
+        private System.DateTime _fechaCreacion;
+        
+        private int _idUsuarioCreador;
+        
+        private string _status;
+        
+        private string _descripcion;
+        
+        private int _idCliente;
+        
+        private string _contacto;
+        
+        private string _contactoMail;
+        
+        private string _contactoTel;
+        
+        private string _nroOrdenCte;
+        
+        private string _aprobadorReprosusp;
+        
+        private string _fechaSuspencion;
+        
+        private string _fechaReprogramacion;
+        
+        private string _proximaFechaInicio;
+        
+        private string _proximaFechaFin;
+        
+        private int _idResponsable;
+        
+        private string _causa;
+        
+        private string _reporte;
+        
+        private int _idSolicitudInicial;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id_Solicitud", ColumnType="Int32")]
+        public virtual int Id_Solicitud {
+            get {
+                return this._id_Solicitud;
+            }
+            set {
+                this._id_Solicitud = value;
+            }
+        }
+        
+        [Property("IdTipoSolicitud", ColumnType="Int32")]
+        public virtual int IdTipoSolicitud {
+            get {
+                return this._idTipoSolicitud;
+            }
+            set {
+                this._idTipoSolicitud = value;
+            }
+        }
+        
+        [Property("FechaCreacion", ColumnType="DateTime")]
+        public virtual System.DateTime FechaCreacion {
+            get {
+                return this._fechaCreacion;
+            }
+            set {
+                this._fechaCreacion = value;
+            }
+        }
+        
+        [Property("IdUsuarioCreador", ColumnType="Int32")]
+        public virtual int IdUsuarioCreador {
+            get {
+                return this._idUsuarioCreador;
+            }
+            set {
+                this._idUsuarioCreador = value;
+            }
+        }
+        
+        [Property("Status", ColumnType="String")]
+        public virtual string Status {
+            get {
+                return this._status;
+            }
+            set {
+                this._status = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String")]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+        
+        [Property("IdCliente", ColumnType="Int32")]
+        public virtual int IdCliente {
+            get {
+                return this._idCliente;
+            }
+            set {
+                this._idCliente = value;
+            }
+        }
+        
+        [Property("Contacto", ColumnType="String")]
+        public virtual string Contacto {
+            get {
+                return this._contacto;
+            }
+            set {
+                this._contacto = value;
+            }
+        }
+        
+        [Property("Contacto_Mail", ColumnType="String")]
+        public virtual string ContactoMail {
+            get {
+                return this._contactoMail;
+            }
+            set {
+                this._contactoMail = value;
+            }
+        }
+        
+        [Property("Contacto_Tel", ColumnType="String")]
+        public virtual string ContactoTel {
+            get {
+                return this._contactoTel;
+            }
+            set {
+                this._contactoTel = value;
+            }
+        }
+        
+        [Property("NroOrdenCte", ColumnType="String")]
+        public virtual string NroOrdenCte {
+            get {
+                return this._nroOrdenCte;
+            }
+            set {
+                this._nroOrdenCte = value;
+            }
+        }
+        
+        [Property("Aprobador_ReproSusp", ColumnType="String")]
+        public virtual string AprobadorReprosusp {
+            get {
+                return this._aprobadorReprosusp;
+            }
+            set {
+                this._aprobadorReprosusp = value;
+            }
+        }
+        
+        [Property("Fecha_Suspencion", ColumnType="String")]
+        public virtual string FechaSuspencion {
+            get {
+                return this._fechaSuspencion;
+            }
+            set {
+                this._fechaSuspencion = value;
+            }
+        }
+        
+        [Property("Fecha_Reprogramacion", ColumnType="String")]
+        public virtual string FechaReprogramacion {
+            get {
+                return this._fechaReprogramacion;
+            }
+            set {
+                this._fechaReprogramacion = value;
+            }
+        }
+        
+        [Property("Proxima_Fecha_inicio", ColumnType="String")]
+        public virtual string ProximaFechaInicio {
+            get {
+                return this._proximaFechaInicio;
+            }
+            set {
+                this._proximaFechaInicio = value;
+            }
+        }
+        
+        [Property("Proxima_Fecha_Fin", ColumnType="String")]
+        public virtual string ProximaFechaFin {
+            get {
+                return this._proximaFechaFin;
+            }
+            set {
+                this._proximaFechaFin = value;
+            }
+        }
+        
+        [Property("IdResponsable", ColumnType="Int32")]
+        public virtual int IdResponsable {
+            get {
+                return this._idResponsable;
+            }
+            set {
+                this._idResponsable = value;
+            }
+        }
+        
+        [Property("Causa", ColumnType="String")]
+        public virtual string Causa {
+            get {
+                return this._causa;
+            }
+            set {
+                this._causa = value;
+            }
+        }
+        
+        [Property("Reporte", ColumnType="String")]
+        public virtual string Reporte {
+            get {
+                return this._reporte;
+            }
+            set {
+                this._reporte = value;
+            }
+        }
+        
+        [Property("id_Solicitud_Inicial", ColumnType="Int32")]
+        public virtual int IdSolicitudInicial {
+            get {
+                return this._idSolicitudInicial;
+            }
+            set {
+                this._idSolicitudInicial = value;
             }
         }
     }
