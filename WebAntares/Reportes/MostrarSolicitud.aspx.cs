@@ -27,49 +27,52 @@ public partial class Reportes_MostrarSolicitud : System.Web.UI.Page
         {
             idSol = int.Parse(Request.QueryString["id"].ToString());
 
-        }
-        else
-        {
-            idSol = 456;
-        }
-        
-        
-        Solicitud sol = Solicitud.GetById(idSol);
-        
-        /// Cargo la data generica de las solicitudes
-        lblNroSolicitud.Text = sol.Id_Solicitud.ToString();
-        lblDescripcion.Text = sol.Descripcion;
-        lblEstado.Text = sol.Status;
-        lblFechaCreacion.Text = sol.FechaCreacion.ToShortDateString();
-        lblTipoSolicitud.Text = sol.Tipo.Descripcion.ToString();
-        lblCliente.Text = Empresas.FindFirst(Expression.Eq("IdEmpresa", sol.IdCliente)).Nombre;
-        lblContacto_Cliente.Text = sol.Contacto;
-        lblContacto_Mail.Text = sol.ContactoMail;
-        lblContacto_Telefono.Text = sol.ContactoTel;
-        lblNRO_OrdenCliente.Text = sol.NroOrdenCte;
+            Solicitud sol = Solicitud.GetById(idSol);
 
-        switch (sol.Tipo.IdTiposolicitud.ToString())
-        {
-            case "1":
-                //Preventiva
-                
-                SolPre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                PresentaSolicitudPreventiva(SolPre);
-                break;
-            case "2":
-                //Correctiva
-                SolCor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                PresentaSolicitudCorrectiva(SolCor);
-                break;
-            case "6":
-                //Obra
-                SolObr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                PresentaSolicitudObra(SolObr);
-                break;
-            default:
-              break;
-        }
+            /// Cargo la data generica de las solicitudes
+            /// 
+            if (sol.Reporte == "SI")
+            {
 
+                lblNroSolicitud.Text = sol.IdSolicitudInicial.ToString();
+            }
+            else
+            {
+                lblNroSolicitud.Text = sol.Id_Solicitud.ToString();
+            }
+            lblDescripcion.Text = sol.Descripcion;
+            lblEstado.Text = sol.Status;
+            lblFechaCreacion.Text = sol.FechaCreacion.ToShortDateString();
+            lblTipoSolicitud.Text = sol.Tipo.Descripcion.ToString();
+            lblCliente.Text = Empresas.FindFirst(Expression.Eq("IdEmpresa", sol.IdCliente)).Nombre;
+            lblContacto_Cliente.Text = sol.Contacto;
+            lblContacto_Mail.Text = sol.ContactoMail;
+            lblContacto_Telefono.Text = sol.ContactoTel;
+            lblNRO_OrdenCliente.Text = sol.NroOrdenCte;
+
+            switch (sol.Tipo.IdTiposolicitud.ToString())
+            {
+                case "1":
+                    //Preventiva
+
+                    SolPre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                    PresentaSolicitudPreventiva(SolPre);
+                    break;
+                case "2":
+                    //Correctiva
+                    SolCor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                    PresentaSolicitudCorrectiva(SolCor);
+                    break;
+                case "6":
+                    //Obra
+                    SolObr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                    PresentaSolicitudObra(SolObr);
+                    break;
+                default:
+                    break;
+            }
+
+        }
         
     }
 

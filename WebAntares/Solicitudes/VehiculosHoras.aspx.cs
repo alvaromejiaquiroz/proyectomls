@@ -56,14 +56,14 @@ public partial class Solicitudes_VehiculosHoras : System.Web.UI.Page
         switch (sol.Tipo.Descripcion)
         {
             case "Mantenimiento Correctivo":
-                SolicitudCorrectivo sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", int.Parse(sol.RelacionadaCon)));
+                SolicitudCorrectivo sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
                     fecha_Inicio = sol_Cor.FechanotificacionCliente;
                     
 
                 break;
 
             case "Mantenimiento Preventivo":
-                SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", int.Parse(sol.RelacionadaCon)));
+                SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
                     fecha_Inicio = DateTime.Parse(sol_Pre.FechaInicio);
                     
                 break;

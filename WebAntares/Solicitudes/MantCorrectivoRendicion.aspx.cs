@@ -38,11 +38,11 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
     private void FillCorrectiva()
     {
-        Solicitud_Relacion r = Solicitud_Relacion.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+        //Solicitud_Relacion r = Solicitud_Relacion.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
 
 
 
-        Solicitud sol = Solicitud.GetById(r.IdSolicitud_Relacionada);
+        Solicitud sol = Solicitud.GetById(BiFactory.Sol.IdSolicitudInicial);
         try
         {
 
@@ -330,12 +330,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
         if (ValidaSolicitud())
         {
-
-
-            
-
-                Solicitud_Relacion Rela = Solicitud_Relacion.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
-                Solicitud Sol_Original = Solicitud.GetById(Rela.IdSolicitud_Relacionada);
+                Solicitud Sol_Original = Solicitud.GetById(sol.IdSolicitudInicial);
                 Sol_Original.Status = eEstados.Realizado.ToString();
                 Sol_Original.Update();
 
@@ -343,37 +338,9 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
                 SolicitudCorrectivo Corr = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
 
-
-
-                TransactionScope TX = new TransactionScope();
-                try
-                {
-
-
                     Reporte.Status = eEstados.Realizado.ToString();
-
                     Reporte.Save();
-
-
-                }
-              
-
-
-                catch (Exception oEx)
-                {
-
-                    TX.VoteRollBack();
-                    throw;
-                }
-                finally
-                {
-                    TX.Dispose();
-                }
-
-
-            
-            Response.Redirect("./Solicitudes.aspx");
-
+                    Response.Redirect("./Solicitudes.aspx");
         }        
     
     }

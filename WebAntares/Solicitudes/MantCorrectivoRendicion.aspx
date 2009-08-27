@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true"
     CodeFile="MantCorrectivoRendicion.aspx.cs" Inherits="Solicitudes_MantPreventivo" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controles/jDatePick.ascx" TagName="jDatePick" TagPrefix="uc1" %>
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
 <%@ Register Src="../Controles/cboSitios.ascx" TagName="cboSitios" TagPrefix="uc3" %>
@@ -25,20 +25,24 @@
 
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
     </asp:ScriptManagerProxy>
-    <uc2:SolDetalle ID="SolDetalle2" runat="server" />
-    <div id="Solapas">
-        <ul>
-            <li><a href="#divtblFalla"><span>Falla Reportada</span></a></li>
-            <li><a href="#divtblServicios"><span>Servicios Afectados</span></a></li>
-            <li><a href="#divtblPlazo"><span>Plazo</span></a></li>
-            <li><a href="#divtblPersonas"><span>Personal</span></a></li>
-            <li><a href="#divTraslados"><span>Traslados</span></a></li>
-            <li><a href="#divtblComplemento"><span>Datos Complementarios</span></a></li>
-            <li><a href="#divadjuntos"><span>Adjuntos </span></a></li>
-            <li><a href="#divPresupuesto"><span>Presupuesto</span></a></li>
-            <li><a href="#divFin"><span>Confirmación</span></a></li>
-        </ul>
-        <div id="divtblFalla">
+     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
+      <tr class="header_custom">
+            <td align="center">
+                Reporte de Mantenimiento Preventivo
+            </td>
+        </tr>
+      <tr>
+            <td>
+                <uc2:SolDetalle ID="ucSolDetalle" runat="server" />
+            </td>
+        </tr>
+      <tr>
+        <td>
+
+            <cc1:TabContainer ID="tcMantenimientoCorrectivo_Rendicion" runat="server" Height="450px">
+         
+<cc1:TabPanel ID="tpFalla" HeaderText="Falla" runat="server">
+     <ContentTemplate>
             <table  id="tResponsable" style="text-align: left; vertical-align: middle">
                 <tr>
                 <td valign="top" >
@@ -96,7 +100,7 @@
                     </td>
                 </tr>
                 </table>
-                <table>
+            <table>
                 <tr> <td valign="top">
                         <asp:Label ID="Label1" runat="server" Text="Falla"></asp:Label>
                     </td></tr>
@@ -107,8 +111,10 @@
                     </td>
                 </tr>
             </table>
-        </div>
-        <div id="divtblServicios">
+      </ContentTemplate>
+      </cc1:TabPanel>
+<cc1:TabPanel ID="tpServicios" HeaderText="Servicios" runat="server">
+     <ContentTemplate>
           <asp:UpdatePanel ID="UpdateServicios" runat="server">
           <ContentTemplate>
             <table>
@@ -158,8 +164,10 @@
             </table>
             </ContentTemplate>
             </asp:UpdatePanel>
-        </div>
-        <div id="divtblPlazo">
+     </ContentTemplate>
+     </cc1:TabPanel>
+<cc1:TabPanel ID="tpPlazo" HeaderText="Plazo" runat="server">
+    <ContentTemplate>
             <table>
                     <tr>
                         <td valign="top">
@@ -171,8 +179,11 @@
                         </td>
                     </tr>
                 </table>
-        </div>
-        <div id="divtblPersonas">
+     </ContentTemplate>
+     </cc1:TabPanel>
+<cc1:TabPanel ID="tpPersonas" HeaderText="Personal" runat="server">
+    <ContentTemplate>
+    
             <asp:UpdatePanel ID="UpdatePersonas" runat="server">
                 <ContentTemplate>
                     <table id="carga_empleado">
@@ -287,8 +298,10 @@
                   
                 </ContentTemplate>
             </asp:UpdatePanel>
-        </div>
-        <div id="divTraslados">
+     </ContentTemplate>
+     </cc1:TabPanel>
+<cc1:TabPanel ID="tpTraslados" HeaderText="Vehiculos" runat="server">
+    <ContentTemplate>
             <asp:UpdatePanel ID="UpdateVehiculos" runat="server">
                 <ContentTemplate>
                     <table>
@@ -374,9 +387,10 @@
                     </tr></table>
                 </ContentTemplate>
             </asp:UpdatePanel>
-        </div>
-        <div id="divtblComplemento">
-      
+     </ContentTemplate>
+     </cc1:TabPanel>
+<cc1:TabPanel ID="tpComplemento" HeaderText="Falla" runat="server">
+<ContentTemplate>
             <table>
                 <tr>
                     <td valign="top">
@@ -427,67 +441,62 @@
                     </td>
                 </tr>
             </table>
-        </div>
-        <div id="divadjuntos">
-            <asp:UpdatePanel ID="UpdateAdjuntos" runat="server">
-                <ContentTemplate>
-                         </ContentTemplate>
-            </asp:UpdatePanel>
-                    <table>
-                        <tr>
-                            <td valign="top" >
-                                Datos Ajuntos
-                            </td>
-                            <td valign="top" >
-                                &nbsp;</td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                            <td valign="top">
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top" >
-                                <uc4:Adjuntos ID="Adjuntos1" runat="server" TipoSol="MantenimientoCorrectivoRendicion" />
-                            </td>
-                            <td valign="top" >
-                                &nbsp;</td>
-                            <td valign="top">
-                                &nbsp;</td>
-                            <td valign="top">
-                                &nbsp;</td>
-                        </tr>
-                    </table>
-       
-        </div>
-        <div id="divPresupuesto">
-            <asp:UpdatePanel ID="UpdatePanelPresupuesto" runat="server">
-                <ContentTemplate>
-                         <table>
-                             <tr>
-                                 <td >
-                                     Presupuesto</td>
-                                 <td >
-                                     <asp:TextBox ID="txtPresupuesto" CssClass="numeric" runat="server"></asp:TextBox>
-                                 </td>
-                                 <td >
-                                     &nbsp;
-                                 </td>
-                                 <td >
-                                     &nbsp;
-                                 </td>
-                             </tr>
-                         </table>
-                         </ContentTemplate>
-            </asp:UpdatePanel>
-       
-        </div>
-        <div id="divFin">
-        <asp:Button ID="btnAceptarSolicitud" runat="server" Text="Confirmar Solicitud" OnClick="btnAceptarSolicitud_Click" />
-        </div>
-    </div>
+</ContentTemplate>
+     </cc1:TabPanel>
+<cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
+                                    <ContentTemplate>
+                                        <div style="width: 600px">
+                                            <uc4:Adjuntos ID="Adjuntos1" runat="server" TipoSol="MantenimientoPreventivoRendicion" />
+                                        </div>
+                                    </ContentTemplate>
+                                </cc1:TabPanel>
+<cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
+                                    <ContentTemplate>
+                       <table>
+                            <tr>
+                                <td valign="top" style="width: 80px" class="style4">
+                                    Total de Gastos</td>
+                                <td valign="top" style="width: 257px">
+                                    <asp:TextBox ID="txtPresupuesto" runat="server" CssClass="numeric" Width="197px"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" class="style4" style="width: 80px">
+                                    &nbsp;</td>
+                                <td valign="top" style="width: 257px">
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td valign="top" class="style4" style="width: 80px">
+                                    &nbsp;</td>
+                                <td valign="top" style="width: 257px">
+                                    &nbsp;</td>
+                            </tr>
+                        </table>
+               
+                  </ContentTemplate>
+                </cc1:TabPanel>  
+<cc1:TabPanel ID="tpConfirmacion" HeaderText="Confirmación" runat="server">
+                                    <ContentTemplate>
+                                        <div style="width:100%;text-align:center;margin-top:30px">
+                                            <asp:Button ID="Button4" runat="server" OnClick="btnAceptarSolicitud_Click"
+                                                Text="Confirmar solicitud" ValidationGroup="solicitud" CssClass="button_custom" />
+                                        </div>
+                                        <div class="text_custom">
+                                            <asp:BulletedList ID="BulletedList1" runat="server" ForeColor="Red" BulletStyle="NotSet">
+                                            </asp:BulletedList>
+                                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="solicitud" />
+                                        </div>
+                                    </ContentTemplate>
+                                </cc1:TabPanel>
+            </cc1:TabContainer>
+           </td>
+      </tr>
+     </table>
+    
+  
 
+        
     <script type="text/javascript">
         //funcion adicional para controlar el rango de fechas
 

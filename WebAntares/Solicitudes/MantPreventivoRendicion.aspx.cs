@@ -268,47 +268,28 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     }
     protected void btnAceptarSolicitud_Click(object sender, EventArgs e)
     {
-        Solicitud_Relacion Rela = Solicitud_Relacion.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
-        Solicitud Sol_Original = Solicitud.GetById(Rela.IdSolicitud_Relacionada);
+        //Solicitud Sol_Original = Solicitud.FindFirst(Expression.Eq("IdSolicitudInicial",BiFactory.Sol.Id_Solicitud));
+        Solicitud Sol_Original = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
         Sol_Original.Status = eEstados.Realizado.ToString();
         Sol_Original.Update();
 
-        Solicitud Reporte = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
-
-        SolicitudPreventivo preventivo = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
-
-        TransactionScope _transaction = new TransactionScope();
-        try
-        {
+        //Solicitud Reporte = Solicitud.GetById(BiFactory.Sol.IdSolicitudInicial);
+        Solicitud Reporte = Solicitud.FindFirst(Expression.Eq("IdSolicitudInicial", Sol_Original.Id_Solicitud));
+        SolicitudPreventivo preventivo = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", Reporte.Id_Solicitud));
+        
             SolicitudPreventivo r = new SolicitudPreventivo();
             r.IdSolicitud = preventivo.IdSolicitud;
             r.Presupuesto = txtGastos.Text; ;
             r.FechaInicio = jDatePick1.Text;
             r.FechaFin = jDatePick2.Text;
+            r.IdSitio = cboSitios.SelectedIndex;
             //r.fechaactualizacion = DateTime.Now;
 
             //Agregar la fecha de solicitud a la solicitud del tipo preventivo, asi tambien a correctivo
             Reporte.Status = eEstados.Realizado.ToString();
             r.Save();
 
-        }
-        catch (Exception oEx)
-        {
-
-            _transaction.VoteRollBack();
-            Response.Redirect("./Mensaje.aspx?Id=" + Sol_Original.Id_Solicitud.ToString() + "&St=false");
-            throw;
-        }
-        finally
-        {
-            _transaction.Dispose();
             Response.Redirect("./Mensaje.aspx?Id=" + Sol_Original.Id_Solicitud.ToString() + "&St=true");
-            //Response.Redirect("./Solicitudes.aspx");
-        }
-        
-            //guarda la solicitud actual
-            //SaveSolicitud();
-        
 
     }
     private void SaveSolicitud()

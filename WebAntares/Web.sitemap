@@ -7,7 +7,8 @@
     </siteMapNode>
 
     <siteMapNode title="Facturas y Pagos" roles="1,4">
-          <siteMapNode title="Facturas"  url="~/Administracion/Facturas.aspx" roles="administrators, editors,2"/>
+          <siteMapNode title="Cargar Facturas"  url="~/Administracion/Facturas.aspx" roles="administrators, editors,2"/>
+          <siteMapNode title="Facturas"  url="~/Administracion/ListadoFacturas.aspx" roles="administrators, editors,2"/>
      </siteMapNode>
 
       <siteMapNode title="Tiempos" roles="1,4">
