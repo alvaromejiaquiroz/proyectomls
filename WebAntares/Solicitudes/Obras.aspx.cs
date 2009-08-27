@@ -155,7 +155,26 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             Sol_Ob.Presupuesto = txtPresupuesto.Text;
             sol.Save();
             Sol_Ob.Save();
-            Response.Redirect("./Solicitudes.aspx");
+
+            pnlObras.Visible = false;
+
+            ucObras.Numero = Sol_Ob.IdSolicitud.ToString();
+            ucObras.Titulo = sol.Descripcion;
+            ucObras.Cliente = cmbCliente.SelectedItem.Text;
+            ucObras.NroOrden = sol.NroOrdenCte;
+            ucObras.Contacto = sol.Contacto;
+            ucObras.MailContacto = sol.ContactoMail;
+            ucObras.TelefonoContacto = sol.ContactoTel;
+            ucObras.DescripcionTareas = Sol_Ob.DescripcionTareas;
+            ucObras.FechaInicio = Sol_Ob.FechaInicio;
+            ucObras.FechaEntrega = Sol_Ob.FechaFin;
+            ucObras.RequisitosAprobacion = Sol_Ob.RequisitosAprovacion;
+            ucObras.RequisitosIngreso = Sol_Ob.RequisitosIngreso;
+            ucObras.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucObras.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucObras.Monto = Sol_Ob.Presupuesto;
+            ucObras.Adjuntos = sol.GetAdjuntos();
+            ucObras.Visible = true;
         }
     }
 
@@ -207,25 +226,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             }
         }
     }
-    
-    protected void gvSolicitudPersonas_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            int valorResponsable = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Responsable"));
-            if (valorResponsable == 1)
-            {
-                e.Row.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-                e.Row.Cells[2].Visible = true;
-                e.Row.Cells[2].Text = "R";
-            }
-            else
-            {
-                e.Row.Cells[2].Text = string.Empty;
-            }
-        }
-    }
-
+        
     protected bool EsSolicitudValida()
     {
         bool esValida = true;
