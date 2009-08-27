@@ -50,10 +50,10 @@
         </tr>
         
         <tr>
-        <td>Descripcion</td>
+        <td valign="top">Descripcion</td>
         <td>
             <asp:TextBox ID="txtDescripcion" runat="server" 
-                TextMode="MultiLine"></asp:TextBox>
+                TextMode="MultiLine" Height="122px" Width="294px"></asp:TextBox>
             </td>
         </tr>
         

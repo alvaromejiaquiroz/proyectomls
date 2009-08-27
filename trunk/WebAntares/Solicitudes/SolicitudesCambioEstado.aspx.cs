@@ -75,22 +75,26 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
         TransactionScope _transaction = new TransactionScope();
         Solicitud sol;
         sol = Solicitud.GetById(idSolOrg);
-        try
-        {
-            //guarda la solicitud con la relacion
-            Solicitud_Relacion SolRel = new Solicitud_Relacion();
-
-            // antes de crear una copia verifico que no exista ya una
-            SolRel = Solicitud_Relacion.FindOne(Expression.Eq("IdSolicitud_Relacionada", idSolOrg));
-            if (SolRel == null)
+        Solicitud  reporte ;//= new Solicitud();
+        try {
+            reporte = Solicitud.FindOne(Expression.Eq("IdSolicitudInicial", idSolOrg));
+        
+            if (reporte == null)
             {
-                SolRel = new Solicitud_Relacion();
-                sol = Solicitud.GetById(idSolOrg);
-                sol.Status = eEstados.Realizado.ToString();
-                sol.Id_Solicitud = 0;
-                sol.Reporte = "SI";
-                sol.SaveCopy();
-                BiFactory.Sol = sol;
+                reporte = new Solicitud();
+                reporte.IdSolicitudInicial = sol.Id_Solicitud;
+                reporte.IdCliente = sol.IdCliente;
+                reporte.IdTipoSolicitud =  sol.IdTipoSolicitud;
+                reporte.IdUsuarioCreador = BiFactory.User.IdUsuario;
+                reporte.Reporte = "SI";
+                reporte.Status = eEstados.Realizado.ToString();
+                reporte.FechaCreacion = DateTime.Now;
+                reporte.NroOrdenCte = sol.NroOrdenCte;
+                reporte.Contacto = sol.Contacto;
+                reporte.ContactoMail = sol.ContactoMail;
+                reporte.ContactoTel = sol.ContactoTel;
+                reporte.Descripcion = sol.Descripcion;
+                reporte.Save();
 
                 TipoSolicitud tipo = sol.Tipo;
 
@@ -98,8 +102,8 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 {
                     SolicitudPreventivo Sol_Prev = SolicitudPreventivo.FindOne(Expression.Eq("IdSolicitud", idSolOrg));
                     Sol_Prev.Id = 0;
-                    Sol_Prev.IdSolicitud = sol.Id_Solicitud;
-                    Sol_Prev.SaveCopy();
+                    Sol_Prev.IdSolicitud = reporte.Id_Solicitud;
+                    Sol_Prev.SaveCopyAndFlush();
 
 
                     //copio las tareas
@@ -107,8 +111,8 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                     foreach (SolicitudTareas t in tt)
                     {
                         t.Id = 0; //para que guarde una copia
-                        t.IdSolicitud = sol.Id_Solicitud;
-                        t.SaveCopy();
+                        t.IdSolicitud = reporte.Id_Solicitud;
+                        t.SaveCopyAndFlush();
                     }
 
 
@@ -117,8 +121,8 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                     foreach (SolicitudServiciosAfectados s in ss)
                     {
                         s.Id = 0;
-                        s.IdSolicitud = sol.Id_Solicitud;
-                        s.SaveCopy();
+                        s.IdSolicitud = reporte.Id_Solicitud;
+                        s.SaveCopyAndFlush();
                     }
 
                 }
@@ -129,8 +133,8 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 {
                     SolicitudCorrectivo Sol_Corr = SolicitudCorrectivo.FindOne(Expression.Eq("IdSolicitud", idSolOrg));
                     Sol_Corr.Id = 0;
-                    Sol_Corr.IdSolicitud = sol.Id_Solicitud;
-                    Sol_Corr.SaveCopy();
+                    Sol_Corr.IdSolicitud = reporte.Id_Solicitud;
+                    Sol_Corr.SaveCopyAndFlush();
 
                     
                     //copio los servicios afectados
@@ -138,8 +142,8 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                     foreach (SolicitudServiciosAfectados s in ss)
                     {
                         s.Id = 0;
-                        s.IdSolicitud = sol.Id_Solicitud;
-                        s.SaveCopy();
+                        s.IdSolicitud = reporte.Id_Solicitud;
+                        s.SaveCopyAndFlush();
                     }
                     
                 }
@@ -150,7 +154,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                     
                         SolicitudObra Sol_Obra = SolicitudObra.FindOne(Expression.Eq("IdSolicitud",idSolOrg));
                         Sol_Obra.Id = 0;
-                        Sol_Obra.IdSolicitud = sol.Id_Solicitud;
+                        Sol_Obra.IdSolicitud = reporte.Id_Solicitud;
                         Sol_Obra.SaveCopy();
 
                 }
@@ -160,7 +164,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 foreach (SolicitudRecursosEmpleados e in ee)
                 {
                     e.Id = 0;
-                    e.IdSolicitud = sol.Id_Solicitud;
+                    e.IdSolicitud = reporte.Id_Solicitud;
                     e.SaveCopy();
                 }
 
@@ -169,27 +173,17 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 foreach (SolicitudRecursosVehiculos v in vv)
                 {
                     v.Id = 0;
-                    v.IdSolicitud = sol.Id_Solicitud;
+                    v.IdSolicitud = reporte.Id_Solicitud;
                     v.Horas = 0;
                     v.Km = 0;
                     v.SaveCopy();
                  
                 }
             }
-            else
-            {
-                sol = Solicitud.GetById(SolRel.IdSolicitud);
+       
 
-                BiFactory.Sol = sol;
-            }
-
-
-            SolRel.IdSolicitud = sol.Id_Solicitud;
-            SolRel.IdSolicitud_Relacionada = idSolOrg;
-            SolRel.Save();
-
-
-
+            reporte.Save();
+            
         }
         catch (Exception oEx)
         {

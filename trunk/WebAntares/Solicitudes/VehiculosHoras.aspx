@@ -59,7 +59,7 @@
         <td valign="top">Descripcion</td>
         <td>
             <asp:TextBox ID="txtDescripcion" runat="server" 
-                TextMode="MultiLine" Height="121px" Width="202px"></asp:TextBox>
+                TextMode="MultiLine" Height="121px" Width="294px"></asp:TextBox>
             </td>
         </tr>
         
