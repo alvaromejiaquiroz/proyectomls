@@ -19,11 +19,10 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            OcultaPanel();
             LlenaCombo();
         }
-
     }
+
     protected void LlenaCombo()
     {
         cmbEstados.Items.Add(new ListItem("Seleccione...", "-1"));
@@ -31,44 +30,50 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
         {
             cmbEstados.Items.Add(new ListItem(e.Detalle, e.IdEstado.ToString()));
         }
-
     }
-    protected void OcultaPanel()
-    {
-        pnlReprogramado.Visible = false;
-
-    }
+    
     protected void IniciaPanel()
     {
-        txtAprobador.Text = "";
-        txtCausa.Text = "";
-
-            switch ((eEstados)int.Parse(cmbEstados.SelectedValue))
-            {
-                case eEstados.Reprogramado:
-                    lblFecha.Text = "Fecha de Pedido de Reprogramacion";
-                    DatePicker_Desde.Text = "";
-                    DatePicker_Hasta.Text = "";
-                    DatePicker_Desde.Visible = true;
-                    DatePicker_Hasta.Visible = true;
-
-                    break;
-
-                case eEstados.Suspendido:
-                    DatePicker_Desde.Visible = false;
-                    DatePicker_Hasta.Visible = false;
-                    lblFecha.Visible = false;
-                    lblFecha.Text = "Fecha de Suspencion";
-                    break;
-
-                case eEstados.Realizado:
-                    MakeRendicion(BiFactory.Sol.Id_Solicitud);
-                    break;
-                
-            }
-            dtpFechaProgramacion.Text = "";
-
+        txtAprobador.Text = string.Empty;
+        txtCausa.Text = string.Empty;
+        txtReprogramacion.Text = string.Empty;
+        txtInicio.Text = string.Empty;
+        txtFin.Text = string.Empty;
+        switch ((eEstados)int.Parse(cmbEstados.SelectedValue))
+        {
+            case eEstados.Reprogramado:
+                btnAceptar.Visible = false;
+                cmbEstados.Enabled = false;
+                pnlReprogramado.Visible = true;
+                trFechas.Visible = true;
+                litFecha.Text = "Fecha de reprogramación";
+                rfvReprogramacion.ErrorMessage = "Debe ingresar la fecha de reprogramación.";
+                cvReprogramacion.ErrorMessage = "La fecha de reprogramación no es válida.";
+                rfvInicio.Enabled = true;
+                cvInicio.Enabled = true;
+                rfvFin.Enabled = true;
+                cvFin.Enabled = true;
+                cvFechas.Enabled = true;
+                break;
+            case eEstados.Suspendido:
+                btnAceptar.Visible = false;
+                cmbEstados.Enabled = false;
+                pnlReprogramado.Visible = true;
+                trFechas.Visible = false;
+                litFecha.Text = "Fecha de cancelación";
+                rfvReprogramacion.ErrorMessage = "Debe ingresar la fecha de cancelación.";
+                cvReprogramacion.ErrorMessage = "La fecha de cancelación no es válida.";
+                rfvInicio.Enabled = false;
+                cvInicio.Enabled = false;
+                rfvFin.Enabled = false;
+                cvFin.Enabled = false;
+                cvFechas.Enabled = false;
+                break;
+            case eEstados.Realizado:
+                MakeRendicion(BiFactory.Sol.Id_Solicitud);
+                break;
         }
+    }
     
     private void MakeRendicion(int idSolOrg)
     {
@@ -180,12 +185,9 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                  
                 }
             }
-       
-
             reporte.Save();
-            
         }
-        catch (Exception oEx)
+        catch (Exception)
         {
             _transaction.VoteRollBack();
             throw;
@@ -197,89 +199,56 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
             switch (sol.IdTipoSolicitud)
             {
                 case 1:
-                    Response.Redirect("./MantPreventivoRendicion.aspx");
+                    Response.Redirect("MantPreventivoRendicion.aspx");
                     break;
                 case 2:
-                    Response.Redirect("./MantCorrectivoRendicion.aspx");
+                    Response.Redirect("MantCorrectivoRendicion.aspx");
                     break;
                 case 6:
-                    Response.Redirect("./Reporte_Obras.aspx");
-                    break;
-                default:
-                    Response.Write("No se con que rendir");
+                    Response.Redirect("Reporte_Obras.aspx");
                     break;
             }
-
-
-
         }
-
-
-
     }
-    protected void Button1_Click(object sender, EventArgs e)
+
+    protected void btnAceptar_Click(object sender, EventArgs e)
     {
-
-        if (cmbEstados.SelectedValue != "-1")
+        if (IsValid)
         {
-                IniciaPanel();
-                pnlReprogramado.Visible = true;
+            IniciaPanel();
         }
-
-
     }
 
-    public void btnAceptar_S_Click(object sender, EventArgs e)
+    public void btnAceptarReprogramacion_Click(object sender, EventArgs e)
+    {
+        if (IsValid)
         {
             Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
             sol.Causa = txtCausa.Text;
             sol.AprobadorReprosusp = txtAprobador.Text;
-
-            if (int.Parse(cmbEstados.SelectedValue) > 0)
+            switch (cmbEstados.SelectedItem.ToString())
             {
-
-                switch (cmbEstados.SelectedItem.ToString())
-                {
-
-                    case "Reprogramado":
-                        //sol.Status = "REPROGRAMADO";
-                        sol.Status = eEstados.Reprogramado.ToString();
-                        sol.FechaReprogramacion = dtpFechaProgramacion.Text;
-                        sol.ProximaFechaInicio = DatePicker_Desde.Text;
-                        sol.ProximaFechaFin = DatePicker_Hasta.Text;
-
-                        break;
-
-                    case "Cancelado":
-                        sol.Status = eEstados.Suspendido.ToString();
-                        sol.FechaSuspencion = dtpFechaProgramacion.Text;
-                        break;
-
-                }
-                sol.Update();
-                pnlReprogramado.Visible = false;
-                Response.Redirect("./Solicitudes.aspx");
-
-
-                /*
-                sol.IdPlazoAtencion = int.Parse(cmbPlazoAtencion.SelectedValue);
-                sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
-                sol.Contacto = txtContactoCliente.Text;
-                sol.NroOrdenCte = txtNroOrdenCliente.Text;
-                sol.Status = "PENDIENTE";
-                sol.Update();
-            */         
+                case "Reprogramado":
+                    sol.Status = eEstados.Reprogramado.ToString();
+                    sol.FechaReprogramacion = txtReprogramacion.Text;
+                    sol.ProximaFechaInicio = txtInicio.Text;
+                    sol.ProximaFechaFin = txtFin.Text;
+                    break;
+                case "Cancelado":
+                    sol.Status = eEstados.Suspendido.ToString();
+                    sol.FechaSuspencion = txtReprogramacion.Text;
+                    break;
             }
-
+            sol.Update();
+            pnlReprogramado.Visible = false;
+            Response.Redirect("Solicitudes.aspx");
         }
-    
-    protected void btnCancelar0_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("./Solicitudes.aspx");
-    }
-    protected void btnCancelar_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("./Solicitudes.aspx");
     }
 
+    public void btnCancelar_Click(object sender, EventArgs e)
+    {
+        btnAceptar.Visible = true;
+        cmbEstados.Enabled = true;
+        pnlReprogramado.Visible = false;
+    }
 }
