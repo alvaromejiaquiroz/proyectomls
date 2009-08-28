@@ -86,14 +86,14 @@
                                 <asp:TemplateField HeaderText="Editar" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:ImageButton ID="imgEdit" runat="server" CausesValidation="False" CommandArgument='<%# Bind("Solicitud") %>'
-                                            CommandName="Editar" ImageUrl="~/images/b_edit.gif" ToolTip="Editar Solicitud" />
+                                            CommandName="Editar" ImageUrl="~/images/b_edit.gif" ToolTip="Editar" />
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Visualizar" ItemStyle-HorizontalAlign="Center" ShowHeader="true">
                                     <ItemTemplate>
                                         <asp:ImageButton ID="imgPrint" runat="server" CausesValidation="false" CommandArgument='<%# Bind("Solicitud") %>'
-                                            CommandName="Imprimir" ImageUrl="~/images/calendar.png" ToolTip="Imprimir la Solicitud" />
+                                            CommandName="Imprimir" ImageUrl="~/images/calendar.png" ToolTip="Visualizar" />
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -101,7 +101,7 @@
                                     ShowHeader="true">
                                     <ItemTemplate>
                                         <asp:ImageButton ID="imgEstado" runat="server" CausesValidation="False" CommandArgument='<%# Bind("Solicitud") %>'
-                                            CommandName="CambiarEstado" ImageUrl="~/images/engranaje.gif" ToolTip="Cambiar Estado" />
+                                            CommandName="CambiarEstado" ImageUrl="~/images/engranaje.gif" ToolTip="Cambiar estado" />
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -118,7 +118,7 @@
                                     Visible="True">
                                     <ItemTemplate>
                                         <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="false" CommandArgument='<%# Bind("Solicitud") %>'
-                                            CommandName="Eliminar" ImageUrl="~/images/delete.gif" ToolTip="Eliminar la Solicitud"
+                                            CommandName="Eliminar" ImageUrl="~/images/delete.gif" ToolTip="Eliminar"
                                             Visible="false" />
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
