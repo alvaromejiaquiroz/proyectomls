@@ -28,6 +28,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
             FillSolicitudEmpleados();
             FillSolicitudVehiculos();
             FillDatosClientes();
+            //btnPopUp.Style.Add("display", "none");
         }
     }
 
@@ -336,5 +337,159 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
     protected void cvVehiculos_ServerValidate(object source, ServerValidateEventArgs args)
     {
         args.IsValid = lstVehiculos.SelectedIndex >= 0;
+    }
+
+    protected void btnHorasPersonalGuardar_Click(object sender, EventArgs e)
+    {
+        if (IsValid)
+        {
+            int idPersona = int.Parse(hfHorasPersonalPersona.Value);
+            int idSolicitud = int.Parse(hfHorasPersonalSolicitud.Value);
+            DateTime fecha = DateTime.Parse(txtHorasPersonalDia.Text);
+
+            SolicitudRendicionPersonalHoras ph = SolicitudRendicionPersonalHoras.FindFirst(
+                Expression.Eq("IdSolicitud", idSolicitud),
+                Expression.Eq("IdPersona", idPersona),
+                Expression.Eq("Fecha", fecha));
+            
+            if (ph == null)
+            {
+                ph = new SolicitudRendicionPersonalHoras();
+            }
+
+            ph.IdPersona = idPersona;
+            ph.IdSolicitud = idSolicitud;
+            ph.Fecha = fecha;
+            ph.Horas = decimal.Parse(ddlHorasPersonalHoras.SelectedValue);
+            ph.Descripcion = txtHorasPersonalDescripcion.Text;
+            ph.SaveAndFlush();
+            FillHorasPersonalGrid();
+            mpeHorasPersonal.Show();
+        }
+    }
+
+    protected void gvPersonas_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        txtHorasPersonalDia.Text = string.Empty;
+        ddlHorasPersonalHoras.SelectedIndex = 0;
+        txtHorasPersonalDescripcion.Text = string.Empty;
+        SolicitudRecursosEmpleados p = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudPersonas.DataKeys[e.NewEditIndex].Value.ToString())));
+        hfHorasPersonalSolicitud.Value = p.IdSolicitud.ToString();
+        hfHorasPersonalPersona.Value = p.IdEmpleado.ToString();
+        Personal personal = Personal.GetById(p.IdEmpleado.ToString());
+        litHorasPersonalPersona.Text = personal.Apellido + ", " + personal.Nombres;
+        Solicitud sol = Solicitud.GetById(p.IdSolicitud);
+        DateTime fechaInicio = sol.FechaCreacion;
+        switch (sol.Tipo.Descripcion)
+        {
+            case "Mantenimiento Correctivo":
+                SolicitudCorrectivo sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                fechaInicio = sol_Cor.FechanotificacionCliente;
+                break;
+            case "Mantenimiento Preventivo":
+                SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                fechaInicio = DateTime.Parse(sol_Pre.FechaInicio);
+                break;
+            case "Obras e Instalaciones":
+                SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                fechaInicio = DateTime.Parse(sol_Obr.FechaInicio);
+                break;
+        }
+        cvHorasPersonal.ValueToCompare = fechaInicio.ToShortDateString();
+        FillHorasPersonalGrid();
+        mpeHorasPersonal.Show();
+    }
+
+    protected void gvHorasPersonal_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        SolicitudRendicionPersonalHoras R = SolicitudRendicionPersonalHoras.FindFirst(Expression.Eq("Id", int.Parse(gvHorasPersonal.DataKeys[e.RowIndex].Value.ToString())));
+        R.Delete();
+        FillHorasPersonalGrid();
+        mpeHorasPersonal.Show();
+    }
+
+    private void FillHorasPersonalGrid()
+    {
+        gvHorasPersonal.DataSource = SolicitudRendicionPersonalHoras.GetPersonasHorasEnSolicitud(int.Parse(hfHorasPersonalSolicitud.Value), int.Parse(hfHorasPersonalPersona.Value));
+        gvHorasPersonal.DataKeyNames = new string[] { "Id" };
+        gvHorasPersonal.DataBind();
+    }
+
+    protected void gvSolicitudVehiculos_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        txtHorasVehiculosDia.Text = string.Empty;
+        ddlHorasVehiculosHoras.SelectedIndex = 0;
+        txtHorasVehiculosKilometros.Text = string.Empty;
+        txtHorasVehiculosDescripcion.Text = string.Empty;
+        SolicitudRecursosVehiculos s = SolicitudRecursosVehiculos.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudVehiculos.DataKeys[e.NewEditIndex].Value.ToString())));
+        hfHorasVehiculosVehiculo.Value = s.IdVehiculo.ToString();
+        hfHorasVehiculosSolicitud.Value = s.IdSolicitud.ToString();
+        Vehiculos p = Vehiculos.GetById(s.IdVehiculo.ToString());
+        litHorasVehiculosVehiculo.Text = p.Patente + " - " + p.Marca + ", " + p.Modelo;
+        Solicitud sol = Solicitud.GetById(s.IdSolicitud);
+        DateTime fechaInicio = sol.FechaCreacion;
+        switch (sol.Tipo.Descripcion)
+        {
+            case "Mantenimiento Correctivo":
+                SolicitudCorrectivo sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                fechaInicio = sol_Cor.FechanotificacionCliente;
+                break;
+            case "Mantenimiento Preventivo":
+                SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                fechaInicio = DateTime.Parse(sol_Pre.FechaInicio);
+                break;
+            case "Obras e Instalaciones":
+                SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                fechaInicio = DateTime.Parse(sol_Obr.FechaInicio);
+                break;
+        }
+        cvHorasVehiculos.ValueToCompare = fechaInicio.ToShortDateString();
+        FillHorasVehiculosGrid();
+        mpeHorasVehiculos.Show();
+    }
+
+    protected void btnHorasVehiculosGuardar_Click(object sender, EventArgs e)
+    {
+        if (IsValid)
+        {
+            int idVehiculo = int.Parse(hfHorasVehiculosVehiculo.Value);
+            int idSolicitud = int.Parse(hfHorasVehiculosSolicitud.Value);
+            DateTime fecha = DateTime.Parse(txtHorasVehiculosDia.Text);
+            
+            SolicitudRendicionVehiculosHoras ph = SolicitudRendicionVehiculosHoras.FindFirst(
+            Expression.Eq("IdSolicitud", idSolicitud),
+            Expression.Eq("IdVehiculo", idVehiculo),
+            Expression.Eq("Fecha", fecha));
+            
+            if (ph == null)
+            {
+                ph = new SolicitudRendicionVehiculosHoras();
+            }
+
+            ph.IdVehiculo = idVehiculo;
+            ph.IdSolicitud = idSolicitud;
+            ph.Fecha = fecha;
+            ph.Horas = decimal.Parse(ddlHorasVehiculosHoras.SelectedValue);
+            ph.Descripcion = txtHorasVehiculosDescripcion.Text;
+            ph.Kilometros = txtHorasVehiculosKilometros.Text;
+            ph.SaveAndFlush();
+            FillHorasVehiculosGrid();
+            mpeHorasVehiculos.Show();
+        }
+    }
+
+    protected void gvHorasVehiculos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        SolicitudRendicionVehiculosHoras R = SolicitudRendicionVehiculosHoras.FindFirst(Expression.Eq("Id", int.Parse(gvHorasVehiculos.DataKeys[e.RowIndex].Value.ToString())));
+        R.Delete();
+        FillHorasVehiculosGrid();
+        mpeHorasVehiculos.Show();
+    }
+
+    private void FillHorasVehiculosGrid()
+    {
+        gvHorasVehiculos.DataSource = SolicitudRendicionVehiculosHoras.GetVehiculosKm_Detalle_EnSolicitud(int.Parse(hfHorasVehiculosSolicitud.Value), int.Parse(hfHorasVehiculosVehiculo.Value));
+        gvHorasVehiculos.DataKeyNames = new string[] { "Id" };
+        gvHorasVehiculos.DataBind();
     }
 }

@@ -495,3 +495,17 @@ img.photosmall {
 	font-family:Verdana;
     font-size:10px;
 }
+
+.modalBackground {
+	background-color:Gray;
+	filter:alpha(opacity=70);
+	opacity:0.7;
+}
+.modalPopup {
+	background-color:#ffffff;
+	border-width:1px;
+	border-style:solid;
+	border-color:Gray;
+	padding:3px;
+	width:700px;
+}
