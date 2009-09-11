@@ -23,6 +23,11 @@
                         <asp:BoundField DataField="Descripcion" HeaderText="Descripción" HeaderStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="Duracion" HeaderText="Duración" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="ConElConsentimiento" HeaderText="Consentimiento de" HeaderStyle-HorizontalAlign="Center" />
+                        <asp:TemplateField HeaderText="Visualizar" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar" ImageUrl="~/images/calendar.png" Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("IdSolicitud") %>' />
+                            </ItemTemplate>
+                         </asp:TemplateField>
                         <asp:CommandField HeaderText="Editar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                             ButtonType="Image" EditImageUrl="~/images/b_edit.gif" EditText="Editar" ShowCancelButton="False"
                             ShowEditButton="True" />

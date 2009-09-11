@@ -23,7 +23,7 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                 Solicitud solicitud = Solicitud.GetById(id);
                 switch (solicitud.Tipo.IdTiposolicitud)
                 {
-                    case (int)TipoSolicitudEnum.MantenimientoPreventivo:
+                    case (int)EnumTipoSolicitud.MantenimientoPreventivo:
                         SolicitudPreventivo solicitudPreventivo = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
                         ucMantenimientoPreventivo.Numero = solicitudPreventivo.IdSolicitud.ToString();
                         ucMantenimientoPreventivo.Titulo = solicitud.Descripcion;
@@ -41,7 +41,7 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucMantenimientoPreventivo.Monto = solicitudPreventivo.Presupuesto;
                         ucMantenimientoPreventivo.Visible = true;
                         break;
-                    case (int)TipoSolicitudEnum.MantenimientoCorrectivo:
+                    case (int)EnumTipoSolicitud.MantenimientoCorrectivo:
                         SolicitudCorrectivo solicitudCorrectivo = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
                         ucMantenimientoCorrectivo.Numero = solicitudCorrectivo.IdSolicitud.ToString();
                         ucMantenimientoCorrectivo.Titulo = solicitud.Descripcion;
@@ -63,7 +63,7 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucMantenimientoCorrectivo.Monto = solicitudCorrectivo.Presupuesto;
                         ucMantenimientoCorrectivo.Visible = true;
                         break;
-                    case 6:
+                    case (int)EnumTipoSolicitud.Obras:
                         SolicitudObra solicitudObra = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
                         ucObras.Numero = solicitudObra.IdSolicitud.ToString();
                         ucObras.Titulo = solicitud.Descripcion;
@@ -83,6 +83,52 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucObras.Monto = solicitudObra.Presupuesto;
                         ucObras.Adjuntos = solicitud.GetAdjuntos();
                         ucObras.Visible = true;
+                        break;
+                    case (int)EnumTipoSolicitud.Capacitacion:
+                        SolicitudCapacitacion solicitudCapacitacion = SolicitudCapacitacion.FindOne(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        ucCapacitacion.Numero = solicitudCapacitacion.IdSolicitud.ToString();
+                        ucCapacitacion.Titulo = solicitudCapacitacion.Descripcion;
+                        ucCapacitacion.Nivel = solicitudCapacitacion.Nivel;
+                        ucCapacitacion.FechaInicio = solicitudCapacitacion.FechaInicio;
+                        ucCapacitacion.FechaFin = solicitudCapacitacion.FechaFin;
+                        ucCapacitacion.Duracion = solicitudCapacitacion.Duracion;
+                        ucCapacitacion.AreaEstudios = solicitudCapacitacion.AreaEstudio;
+                        ucCapacitacion.Instructor = solicitudCapacitacion.Instructor;
+                        ucCapacitacion.EntidadEducativa = solicitudCapacitacion.EntidadEducativa;
+                        ucCapacitacion.PuntuacionExamen = solicitudCapacitacion.PuntuacionExamen;
+                        ucCapacitacion.Visible = true;
+                        break;
+                    case (int)EnumTipoSolicitud.FrancosCompensatorios:
+                        SolicitudFrancosCompensatorios solicitudFrancosCompensatorios = SolicitudFrancosCompensatorios.FindOne(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        ucFrancosCompensatorios.Numero = solicitudFrancosCompensatorios.IdSolicitud.ToString();
+                        ucFrancosCompensatorios.Titulo = solicitud.Descripcion;
+                        ucFrancosCompensatorios.Fecha = solicitudFrancosCompensatorios.FechaInicio;
+                        ucFrancosCompensatorios.Duracion = solicitudFrancosCompensatorios.Duracion;
+                        ucFrancosCompensatorios.Descripcion = solicitudFrancosCompensatorios.Descripcion;
+                        ucFrancosCompensatorios.ConsentimientoDe = solicitudFrancosCompensatorios.ConElConsentimiento;
+                        ucFrancosCompensatorios.Visible = true;
+                        break;
+                    case (int)EnumTipoSolicitud.Licencias:
+                        SolicitudLicencias solicitudLicencias = SolicitudLicencias.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        ucLicencias.Numero = solicitudLicencias.IdSolicitud.ToString();
+                        ucLicencias.Titulo = solicitud.Descripcion;
+                        ucLicencias.Tipo = TipoLicencia.FindFirst(Expression.Eq("Id", solicitudLicencias.IdTipolicencia)).Descripcion;
+                        ucLicencias.FechaInicio = solicitudLicencias.FechaInicio;
+                        ucLicencias.FechaFin = solicitudLicencias.FechaFin;
+                        ucLicencias.Duracion = solicitudLicencias.Duracion;
+                        ucLicencias.Descripcion = solicitudLicencias.Descripcion;
+                        ucLicencias.Visible = true;
+                        break;
+                    case (int)EnumTipoSolicitud.TareasGenerales:
+                        SolicitudTareasGenerales solicitudTareasGenerales = SolicitudTareasGenerales.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        ucTareasGenerales.Numero = solicitudTareasGenerales.IdSolicitud.ToString();
+                        ucTareasGenerales.Titulo = solicitud.Descripcion;
+                        ucTareasGenerales.Tipo = TipoTarea.FindFirst(Expression.Eq("Id", solicitudTareasGenerales.IdTipotarea)).Descripcion;
+                        ucTareasGenerales.FechaInicio = solicitudTareasGenerales.FechaInicio;
+                        ucTareasGenerales.FechaFin = solicitudTareasGenerales.FechaFin;
+                        ucTareasGenerales.Duracion = solicitudTareasGenerales.Duracion;
+                        ucTareasGenerales.Descripcion = solicitudTareasGenerales.Descripcion;
+                        ucTareasGenerales.Visible = true;
                         break;
                 }
             }

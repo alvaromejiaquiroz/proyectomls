@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="TareasGenerales.ascx.cs" Inherits="Controles_TareasGenerales" %>
 
-<table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
+<table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
     <tr class="header_custom">
         <td align="center" colspan="3">
             Solicitud de tareas generales
@@ -84,7 +84,6 @@
         Sistema de gestión de tareas - V 1.0 - ANTARES COM S.A
     </div>
     <div style="margin: 20px;text-align: center">
-        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" 
-            CssClass="button_custom" />
+        <input type="button" class="button_custom" onclick="window.print()" value="Imprimir" />
     </div>
 </asp:Panel>
