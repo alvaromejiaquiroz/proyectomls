@@ -204,11 +204,11 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            Image imgReporte = (Image)e.Row.FindControl("imgReporte");
+            HyperLink lnkReporte = (HyperLink)e.Row.FindControl("lnkReporte");
             Image imgEditar = (Image)e.Row.FindControl("imgEdit");
             Image imgEstado = (Image)e.Row.FindControl("imgEstado");
             Image imgEliminar = (Image)e.Row.FindControl("imgEliminar");
-            imgReporte.Visible = false;
+            lnkReporte.Visible = false;
 
             if (BiFactory.User.IdPerfil == 1)
             {
@@ -226,7 +226,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         //e.Row.Cells[4].ForeColor = System.Drawing.Color.Red;
                         imgEditar.Visible = false;
                         imgEstado.Visible = false;
-                        imgReporte.Visible = false;
+                        lnkReporte.Visible = false;
                         imgStatus.ImageUrl = "../images/gray.gif";
                         imgStatus.ToolTip = "Anulado";
                         break;
@@ -246,7 +246,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         //e.Row.Cells[4].ForeColor = System.Drawing.Color.Green;
                         if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Reporte")) != null)
                         {
-                            imgReporte.Visible = true;
+                            lnkReporte.Visible = true;
                         }
                         imgStatus.ImageUrl = "../images/green.gif";
                         imgStatus.ToolTip = "Realizado";

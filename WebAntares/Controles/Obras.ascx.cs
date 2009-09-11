@@ -32,6 +32,11 @@ public partial class Controles_Obras : System.Web.UI.UserControl
         set { litTitulo.Text = value; }
     }
 
+    public string Estado
+    {
+        set { litEstado.Text = value; }
+    }
+
     public string DescripcionTareas
     {
         set { litDescripcionTareas.Text = value; }

@@ -259,6 +259,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
 
             ucMantenimientoCorrectivo.Numero = Sol_Cor.IdSolicitud.ToString();
             ucMantenimientoCorrectivo.Titulo = sol.Descripcion;
+            ucMantenimientoCorrectivo.Estado = sol.Status;
             ucMantenimientoCorrectivo.ReportoFalla = Sol_Cor.PersonaReportoFalla;
             ucMantenimientoCorrectivo.CausaProbable = Sol_Cor.CausaPosible;
             ucMantenimientoCorrectivo.FechaReporte = Sol_Cor.FechanotificacionCliente.ToString("dd/MM/yyyy HH:mm");

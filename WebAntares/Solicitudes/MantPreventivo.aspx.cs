@@ -278,6 +278,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
             ucMantenimientoPreventivo.Numero = Sol_P.IdSolicitud.ToString();
             ucMantenimientoPreventivo.Titulo = sol.Descripcion;
+            ucMantenimientoPreventivo.Estado = sol.Status;
             ucMantenimientoPreventivo.Sitio = cboSitios.SelectedItem.Text;
             ucMantenimientoPreventivo.Tareas = SolicitudTareas.GetReader(BiFactory.Sol.Id_Solicitud);
             ucMantenimientoPreventivo.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
