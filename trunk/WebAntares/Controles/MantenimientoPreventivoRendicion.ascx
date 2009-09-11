@@ -1,9 +1,9 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MantenimientoPreventivo.ascx.cs" Inherits="Controles_MantenimientoPreventivo" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MantenimientoPreventivoRendicion.ascx.cs" Inherits="Controles_MantenimientoPreventivoRendicion" %>
 
 <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
     <tr class="header_custom">
         <td align="center" colspan="3">
-            Solicitud de mantenimiento preventivo
+            Reporte de mantenimiento preventivo
         </td>
     </tr>
     <tr>
@@ -76,11 +76,43 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
-            <asp:GridView ID="gvPersonal" runat="server" AutoGenerateColumns="False" Width="100%">
+            <asp:GridView ID="gvPersonal" runat="server" AutoGenerateColumns="False" ShowHeader="false"
+                Width="100%" onrowdatabound="gvPersonal_RowDataBound">
                 <Columns>
-                    <asp:BoundField DataField="Empleado" HeaderText="Empleado" HeaderStyle-HorizontalAlign="Center" />
-                    <asp:CheckBoxField DataField="Responsable" HeaderText="Responsable" HeaderStyle-HorizontalAlign="Center"
-                                                            ItemStyle-HorizontalAlign="Center" />
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <table cellpadding="0" cellspacing="1px" width="100%">
+                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:18px">
+                                    <td align="center">
+                                        Empleado
+                                    </td>
+                                    <td align="center">
+                                        Responsable
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Literal ID="litEmpleado" runat="server"></asp:Literal>
+                                    </td>
+                                    <td align="center">
+                                        <asp:CheckBox ID="chkResponsable" runat="server" Enabled="false" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <asp:GridView ID="gvHorasPersonal" runat="server" AutoGenerateColumns="False" 
+                                            Width="100%" EmptyDataText="No se han cargado las horas de este empleado.">
+                                        <Columns>
+                                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
+                                            <asp:BoundField DataField="Horas" HeaderText="Horas" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:0.0}" />
+                                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                                        </Columns>
+                                        </asp:GridView>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </td>
@@ -96,9 +128,37 @@
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
             <asp:GridView ID="gvVehiculos" runat="server" AutoGenerateColumns="False"
-                Width="100%">
+                Width="100%" onrowdatabound="gvVehiculos_RowDataBound" ShowHeader="false">
                 <Columns>
-                    <asp:BoundField DataField="Vehiculo" HeaderText="Vehiculo" HeaderStyle-HorizontalAlign="Center" />
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <table cellpadding="0" cellspacing="0" width="100%" style="border-style: solid; border-color: #ffffff; border-width: 1px">
+                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:18px">
+                                    <td align="center">
+                                        Vehículo
+                                    </td>
+                                </tr>
+                                <tr style="height:18px">
+                                    <td>
+                                        <asp:Literal ID="litVehiculo" runat="server"></asp:Literal>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:GridView ID="gvHorasVehiculos" runat="server" AutoGenerateColumns="False" 
+                                            EmptyDataText="No se han cargado los kilómetros para este vehículo." Width="100%">
+                                        <Columns>
+                                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
+                                            <asp:BoundField DataField="Kilometros" HeaderText="Kilómetros" ItemStyle-HorizontalAlign="Center" />
+                                            <asp:BoundField DataField="Horas" HeaderText="Duración" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:0.0}" />
+                                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                                        </Columns>
+                                        </asp:GridView>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </td>

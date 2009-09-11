@@ -4,6 +4,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
 <%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
+<%@ Register src="../Controles/MantenimientoPreventivoRendicion.ascx" tagname="MantenimientoPreventivoRendicion" tagprefix="uc1" %>
 <asp:Content ID="cMantenimientoPreventivoRendicion" ContentPlaceHolderID="PageContainer"
     runat="Server">
     <asp:Panel ID="pnlMantenimientoPreventivoRendicion" runat="server">
@@ -633,5 +634,5 @@
             </tr>
         </table>
     </asp:Panel>
-    
+    <uc1:MantenimientoPreventivoRendicion ID="ucMantenimientoPreventivoRendicion" runat="server" Imprimible="false" Visible="false" />
 </asp:Content>

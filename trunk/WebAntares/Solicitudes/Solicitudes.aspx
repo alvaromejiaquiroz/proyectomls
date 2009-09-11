@@ -90,13 +90,11 @@
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Visualizar" ItemStyle-HorizontalAlign="Center" ShowHeader="true">
+                                <asp:TemplateField HeaderText="Visualizar" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="imgPrint" runat="server" CausesValidation="false" CommandArgument='<%# Bind("Solicitud") %>'
-                                            CommandName="Imprimir" ImageUrl="~/images/calendar.png" ToolTip="Visualizar" />
+                                        <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar" ImageUrl="~/images/calendar.png" Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("Solicitud") %>' />
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" />
-                                </asp:TemplateField>
+                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Cambiar estado" ItemStyle-HorizontalAlign="Center"
                                     ShowHeader="true">
                                     <ItemTemplate>
@@ -108,9 +106,7 @@
                                 <asp:TemplateField HeaderText="Reporte" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center"
                                     ShowHeader="true">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="imgReporte" runat="server" CausesValidation="false" CommandArgument='<%# Bind("Id_Reporte") %>'
-                                            CommandName="Visualizar_Reporte" ImageUrl="~/images/Reporte.gif" ToolTip="Reporte"
-                                            Visible="false" />
+                                        <asp:HyperLink ID="lnkReporte" runat="server" ToolTip="Reporte" ImageUrl="~/images/calendar.png" Target="_blank" NavigateUrl='<%# "VisualizarReporte.aspx?id=" + Eval("Id_Reporte") %>' />
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>

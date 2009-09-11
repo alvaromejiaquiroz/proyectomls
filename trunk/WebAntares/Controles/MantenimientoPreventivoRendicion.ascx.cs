@@ -9,12 +9,14 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.Common;
+using Antares.model;
+using NHibernate.Expression;
 
-public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserControl
+public partial class Controles_MantenimientoPreventivoRendicion : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void btnFinalizar_Click(object sender, EventArgs e)
@@ -25,6 +27,12 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
     public string Numero
     {
         set { litNumero.Text = value; }
+    }
+
+    public string SolicitudInicial
+    {
+        get { return ViewState["SolicitudInicial"].ToString(); }    
+        set { ViewState["SolicitudInicial"] = value; }
     }
 
     public string Titulo
@@ -96,7 +104,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
 
     public DbDataReader Adjuntos
     {
-        set 
+        set
         {
             gvAdjuntos.DataSource = value;
             gvAdjuntos.DataBind();
@@ -107,7 +115,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
     {
         set { litMonto.Text = value; }
     }
-        
+
     public bool Imprimible
     {
         set
@@ -115,6 +123,33 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
             btnFinalizar.Visible = !value;
             pnlImprimir.Visible = value;
             imgAntares.Visible = value;
+        }
+    }
+
+    protected void gvPersonal_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            DbDataRecord record = (DbDataRecord)e.Row.DataItem;
+            ((Literal)e.Row.Cells[0].FindControl("litEmpleado")).Text = record["Empleado"].ToString();
+            ((CheckBox)e.Row.Cells[0].FindControl("chkResponsable")).Checked = (bool)record["Responsable"];
+            SolicitudRecursosEmpleados solicitudRecursosEmpleados = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("Id", (int)record["Id"]));
+            GridView horas = (GridView)e.Row.Cells[0].FindControl("gvHorasPersonal");
+            horas.DataSource = SolicitudRendicionPersonalHoras.GetPersonasHorasEnSolicitud(int.Parse(SolicitudInicial), solicitudRecursosEmpleados.IdEmpleado);
+            horas.DataBind();
+        }
+    }
+
+    protected void gvVehiculos_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            DbDataRecord record = (DbDataRecord)e.Row.DataItem;
+            ((Literal)e.Row.Cells[0].FindControl("litVehiculo")).Text = record["Vehiculo"].ToString();
+            SolicitudRecursosVehiculos solicitudRecursosVehiculos = SolicitudRecursosVehiculos.FindFirst(Expression.Eq("Id", (int)record["Id"]));
+            GridView horas = (GridView)e.Row.Cells[0].FindControl("gvHorasVehiculos");
+            horas.DataSource = SolicitudRendicionVehiculosHoras.GetVehiculosKm_Detalle_EnSolicitud(int.Parse(SolicitudInicial), solicitudRecursosVehiculos.IdVehiculo);
+            horas.DataBind();
         }
     }
 }

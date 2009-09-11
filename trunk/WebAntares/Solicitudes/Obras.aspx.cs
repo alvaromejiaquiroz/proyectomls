@@ -160,6 +160,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
 
             ucObras.Numero = Sol_Ob.IdSolicitud.ToString();
             ucObras.Titulo = sol.Descripcion;
+            ucObras.Estado = sol.Status;
             ucObras.Cliente = cmbCliente.SelectedItem.Text;
             ucObras.NroOrden = sol.NroOrdenCte;
             ucObras.Contacto = sol.Contacto;

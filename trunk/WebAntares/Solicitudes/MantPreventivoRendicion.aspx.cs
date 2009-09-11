@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using NHibernate.Expression;
 using Castle.ActiveRecord.Framework;
 using Castle.ActiveRecord;
+using System.Data.Common;
 
 public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
 {
@@ -252,6 +253,25 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
             Reporte.Status = eEstados.Realizado.ToString();
             r.Save();
 
+            pnlMantenimientoPreventivoRendicion.Visible = false;
+
+            ucMantenimientoPreventivoRendicion.Numero = r.Id.ToString();
+            ucMantenimientoPreventivoRendicion.SolicitudInicial = Sol_Original.Id_Solicitud.ToString();
+            ucMantenimientoPreventivoRendicion.Titulo = Sol_Original.Descripcion;
+            ucMantenimientoPreventivoRendicion.Estado = Sol_Original.Status;
+            ucMantenimientoPreventivoRendicion.Sitio = litSitio.Text;
+            ucMantenimientoPreventivoRendicion.Tareas = SolicitudTareas.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoPreventivoRendicion.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoPreventivoRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoPreventivoRendicion.Cliente = cmbClientes.SelectedItem.Text;
+            ucMantenimientoPreventivoRendicion.ContactoCliente = Sol_Original.Contacto;
+            ucMantenimientoPreventivoRendicion.NroOrden = Sol_Original.NroOrdenCte;
+            ucMantenimientoPreventivoRendicion.TelefonoContacto = Sol_Original.ContactoTel;
+            ucMantenimientoPreventivoRendicion.MailContacto = Sol_Original.ContactoMail;
+            ucMantenimientoPreventivoRendicion.Adjuntos = Sol_Original.GetAdjuntos();
+            ucMantenimientoPreventivoRendicion.Monto = r.Presupuesto;
+
+            ucMantenimientoPreventivoRendicion.Visible = true;
         }
     }
         
@@ -328,7 +348,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
         }
         return esValida;
     }
-
+        
     protected void cvTareas_ServerValidate(object source, ServerValidateEventArgs args)
     {
         args.IsValid = lstTareas.SelectedIndex >= 0;

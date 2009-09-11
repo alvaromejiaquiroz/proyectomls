@@ -32,6 +32,11 @@ public partial class Controles_MantenimientoCorrectivo : System.Web.UI.UserContr
         set { litTitulo.Text = value; }
     }
 
+    public string Estado
+    {
+        set { litEstado.Text = value; }
+    }
+
     public string ReportoFalla
     {
         set { litReportoFalla.Text = value; }
