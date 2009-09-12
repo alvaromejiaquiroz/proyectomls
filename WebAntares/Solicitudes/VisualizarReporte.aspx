@@ -2,6 +2,10 @@
 
 <%@ Register src="../Controles/MantenimientoPreventivoRendicion.ascx" tagname="MantenimientoPreventivoRendicion" tagprefix="uc1" %>
 
+<%@ Register src="../Controles/MantenimientoCorrectivoRendicion.ascx" tagname="MantenimientoCorrectivoRendicion" tagprefix="uc2" %>
+
+<%@ Register src="../Controles/ObrasRendicion.ascx" tagname="ObrasRendicion" tagprefix="uc3" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,6 +19,8 @@
         <tr>
             <td align="center" style="padding-top:20px">
                 <uc1:MantenimientoPreventivoRendicion ID="ucMantenimientoPreventivoRendicion" runat="server" Imprimible="true" Visible="false" />
+                <uc2:MantenimientoCorrectivoRendicion ID="ucMantenimientoCorrectivoRendicion" runat="server" Imprimible="true" Visible="false" />
+                <uc3:ObrasRendicion ID="ucObrasRendicion" runat="server" Imprimible="true" Visible="false" />
             </td>
         </tr>
     </table>
