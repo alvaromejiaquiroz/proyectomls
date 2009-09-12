@@ -23,7 +23,7 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                 Solicitud solicitud = Solicitud.GetById(id);
                 switch (solicitud.Tipo.IdTiposolicitud)
                 {
-                    case (int)TipoSolicitudEnum.MantenimientoPreventivo:
+                    case (int)EnumTipoSolicitud.MantenimientoPreventivo:
                         SolicitudPreventivo solicitudPreventivo = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
                         ucMantenimientoPreventivoRendicion.Numero = solicitud.Id_Solicitud.ToString();
                         ucMantenimientoPreventivoRendicion.SolicitudInicial = solicitud.IdSolicitudInicial.ToString();
@@ -41,6 +41,29 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucMantenimientoPreventivoRendicion.Adjuntos = solicitud.GetAdjuntos();
                         ucMantenimientoPreventivoRendicion.Monto = solicitudPreventivo.Presupuesto;
                         ucMantenimientoPreventivoRendicion.Visible = true;
+                        break;
+                    case (int)EnumTipoSolicitud.MantenimientoCorrectivo:
+                        SolicitudCorrectivo solicitudCorrectivo = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        ucMantenimientoCorrectivoRendicion.Numero = solicitudCorrectivo.IdSolicitud.ToString();
+                        ucMantenimientoCorrectivoRendicion.SolicitudInicial = solicitud.IdSolicitudInicial.ToString();
+                        ucMantenimientoCorrectivoRendicion.Titulo = solicitud.Descripcion;
+                        ucMantenimientoCorrectivoRendicion.Estado = solicitud.Status;
+                        ucMantenimientoCorrectivoRendicion.ReportoFalla = solicitudCorrectivo.PersonaReportoFalla;
+                        ucMantenimientoCorrectivoRendicion.CausaProbable = solicitudCorrectivo.CausaPosible;
+                        ucMantenimientoCorrectivoRendicion.FechaReporte = solicitudCorrectivo.FechanotificacionCliente.ToString("dd/MM/yyyy HH:mm");
+                        ucMantenimientoCorrectivoRendicion.Falla = solicitudCorrectivo.FallaReportada;
+                        ucMantenimientoCorrectivoRendicion.Servicios = SolicitudServiciosAfectados.GetServiciosAfectados(solicitudCorrectivo.IdSolicitud);
+                        ucMantenimientoCorrectivoRendicion.Plazo = PlazoRealizacion.FindFirst(Expression.Eq("Id", solicitudCorrectivo.IdPlazoAtencion)).Descripcion;
+                        ucMantenimientoCorrectivoRendicion.Personal = SolicitudRecursosEmpleados.GetReader(solicitudCorrectivo.IdSolicitud);
+                        ucMantenimientoCorrectivoRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(solicitudCorrectivo.IdSolicitud);
+                        ucMantenimientoCorrectivoRendicion.Cliente = Empresas.FindFirst(Expression.Eq("IdEmpresa", solicitud.IdCliente)).Nombre;
+                        ucMantenimientoCorrectivoRendicion.ContactoCliente = solicitud.Contacto;
+                        ucMantenimientoCorrectivoRendicion.NroOrden = solicitud.NroOrdenCte;
+                        ucMantenimientoCorrectivoRendicion.TelefonoContacto = solicitud.ContactoTel;
+                        ucMantenimientoCorrectivoRendicion.MailContacto = solicitud.ContactoMail;
+                        ucMantenimientoCorrectivoRendicion.Adjuntos = solicitud.GetAdjuntos();
+                        ucMantenimientoCorrectivoRendicion.Monto = solicitudCorrectivo.Presupuesto;
+                        ucMantenimientoCorrectivoRendicion.Visible = true;
                         break;
                 }
             }

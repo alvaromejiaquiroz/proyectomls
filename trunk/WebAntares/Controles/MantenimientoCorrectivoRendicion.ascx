@@ -3,7 +3,7 @@
 <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
     <tr class="header_custom">
         <td align="center" colspan="3">
-            Solicitud de mantenimiento correctivo
+            Reporte de mantenimiento correctivo
         </td>
     </tr>
     <tr>
@@ -120,13 +120,13 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
-            <asp:GridView ID="gvPersonal" runat="server" AutoGenerateColumns="False" 
+            <asp:GridView ID="gvPersonal" runat="server" AutoGenerateColumns="False" ShowHeader="false"
                 Width="100%" onrowdatabound="gvPersonal_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
                             <table cellpadding="0" cellspacing="1px" width="100%">
-                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:18px">
+                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:16px">
                                     <td align="center">
                                         Empleado
                                     </td>
@@ -171,13 +171,13 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
-            <asp:GridView ID="gvVehiculos" runat="server" AutoGenerateColumns="False"
+            <asp:GridView ID="gvVehiculos" runat="server" AutoGenerateColumns="False" ShowHeader="false"
                 Width="100%" onrowdatabound="gvVehiculos_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
                             <table cellpadding="0" cellspacing="0" width="100%" style="border-style: solid; border-color: #ffffff; border-width: 1px">
-                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:18px">
+                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:16px">
                                     <td align="center">
                                         Vehículo
                                     </td>

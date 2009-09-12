@@ -82,7 +82,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
                             <table cellpadding="0" cellspacing="1px" width="100%">
-                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:18px">
+                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:16px">
                                     <td align="center">
                                         Empleado
                                     </td>
@@ -133,7 +133,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
                             <table cellpadding="0" cellspacing="0" width="100%" style="border-style: solid; border-color: #ffffff; border-width: 1px">
-                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:18px">
+                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:16px">
                                     <td align="center">
                                         Vehículo
                                     </td>
