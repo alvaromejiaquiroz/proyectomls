@@ -65,6 +65,28 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucMantenimientoCorrectivoRendicion.Monto = solicitudCorrectivo.Presupuesto;
                         ucMantenimientoCorrectivoRendicion.Visible = true;
                         break;
+                    case (int)EnumTipoSolicitud.Obras:
+                        SolicitudObra solicitudObra = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        ucObrasRendicion.Numero = solicitudObra.IdSolicitud.ToString();
+                        ucObrasRendicion.SolicitudInicial = solicitud.IdSolicitudInicial.ToString();
+                        ucObrasRendicion.Titulo = solicitud.Descripcion;
+                        ucObrasRendicion.Estado = solicitud.Status;
+                        ucObrasRendicion.Cliente = Empresas.FindFirst(Expression.Eq("IdEmpresa", solicitud.IdCliente)).Nombre;
+                        ucObrasRendicion.NroOrden = solicitud.NroOrdenCte;
+                        ucObrasRendicion.Contacto = solicitud.Contacto;
+                        ucObrasRendicion.MailContacto = solicitud.ContactoMail;
+                        ucObrasRendicion.TelefonoContacto = solicitud.ContactoTel;
+                        ucObrasRendicion.DescripcionTareas = solicitudObra.DescripcionTareas;
+                        ucObrasRendicion.FechaInicio = solicitudObra.FechaInicio;
+                        ucObrasRendicion.FechaEntrega = solicitudObra.FechaFin;
+                        ucObrasRendicion.RequisitosAprobacion = solicitudObra.RequisitosAprovacion;
+                        ucObrasRendicion.RequisitosIngreso = solicitudObra.RequisitosIngreso;
+                        ucObrasRendicion.Personal = SolicitudRecursosEmpleados.GetReader(solicitudObra.IdSolicitud);
+                        ucObrasRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(solicitudObra.IdSolicitud);
+                        ucObrasRendicion.Monto = solicitudObra.Presupuesto;
+                        ucObrasRendicion.Adjuntos = solicitud.GetAdjuntos();
+                        ucObrasRendicion.Visible = true;
+                        break;
                 }
             }
         }

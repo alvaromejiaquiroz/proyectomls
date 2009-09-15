@@ -143,7 +143,7 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
-            <asp:GridView ID="gvPersonal" runat="server" AutoGenerateColumns="False" 
+            <asp:GridView ID="gvPersonal" runat="server" AutoGenerateColumns="False" ShowHeader="false"
                 Width="100%" onrowdatabound="gvPersonal_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
@@ -194,7 +194,7 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
-            <asp:GridView ID="gvVehiculos" runat="server" AutoGenerateColumns="False"
+            <asp:GridView ID="gvVehiculos" runat="server" AutoGenerateColumns="False" ShowHeader="false"
                 Width="100%" onrowdatabound="gvVehiculos_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
