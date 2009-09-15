@@ -2,7 +2,9 @@
     CodeFile="Login.aspx.cs" Inherits="Login_Login1t" Title="Antares" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
-    <div style="text-align:center;width:100%">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="center">
         <asp:Login ID="Login1" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderStyle="Solid"
             BorderWidth="1px" FailureText="No esta autorizado para ingresar." Font-Names="Verdana"
             Font-Size="10px" InstructionText="Ingrese el usuario y contraseña" LoginButtonText="Ingresar"
@@ -14,8 +16,12 @@
             <TextBoxStyle CssClass="text_custom" />
             <LoginButtonStyle CssClass="button_custom" />
         </asp:Login>
-    </div>
-    <div style="text-align:center;width:100%">
-        <asp:Label ID="lblMensaje" runat="server" ForeColor="#E0E0E0"></asp:Label>
-    </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <asp:Label ID="lblMensaje" runat="server" ForeColor="#E0E0E0"></asp:Label>
+            </td>
+        </tr>
+    </table>
 </asp:Content>
