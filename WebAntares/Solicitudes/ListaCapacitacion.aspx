@@ -4,7 +4,7 @@
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center">
-                Solicitudes de tareas generales
+                Solicitudes de Capacitación
             </td>
         </tr>
         <tr>
@@ -13,7 +13,9 @@
         </tr>
         <tr>
             <td align="center">
-                <asp:GridView ID="GridView1" runat="server" 
+             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <asp:GridView ID="GridView1" runat="server" 
                     onselectedindexchanged="GridView1_SelectedIndexChanged" 
                     AutoGenerateColumns="False" onrowdeleting="GridView1_RowDeleting" 
                     onrowediting="GridView1_RowEditing">
@@ -44,6 +46,8 @@
                         ShowDeleteButton="True" />            
                     </Columns>
                 </asp:GridView>
+                </ContentTemplate>
+                </asp:UpdatePanel>
             </td>
         </tr>
         <tr>

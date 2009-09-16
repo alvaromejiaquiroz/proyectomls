@@ -34,20 +34,20 @@ public partial class Solicitudes_ListaTareasGenerales : System.Web.UI.Page
     }
     protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
     {
-        int item_seleccionado = int.Parse(GridView1.DataKeys[e.NewEditIndex].Value.ToString());
-        Response.Redirect("./TareasGenerales.aspx?id=" + item_seleccionado.ToString());
-
-
-
+        Int32 IdSolicitud = Int32.Parse(GridView1.DataKeys[e.NewEditIndex].Value.ToString());
+        BiFactory.Sol = Solicitud.GetById(IdSolicitud);
+        Response.Redirect("./TareasGenerales.aspx?id=" + IdSolicitud.ToString());
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         int item_seleccionado = int.Parse(GridView1.DataKeys[e.RowIndex].Value.ToString());
-
-        SolicitudTareasGenerales sol = SolicitudTareasGenerales.FindFirst(Expression.Eq("IdSolicitud", item_seleccionado));
-        sol.Delete();
-
-        FillGrilla();
+        Solicitud sol = Solicitud.FindFirst(Expression.Eq("Id_Solicitud", item_seleccionado));
+        if (sol != null)
+        {
+            sol.Delete();
+            FillGrilla();
+        }
+       
 
     }
 }
