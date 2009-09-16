@@ -27,6 +27,7 @@
         </tr>
         <tr>
             <td align="center" colspan="2">
+            
                 <asp:UpdatePanel ID="upLicencias" runat="server">
                     <ContentTemplate>
                         <asp:GridView ID="GridView1" runat="server" 

@@ -15,43 +15,45 @@ using NHibernate.Expression;
 public partial class Solicitudes_Capacitacion : System.Web.UI.Page
 {
     static Antares.model.SolicitudCapacitacion sol_Cap;
-
+    
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            UsuariosEmpleados ue = BiFactory.Empleado;
+            FillSol();
+            //UsuariosEmpleados ue = BiFactory.Empleado;
 
-            if (ue != null)
-            {
-                string id = Request.QueryString["id"];
-                CargarCombos();
+            //if (ue != null)
+            //{
+            //    string id = Request.QueryString["id"];
+            //    CargarCombos();
 
-                if (id != null)
-                {
-                    sol_Cap = SolicitudCapacitacion.FindFirst(Expression.Eq("IdSolicitud", int.Parse(id)));
-                    if (sol_Cap != null)
-                    {
-                        BiFactory.Sol = Solicitud.GetById(sol_Cap.IdSolicitud);
-                        cmbNivelCapacitacion.SelectedValue = sol_Cap.Nivel;
-                        txtAreaEstudios.Text = sol_Cap.AreaEstudio;
-                        txtEntidad.Text = sol_Cap.EntidadEducativa;
-                        txtDuracion.Text = sol_Cap.Duracion;
-                        txtInstructor.Text = sol_Cap.Instructor;
-                        txtPuntuacionExamen.Text = sol_Cap.PuntuacionExamen;
-                        txtInicio.Text = sol_Cap.FechaInicio;
-                        txtFin.Text = sol_Cap.FechaFin;
-                    }
-                }
-            }
-            else
-            {
-                HtmlGenericControl lb = (HtmlGenericControl)Master.FindControl("divMensajes");
-                if (lb != null)
-                {
-                    lb.InnerText = "El Usuario NO esta relacionado con un Empleado";
-                }
-            }
+            //    if (id != null)
+            //    {
+            //        sol_Cap = SolicitudCapacitacion.FindFirst(Expression.Eq("IdSolicitud", int.Parse(id)));
+            //        if (sol_Cap != null)
+            //        {
+            //            BiFactory.Sol = Solicitud.GetById(sol_Cap.IdSolicitud);
+            //            cmbNivelCapacitacion.SelectedValue = sol_Cap.Nivel;
+            //            txtAreaEstudios.Text = sol_Cap.AreaEstudio;
+            //            txtEntidad.Text = sol_Cap.EntidadEducativa;
+            //            txtDuracion.Text = sol_Cap.Duracion;
+            //            txtInstructor.Text = sol_Cap.Instructor;
+            //            txtPuntuacionExamen.Text = sol_Cap.PuntuacionExamen;
+            //            txtInicio.Text = sol_Cap.FechaInicio;
+            //            txtFin.Text = sol_Cap.FechaFin;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    HtmlGenericControl lb = (HtmlGenericControl)Master.FindControl("divMensajes");
+            //    if (lb != null)
+            //    {
+            //        lb.InnerText = "El Usuario NO esta relacionado con un Empleado";
+            //    }
+            //}
         }
     }
 
@@ -96,6 +98,26 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
         Sol = null;
     }
 
+    private void FillSol()
+    {
+        sol_Cap = SolicitudCapacitacion.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+        if (sol_Cap != null)
+        {
+            cmbNivelCapacitacion.SelectedValue = sol_Cap.Nivel;
+            txtAreaEstudios.Text = sol_Cap.AreaEstudio;
+            txtEntidad.Text = sol_Cap.EntidadEducativa;
+            txtDuracion.Text = sol_Cap.Duracion;
+            txtInstructor.Text = sol_Cap.Instructor;
+            txtPuntuacionExamen.Text = sol_Cap.PuntuacionExamen;
+            txtInicio.Text = sol_Cap.FechaInicio;
+            txtFin.Text = sol_Cap.FechaFin;
+        }
+        else
+        {
+            txtInicio.Text = DateTime.Today.ToString("dd/MM/yyyy");
+        }
+        CargarCombos();
+    }
     private void CargarCombos()
     {
         cmbNivelCapacitacion.Items.Add("Básico");

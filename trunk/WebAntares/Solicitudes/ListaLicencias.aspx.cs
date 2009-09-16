@@ -46,10 +46,15 @@ public partial class Solicitudes_ListaLicencias : System.Web.UI.Page
 
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-       int item_seleccionado = int.Parse(GridView1.DataKeys[e.RowIndex].Value.ToString());
-       SolicitudLicencias sol = SolicitudLicencias.FindFirst(Expression.Eq("IdSolicitud", item_seleccionado));
-       sol.Delete();
-       FillGrilla(cmbEmpleado.SelectedValue);
+        int item_seleccionado = int.Parse(GridView1.DataKeys[e.RowIndex].Value.ToString());
+        Solicitud sol = Solicitud.FindFirst(Expression.Eq("Id_Solicitud", item_seleccionado));
+        if (sol != null)
+        {
+            sol.Delete();
+            FillGrilla(cmbEmpleado.SelectedValue);
+        }
+       
+       
     }
 
     protected void cmbEmpleado_SelectedIndexChanged(object sender, EventArgs e)

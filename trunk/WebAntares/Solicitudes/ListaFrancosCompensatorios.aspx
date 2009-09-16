@@ -5,7 +5,7 @@
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center">
-                Solicitudes de francos compensatorios
+                Solicitudes de Francos Compensatorios
             </td>
         </tr>
         <tr>
@@ -13,9 +13,12 @@
             </td>
         </tr>
         <tr>
+            
+            
             <td align="center">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting"
-                    OnRowEditing="GridView1_RowEditing">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing">
                     <Columns>
                         <asp:BoundField DataField="iDSolicitud" HeaderText="Solicitud" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="FechaInicio" HeaderText="Fecha de inicio" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
@@ -29,13 +32,15 @@
                             </ItemTemplate>
                          </asp:TemplateField>
                         <asp:CommandField HeaderText="Editar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
-                            ButtonType="Image" EditImageUrl="~/images/b_edit.gif" EditText="Editar" ShowCancelButton="False"
+                            ButtonType="Image" EditImageUrl="~/images/b_edit.gif" EditText="Editar" ShowCancelButton="False" 
                             ShowEditButton="True" />
                         <asp:CommandField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                             ButtonType="Image" DeleteImageUrl="~/images/delete.gif" DeleteText="Eliminar"
                             ShowCancelButton="False" ShowDeleteButton="True" />
                     </Columns>
                 </asp:GridView>
+                </ContentTemplate>
+                </asp:UpdatePanel>
             </td>
         </tr>
         <tr>

@@ -15,11 +15,12 @@ using NHibernate.Expression;
 public partial class Solicitudes_FrancosCompensatorios : System.Web.UI.Page
 {
     static Antares.model.SolicitudFrancosCompensatorios Fc;
-
+    static int Id;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+
             FillSol();
         }
     }
@@ -33,6 +34,11 @@ public partial class Solicitudes_FrancosCompensatorios : System.Web.UI.Page
             txtDuracion.Text = Fc.Duracion;
             txtFecha.Text = Fc.FechaInicio;
             txtConsentimiento.Text = Fc.ConElConsentimiento;
+
+        }
+        else
+        {
+            txtFecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
         }
     }
 
