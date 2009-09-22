@@ -15,10 +15,10 @@
             <td align="center">
              <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="GridView1" runat="server" 
-                    onselectedindexchanged="GridView1_SelectedIndexChanged" 
+                    <asp:GridView ID="GridView1" runat="server"
                     AutoGenerateColumns="False" onrowdeleting="GridView1_RowDeleting" 
-                    onrowediting="GridView1_RowEditing">
+                    onrowediting="GridView1_RowEditing" AllowPaging="true"
+                        onpageindexchanging="GridView1_PageIndexChanging">
                     <Columns>
                     <asp:BoundField DataField="ID" HeaderText="Id" Visible="false" />
                     <asp:BoundField DataField="ID_solicitud" HeaderText="IdSolicitud" Visible="false" />

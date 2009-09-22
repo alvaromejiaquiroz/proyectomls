@@ -30,9 +30,11 @@
             
                 <asp:UpdatePanel ID="upLicencias" runat="server">
                     <ContentTemplate>
-                        <asp:GridView ID="GridView1" runat="server" 
+                        <asp:GridView ID="GridView1" runat="server" AllowPaging="true" 
                             AutoGenerateColumns="False" onrowdeleting="GridView1_RowDeleting" 
-                            onrowediting="GridView1_RowEditing" EmptyDataText="No se han encontrado licencias para el empleado seleccionado.">
+                            onrowediting="GridView1_RowEditing"
+                            EmptyDataText="No se han encontrado licencias para el empleado seleccionado." 
+                            onpageindexchanging="GridView1_PageIndexChanging">
                             <Columns>
                             <asp:BoundField DataField="id" Visible="false"/>
                             <asp:BoundField DataField="IdSolicitud" HeaderText="Solicitud" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />

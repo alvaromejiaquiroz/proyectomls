@@ -9,6 +9,7 @@ using WebAntares;
 using System.Web.UI.HtmlControls;
 using NHibernate.Expression;
 using Castle.ActiveRecord;
+using System.Data.Common;
 
 public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 {
@@ -21,9 +22,18 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             
             habilitarSegunPerfil();
             
-            fillGrid();
         }
 
+    }
+
+    private void FillGrid(int pageIndex)
+    {
+        DbDataReader reader = Antares.model.Solicitud.GetReader(IdSolicitud, TipoSolicitud, IdResponsable, Estado);
+        DataTable table = new DataTable();
+        table.Load(reader);
+        GridView1.DataSource = table;
+        GridView1.PageIndex = pageIndex;
+        GridView1.DataBind();
     }
 
     private void habilitarSegunPerfil()
@@ -51,42 +61,33 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
     }
 
-    private void fillGrid()
-    {
-        System.Data.Common.DbDataReader reader = Antares.model.Solicitud.GetReader(txtNroSolicitud.Text.ToString(), cboTipoSolicitud1.value, cboPersonal.Value, cmbEstados.SelectedValue.ToString());
-
-        GridView1.DataSource = reader;
-      
-    }
-
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        Int32 IdSolicitud = Int32.Parse(e.CommandArgument.ToString());
-        BiFactory.Sol = Solicitud.GetById(IdSolicitud);
-
-        switch (e.CommandName)
+        if (!e.CommandName.Equals("Page"))
         {
-            case "CambiarEstado":
-                Response.Redirect("./SolicitudesCambioEstado.aspx");
-                break;
-            case "Visualizar_Reporte":
-                Response.Redirect("~/Reportes/MostrarSolicitud.aspx?id=" + IdSolicitud.ToString());
-                break;
-            case "Editar":
-               //switch (BiFactory.Sol.Tipo.)
-               //{
-               // case "
-                Response.Redirect("./intervencion.aspx?id=" + IdSolicitud.ToString() +"&Ac=e");
-                break;
-            case "Imprimir":
-                Response.Redirect("~/Reportes/MostrarSolicitud.aspx?id=" + IdSolicitud.ToString());
-                //Response.Redirect("./Reportes.aspx?id=" + IdSolicitud.ToString());
-                break;
+            Int32 IdSolicitud = Int32.Parse(e.CommandArgument.ToString());
+            BiFactory.Sol = Solicitud.GetById(IdSolicitud);
+
+            switch (e.CommandName)
+            {
+                case "CambiarEstado":
+                    Response.Redirect("./SolicitudesCambioEstado.aspx");
+                    break;
+                case "Visualizar_Reporte":
+                    Response.Redirect("~/Reportes/MostrarSolicitud.aspx?id=" + IdSolicitud.ToString());
+                    break;
+                case "Editar":
+                    //switch (BiFactory.Sol.Tipo.)
+                    //{
+                    // case "
+                    Response.Redirect("./intervencion.aspx?id=" + IdSolicitud.ToString() + "&Ac=e");
+                    break;
+                case "Imprimir":
+                    Response.Redirect("~/Reportes/MostrarSolicitud.aspx?id=" + IdSolicitud.ToString());
+                    //Response.Redirect("./Reportes.aspx?id=" + IdSolicitud.ToString());
+                    break;
+            }
         }
-
-
-
-
     }
     
     private void CrearClone(int idSolOrg)
@@ -168,8 +169,11 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
     {
         if (IsValid)
         {
-            GridView1.DataSource = Antares.model.Solicitud.GetReader(txtNroSolicitud.Text.ToString(), cboTipoSolicitud1.value, cboPersonal.Value, cmbEstados.SelectedValue.ToString());
-            GridView1.DataBind();
+            IdSolicitud = txtNroSolicitud.Text;
+            TipoSolicitud = cboTipoSolicitud1.value; 
+            IdResponsable = cboPersonal.Value;
+            Estado = cmbEstados.SelectedValue;
+            FillGrid(0);
         }
     }
 
@@ -322,8 +326,32 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         //    }
         //}
 
+    public string IdSolicitud
+    {
+        get { return ViewState["IdSolicitud"].ToString(); }
+        set { ViewState["IdSolicitud"] = value; }
+    }
 
+    public string TipoSolicitud
+    {
+        get { return ViewState["TipoSolicitud"].ToString(); }
+        set { ViewState["TipoSolicitud"] = value; }
+    }
 
+    public string IdResponsable
+    {
+        get { return ViewState["IdResponsable"].ToString(); }
+        set { ViewState["IdResponsable"] = value; }
+    }
 
-    
+    public string Estado
+    {
+        get { return ViewState["Estado"].ToString(); }
+        set { ViewState["Estado"] = value; }
+    }
+
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillGrid(e.NewPageIndex);
+    }
 }

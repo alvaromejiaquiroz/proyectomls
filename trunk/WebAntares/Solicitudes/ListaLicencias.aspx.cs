@@ -31,10 +31,11 @@ public partial class Solicitudes_ListaLicencias : System.Web.UI.Page
         }
     }
 
-    private void FillGrilla(string Id_Empleado)
+    private void FillGrilla(string Id_Empleado, int pageIndex)
     {
         GridView1.DataKeyNames = new string[] { "IdSolicitud" };
         GridView1.DataSource = Antares.model.SolicitudLicencias.FindAllByProperty("IdEmpleado", int.Parse(Id_Empleado));
+        GridView1.PageIndex = pageIndex;
         GridView1.DataBind();
     }
         
@@ -51,10 +52,8 @@ public partial class Solicitudes_ListaLicencias : System.Web.UI.Page
         if (sol != null)
         {
             sol.Delete();
-            FillGrilla(cmbEmpleado.SelectedValue);
+            FillGrilla(cmbEmpleado.SelectedValue, 0);
         }
-       
-       
     }
 
     protected void cmbEmpleado_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,7 +65,12 @@ public partial class Solicitudes_ListaLicencias : System.Web.UI.Page
         else
         {
             GridView1.Visible = true;
-            FillGrilla(cmbEmpleado.SelectedValue);
+            FillGrilla(cmbEmpleado.SelectedValue, 0);
         }
+    }
+
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillGrilla(cmbEmpleado.SelectedValue, e.NewPageIndex);
     }
 }
