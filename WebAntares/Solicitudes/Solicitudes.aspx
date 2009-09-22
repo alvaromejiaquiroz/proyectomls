@@ -68,8 +68,10 @@
             <td colspan="2">
                 <asp:UpdatePanel ID="upSolicitudes" runat="server">
                     <ContentTemplate>
-                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand"
-                            OnRowDataBound="GridView1_RowDataBound" OnDataBound="GridView1_DataBound">
+                        <asp:GridView ID="GridView1" runat="server" AllowPaging="true" 
+                            AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand"
+                            OnRowDataBound="GridView1_RowDataBound" OnDataBound="GridView1_DataBound" 
+                            onpageindexchanging="GridView1_PageIndexChanging">
                             <Columns>
                                 <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="Tipo" HeaderText="Tipo" HeaderStyle-HorizontalAlign="Center" />

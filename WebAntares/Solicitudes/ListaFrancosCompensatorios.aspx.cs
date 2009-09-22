@@ -17,29 +17,27 @@ public partial class Solicitudes_ListaFrancosCompensatorios : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-    
         if (!Page.IsPostBack)
         {
-            FillGrilla();
+            FillGrilla(0);
         }
     }
-    private void FillGrilla()
+    private void FillGrilla(int pageIndex)
     {
         string idUser = BiFactory.User.IdUsuario.ToString();
-        
         GridView1.DataKeyNames = new string[] { "IdSolicitud" };
-        //GridView1.DataSource = Antares.model.SolicitudFrancosCompensatorios.FindAll(Expression.Eq("IdUsuarioCreador",idUser));
         GridView1.DataSource = Antares.model.SolicitudFrancosCompensatorios.FindAllByProperty("IdEmpleado", BiFactory.Empleado.IdEmpleados);
+        GridView1.PageIndex = pageIndex;
         GridView1.DataBind();
-
     }
+
     protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
     {
         Int32 IdSolicitud = Int32.Parse(GridView1.DataKeys[e.NewEditIndex].Value.ToString());
         BiFactory.Sol = Solicitud.GetById(IdSolicitud);
         Response.Redirect("./FrancosCompensatorios.aspx?id=" + IdSolicitud.ToString());
-
     }
+
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         int item_seleccionado = int.Parse(GridView1.DataKeys[e.RowIndex].Value.ToString());
@@ -47,9 +45,12 @@ public partial class Solicitudes_ListaFrancosCompensatorios : System.Web.UI.Page
         if (sol != null)
         {
             sol.Delete();
-            FillGrilla();
+            FillGrilla(0);
         }
-       
+    }
 
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillGrilla(e.NewPageIndex);
     }
 }

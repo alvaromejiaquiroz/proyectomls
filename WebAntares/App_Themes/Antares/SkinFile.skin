@@ -25,7 +25,7 @@ Font-Names="Verdana"
     <RowStyle BackColor="#FFFFFF" ForeColor="#333333" Font-Size="10px" HorizontalAlign="Left" />
     <EditRowStyle BackColor="#999999" />
     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-    <PagerStyle BackColor="#28477" ForeColor="White" HorizontalAlign="Center" />
+    <PagerStyle BackColor="#8B8B7A" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
     <HeaderStyle BackColor="#8B8B7A" Font-Bold="True" ForeColor="#FFFFFF" Wrap="False" />
     <AlternatingRowStyle BackColor="#EAEAEA" ForeColor="#284775" Font-Size="10px" HorizontalAlign="Left" />
 
