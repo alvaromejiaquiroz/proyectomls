@@ -40,7 +40,7 @@
                             <asp:BoundField DataField="IdSolicitud" HeaderText="Solicitud" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="FechaInicio" HeaderText="Inicio" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="FechaFin" HeaderText="Fin" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" HeaderStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="300px"/>
                             <asp:BoundField DataField="Duracion" HeaderText="Duración" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField HeaderText="Visualizar" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>

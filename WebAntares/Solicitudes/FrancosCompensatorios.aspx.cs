@@ -55,8 +55,8 @@ public partial class Solicitudes_FrancosCompensatorios : System.Web.UI.Page
                 Fc = new SolicitudFrancosCompensatorios();
 
             Fc.IdSolicitud = BiFactory.Sol.Id_Solicitud;
-            Fc.Descripcion = txtDescripcion.Text; 
-            Fc.FechaInicio = txtFecha.Text;
+            Fc.Descripcion = txtDescripcion.Text;
+            Fc.FechaInicio = DateTime.Parse(txtFecha.Text).ToString();
             Fc.Duracion = txtDuracion.Text;
             Fc.ConElConsentimiento = txtConsentimiento.Text;
             Fc.IdEmpleado = BiFactory.Empleado.IdEmpleados;

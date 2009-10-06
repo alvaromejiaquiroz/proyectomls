@@ -112,7 +112,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         }
         foreach (Antares.model.Empresas emp in Antares.model.Empresas.FindAll())
         {
-            cmbClientes.Items.Add(new ListItem(emp.Nombre + " (" + emp.Localidad + ")", emp.IdEmpresa.ToString()));
+            cmbClientes.Items.Add(new ListItem(emp.Nombre , emp.IdEmpresa.ToString()));
         }
     }
             

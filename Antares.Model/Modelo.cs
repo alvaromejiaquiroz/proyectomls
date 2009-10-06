@@ -2434,6 +2434,14 @@ namespace Antares.model {
         
         private int _idSolicitudInicial;
         
+        private bool _aprobacionTecnica;
+        
+        private System.DateTime _fechaAprobacionTecnica;
+        
+        private bool _aprobacionCalidad;
+        
+        private System.DateTime _fechaAprobacionCalidad;
+        
         [PrimaryKey(PrimaryKeyType.Native, "Id_Solicitud", ColumnType="Int32")]
         public virtual int Id_Solicitud {
             get {
@@ -2631,6 +2639,46 @@ namespace Antares.model {
             }
             set {
                 this._idSolicitudInicial = value;
+            }
+        }
+        
+        [Property("Aprobacion_Tecnica", ColumnType="Boolean", Insert=false, Update=false)]
+        public virtual bool AprobacionTecnica {
+            get {
+                return this._aprobacionTecnica;
+            }
+            set {
+                this._aprobacionTecnica = value;
+            }
+        }
+        
+        [Property("Fecha_Aprobacion_Tecnica", ColumnType="DateTime", Insert=false, Update=false)]
+        public virtual System.DateTime FechaAprobacionTecnica {
+            get {
+                return this._fechaAprobacionTecnica;
+            }
+            set {
+                this._fechaAprobacionTecnica = value;
+            }
+        }
+        
+        [Property("Aprobacion_Calidad", ColumnType="Boolean", Insert=false, Update=false)]
+        public virtual bool AprobacionCalidad {
+            get {
+                return this._aprobacionCalidad;
+            }
+            set {
+                this._aprobacionCalidad = value;
+            }
+        }
+        
+        [Property("Fecha_Aprobacion_Calidad", ColumnType="DateTime", Insert=false, Update=false)]
+        public virtual System.DateTime FechaAprobacionCalidad {
+            get {
+                return this._fechaAprobacionCalidad;
+            }
+            set {
+                this._fechaAprobacionCalidad = value;
             }
         }
     }

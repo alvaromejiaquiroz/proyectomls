@@ -22,7 +22,7 @@ namespace Antares.model
             ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(SolicitudTareas));
             DbConnection db = (DbConnection)sess.Connection;// ActiveRecordMediator.GetSessionFactoryHolder().GetSessionFactory().GetCurrentSession().Connection;
             DbCommand oConn = db.CreateCommand();
-            string sSQL = "";
+           
             return true;
 
   

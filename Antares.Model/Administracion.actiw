@@ -2,12 +2,6 @@
 <model dslVersion="1.0.0.0" Id="281434b9-46fd-4979-a854-c9e0bfd473f7" xmlns="http://schemas.microsoft.com/dsltools/ActiveWriter">
   <additionalImports>AAEAAAD/////AQAAAAAAAAAMAgAAAF1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkRzbCwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTkwNTE0MTM5NmRkYjA3OTkEAQAAAKEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tBbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydCwgQWx0aW5vcmVuLkFjdGl2ZVdyaXRlci5Ec2wsIFZlcnNpb249MS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj05MDUxNDEzOTZkZGIwNzk5XV0DAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgQAAB9BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydFtdAgAAAAgICQMAAAAAAAAAAAAAAAcDAAAAAAEAAAAAAAAABB1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydAIAAAAL</additionalImports>
   <classes>
-    <modelClass name="Proveedores" schema="dbo" table="Proveedores">
-      <properties>
-        <modelProperty Id="f0cfae24-e077-47df-b27e-5260fa1436fe" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="6e51a1f5-ad41-4f25-a198-4700d7e5d853" name="Descripcion" column="Descripcion" length="0" />
-      </properties>
-    </modelClass>
     <modelClass name="FacturaEstados" schema="dbo" table="Factura_Estados">
       <properties>
         <modelProperty Id="18f8debd-3984-41c4-8048-3f56128dfb8e" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
@@ -32,22 +26,70 @@
         <modelProperty Id="55bc7f0f-7412-4657-a44e-a7acfb73f320" name="ConciliadoBanco" column="Conciliado_Banco" columnType="Boolean" length="0" />
       </properties>
     </modelClass>
+    <modelClass name="TipoFactura" schema="dbo" table="Tipo_Factura">
+      <properties>
+        <modelProperty Id="bd59bfff-e954-45a5-80d7-e91672d9ef5a" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="2f34a451-b562-4207-b78c-8f8117a05c91" name="Descripcion" column="Descripcion" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="TipoProveedor" schema="dbo" table="Tipo_Proveedor">
+      <properties>
+        <modelProperty Id="2e27c1de-b1f7-4b8e-b41c-d0d0438ed64d" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="af9c5fdf-d615-48b8-b822-c296e73156d4" name="Descripcion" column="Descripcion" length="0" notNull="true" />
+      </properties>
+    </modelClass>
+    <modelClass name="Proveedores" schema="dbo" table="Proveedores">
+      <properties>
+        <modelProperty Id="fcc0ef26-3da9-4035-8013-e51b40966660" name="IdProveedor" column="Id_Proveedor" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="11753f03-e596-4557-b8a8-d29571492a2c" name="Denominacion" column="Denominacion" length="0" />
+        <modelProperty Id="60f9d9bb-6e8d-4235-b9ba-1741d8b177da" name="CuitCuil" column="CUIT_CUIL" length="0" />
+        <modelProperty Id="3fb39401-7701-4e90-bfc5-97d0859bac40" name="IdCondicionIva" column="Id_Condicion_IVA" columnType="Int32" length="0" />
+        <modelProperty Id="e8ffcaaa-161b-4981-b386-051c15fa4553" name="IIBB" column="IIBB" length="0" />
+        <modelProperty Id="cb1bc5e2-6a41-4901-81fd-18f0c8648e90" name="Direccion" column="Direccion" length="0" />
+        <modelProperty Id="1b6b0465-0028-4053-bae3-0f39c6027847" name="Telefono1" column="Telefono_1" length="0" />
+        <modelProperty Id="2529db75-a05c-4b35-8811-2676ff0ff8f8" name="Telefono2" column="Telefono_2" length="0" />
+        <modelProperty Id="9b00ad9d-2137-4368-bb91-553332ed41a3" name="Fax" column="Fax" length="0" />
+        <modelProperty Id="4cef093f-790b-44a7-8822-c3f3aed89f69" name="Celular" column="Celular" length="0" />
+        <modelProperty Id="e39c4838-3ea5-4192-a55a-47a44cb91ba5" name="Email" column="Email" length="0" />
+        <modelProperty Id="9a08d0c0-c1d6-4a97-bcab-baf8c32d94b7" name="PaginaWeb" column="Pagina_Web" length="0" />
+        <modelProperty Id="e95dffa2-7bfb-498e-a0f2-1991ea6dbd25" name="CodProvBrea" column="Cod_Prov_Brea" length="0" />
+        <modelProperty Id="5352a28a-1825-4737-b947-33dd47452882" name="IdCategoriaProveedor" column="Id_Categoria_proveedor" columnType="Int32" length="0" />
+        <modelProperty Id="f0dcc699-4f32-43ff-8001-27d781b55fed" name="MinimoImponible" column="Minimo_Imponible" length="0" />
+        <modelProperty Id="36215375-8b9d-4a9e-a010-add63ba6cd00" name="IdBanco" column="Id_Banco" columnType="Int32" length="0" />
+        <modelProperty Id="a65b573b-54a4-46c8-b50f-e5ca870a5c76" name="Sucursal" column="Sucursal" length="0" />
+        <modelProperty Id="6cd77a90-f057-427d-83a8-98c536b2b68b" name="TipoDeCuenta" column="Tipo_de_cuenta" length="0" />
+        <modelProperty Id="ba66e050-b68b-45a6-8df1-a47eb3b05ecf" name="Cuenta" column="Cuenta" length="0" />
+        <modelProperty Id="c12ef1cb-edfa-4e6f-b7e6-76ff7ede04ec" name="CBU" column="CBU" length="0" />
+        <modelProperty Id="0c5bc6bb-9cb0-4ba7-b830-444c51e7fb7d" name="Contacto1" column="Contacto_1" length="0" />
+        <modelProperty Id="62da98ab-9ef5-4403-8a2c-fc97768310f0" name="Contacto2" column="Contacto_2" length="0" />
+        <modelProperty Id="dd2b823f-ee27-4cb9-b6c4-0cca7ff557d2" name="Contacto3" column="Contacto_3" length="0" />
+        <modelProperty Id="abc7b002-ecaa-4aaf-8e77-970f326f3327" name="Comentarios" column="Comentarios" length="0" />
+      </properties>
+    </modelClass>
     <modelClass name="Facturas" schema="dbo" table="Facturas">
       <properties>
-        <modelProperty Id="eb0327b9-5d1d-44f0-8779-14d7ed0d8447" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="4af9b30e-a896-45ca-bf1a-8ebc20ff0afa" name="IdFacturaEstados" column="Id_Factura_Estados" columnType="Int32" length="0" />
-        <modelProperty Id="9f72f12b-6ee5-4860-b319-ebbe6066cea8" name="IdProveedor" column="Id_Proveedor" columnType="Int32" length="0" />
-        <modelProperty Id="a4cbee69-2874-4e01-b7a1-741626ef2764" name="Fecha" column="Fecha" columnType="DateTime" length="0" />
-        <modelProperty Id="06ecfaf2-4c44-47bd-a312-7e3b64e49866" name="NFactura" column="n_factura" length="0" />
-        <modelProperty Id="403ccc5a-e968-4896-8a98-1fd2902f974e" name="Descripcion" column="descripcion" length="0" />
-        <modelProperty Id="d8748de2-7769-40d3-a38b-15366084d6b1" name="FechaRecepcionFactura" column="Fecha_Recepcion_Factura" columnType="DateTime" length="0" />
-        <modelProperty Id="753d2628-de23-4463-b3fc-982383e289a7" name="PlazoPago" column="Plazo_Pago" length="0" />
-        <modelProperty Id="c810819c-be07-4bb1-960d-fd7e284311fd" name="ImporteGravado" column="Importe_Gravado" columnType="Decimal" length="0" />
-        <modelProperty Id="c6607e47-1410-4bb2-a959-747ee7be3cab" name="ImporteNoGravado" column="Importe_no_Gravado" columnType="Decimal" length="0" />
-        <modelProperty Id="bff530ed-3a24-43bc-ac6a-9854a5d94d2f" name="PorcentajeIva" column="Porcentaje_Iva" columnType="Decimal" length="0" />
-        <modelProperty Id="f32e2f63-bd6f-4f92-84ad-64357f90a9cc" name="ImporteTotal" column="Importe_Total" columnType="Decimal" length="0" />
-        <modelProperty Id="3953890d-1477-4f3f-95f8-523a596ecda7" name="MontoRetencion" column="Monto_Retencion" columnType="Decimal" length="0" />
-        <modelProperty Id="af17b04f-2055-4366-babf-99f66566a19a" name="FechaActualizacion" column="Fecha_Actualizacion" columnType="DateTime" insert="false" length="0" update="false" />
+        <modelProperty Id="6b12fb09-acbd-4d33-b9f4-049053763c73" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="6cae1704-107c-4ecb-96bc-94a75459ecc8" name="IdTipoFactura" column="Id_Tipo_Factura" columnType="Int32" length="0" />
+        <modelProperty Id="5a77a7d7-138c-4762-9b8a-68e47654a03b" name="IdFacturaEstados" column="Id_Factura_Estados" columnType="Int32" length="0" />
+        <modelProperty Id="a7c6beae-a440-43b5-9b99-10e877ed0564" name="IdProveedor" column="Id_Proveedor" columnType="Int32" length="0" />
+        <modelProperty Id="4f9ea52a-780b-487a-a826-eef2d826a3b1" name="Fecha" column="Fecha" columnType="DateTime" length="0" />
+        <modelProperty Id="cd76dffe-c67d-465c-a4af-cb8ffac750c5" name="NFactura" column="n_factura" length="0" />
+        <modelProperty Id="0503e7eb-fc89-4921-ae7a-fa0de74913bc" name="Descripcion" column="descripcion" length="0" />
+        <modelProperty Id="7ff7a3d9-4c66-44f6-af18-ba25523ab71a" name="FechaRecepcionFactura" column="Fecha_Recepcion_Factura" columnType="DateTime" length="0" />
+        <modelProperty Id="986b5fc8-4ddf-4dca-8c49-9d80d75e1183" name="PlazoPago" column="Plazo_Pago" length="0" />
+        <modelProperty Id="9ce9e7d4-f51f-4d4b-93fe-9e2b9f76c377" name="ImporteGravado" column="Importe_Gravado" columnType="Decimal" length="0" />
+        <modelProperty Id="e8aa3975-32b6-49e5-a494-228504ab570f" name="ImporteNoGravado" column="Importe_no_Gravado" columnType="Decimal" length="0" />
+        <modelProperty Id="b713356e-ff39-4290-aa17-5c459212a1f5" name="PorcentajeIva" column="Porcentaje_Iva" columnType="Decimal" length="0" />
+        <modelProperty Id="43c55d2e-c50a-441c-a142-57f3ed072eb7" name="ImporteTotal" column="Importe_Total" columnType="Decimal" length="0" />
+        <modelProperty Id="f9064864-f5a1-450a-9d1f-39f896ae9e07" name="MontoRetencion" column="Monto_Retencion" columnType="Decimal" length="0" />
+        <modelProperty Id="33faf4a5-daf0-4340-92e6-67f26f816e4e" name="FechaActualizacion" column="Fecha_Actualizacion" columnType="DateTime" insert="false" length="0" update="false" />
+      </properties>
+    </modelClass>
+    <modelClass name="Bancos" schema="dbo" table="Bancos">
+      <properties>
+        <modelProperty Id="6cd1a6b4-500a-419a-be3a-b93f73f660ca" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="68c3f05a-b58c-44bc-9348-e7e6456e3f2a" name="Nombre" column="Nombre" length="0" />
+        <modelProperty Id="f855397e-bb42-4095-9a89-92ee8f401144" name="TieneCuentaAntares" column="Tiene_Cuenta_Antares" length="0" />
       </properties>
     </modelClass>
   </classes>

@@ -80,6 +80,10 @@ namespace Antares.model
             {
                 idSol = "-1";
             }
+            if (idTipoSolicitud == "")
+            {
+                idTipoSolicitud = "-1";
+            }
             string qry = "Proc_getSolicitudes @idSolicitud="+ idSol +", @idTipoSolicitud =" + idTipoSolicitud + ", @idResponsable=" + idResponsable + ", @idEstado =" + estado;
             Console.WriteLine(qry);
 
@@ -93,9 +97,11 @@ namespace Antares.model
             ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
             DbConnection db = (DbConnection)sess.Connection;// ActiveRecordMediator.GetSessionFactoryHolder().GetSessionFactory().GetCurrentSession().Connection;
             DbCommand oConn = db.CreateCommand();
-            string sSQL = @"select a.IdAdjunto , FileName, Date, Size from adjunto a inner join solicitudAdjuntos sa
-                            on a.idadjunto = sa.idadjunto
-                            where sa.idsolicitud = " + this.Id_Solicitud;
+//            string sSQL = @"select a.IdAdjunto , FileName, Date, Size from adjunto a inner join solicitudAdjuntos sa
+//                            on a.idadjunto = sa.idadjunto
+//                            where sa.idsolicitud = " + this.Id_Solicitud;
+
+            string sSQL = @"exec dbo.Prod_GetSolicitud_Adjuntos @idSolicitud = " + this.Id_Solicitud.ToString();
             oConn.CommandText = sSQL;
             return oConn.ExecuteReader();
         }

@@ -4,10 +4,10 @@
 <%@ Register Src="../Controles/cboTipoSolicitud.ascx" TagName="cboTipoSolicitud"
     TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
-    <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
+    <table width="700px" style="border-style: solid; border-color: #000000; border-width: 2px">
         <tr class="header_custom">
             <td align="center" colspan="4">
-                Ingreso de solicitud de intervención
+               <p class="Titulo_3"> Ingresar Solicitud de Intervención</p>
             </td>
         </tr>
         <tr>

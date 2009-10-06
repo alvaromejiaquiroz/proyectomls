@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
+using System.Collections.Generic;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
+using System.Data;
+using Antares.model;
+using WebAntares;
+using System.Web.UI.HtmlControls;
+using NHibernate.Expression;
+using Castle.ActiveRecord.Framework;
+using Castle.ActiveRecord; 
 
 public partial class Administracion_ListadoFacturas : System.Web.UI.Page
 {
@@ -15,9 +17,38 @@ public partial class Administracion_ListadoFacturas : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            gvFacturas.DataSource = Antares.model.Facturas.FindAll();
-            gvFacturas.DataBind();
-
+            CargarGrilla();
+            
         }
+    }
+    protected void gvFacturas_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        string id     =     e.CommandArgument.ToString();
+        Facturas F = Antares.model.Facturas.FindFirst(Expression.Eq("Id", Int32.Parse(id)));
+
+        switch (e.CommandName)
+        {
+            case "Eliminar":
+                
+                F.DeleteAndFlush();
+
+                break;
+
+            case "Editar":
+                Session["Factura"] = id;
+
+                Response.Redirect("./Facturas.aspx");
+
+                break;
+        }
+
+        CargarGrilla();
+
+    }
+    private void CargarGrilla()
+    {
+        gvFacturas.DataSource = Antares.model.Facturas.ListadoFacturas();
+        gvFacturas.DataBind();
+
     }
 }

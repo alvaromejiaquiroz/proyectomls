@@ -170,10 +170,10 @@
         <elementListCompartment Id="3074e0fd-0109-46c4-8a84-ee8eada10c96" absoluteBounds="7.015, 7.035, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2d22f6a2-b383-47cb-9c7b-b4c1500537e7" absoluteBounds="0.5, 2.25, 1.5, 4.0044051106770828">
+    <classShape Id="9f85bef0-ab6a-457e-95b0-1510f3ad346e" absoluteBounds="0.5, 2.25, 1.5, 4.66179443359375">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Solicitud" />
       <nestedChildShapes>
-        <elementListCompartment Id="1bb7aa2a-5aa4-4b6f-80ce-2ffba03b3035" absoluteBounds="0.515, 2.66, 1.4700000000000002, 3.494405110677083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="758d8bc7-1d5d-4e20-be7f-e50af5942f2d" absoluteBounds="0.515, 2.66, 1.4700000000000002, 4.15179443359375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

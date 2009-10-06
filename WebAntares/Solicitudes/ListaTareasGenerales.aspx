@@ -18,13 +18,16 @@
                     <ContentTemplate>
                         <asp:GridView ID="GridView1" runat="server" AllowPaging="true" 
                             AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting"
-                        OnRowEditing="GridView1_RowEditing"
-                            onpageindexchanging="GridView1_PageIndexChanging">
+                            OnRowEditing="GridView1_RowEditing"
+                            onpageindexchanging="GridView1_PageIndexChanging"
+                            EmptyDataText="No existen Solicitudes"
+                            >
+
                         <Columns>
                             <asp:BoundField DataField="iDSolicitud" HeaderText="Solicitud" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="FechaInicio" HeaderText="Fecha de inicio" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="FechaFin" HeaderText="Fecha de fin" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" HeaderStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="300px" />
                             <asp:BoundField DataField="Duracion" HeaderText="Duración" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField HeaderText="Visualizar" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>

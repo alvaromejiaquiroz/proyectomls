@@ -2,39 +2,45 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode  title="Menu"  >
 
-    <siteMapNode title="Administracion" roles="1,4">
-      <siteMapNode url="~/usuarios/usuarios.aspx" title="Usuarios"  description=""  roles="administrators, editors"/>
-    </siteMapNode>
-
-    <siteMapNode title="Facturas y Pagos" roles="1,4">
-          <siteMapNode title="Cargar Facturas"  url="~/Administracion/Facturas.aspx" roles="administrators, editors,2"/>
-          <siteMapNode title="Facturas"  url="~/Administracion/ListadoFacturas.aspx" roles="administrators, editors,2"/>
-     </siteMapNode>
-
-      <siteMapNode title="Tiempos" roles="1,4">
-        <siteMapNode title="Mis Tiempos"  url="~/solicitudes/TiemposPersonal.aspx" roles="administrators, editors,2"/>
-    </siteMapNode>
-    
-       
-    <siteMapNode title="RRHH" roles="4">
-            <siteMapNode title="Licencias"                  url="~/solicitudes/ListaLicencias.aspx" roles="4"/>
+        <siteMapNode title="Administración" roles="1,4">
+          <siteMapNode url="~/usuarios/usuarios.aspx" title="Usuarios"  description=""  roles="administrators, editors"/>
         </siteMapNode>
 
-    <siteMapNode title="Mi Antares" roles="1,2,3,4">
-          <siteMapNode title="Generar Solicitud"                url="~/solicitudes/intervencion.aspx" roles="3"/>
-          <siteMapNode title="Solicitudes"                url="~/solicitudes/solicitudes.aspx" roles="3"/>
-          <siteMapNode title="Capacitacion"               url="~/solicitudes/ListaCapacitacion.aspx" roles="3"/>
-          <siteMapNode title="Francos Compensatorios"     url="~/solicitudes/ListaFrancosCompensatorios.aspx" roles="3"/>
-          <siteMapNode title="Tareas Generales"           url="~/solicitudes/ListaTareasGenerales.aspx" roles="3"/>
+        <siteMapNode title="Facturas y Pagos" roles="1,4">
+              <siteMapNode title="Cargar Facturas"  url="~/Administracion/Facturas.aspx" roles="administrators, editors,2"/>
+              <siteMapNode title="Listado de Facturas"  url="~/Administracion/ListadoFacturas.aspx" roles="administrators, editors,2"/>
+              <siteMapNode title="Pagos"  url="~/Administracion/Pagos.aspx" roles="administrators, editors,2"/>
+         </siteMapNode>
 
-      </siteMapNode>
-      <siteMapNode title="Supervisores" roles="1,2,4">
+        <siteMapNode title="Tiempos" roles="1,4">
+            <siteMapNode title="Tiempos"  url="~/solicitudes/TiemposPersonal.aspx" roles="administrators, editors,2"/>
+        </siteMapNode>
+        
+        <siteMapNode title="Licencias" roles="4">
+                <siteMapNode title="Licencias"                  url="~/solicitudes/ListaLicencias.aspx" roles="4"/>
+                <siteMapNode title="Francos Compensatorios"     url="~/solicitudes/ListaFrancosCompensatorios.aspx" roles="3"/>
+            </siteMapNode>
 
-          <siteMapNode title="Prueba Persona Horas"          url="~/solicitudes/PersonaHoras.aspx" roles="2"/>
-          <siteMapNode title="Test Time Picker"          url="~/solicitudes/testdate.aspx" roles="2"/>
-          <siteMapNode title="Reporte HTML"          url="~/reportes/mostrarsolicitud.aspx" roles="2"/>
-      </siteMapNode>
+        <siteMapNode title="Solicitudes de Intervención" roles="1,2,3,4">
+              <siteMapNode title="Generar Solicitud"                url="~/solicitudes/intervencion.aspx" roles="3"/>
+              <siteMapNode title="Listados" roles="1,2,3,4">
+                  <siteMapNode title="Solicitudes"                url="~/solicitudes/solicitudes.aspx" roles="3"/>
+                  <siteMapNode title="Capacitación"               url="~/solicitudes/ListaCapacitacion.aspx" roles="3"/>
+                  <siteMapNode title="Tareas Generales"           url="~/solicitudes/ListaTareasGenerales.aspx" roles="3"/>
+              </siteMapNode>
+        </siteMapNode>
 
+        <siteMapNode title="Gestion y Mantenimiento" roles="1,2,3">
+               <siteMapNode title="Aprobación de Intervenciones"     url="~/Solicitudes/AprobacionSolicitudesGestion.aspx" roles="1,2,3"/>
+        </siteMapNode>
+          
+        <siteMapNode title="Calidad" roles="1,2,8">
+               <siteMapNode title="Aprobación de Registros"     url="~/Solicitudes/#" roles="1,2,8"/>
+        </siteMapNode>
+        
+        <siteMapNode title="Testing" roles="1">
+                <siteMapNode title="Prueba"          url="~/solicitudes/test.aspx" roles="1"/>
+        </siteMapNode>
 
-  </siteMapNode>
+    </siteMapNode>
 </siteMap>

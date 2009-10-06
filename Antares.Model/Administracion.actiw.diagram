@@ -2,12 +2,6 @@
 <activeRecordMapping dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Administracion">
   <modelMoniker Id="281434b9-46fd-4979-a854-c9e0bfd473f7" />
   <nestedChildShapes>
-    <classShape Id="5ed7a160-4bc6-4a8d-b723-443ba797d301" absoluteBounds="0.5, 1.375, 1.5, 1.0461531575520833">
-      <modelClassMoniker name="/281434b9-46fd-4979-a854-c9e0bfd473f7/Proveedores" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ac073b80-9b94-4157-a20d-d66727b39f6a" absoluteBounds="0.515, 1.7850000000000001, 1.4700000000000002, 0.53615315755208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="c72f0a11-ec0b-4abf-90a6-19f63b3c46dd" absoluteBounds="0.5, 2.875, 1.5, 1.0461531575520833">
       <modelClassMoniker name="/281434b9-46fd-4979-a854-c9e0bfd473f7/FacturaEstados" />
       <nestedChildShapes>
@@ -20,10 +14,34 @@
         <elementListCompartment Id="596a6adf-da29-4609-aa15-b2d8f3a2ed7b" absoluteBounds="2.515, 4.41, 1.4700000000000002, 2.508321126302083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="de124b7c-4da6-4271-baa6-fd03cf11972f" absoluteBounds="2.5, 0.5, 1.5, 3.0183211263020833">
+    <classShape Id="d7370e83-2e6e-436a-b0f0-947a6244ed8f" absoluteBounds="0.5, 4.375, 1.5, 1.0461531575520828">
+      <modelClassMoniker name="/281434b9-46fd-4979-a854-c9e0bfd473f7/TipoFactura" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cb6e9f6c-be30-4cb3-8ca0-2b44f9eeb8be" absoluteBounds="0.515, 4.785, 1.4700000000000002, 0.53615315755208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="edd37e92-d2f6-4457-88c5-e012f5b44403" absoluteBounds="4.5, 0.5, 1.5, 1.0461531575520833">
+      <modelClassMoniker name="/281434b9-46fd-4979-a854-c9e0bfd473f7/TipoProveedor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6005b5fc-162f-443f-9c15-82723919957b" absoluteBounds="4.515, 0.91, 1.4700000000000002, 0.53615315755208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5f1bcb46-b476-4fe7-8ce3-6ec2dbc42132" isExpanded="false" absoluteBounds="0.5, 1.375, 1.5, 0.4">
+      <modelClassMoniker name="/281434b9-46fd-4979-a854-c9e0bfd473f7/Proveedores" />
+      <nestedChildShapes>
+        <elementListCompartment Id="06771965-e706-4943-9d75-5a09e28bbf85" absoluteBounds="0.515, 1.7850000000000001, 1.4700000000000002, 4.15179443359375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f03f32a0-bf6e-4798-97f0-f53a3c3def19" absoluteBounds="2.5, 0.5, 1.5, 3.1826684570312502">
       <modelClassMoniker name="/281434b9-46fd-4979-a854-c9e0bfd473f7/Facturas" />
       <nestedChildShapes>
-        <elementListCompartment Id="6f641eda-fa5e-44cd-824f-38874f3ba53d" absoluteBounds="2.515, 0.91, 1.4700000000000002, 2.508321126302083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="0c0dbe8a-7f98-4eb6-8293-02dda5c85107" absoluteBounds="2.515, 0.91, 1.4700000000000002, 2.67266845703125" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6a965cf5-9543-4ecb-8b85-50ea718deef0" absoluteBounds="4.5, 2, 1.5, 1.2105004882812502">
+      <modelClassMoniker name="/281434b9-46fd-4979-a854-c9e0bfd473f7/Bancos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cef718e6-dc55-4171-ab9d-a47af5ad7341" absoluteBounds="4.515, 2.41, 1.4700000000000002, 0.70050048828125011" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

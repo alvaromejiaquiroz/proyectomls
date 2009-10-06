@@ -207,7 +207,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         }
         foreach (Antares.model.Empresas emp in Antares.model.Empresas.FindAll())
         {
-            cmbCliente.Items.Add(new ListItem(emp.Nombre + " (" + emp.Localidad + ")", emp.IdEmpresa.ToString()));
+            cmbCliente.Items.Add(new ListItem(emp.Nombre, emp.IdEmpresa.ToString()));
         }
 
         cmbResponsable.Items.Add(new ListItem("Seleccione...", "-1"));

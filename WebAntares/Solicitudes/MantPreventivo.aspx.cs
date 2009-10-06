@@ -122,6 +122,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     public void CargarCombos()
     {
         CargaComboSitios();
+        txtDesde.Text = DateTime.Today.ToString("dd/MM/yyyy");
    
         foreach (Antares.model.Tareas t in Antares.model.Tareas.FindAll())
         {
@@ -134,7 +135,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         }
         foreach (Antares.model.Empresas emp in Antares.model.Empresas.FindAll())
         {
-            cmbClientes.Items.Add(new ListItem(emp.Nombre + " (" + emp.Localidad + ") ", emp.IdEmpresa.ToString()));
+            cmbClientes.Items.Add(new ListItem(emp.Nombre , emp.IdEmpresa.ToString()));
         }
 
         cmbResponsable.Items.Clear();

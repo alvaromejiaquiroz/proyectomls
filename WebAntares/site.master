@@ -54,41 +54,11 @@
     </script>
 
     <style type="text/css">
-        #breadcrumb-left
-        {
-            text-align: left;
-        }
-        #ctl00_divMensajes
-        {
-            padding: 1px;
-            position: fixed;
-            top: 25%;
-            left: 75%;
-            width: 200px;
-            height: 200px;
-            float: left;
-            text-align: Left;
-            background-color: #FFFFCC;
-            border: 1px solid #666666;
-            color: #CC3300;
-            font-family: verdana;
-            font-size: 12px;
-            display: none;
-            margin: auto;
-        }
-        .style2
-        {
-            height: 100px;
-            width: 100px;
-        }
-        .style4
-        {
-            width: 100px;
-        }
+    
         #menu
         {
-            height: 100px;
-            width: 100px;
+            height: 100%;
+            width: 100%;
         }
     </style>
 </head>
@@ -96,14 +66,6 @@
     <form id="form1" runat="server">
     <table border="0" cellspacing="0" cellpadding="0" id="header">
         <tr>
-            <td id="header_logo" style="width:125px">
-                <img alt="Antares" src="../images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
-            </td>
-            <td align="right" style="width:740px">
-                <div class="header_custom" style="height:40px;vertical-align:middle;font-size:20px;padding-right:20px;padding-top:20px">
-                    Sistema de gestión de tareas
-                </div>
-            </td>
             <td>
                 <table>
                     <tr>
@@ -123,6 +85,14 @@
                     </tr>
                 </table>
             </td>
+            <td align="right" style="width:740px">
+                <div class="header_custom" style="height:40px;vertical-align:middle;font-size:20px;padding-right:20px;padding-top:20px">
+                    Sistema de Gestión
+                </div>
+            </td>
+            <td id="header_logo" style="width:125px">
+                <img alt="Energia en Comunicacion" src="../images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
+            </td>
         </tr>
     </table>
     <!--
@@ -131,14 +101,13 @@
    CONTENT CONTAINER
 	
 -->
-        <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="True"
-            EnableScriptLocalization="True">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="True" EnableScriptLocalization="True">
         </asp:ScriptManager>
     <table border="0" cellspacing="0" cellpadding="0" id="content-container">
         <tr>
             <td id="content-left">
-                <table width="100%" style="border-style: solid; border-color: #000000; border-width: 1px">
-                    <tr class="header_custom">
+                <table width="100%" style="border-style: solid; border-color: #707070; border-width: 3px">
+                    <tr class="header_menu_custom">
                         <td align="center">
                             Menú principal
                         </td>
@@ -152,11 +121,20 @@
                 </table>
             </td>
             <td id="content">
+            <table width="100%" >
+                    <tr >
+                        <td align="center">                 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <asp:ContentPlaceHolder ID="PageContainer" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </td>
+                    </tr>
                 <!--style="height: 400px; width: 100%"> -->
-                <asp:ContentPlaceHolder ID="PageContainer" runat="server">
-                </asp:ContentPlaceHolder>
-                <div id="divMensajes" runat="server">
-                </div>
+                <%--<div id="divMensajes" runat="server">                 </div>--%>
+            </table>
             </td>
         </tr>
     </table>

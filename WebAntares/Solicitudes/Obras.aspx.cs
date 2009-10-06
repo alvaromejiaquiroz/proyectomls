@@ -38,7 +38,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
                 
         foreach (Antares.model.Empresas emp in Antares.model.Empresas.FindAll())
         {
-            cmbCliente.Items.Add(new ListItem(emp.Nombre + " (" + emp.Localidad + ")", emp.IdEmpresa.ToString()));
+            cmbCliente.Items.Add(new ListItem(emp.Nombre , emp.IdEmpresa.ToString()));
         }
 
         cmbResponsable.Items.Add(new ListItem("Seleccione...", "-1"));
@@ -148,8 +148,8 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             SolicitudObra Sol_Ob = new SolicitudObra();
             Sol_Ob.IdSolicitud = sol.Id_Solicitud;
             Sol_Ob.DescripcionTareas  = txtDescripcionTareas.Text;
-            Sol_Ob.FechaInicio = txtInicio.Text;
-            Sol_Ob.FechaFin = txtEntrega.Text;
+            Sol_Ob.FechaInicio = DateTime.Parse(txtInicio.Text).ToString();
+            Sol_Ob.FechaFin = DateTime.Parse(txtEntrega.Text).ToString();
             Sol_Ob.RequisitosAprovacion = txtRequisitosAprovacion.Text;
             Sol_Ob.RequisitosIngreso = txtRequisitoIngreso.Text;
             Sol_Ob.Presupuesto = txtPresupuesto.Text;

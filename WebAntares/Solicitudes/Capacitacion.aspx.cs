@@ -70,8 +70,8 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
 
         }
 
-        Cap.FechaInicio = txtInicio.Text;
-        Cap.FechaFin = txtFin.Text;
+        Cap.FechaInicio =  DateTime.Parse(txtInicio.Text).ToString();
+        Cap.FechaFin =  DateTime.Parse(txtFin.Text).ToString();
         Cap.Nivel = cmbNivelCapacitacion.SelectedValue;
         Cap.Instructor = txtInstructor.Text;
         Cap.PuntuacionExamen = txtPuntuacionExamen.Text;

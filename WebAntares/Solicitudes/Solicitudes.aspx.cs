@@ -208,15 +208,26 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
+            Solicitud S = Solicitud.FindOne(Expression.Eq("Id_Solicitud", (DataBinder.Eval(e.Row.DataItem, "Solicitud"))));
             HyperLink lnkReporte = (HyperLink)e.Row.FindControl("lnkReporte");
             Image imgEditar = (Image)e.Row.FindControl("imgEdit");
             Image imgEstado = (Image)e.Row.FindControl("imgEstado");
+            Image imgEstadoCoord = (Image)e.Row.FindControl("imgStatusCoord");
+            Image imgEstadoCalidad = (Image)e.Row.FindControl("imgStatusCalidad");
             Image imgEliminar = (Image)e.Row.FindControl("imgEliminar");
+
+
+            imgEstadoCoord.ImageUrl = "../images/desloc.gif";
+            imgEstadoCalidad.ImageUrl = "../images/desloc.gif";
+            imgEstadoCoord.ToolTip = "Bloqueado";
+            imgEstadoCalidad.ToolTip = "Bloqueado";
             lnkReporte.Visible = false;
+
 
             if (BiFactory.User.IdPerfil == 1)
             {
-                imgEliminar.Visible = true;
+                //imgEliminar.Visible = true;
+                imgEliminar.Visible = false;
 
             }
             Image imgStatus = (Image)e.Row.FindControl("imgStatus");
@@ -254,6 +265,10 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         }
                         imgStatus.ImageUrl = "../images/green.gif";
                         imgStatus.ToolTip = "Realizado";
+                        imgEstadoCoord.ImageUrl = "../images/orange.gif";
+                        imgEstadoCalidad.ImageUrl = "../images/orange.gif";
+                        imgEstadoCoord.ToolTip = "Pendiente de aprobación";
+                        imgEstadoCalidad.ToolTip = "Pendiente de aprobación";
                         break;
                     
                 case "Reprogramado":
@@ -261,6 +276,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         //e.Row.Cells[4].ForeColor = System.Drawing.Color.Blue;
                         imgStatus.ImageUrl = "../images/yellow.gif";
                         imgStatus.ToolTip = "Reprogramado";
+                        
+                        imgStatus.ToolTip = "REPROGRAMADO: " +  S.Causa;
                         break;
                 case "Suspendido":
                         //e.Row.Cells[4].Font.Bold = true;
@@ -268,7 +285,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         imgEstado.Visible = false;
                         //e.Row.Cells[4].ForeColor = System.Drawing.Color.Gray;
                         imgStatus.ImageUrl = "../images/red.gif";
-                        imgStatus.ToolTip = "Suspendido";
+                        
+                        imgStatus.ToolTip = "CANCELADO: " + S.Causa;
                         break;
             }
         }

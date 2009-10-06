@@ -40,18 +40,28 @@ public partial class Solicitudes_Licencias : System.Web.UI.Page
             }
         }
     }
-
+    int IdEmpleado;
     private void CargarCombos()
     {
+        cmbEmpleado.Items.Clear();
+        cmbEmpleado.Items.Add(new ListItem("Seleccione...", "-1"));
+
+
         foreach (Antares.model.TipoLicencia Tl in Antares.model.TipoLicencia.FindAll())
         {
             cmbTipoLicencia.Items.Add(new ListItem(Tl.Descripcion, Tl.Id.ToString()));
+        }
+        foreach (Antares.model.Personal per in Antares.model.Personal.FindAll())
+        {
+            cmbEmpleado.Items.Add(new ListItem(per.Apellido + "," + per.Nombres ,per.IdEmpleados.ToString()));
         }
     }
 
     protected void btnAceptar_Click(object sender, EventArgs e)
     {
-        if (IsValid)
+        IdEmpleado = int.Parse(cmbEmpleado.SelectedValue);
+
+        if (IdEmpleado > 0 )
         {
             SolicitudLicencias sol_Lic;
 
@@ -68,11 +78,14 @@ public partial class Solicitudes_Licencias : System.Web.UI.Page
             }
 
             sol_Lic.Descripcion = txtDescripcion.Text;
-            sol_Lic.FechaInicio = txtInicio.Text;
-            sol_Lic.FechaFin = txtFin.Text;
+            sol_Lic.FechaInicio =  DateTime.Parse(txtInicio.Text).ToString();
+            sol_Lic.FechaFin =  DateTime.Parse(txtFin.Text).ToString();
             sol_Lic.Duracion = txtDuracion.Text;
             sol_Lic.IdTipolicencia = int.Parse(cmbTipoLicencia.SelectedItem.Value);
-            sol_Lic.IdEmpleado = BiFactory.Empleado.IdEmpleados;
+            
+            
+            Personal per = Personal.FindOne(Expression.Eq("IdEmpleados", IdEmpleado));
+            sol_Lic.IdEmpleado = per.IdEmpleados;
             sol_Lic.Save();
 
             pnlLicencias.Visible = false;
@@ -86,5 +99,10 @@ public partial class Solicitudes_Licencias : System.Web.UI.Page
             ucLicencias.Descripcion = sol_Lic.Descripcion;
             ucLicencias.Visible = true;
         }
+        
+    }
+    protected void cmbEmpleado_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }

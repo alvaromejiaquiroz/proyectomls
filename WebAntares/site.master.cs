@@ -62,8 +62,7 @@ public partial class site : System.Web.UI.MasterPage
     }
     private void BindMenu()
     {
-        //// .Providers["SecuritySiteMap"].RootNode
-
+    
         foreach (SiteMapNode adminNode in SiteMap.RootNode.ChildNodes)
         {
             if (adminNode.Roles.Count > 0)
@@ -72,24 +71,22 @@ public partial class site : System.Web.UI.MasterPage
                 if (adminNode.Roles.Contains(BiFactory.User.IdPerfil.ToString()))
                     if (true)
                     {
-                        //HtmlGenericControl uMenu = new HtmlGenericControl("ul");
-                        HtmlGenericControl uMenu = new HtmlGenericControl("Estilo_menu");
+                        //HtmlGenericControl uMenu = new HtmlGenericControl("Estilo_menu");
+                        HtmlGenericControl uMenu = new HtmlGenericControl("menu");
                         uMenu.Attributes.Add("id", "raiz");
                         menu.Controls.Add(uMenu);
-                        //AddItem(adminNode.Title + "[" + BiFactory.User.IdPerfil + "]", adminNode.Url, uMenu);
+                       
                         AddItem(adminNode.Title , adminNode.Url, uMenu);
                         HtmlGenericControl uChi = new HtmlGenericControl("ul");
                         uChi.Attributes.Add("id", "uno");
                         uMenu.Controls.Add(uChi);
-                        //ulMenu.Controls.Add(uChi);
-                        AddChilds(adminNode, uChi);
+                       AddChilds(adminNode, uChi);
 
                     }
             }
         }
 
-        //// if (!Request.RawUrl.ToUpperInvariant().Contains("/ADMIN/"))
-        //     AddItem(Resources.labels.changePassword, Utils.RelativeWebRoot + "login.aspx");
+    
     }
 
     private void AddChilds(SiteMapNode adminNode, HtmlGenericControl uParent)
