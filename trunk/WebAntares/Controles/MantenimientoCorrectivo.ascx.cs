@@ -9,6 +9,8 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.Common;
+using Antares.model;
+using NHibernate.Expression;
 
 public partial class Controles_MantenimientoCorrectivo : System.Web.UI.UserControl
 {
@@ -135,6 +137,28 @@ public partial class Controles_MantenimientoCorrectivo : System.Web.UI.UserContr
             btnFinalizar.Visible = !value;
             pnlImprimir.Visible = value;
             imgAntares.Visible = value;
+        }
+    }
+    protected void gvFiles_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        
+        Int32 Id = Int32.Parse(e.CommandArgument.ToString());
+        Adjunto Adj = Adjunto.FindOne(Expression.Eq("IdAdjunto",Id ));
+
+        switch (e.CommandName)
+        {
+            case "download":
+                System.IO.FileInfo file = new System.IO.FileInfo(Adj.PathFile);
+                if (file.Exists)
+                {
+                    Response.Clear();
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + Adj.FileName);
+                    Response.AddHeader("Content-Length", file.Length.ToString());
+                    Response.ContentType = "application/octet-stream";
+                    Response.WriteFile(file.FullName);
+                    Response.End();
+                }
+                break;
         }
     }
 }

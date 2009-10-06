@@ -87,6 +87,7 @@
     <Compile Include="CommonFunctions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Facturas.cs" />
     <Compile Include="MantPreventivo.cs">
       <DependentUpon>MantPreventivo.actiw</DependentUpon>
       <SubType>Code</SubType>

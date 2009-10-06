@@ -10,13 +10,23 @@
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center" colspan="4">
-                Solicitud de licencia
+                Solicitud de Licencia
             </td>
         </tr>
         <tr>
             <td colspan="4">
                 <uc2:SolDetalle ID="ucSolDetalle" runat="server" />
             </td>
+        </tr>
+        <tr>
+            <td style="padding-left: 20px">
+                Empleado</td>
+            <td colspan="3">
+            <asp:DropDownList ID="cmbEmpleado" runat="server" CssClass="text_custom" AutoPostBack="True" 
+                    onselectedindexchanged="cmbEmpleado_SelectedIndexChanged">
+                </asp:DropDownList>
+             </td>
+                 
         </tr>
         <tr>
             <td style="padding-left: 20px">

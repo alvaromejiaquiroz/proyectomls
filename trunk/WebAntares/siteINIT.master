@@ -6,9 +6,7 @@
     <title>Antares</title>
 </head>
 <body>
-    <div style="width:100%;text-align:right">
-        <img src="../images/LogoAntares.png" alt="Antares" style="width:105px;height:60px;margin:10px" /> 
-    </div>
+    <img src="../images/LogoAntares.png"  style=" visibility:hidden; padding-top:5px;padding-right:5px; width:240px ;height:160px; float: right;" /> 
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>

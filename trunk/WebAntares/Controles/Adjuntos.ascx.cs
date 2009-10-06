@@ -7,6 +7,8 @@ using Antares.model;
 using NHibernate.Expression;
 using WebAntares;
 using System.Web.UI.HtmlControls;
+using System.Text.RegularExpressions;
+
 
 public partial class Controles_Adjuntos : System.Web.UI.UserControl
 {
@@ -77,14 +79,15 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
         solAdj.IdSolicitud = sol.Id_Solicitud;
 
 
-        long lMaxFileSize = 300000;
+        long lMaxFileSize = 3000000;
         string sFileDir = Server.MapPath("~/upload/");
 
 
         if ((Request.Files[0] != null) && (Request.Files[0].ContentLength > 0))
         {
             //determine file name
-            string sFileName = System.IO.Path.GetFileName(Request.Files[0].FileName);
+            string OriginalName = System.IO.Path.GetFileName(Request.Files[0].FileName);
+            string sFileName = string.Empty;
             try
             {
                 if (Request.Files[0].ContentLength <= lMaxFileSize)
@@ -95,10 +98,9 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
                     //relacionar el adjunto
                     adj.PathFile = sFileDir + sFileName;
                     adj.Date = System.DateTime.Now;
-                    adj.FileName = Request.Files[0].FileName;
+                    adj.FileName = OriginalName;
                     adj.Size = Request.Files[0].ContentLength;
                     adj.ContentType = Request.Files[0].ContentType;
-
                     adj.Save();
 
                     solAdj.IdAdjunto = adj.IdAdjunto;

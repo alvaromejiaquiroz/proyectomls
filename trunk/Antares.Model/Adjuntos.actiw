@@ -2,21 +2,22 @@
 <model dslVersion="1.0.0.0" Id="ecba13a9-22fe-418e-a718-b0bed58988ad" xmlns="http://schemas.microsoft.com/dsltools/ActiveWriter">
   <additionalImports>AAEAAAD/////AQAAAAAAAAAMAgAAAF1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkRzbCwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTkwNTE0MTM5NmRkYjA3OTkEAQAAAKEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tBbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydCwgQWx0aW5vcmVuLkFjdGl2ZVdyaXRlci5Ec2wsIFZlcnNpb249MS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj05MDUxNDEzOTZkZGIwNzk5XV0DAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgQAAB9BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydFtdAgAAAAgICQMAAAAAAAAAAAAAAAcDAAAAAAEAAAAAAAAABB1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydAIAAAAL</additionalImports>
   <classes>
-    <modelClass name="Adjunto" schema="dbo" table="Adjunto">
-      <properties>
-        <modelProperty Id="ed48f7c9-006c-4d93-bab0-b9cd6d57b3c8" name="IdAdjunto" column="IdAdjunto" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="26900193-1a93-4437-b90f-300295d50ca9" name="PathFile" column="PathFile" length="0" />
-        <modelProperty Id="e6e1eef3-d4a1-49cc-8090-50275d41185c" name="FileName" column="FileName" length="0" />
-        <modelProperty Id="cbaf4108-4601-43d1-9f26-3dc0fb967891" name="ContentType" column="ContentType" length="0" />
-        <modelProperty Id="78df11e0-8ea0-4dec-8db9-1fdc6d3966b8" name="Date" column="Date" columnType="Timestamp" length="0" />
-        <modelProperty Id="74c44987-570d-478e-9810-8c184c1343b0" name="Size" column="Size" columnType="Int32" length="0" />
-      </properties>
-    </modelClass>
     <modelClass name="SolicitudAdjuntos" schema="dbo" table="SolicitudAdjuntos">
       <properties>
         <modelProperty Id="bb0f8516-5a1a-423a-80f2-b8d351278291" name="IdSolAdjunto" column="IdSolAdjunto" columnType="Int16" length="0" notNull="true" keyType="PrimaryKey" />
         <modelProperty Id="9e77ecef-35e5-40e6-9822-dffb253805db" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
         <modelProperty Id="a616028e-610d-4ca9-afeb-d054542aed99" name="IdAdjunto" column="IdAdjunto" columnType="Int32" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="Adjunto" schema="dbo" table="Adjunto">
+      <properties>
+        <modelProperty Id="cf5ea1d0-54e6-4190-a967-304c4a5afffd" name="IdAdjunto" column="IdAdjunto" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="a899de2f-80ea-4e75-9b2c-54cf690d888c" name="PathFile" column="PathFile" length="0" />
+        <modelProperty Id="a6144791-f654-4291-85bf-aa0ac4ae2ba7" name="FileName" column="FileName" length="0" />
+        <modelProperty Id="57544b83-1562-4249-82ab-d44100105700" name="ContentType" column="ContentType" length="0" />
+        <modelProperty Id="81ab2b65-21ed-405b-9a24-d055117aec1d" name="Date" column="Date" columnType="Timestamp" length="0" />
+        <modelProperty Id="70bc2800-0a46-4ada-ad03-9dba469684c0" name="Size" column="Size" columnType="Int32" length="0" />
+        <modelProperty Id="18f54572-da9a-41a7-864d-51b51746b09f" name="Calidad" column="Calidad" columnType="Boolean" length="0" />
       </properties>
     </modelClass>
   </classes>

@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Globalization;
 using Antares.model;
 using WebAntares;
 using System.Web.UI.HtmlControls;
@@ -36,12 +37,27 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
 
     protected void FillGrid()
     {
-        gvSolicitudes.DataSource = Personal.GetHorasSolicitudes(cmbPersonal.SelectedValue,cmbFecha.Fecha.ToString("yyyyMMdd"));//BiFactory.Sol.Id_Solicitud);
+        //string Semana = cmbFecha.Fecha.ToString("yyyyMMdd");
+        
+        gvSolicitudes.DataSource = Personal.GetHorasSolicitudes(cmbPersonal.SelectedValue, txtDesde.Text);
         //gvSolicitudes.DataKeyNames = new string[] { "Id" };
         gvSolicitudes.DataBind();
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
+        //DateTime fecha_seleccionada;
+        //CultureInfo ciCurr = CultureInfo.CurrentCulture;
+
+        
+        //if (txtDesde.Text != string.Empty)
+        //{
+        //    fecha_seleccionada = DateTime.Parse(txtDesde.Text);
+        //}
+
+
+        //int semana = ciCurr.Calendar.GetWeekOfYear(fecha_seleccionada, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        //string Semana =  fecha_seleccionada;
         FillGrid();
+        
     }
 }

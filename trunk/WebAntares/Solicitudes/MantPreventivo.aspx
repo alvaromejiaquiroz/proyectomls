@@ -10,7 +10,7 @@
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center">
-                Solicitud de mantenimiento preventivo
+                SOLICITUD DE MANTENIMIENTO PREVENTIVO
             </td>
         </tr>
         <tr>
@@ -44,7 +44,7 @@
                                         </tr>
                                         <tr>
                                             <td style="padding-left: 20px">
-                                                Fecha de realización de propuesta
+                                                Intervalo Programado
                                             </td>
                                             <td>
                                                 <asp:TextBox ID="txtDesde" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
@@ -128,7 +128,7 @@
                             </asp:UpdatePanel>
                         </ContentTemplate>
                     </cc1:TabPanel>
-                    <cc1:TabPanel ID="tpPersonal" HeaderText="Personal" runat="server">
+                    <cc1:TabPanel ID="tpPersonal" HeaderText="Responsable y Acompañante" runat="server">
                         <ContentTemplate>
                             <asp:UpdatePanel ID="upPersonas" runat="server">
                                 <ContentTemplate>
@@ -253,7 +253,7 @@
                             </asp:UpdatePanel>
                         </ContentTemplate>
                     </cc1:TabPanel>
-                    <cc1:TabPanel ID="tpComplemento" HeaderText="Complemento" runat="server">
+                    <cc1:TabPanel ID="tpComplemento" HeaderText="Datos Cliente" runat="server">
                         <ContentTemplate>
                             <table class="text_custom" width="600px">
                                 <tr>
@@ -262,7 +262,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        Cliente
+                                        Contrato
                                     </td>
                                     <td>
                                         <asp:DropDownList ID="cmbClientes" runat="server" CssClass="text_custom">
@@ -281,7 +281,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        Nro. de orden
+                                        N° orden del Cliente
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtNroOrdenCliente" runat="server" Width="210px" ValidationGroup="solicitud" CssClass="text_custom"></asp:TextBox>
@@ -315,6 +315,13 @@
                             </table>
                         </ContentTemplate>
                     </cc1:TabPanel>
+                    <cc1:TabPanel ID="tpRegistroCalidad" HeaderText="Registro de Calidad" runat="server">
+                        <ContentTemplate>
+                            <div style="width: 600px">
+                                Adjuntos Calidad....
+                            </div>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
                     <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
                         <ContentTemplate>
                             <div style="width: 600px">
@@ -331,7 +338,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        Monto
+                                        Gastos Estimados
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12" CssClass="text_custom"></asp:TextBox>

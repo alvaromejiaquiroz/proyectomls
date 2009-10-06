@@ -15,34 +15,6 @@ namespace Antares.model {
     using Castle.ActiveRecord;
     
     
-    [ActiveRecord("Proveedores", Schema="dbo")]
-    public partial class Proveedores : ActiveRecordBase<Proveedores> {
-        
-        private int _id;
-        
-        private string _descripcion;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("Descripcion", ColumnType="String")]
-        public virtual string Descripcion {
-            get {
-                return this._descripcion;
-            }
-            set {
-                this._descripcion = value;
-            }
-        }
-    }
-    
     [ActiveRecord("Factura_Estados", Schema="dbo")]
     public partial class FacturaEstados : ActiveRecordBase<FacturaEstados> {
         
@@ -243,10 +215,360 @@ namespace Antares.model {
         }
     }
     
+    [ActiveRecord("Tipo_Factura", Schema="dbo")]
+    public partial class TipoFactura : ActiveRecordBase<TipoFactura> {
+        
+        private int _id;
+        
+        private string _descripcion;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String")]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Tipo_Proveedor", Schema="dbo")]
+    public partial class TipoProveedor : ActiveRecordBase<TipoProveedor> {
+        
+        private int _id;
+        
+        private string _descripcion;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String", NotNull=true)]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Proveedores", Schema="dbo")]
+    public partial class Proveedores : ActiveRecordBase<Proveedores> {
+        
+        private int _idProveedor;
+        
+        private string _denominacion;
+        
+        private string _cuitCuil;
+        
+        private int _idCondicionIva;
+        
+        private string _iIBB;
+        
+        private string _direccion;
+        
+        private string _telefono1;
+        
+        private string _telefono2;
+        
+        private string _fax;
+        
+        private string _celular;
+        
+        private string _email;
+        
+        private string _paginaWeb;
+        
+        private string _codProvBrea;
+        
+        private int _idCategoriaProveedor;
+        
+        private string _minimoImponible;
+        
+        private int _idBanco;
+        
+        private string _sucursal;
+        
+        private string _tipoDeCuenta;
+        
+        private string _cuenta;
+        
+        private string _cBU;
+        
+        private string _contacto1;
+        
+        private string _contacto2;
+        
+        private string _contacto3;
+        
+        private string _comentarios;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id_Proveedor", ColumnType="Int32")]
+        public virtual int IdProveedor {
+            get {
+                return this._idProveedor;
+            }
+            set {
+                this._idProveedor = value;
+            }
+        }
+        
+        [Property("Denominacion", ColumnType="String")]
+        public virtual string Denominacion {
+            get {
+                return this._denominacion;
+            }
+            set {
+                this._denominacion = value;
+            }
+        }
+        
+        [Property("CUIT_CUIL", ColumnType="String")]
+        public virtual string CuitCuil {
+            get {
+                return this._cuitCuil;
+            }
+            set {
+                this._cuitCuil = value;
+            }
+        }
+        
+        [Property("Id_Condicion_IVA", ColumnType="Int32")]
+        public virtual int IdCondicionIva {
+            get {
+                return this._idCondicionIva;
+            }
+            set {
+                this._idCondicionIva = value;
+            }
+        }
+        
+        [Property("IIBB", ColumnType="String")]
+        public virtual string IIBB {
+            get {
+                return this._iIBB;
+            }
+            set {
+                this._iIBB = value;
+            }
+        }
+        
+        [Property("Direccion", ColumnType="String")]
+        public virtual string Direccion {
+            get {
+                return this._direccion;
+            }
+            set {
+                this._direccion = value;
+            }
+        }
+        
+        [Property("Telefono_1", ColumnType="String")]
+        public virtual string Telefono1 {
+            get {
+                return this._telefono1;
+            }
+            set {
+                this._telefono1 = value;
+            }
+        }
+        
+        [Property("Telefono_2", ColumnType="String")]
+        public virtual string Telefono2 {
+            get {
+                return this._telefono2;
+            }
+            set {
+                this._telefono2 = value;
+            }
+        }
+        
+        [Property("Fax", ColumnType="String")]
+        public virtual string Fax {
+            get {
+                return this._fax;
+            }
+            set {
+                this._fax = value;
+            }
+        }
+        
+        [Property("Celular", ColumnType="String")]
+        public virtual string Celular {
+            get {
+                return this._celular;
+            }
+            set {
+                this._celular = value;
+            }
+        }
+        
+        [Property("Email", ColumnType="String")]
+        public virtual string Email {
+            get {
+                return this._email;
+            }
+            set {
+                this._email = value;
+            }
+        }
+        
+        [Property("Pagina_Web", ColumnType="String")]
+        public virtual string PaginaWeb {
+            get {
+                return this._paginaWeb;
+            }
+            set {
+                this._paginaWeb = value;
+            }
+        }
+        
+        [Property("Cod_Prov_Brea", ColumnType="String")]
+        public virtual string CodProvBrea {
+            get {
+                return this._codProvBrea;
+            }
+            set {
+                this._codProvBrea = value;
+            }
+        }
+        
+        [Property("Id_Categoria_proveedor", ColumnType="Int32")]
+        public virtual int IdCategoriaProveedor {
+            get {
+                return this._idCategoriaProveedor;
+            }
+            set {
+                this._idCategoriaProveedor = value;
+            }
+        }
+        
+        [Property("Minimo_Imponible", ColumnType="String")]
+        public virtual string MinimoImponible {
+            get {
+                return this._minimoImponible;
+            }
+            set {
+                this._minimoImponible = value;
+            }
+        }
+        
+        [Property("Id_Banco", ColumnType="Int32")]
+        public virtual int IdBanco {
+            get {
+                return this._idBanco;
+            }
+            set {
+                this._idBanco = value;
+            }
+        }
+        
+        [Property("Sucursal", ColumnType="String")]
+        public virtual string Sucursal {
+            get {
+                return this._sucursal;
+            }
+            set {
+                this._sucursal = value;
+            }
+        }
+        
+        [Property("Tipo_de_cuenta", ColumnType="String")]
+        public virtual string TipoDeCuenta {
+            get {
+                return this._tipoDeCuenta;
+            }
+            set {
+                this._tipoDeCuenta = value;
+            }
+        }
+        
+        [Property("Cuenta", ColumnType="String")]
+        public virtual string Cuenta {
+            get {
+                return this._cuenta;
+            }
+            set {
+                this._cuenta = value;
+            }
+        }
+        
+        [Property("CBU", ColumnType="String")]
+        public virtual string CBU {
+            get {
+                return this._cBU;
+            }
+            set {
+                this._cBU = value;
+            }
+        }
+        
+        [Property("Contacto_1", ColumnType="String")]
+        public virtual string Contacto1 {
+            get {
+                return this._contacto1;
+            }
+            set {
+                this._contacto1 = value;
+            }
+        }
+        
+        [Property("Contacto_2", ColumnType="String")]
+        public virtual string Contacto2 {
+            get {
+                return this._contacto2;
+            }
+            set {
+                this._contacto2 = value;
+            }
+        }
+        
+        [Property("Contacto_3", ColumnType="String")]
+        public virtual string Contacto3 {
+            get {
+                return this._contacto3;
+            }
+            set {
+                this._contacto3 = value;
+            }
+        }
+        
+        [Property("Comentarios", ColumnType="String")]
+        public virtual string Comentarios {
+            get {
+                return this._comentarios;
+            }
+            set {
+                this._comentarios = value;
+            }
+        }
+    }
+    
     [ActiveRecord("Facturas", Schema="dbo")]
     public partial class Facturas : ActiveRecordBase<Facturas> {
         
         private int _id;
+        
+        private int _idTipoFactura;
         
         private int _idFacturaEstados;
         
@@ -281,6 +603,16 @@ namespace Antares.model {
             }
             set {
                 this._id = value;
+            }
+        }
+        
+        [Property("Id_Tipo_Factura", ColumnType="Int32")]
+        public virtual int IdTipoFactura {
+            get {
+                return this._idTipoFactura;
+            }
+            set {
+                this._idTipoFactura = value;
             }
         }
         
@@ -411,6 +743,46 @@ namespace Antares.model {
             }
             set {
                 this._fechaActualizacion = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Bancos", Schema="dbo")]
+    public partial class Bancos : ActiveRecordBase<Bancos> {
+        
+        private int _id;
+        
+        private string _nombre;
+        
+        private string _tieneCuentaAntares;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Nombre", ColumnType="String")]
+        public virtual string Nombre {
+            get {
+                return this._nombre;
+            }
+            set {
+                this._nombre = value;
+            }
+        }
+        
+        [Property("Tiene_Cuenta_Antares", ColumnType="String")]
+        public virtual string TieneCuentaAntares {
+            get {
+                return this._tieneCuentaAntares;
+            }
+            set {
+                this._tieneCuentaAntares = value;
             }
         }
     }

@@ -10,7 +10,7 @@
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center" colspan="2">
-                Solicitud de francos compensatorios
+                Francos Compensatorios
             </td>
         </tr>
         <tr>

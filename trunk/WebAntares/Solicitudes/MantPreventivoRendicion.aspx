@@ -11,7 +11,7 @@
         <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
             <tr class="header_custom">
                 <td align="center">
-                    Reporte de mantenimiento preventivo
+                    REPORTE DE MANTENIMIENTO PREVENTIVO
                 </td>
             </tr>
             <tr>
@@ -519,72 +519,75 @@
                                 </asp:UpdatePanel>
                             </ContentTemplate>
                         </cc1:TabPanel>
-                        <cc1:TabPanel ID="tpComplemento" HeaderText="Complemento" runat="server">
-                            <ContentTemplate>
-                                <table class="text_custom" width="600px">
-                                    <tr>
-                                        <td colspan="2" style="height: 20px">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-left: 20px">
-                                            Cliente
-                                        </td>
-                                        <td>
-                                            <asp:DropDownList ID="cmbClientes" runat="server" CssClass="text_custom">
-                                            </asp:DropDownList>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-left: 20px">
-                                            Contacto de cliente
-                                        </td>
-                                        <td>
-                                            <asp:TextBox ID="txtContactoCliente" runat="server" Width="210px" ValidationGroup="solicitud"
-                                                CssClass="text_custom"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvContactoCliente" runat="server" ErrorMessage="Debe ingresar el contacto de cliente."
-                                                Display="None" ValidationGroup="solicitud" ControlToValidate="txtContactoCliente"></asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-left: 20px">
-                                            Nro. de orden
-                                        </td>
-                                        <td>
-                                            <asp:TextBox ID="txtNroOrdenCliente" runat="server" Width="210px" ValidationGroup="solicitud"
-                                                CssClass="text_custom"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvNroOrdenCliente" runat="server" ErrorMessage="Debe ingresar el nro. de orden del cliente."
-                                                Display="None" ValidationGroup="solicitud" ControlToValidate="txtNroOrdenCliente"></asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-left: 20px">
-                                            Teléfono de contacto
-                                        </td>
-                                        <td>
-                                            <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="210px" ValidationGroup="solicitud"
-                                                CssClass="text_custom"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvTelefonoContacto" runat="server" ErrorMessage="Debe ingresar el teléfono de contacto."
-                                                Display="None" ValidationGroup="solicitud" ControlToValidate="txtTelefonoContacto"></asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-left: 20px">
-                                            E-mail de contacto
-                                        </td>
-                                        <td>
-                                            <asp:TextBox ID="txtMailContacto" runat="server" Width="210px" ValidationGroup="solicitud"
-                                                CssClass="text_custom"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvMailContacto" runat="server" ErrorMessage="Debe ingresar el e-mail de contacto."
-                                                Display="None" ValidationGroup="solicitud" ControlToValidate="txtMailContacto"></asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ID="revMailContacto" runat="server" ErrorMessage="El e-mail de contacto no es válido"
-                                                Display="None" ValidationGroup="solicitud" ControlToValidate="txtMailContacto"
-                                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </ContentTemplate>
-                        </cc1:TabPanel>
+                        <cc1:TabPanel ID="tpComplemento" HeaderText="Datos Cliente" runat="server">
+                        <ContentTemplate>
+                            <table class="text_custom" width="600px">
+                                <tr>
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Contrato
+                                    </td>
+                                    <td>
+                                        <asp:DropDownList ID="cmbClientes" runat="server" CssClass="text_custom">
+                                        </asp:DropDownList>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Contacto de cliente
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtContactoCliente" runat="server" Width="210px" ValidationGroup="solicitud" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvContactoCliente" runat="server" ErrorMessage="Debe ingresar el contacto de cliente."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtContactoCliente"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        N° orden del Cliente
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtNroOrdenCliente" runat="server" Width="210px" ValidationGroup="solicitud" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvNroOrdenCliente" runat="server" ErrorMessage="Debe ingresar el nro. de orden del cliente."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtNroOrdenCliente"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Teléfono de contacto
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="210px" ValidationGroup="solicitud" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvTelefonoContacto" runat="server" ErrorMessage="Debe ingresar el teléfono de contacto."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtTelefonoContacto"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        E-mail de contacto
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtMailContacto" runat="server" Width="210px" ValidationGroup="solicitud" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvMailContacto" runat="server" ErrorMessage="Debe ingresar el e-mail de contacto."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtMailContacto"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="revMailContacto" runat="server" ErrorMessage="El e-mail de contacto no es válido"
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtMailContacto"
+                                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
+                        <cc1:TabPanel ID="tpRegistroCalidad" HeaderText="Registro de Calidad" runat="server">
+                        <ContentTemplate>
+                            <div style="width: 600px">
+                                Adjuntos Calidad....
+                            </div>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
                         <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
                             <ContentTemplate>
                                 <div style="width: 600px">
@@ -593,29 +596,28 @@
                             </ContentTemplate>
                         </cc1:TabPanel>
                         <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
-                            <ContentTemplate>
-                                <table class="text_custom" width="600px">
-                                    <tr>
-                                        <td colspan="2" style="height: 20px">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-left: 20px">
-                                            Monto
-                                        </td>
-                                        <td>
-                                            <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12"
-                                                CssClass="text_custom"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvPresupuesto" runat="server" ErrorMessage="Debe ingresar el monto del presupuesto."
-                                                Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"></asp:RequiredFieldValidator>
-                                            <asp:CompareValidator ID="cvPresupuesto" runat="server" ErrorMessage="El monto del presupuesto no es válido."
-                                                Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"
-                                                Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </ContentTemplate>
-                        </cc1:TabPanel>
+                        <ContentTemplate>
+                            <table class="text_custom" width="600px">
+                                <tr>
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 10px">
+                                        Gastos Reales Incurridos
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12" CssClass="text_custom"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvPresupuesto" runat="server" ErrorMessage="Debe ingresar el monto del presupuesto."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ID="cvPresupuesto" runat="server" ErrorMessage="El monto del presupuesto no es válido."
+                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"
+                                            Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
                         <cc1:TabPanel ID="tpConfirmacion" HeaderText="Confirmación" runat="server">
                             <ContentTemplate>
                                 <div style="width: 100%; text-align: center; margin-top: 30px">
