@@ -28,6 +28,14 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucMantenimientoPreventivo.Numero = solicitudPreventivo.IdSolicitud.ToString();
                         ucMantenimientoPreventivo.Titulo = solicitud.Descripcion;
                         ucMantenimientoPreventivo.Estado = solicitud.Status;
+                        switch (solicitud.Status)
+                        {
+                            case "Reprogramado":
+                                ucMantenimientoPreventivo.HabilitarDivReprogramacion = true;
+                                ucMantenimientoPreventivo.Fecha_Reprogramacion = solicitud.FechaReprogramacion;
+                                ucMantenimientoPreventivo.Aprobador_Reprogramacion = solicitud.AprobadorReprosusp;
+                            break;
+                        }
                         ucMantenimientoPreventivo.Sitio = Sitios.FindFirst(Expression.Eq("IdSitio", solicitudPreventivo.IdSitio)).Descripcion;
                         ucMantenimientoPreventivo.Tareas = SolicitudTareas.GetReader(solicitudPreventivo.IdSolicitud);
                         ucMantenimientoPreventivo.Personal = SolicitudRecursosEmpleados.GetReader(solicitudPreventivo.IdSolicitud);
@@ -39,6 +47,13 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucMantenimientoPreventivo.MailContacto = solicitud.ContactoMail;
                         ucMantenimientoPreventivo.Adjuntos = solicitud.GetAdjuntos();
                         ucMantenimientoPreventivo.Monto = solicitudPreventivo.Presupuesto;
+                        SolicitudArchivoCalidad S = SolicitudArchivoCalidad.FindOne(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        if (S != null)
+                        {
+                            ucMantenimientoPreventivo.HabilitarArchivoCalidad = true;
+                            ucMantenimientoPreventivo.Calidad = CalidadArchivos.FindAll(Expression.Eq("Id", S.IdCalidadArchivo)); ;
+                        }
+            
                         ucMantenimientoPreventivo.Visible = true;
                         break;
                     case (int)EnumTipoSolicitud.MantenimientoCorrectivo:

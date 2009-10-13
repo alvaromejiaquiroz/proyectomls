@@ -314,7 +314,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
                 break;
             case "Mantenimiento Preventivo":
                 SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                fechaInicio = DateTime.Parse(sol_Pre.FechaInicio);
+                fechaInicio = sol_Pre.FechaInicio;
                 break;
             case "Obras e Instalaciones":
                 SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
@@ -362,7 +362,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
                 break;
             case "Mantenimiento Preventivo":
                 SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                fechaInicio = DateTime.Parse(sol_Pre.FechaInicio);
+                fechaInicio = sol_Pre.FechaInicio;
                 break;
             case "Obras e Instalaciones":
                 SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));

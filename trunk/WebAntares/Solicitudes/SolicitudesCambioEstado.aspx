@@ -8,7 +8,7 @@
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center" colspan="4">
-                Cambio de estado de solicitud
+                Cambio de Estado de Solicitud
             </td>
         </tr>
         <tr>
@@ -16,11 +16,14 @@
                 <uc1:SolDetalle ID="ucSolDetalle" runat="server" />
             </td>
         </tr>
+        </table>
+     <table >   
         <tr>
-            <td style="width:100px;padding-left: 20px">
+            <td colspan="10">
                 Estado
             </td>
-            <td>
+            <td></td>
+            <td colspan="10">
                 <asp:DropDownList ID="cmbEstados" runat="server" CssClass="text_custom">
                 </asp:DropDownList>
                 <asp:CompareValidator ID="cvEstados" runat="server" ErrorMessage="Debe seleccionar un estado."
@@ -29,10 +32,16 @@
             </td>
         </tr>
         <tr>
-            <td align="center" colspan="2">
+        <td></td>
+            <td align="center" colspan="10">
                 <asp:Button ID="btnAceptar" runat="server" OnClick="btnAceptar_Click" Text="Aceptar" ValidationGroup="estado" CssClass="button_custom" />
             </td>
+            <td>
+            
+            </td>
         </tr>
+        </table>
+        <table>
         <tr>
             <td colspan="2">
                 <div class="text_custom">
@@ -70,7 +79,7 @@
                             </td>
                             <td colspan="3">
                                 <asp:TextBox ID="txtReprogramacion" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                <asp:ImageButton ID="imgReprogramacion" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                                <asp:ImageButton ID="imgReprogramacion" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                                 <cc1:CalendarExtender ID="ceReprogramacion" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgReprogramacion"
                                     TargetControlID="txtReprogramacion">
                                 </cc1:CalendarExtender>
@@ -87,7 +96,7 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtInicio" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                <asp:ImageButton ID="imgInicio" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                                <asp:ImageButton ID="imgInicio" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                                 <cc1:CalendarExtender ID="ceInicio" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgInicio"
                                     TargetControlID="txtInicio">
                                 </cc1:CalendarExtender>
@@ -102,7 +111,7 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtFin" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                <asp:ImageButton ID="imgfin" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                                <asp:ImageButton ID="imgfin" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                                 <cc1:CalendarExtender ID="ceFin" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFin"
                                     TargetControlID="txtFin">
                                 </cc1:CalendarExtender>

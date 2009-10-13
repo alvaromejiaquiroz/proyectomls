@@ -244,8 +244,8 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
             SolicitudPreventivo r = new SolicitudPreventivo();
             r.IdSolicitud = preventivo.IdSolicitud;
             r.Presupuesto = txtPresupuesto.Text; ;
-            r.FechaInicio = txtDesde.Text;
-            r.FechaFin = txtHasta.Text;
+            r.FechaInicio = DateTime.Parse(txtDesde.Text);
+            r.FechaFin = DateTime.Parse(txtHasta.Text);
             r.IdSitio = int.Parse(hdnSitio.Value);
             //r.fechaactualizacion = DateTime.Now;
 
@@ -408,7 +408,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
                 break;
             case "Mantenimiento Preventivo":
                 SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                fechaInicio = DateTime.Parse(sol_Pre.FechaInicio);
+                fechaInicio = sol_Pre.FechaInicio;
                 break;
             case "Obras e Instalaciones":
                 SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
@@ -456,7 +456,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
                 break;
             case "Mantenimiento Preventivo":
                 SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                fechaInicio = DateTime.Parse(sol_Pre.FechaInicio);
+                fechaInicio = sol_Pre.FechaInicio;
                 break;
             case "Obras e Instalaciones":
                 SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));

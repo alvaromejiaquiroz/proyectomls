@@ -28,7 +28,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
     private void FillGrid(int pageIndex)
     {
-        DbDataReader reader = Antares.model.Solicitud.GetReader(IdSolicitud, TipoSolicitud, IdResponsable, Estado);
+        DbDataReader reader = Antares.model.Solicitud.GetReader(IdSolicitud, TipoSolicitud,PerfilUsuario ,IdEmpleadoUsuario, Estado , Fecha);
         DataTable table = new DataTable();
         table.Load(reader);
         GridView1.DataSource = table;
@@ -38,12 +38,14 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
     private void habilitarSegunPerfil()
     {
-        if (BiFactory.User.IdPerfil >1)
+        PerfilUsuario = BiFactory.User.IdPerfil.ToString();
+        IdEmpleadoUsuario = BiFactory.Empleado.IdEmpleados;
+
+        if (BiFactory.User.IdPerfil >3)
         {
             cboPersonal.BindCBO();
             cboPersonal.Value = BiFactory.Empleado.IdEmpleados.ToString();
             cboPersonal.Enabled = false;
-
         }
     }
     
@@ -77,14 +79,10 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                     Response.Redirect("~/Reportes/MostrarSolicitud.aspx?id=" + IdSolicitud.ToString());
                     break;
                 case "Editar":
-                    //switch (BiFactory.Sol.Tipo.)
-                    //{
-                    // case "
                     Response.Redirect("./intervencion.aspx?id=" + IdSolicitud.ToString() + "&Ac=e");
                     break;
                 case "Imprimir":
                     Response.Redirect("~/Reportes/MostrarSolicitud.aspx?id=" + IdSolicitud.ToString());
-                    //Response.Redirect("./Reportes.aspx?id=" + IdSolicitud.ToString());
                     break;
             }
         }
@@ -173,6 +171,10 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             TipoSolicitud = cboTipoSolicitud1.value; 
             IdResponsable = cboPersonal.Value;
             Estado = cmbEstados.SelectedValue;
+            Fecha = txtDesde.Text;
+
+            System.Threading.Thread.Sleep(1000);
+    
             FillGrid(0);
         }
     }
@@ -191,25 +193,13 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        /*
-            negro: anulado
-            rojo: pendiente
-            naranja: suspendido
-          naranja #FFAF6E (original)#FFAA66 (websafe)#C0C0C0 (greyscale)
-             para anulado clavá este gris: #646464 (original)#666666 (websafe)#646464 (greyscale)
-
-         *  negro = "#000000", 
-            rojo= "#FF0000" , 
-            naranja = "#FFAF6E", suspendido
-            gris = "#646464", 
-            verde = "#66FF99"
         
-        */
-
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             Solicitud S = Solicitud.FindOne(Expression.Eq("Id_Solicitud", (DataBinder.Eval(e.Row.DataItem, "Solicitud"))));
             HyperLink lnkReporte = (HyperLink)e.Row.FindControl("lnkReporte");
+            HyperLink lnkVisualizar = (HyperLink)e.Row.FindControl("lnkReporte");
+            
             Image imgEditar = (Image)e.Row.FindControl("imgEdit");
             Image imgEstado = (Image)e.Row.FindControl("imgEstado");
             Image imgEstadoCoord = (Image)e.Row.FindControl("imgStatusCoord");
@@ -217,32 +207,49 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             Image imgEliminar = (Image)e.Row.FindControl("imgEliminar");
 
 
-            imgEstadoCoord.ImageUrl = "../images/desloc.gif";
-            imgEstadoCalidad.ImageUrl = "../images/desloc.gif";
+            imgEstadoCoord.ImageUrl = "../images/candado.gif";
+            imgEstadoCalidad.ImageUrl = "../images/candado.gif";
             imgEstadoCoord.ToolTip = "Bloqueado";
             imgEstadoCalidad.ToolTip = "Bloqueado";
             lnkReporte.Visible = false;
 
+            Image imgStatus = (Image)e.Row.FindControl("imgStatus");
+            
+            string valorEstado = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Status"));
+            string valorTipoSolicitud  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Tipo"));
+            string valorIdResponsable  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Responsable"));
 
+            imgEditar.Visible = false;
+            imgEstado.Visible = false;
+            if (BiFactory.Empleado.IdEmpleados == int.Parse(valorIdResponsable))
+            {
+                imgEditar.Visible = true;
+                imgEstado.Visible = true;
+
+            }
             if (BiFactory.User.IdPerfil == 1)
             {
-                //imgEliminar.Visible = true;
                 imgEliminar.Visible = false;
 
             }
-            Image imgStatus = (Image)e.Row.FindControl("imgStatus");
+
+            if (BiFactory.User.IdPerfil < 4)
+            {
+                imgEditar.Visible = true;
+                imgEstado.Visible = true;
+            }
+
             
-            string valorResponsable = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Status"));
-            switch (valorResponsable)
+            switch (valorEstado )
             {
 
-                case "Anulada":
+                case "Anulado":
                     e.Row.Cells[4].Font.Bold = true;
                         //e.Row.Cells[4].ForeColor = System.Drawing.Color.Red;
                         imgEditar.Visible = false;
                         imgEstado.Visible = false;
                         lnkReporte.Visible = false;
-                        imgStatus.ImageUrl = "../images/gray.gif";
+                        imgStatus.ImageUrl = "../images/deshabilitado.gif";
                         imgStatus.ToolTip = "Anulado";
                         break;
                     
@@ -250,7 +257,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         //e.Row.Cells[4].Font.Bold = true;
                         //e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFAF6E");
                         //e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
-                        imgStatus.ImageUrl = "../images/orange.gif";
+                        imgStatus.ImageUrl = "../images/pendiente.gif";
                         imgStatus.ToolTip = "Pendiente";
                         break;
 
@@ -263,86 +270,41 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         {
                             lnkReporte.Visible = true;
                         }
-                        imgStatus.ImageUrl = "../images/green.gif";
+                        imgStatus.ImageUrl = "../images/realizado.gif";
                         imgStatus.ToolTip = "Realizado";
-                        imgEstadoCoord.ImageUrl = "../images/orange.gif";
-                        imgEstadoCalidad.ImageUrl = "../images/orange.gif";
-                        imgEstadoCoord.ToolTip = "Pendiente de aprobación";
-                        imgEstadoCalidad.ToolTip = "Pendiente de aprobación";
+                        imgEstadoCoord.ImageUrl = "../images/pendiente.gif";
+                        imgEstadoCalidad.ImageUrl = "../images/pendiente.gif";
+                        imgEstadoCoord.ToolTip = "Pendiente de Aprobación TECNICA";
+                        imgEstadoCalidad.ToolTip = "Pendiente de Aprobación de CALIDAD";
                         break;
                     
                 case "Reprogramado":
                         //e.Row.Cells[4].Font.Bold = true;
                         //e.Row.Cells[4].ForeColor = System.Drawing.Color.Blue;
-                        imgStatus.ImageUrl = "../images/yellow.gif";
+                        imgStatus.ImageUrl = "../images/reprogramado.gif";
                         imgStatus.ToolTip = "Reprogramado";
                         
                         imgStatus.ToolTip = "REPROGRAMADO: " +  S.Causa;
                         break;
-                case "Suspendido":
+                case "Cancelado":
                         //e.Row.Cells[4].Font.Bold = true;
                         imgEditar.Visible = false;
                         imgEstado.Visible = false;
                         //e.Row.Cells[4].ForeColor = System.Drawing.Color.Gray;
-                        imgStatus.ImageUrl = "../images/red.gif";
+                        imgStatus.ImageUrl = "../images/cancelado.gif";
                         
                         imgStatus.ToolTip = "CANCELADO: " + S.Causa;
+                        break;
+                case "Vencido":
+                        //imgEditar.Visible = true;
+                        //imgEstado.Visible = true;
+                        imgStatus.ImageUrl = "../images/vencido.gif";
+                        imgStatus.ToolTip = "VENCIDO: se ha exedido el plazo para la realización de esta Solicitud";
+                       
                         break;
             }
         }
     }
-
-    //    if (valorResponsable == eEstados.Realizado.ToString())
-        //    {
-
-
-
-        //        imgEditar.Visible = false;
-        //        imgEstado.Visible = false;
-
-
-        //        e.Row.Cells[4].BackColor = System.Drawing.ColorTranslator.FromHtml("#66FF99");
-
-        //        if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Reporte")) != null)
-        //        {
-
-        //            imgReporte.Visible = true;
-        //        }
-
-
-        //    }
-        //    if (valorResponsable == eEstados.Suspendido.ToString())
-        //    {
-
-
-        //        imgEditar.Visible = false;
-        //        imgEstado.Visible = false;
-
-        //        e.Row.Cells[4].BackColor = System.Drawing.Color.LightGray;
-
-        //    }
-
-        //    if (valorResponsable == eEstados.Reprogramado.ToString())
-        //    {
-
-        //        e.Row.Cells[4].BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFF66");
-
-        //    }
-        //    if (valorResponsable == eEstados.Anulada.ToString() )
-        //    if (valorResponsable == eEstados.Suspendido.ToString()
-        //    {
-        //        e.Row.Cells[4].BackColor = System.Drawing.ColorTranslator.FromHtml("#FF0000");
-        //        imgEditar.Visible = false;
-        //        imgEstado.Visible = false;
-        //        imgReporte.Visible = false;
-        //    }
-
-        //    if (valorResponsable == eEstados.Pendiente.ToString() )
-        //    {
-        //        e.Row.Cells[4].BackColor = System.Drawing.ColorTranslator.FromHtml("#000000");
-        //        e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
-        //    }
-        //}
 
     public string IdSolicitud
     {
@@ -361,6 +323,12 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         get { return ViewState["IdResponsable"].ToString(); }
         set { ViewState["IdResponsable"] = value; }
     }
+  
+    public string IdUsuario
+    {
+        get { return ViewState["IdUsuario"].ToString(); }
+        set { ViewState["IdUsuario"] = value; }
+    }
 
     public string Estado
     {
@@ -368,8 +336,55 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         set { ViewState["Estado"] = value; }
     }
 
+    public string Fecha
+    {
+        get { return ViewState["Fecha"].ToString(); }
+        set { ViewState["Fecha"] = value; }
+    }
+    
+    public string PerfilUsuario
+    {
+        get { return ViewState["PerfilUsuario"].ToString(); }
+        set { ViewState["PerfilUsuario"] = value; }
+    }
+    
+    public int IdEmpleadoUsuario
+    {
+        get { return int.Parse(ViewState["IdEmpleadoUsuario"].ToString()); }
+        set { ViewState["IdEmpleadoUsuario"] = value; }
+    }
+
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         FillGrid(e.NewPageIndex);
+    }
+
+    protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        
+        if (e.Row.RowType == DataControlRowType.DataRow || e.Row.RowType == DataControlRowType.Header)
+        {
+            foreach (TableCell c in e.Row.Cells)
+            {
+                if (int.Parse(PerfilUsuario) < 4) 
+                {
+                    switch (c.Text)
+                    {
+                        //AT  AC  Editar Solicitud Cambiar Estado 
+                        case "Cambiar Estado":
+                            c.Visible = true;
+                            break;
+                        //case "Editar":
+                        //    c.Visible = true;
+                        //    break;
+
+                    }
+                }
+            }
+
+            
+        }
+      
+
     }
 }

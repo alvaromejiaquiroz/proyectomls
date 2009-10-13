@@ -56,7 +56,7 @@
                                     <td>
                                         <asp:TextBox ID="txtFechaReporte" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
                                         <asp:ImageButton ID="imgFechaReporte" runat="server" CausesValidation="False" 
-                                            ImageUrl="~/images/calendar.png" />
+                                            ImageUrl="~/Images/calendario.gif" />
                                         <cc1:CalendarExtender ID="ceFechaReporte" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFechaReporte"
                                             TargetControlID="txtFechaReporte" Enabled="True">
                                         </cc1:CalendarExtender>
@@ -214,7 +214,7 @@
                                                             <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
                                                                     <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
-                                                                        ImageUrl="~/Images/delete.gif" Text="Eliminar" ToolTip="Eliminar" />
+                                                                        ImageUrl="~/Images/basuravacio.gif" Text="Eliminar" ToolTip="Eliminar" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -303,7 +303,7 @@
                                                         <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
-                                                                    ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                                    ImageUrl="~/Images/basuravacio.gif" Text="Delete" ToolTip="Eliminar" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -360,7 +360,7 @@
                                                         <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
-                                                                    ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                                    ImageUrl="~/Images/basuravacio.gif" Text="Delete" ToolTip="Eliminar" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>

@@ -47,7 +47,7 @@
 </asp:TemplateField>
  <asp:TemplateField HeaderText="Eliminar" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" Visible="True">
   <ItemTemplate>
-    <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="false" CommandArgument='<%# Bind("id") %>' CommandName="Eliminar" ImageUrl="~/images/delete.gif" ToolTip="Eliminar Factura" Visible="true" />
+    <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="false" CommandArgument='<%# Bind("id") %>' CommandName="Eliminar" ImageUrl="~/Images/basuravacio.gif" ToolTip="Eliminar Factura" Visible="true" />
    </ItemTemplate>
    <ItemStyle HorizontalAlign="Center" />
 </asp:TemplateField>                                

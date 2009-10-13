@@ -158,16 +158,19 @@ namespace WebAntares
         Pendiente = 1,
         Realizado=2,
         Reprogramado=3,
-        Suspendido=4,
-        Anulada = 5
+        Cancelado=4,
+        //Anulada = 5
 
     }
 
     public enum ePerfil
     {
         Administrador = 1,
-        Supervisor = 2,
-        Usuario = 3,
-        Consultor = 4
+        GerenteOperativo = 2,
+        GerenteAdministrativo = 3,
+        CoordinadorGyM = 4,
+        JefeZona = 5,
+        Responsable = 6,
+        Empleado = 7
     }
 }

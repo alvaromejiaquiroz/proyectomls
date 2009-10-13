@@ -104,6 +104,14 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
             gvAdjuntos.DataBind();
         }
     }
+    public CalidadArchivos[] Calidad
+    {
+        set
+        {
+            gvCalidad.DataSource = value;
+            gvCalidad.DataBind();
+        }
+    }
 
     public string Monto
     {
@@ -118,6 +126,33 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
             pnlImprimir.Visible = value;
             imgAntares.Visible = value;
         }
+    }
+    
+    public string Aprobador_Reprogramacion
+    {
+        set { litAprobadorReprogramacion.Text = value; }
+    }
+
+    public string Fecha_Reprogramacion
+    {
+        set { litFechaReprogramacion.Text = value; }
+    }
+
+    public bool HabilitarDivReprogramacion
+    {
+        set
+        {
+            divReprogramacion.Visible = value;
+        }
+
+    }
+    public bool HabilitarArchivoCalidad
+    {
+        set
+        {
+            pnlCalidad.Visible = value;
+        }
+
     }
     protected void gvAdjuntos_RowCommand(object sender, GridViewCommandEventArgs e)
     {

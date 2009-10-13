@@ -40,6 +40,10 @@ public partial class Solicitudes_TareasGenerales : System.Web.UI.Page
                 cmbTipoTarea.SelectedItem.Value = tarea_general.IdTipotarea.ToString();
             }
         }
+        else
+        {
+            txtInicio.Text = DateTime.Today.ToString("dd/MM/yyyy");
+        }
     }
 
     private void CargarCombos()
