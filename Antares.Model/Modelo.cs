@@ -1803,82 +1803,6 @@ namespace Antares.model {
         }
     }
     
-    [ActiveRecord("Solicitud_Preventivo", Schema="dbo")]
-    public partial class SolicitudPreventivo : ActiveRecordBase<SolicitudPreventivo> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private int _idSitio;
-        
-        private string _fechaInicio;
-        
-        private string _fechaFin;
-        
-        private string _presupuesto;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("IdSolicitud", ColumnType="Int32", NotNull=true)]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("IdSitio", ColumnType="Int32")]
-        public virtual int IdSitio {
-            get {
-                return this._idSitio;
-            }
-            set {
-                this._idSitio = value;
-            }
-        }
-        
-        [Property("Fecha_Inicio", ColumnType="String")]
-        public virtual string FechaInicio {
-            get {
-                return this._fechaInicio;
-            }
-            set {
-                this._fechaInicio = value;
-            }
-        }
-        
-        [Property("Fecha_Fin", ColumnType="String")]
-        public virtual string FechaFin {
-            get {
-                return this._fechaFin;
-            }
-            set {
-                this._fechaFin = value;
-            }
-        }
-        
-        [Property("Presupuesto", ColumnType="String")]
-        public virtual string Presupuesto {
-            get {
-                return this._presupuesto;
-            }
-            set {
-                this._presupuesto = value;
-            }
-        }
-    }
-    
     [ActiveRecord("Solicitud_Tareas", Schema="dbo")]
     public partial class SolicitudTareas : ActiveRecordBase<SolicitudTareas> {
         
@@ -2679,6 +2603,222 @@ namespace Antares.model {
             }
             set {
                 this._fechaAprobacionCalidad = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Calidad_Archivos", Schema="dbo")]
+    public partial class CalidadArchivos : ActiveRecordBase<CalidadArchivos> {
+        
+        private int _id;
+        
+        private int _idSitio;
+        
+        private int _idTarea;
+        
+        private string _nombreArchivo;
+        
+        private string _rutaArchivo;
+        
+        private string _año;
+        
+        private System.DateTime _fechaActualizacion;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Id_Sitio", ColumnType="Int32")]
+        public virtual int IdSitio {
+            get {
+                return this._idSitio;
+            }
+            set {
+                this._idSitio = value;
+            }
+        }
+        
+        [Property("Id_Tarea", ColumnType="Int32")]
+        public virtual int IdTarea {
+            get {
+                return this._idTarea;
+            }
+            set {
+                this._idTarea = value;
+            }
+        }
+        
+        [Property("Nombre_Archivo", ColumnType="String")]
+        public virtual string NombreArchivo {
+            get {
+                return this._nombreArchivo;
+            }
+            set {
+                this._nombreArchivo = value;
+            }
+        }
+        
+        [Property("Ruta_Archivo", ColumnType="String")]
+        public virtual string RutaArchivo {
+            get {
+                return this._rutaArchivo;
+            }
+            set {
+                this._rutaArchivo = value;
+            }
+        }
+        
+        [Property("Año", ColumnType="String")]
+        public virtual string Año {
+            get {
+                return this._año;
+            }
+            set {
+                this._año = value;
+            }
+        }
+        
+        [Property("FechaActualizacion", ColumnType="DateTime", Insert=false, Update=false)]
+        public virtual System.DateTime FechaActualizacion {
+            get {
+                return this._fechaActualizacion;
+            }
+            set {
+                this._fechaActualizacion = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Archivo_Calidad", Schema="dbo")]
+    public partial class SolicitudArchivoCalidad : ActiveRecordBase<SolicitudArchivoCalidad> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private int _idCalidadArchivo;
+        
+        private System.DateTime _fechaActualizacion;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Id_Solicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("Id_Calidad_Archivo", ColumnType="Int32")]
+        public virtual int IdCalidadArchivo {
+            get {
+                return this._idCalidadArchivo;
+            }
+            set {
+                this._idCalidadArchivo = value;
+            }
+        }
+        
+        [Property("FechaActualizacion", ColumnType="DateTime", Insert=false, Update=false)]
+        public virtual System.DateTime FechaActualizacion {
+            get {
+                return this._fechaActualizacion;
+            }
+            set {
+                this._fechaActualizacion = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Preventivo", Schema="dbo")]
+    public partial class SolicitudPreventivo : ActiveRecordBase<SolicitudPreventivo> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private int _idSitio;
+        
+        private System.DateTime _fechaInicio;
+        
+        private System.DateTime _fechaFin;
+        
+        private string _presupuesto;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("IdSolicitud", ColumnType="Int32", NotNull=true)]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("IdSitio", ColumnType="Int32")]
+        public virtual int IdSitio {
+            get {
+                return this._idSitio;
+            }
+            set {
+                this._idSitio = value;
+            }
+        }
+        
+        [Property("Fecha_Inicio", ColumnType="DateTime")]
+        public virtual System.DateTime FechaInicio {
+            get {
+                return this._fechaInicio;
+            }
+            set {
+                this._fechaInicio = value;
+            }
+        }
+        
+        [Property("Fecha_Fin", ColumnType="DateTime")]
+        public virtual System.DateTime FechaFin {
+            get {
+                return this._fechaFin;
+            }
+            set {
+                this._fechaFin = value;
+            }
+        }
+        
+        [Property("Presupuesto", ColumnType="String")]
+        public virtual string Presupuesto {
+            get {
+                return this._presupuesto;
+            }
+            set {
+                this._presupuesto = value;
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Data.Sql;
+using System.Globalization;
 using NHibernate;
 using NHibernate.Expression;
 using Castle.ActiveRecord;
@@ -70,26 +71,48 @@ namespace Antares.model
             return oConn.ExecuteReader();
         }
 
-        public static DbDataReader GetReader(string idSol ,string idTipoSolicitud, string idResponsable, string estado)
+        public static DbDataReader GetReader(string idSol ,string idTipoSolicitud,string Perfil,int idEmpleado , string estado , string Fecha)
         {
-            if (idResponsable == "")
+            if (idSol == string.Empty)
             {
-                idResponsable = "-1";
+                idSol = "null";
             }
-            if (idSol == "")
-            {
-                idSol = "-1";
-            }
-            if (idTipoSolicitud == "")
-            {
-                idTipoSolicitud = "-1";
-            }
-            string qry = "Proc_getSolicitudes @idSolicitud="+ idSol +", @idTipoSolicitud =" + idTipoSolicitud + ", @idResponsable=" + idResponsable + ", @idEstado =" + estado;
-            Console.WriteLine(qry);
 
+            if (idTipoSolicitud == "-1")
+            {
+                idTipoSolicitud = "null";
+            }
+            
+            if (estado == "-1")
+            {
+                estado = "null";
+            }
+
+            string qry = "Proc_getSolicitudes @idSolicitud=" + idSol + 
+                ", @idTipoSolicitud =" + idTipoSolicitud + 
+                ", @idEstado =" + estado;
+            
+            if (Fecha != string.Empty)
+            {
+                CultureInfo nfo = new CultureInfo("es-ES");
+                DateTime date = DateTime.Parse(Fecha, nfo);
+                //Mando la fecha con formato ISO 112 , por la cultura del browser, es lo unico que se me ocurrio
+                qry = qry + ",@Fecha ='" + date.ToString("yyyyMMdd") + "'";
+            }
+            //si el perfil es menor a 4 significa que es gerente, ve todas las solicitides, sino busca por usuario o responsable
+            if (int.Parse(Perfil) < 4)
+            {
+                Perfil = "null";
+                qry = qry + ",@IdEmpleado = null";
+            }
+            else
+            {
+                qry = qry + ",@IdEmpleado = " + idEmpleado.ToString();
+            }
             return ExecuteDbReader(qry);
-
         }
+
+   
 
         public DbDataReader GetAdjuntos()
         {
@@ -449,6 +472,7 @@ where se.id_empleado = @idPersona
 
        
     }
+
 
 }
 
