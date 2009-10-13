@@ -21,12 +21,12 @@
                 <siteMapNode title="Francos Compensatorios"     url="~/solicitudes/ListaFrancosCompensatorios.aspx" roles="3"/>
             </siteMapNode>
 
-        <siteMapNode title="Solicitudes de Intervención" roles="1,2,3,4">
-              <siteMapNode title="Generar Solicitud"                url="~/solicitudes/intervencion.aspx" roles="3"/>
+        <siteMapNode title="Solicitudes de Intervención" roles="1,2,3,4,5,6,7">
+              <siteMapNode title="Generar Solicitud"                url="~/solicitudes/intervencion.aspx" roles="1,2,3,4,5,6,7"/>
               <siteMapNode title="Listados" roles="1,2,3,4">
-                  <siteMapNode title="Solicitudes"                url="~/solicitudes/solicitudes.aspx" roles="3"/>
-                  <siteMapNode title="Capacitación"               url="~/solicitudes/ListaCapacitacion.aspx" roles="3"/>
-                  <siteMapNode title="Tareas Generales"           url="~/solicitudes/ListaTareasGenerales.aspx" roles="3"/>
+                  <siteMapNode title="Solicitudes"                url="~/solicitudes/solicitudes.aspx" roles="1,2,3,4,5,6,7"/>
+                  <siteMapNode title="Capacitación"               url="~/solicitudes/ListaCapacitacion.aspx" roles="1,2,3,4,5,6,7"/>
+                  <siteMapNode title="Tareas Generales"           url="~/solicitudes/ListaTareasGenerales.aspx" roles="1,2,3,4,5,6,7"/>
               </siteMapNode>
         </siteMapNode>
 

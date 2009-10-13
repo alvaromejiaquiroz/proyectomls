@@ -20,8 +20,13 @@
         </tr>
         <tr>
             <td>
-                <cc1:TabContainer ID="tcMantenimientoPreventivo" runat="server" Height="450px">
+                <cc1:TabContainer ID="tcMantenimientoPreventivo" runat="server" Height="450px" 
+                    ActiveTabIndex="0" 
+                    onactivetabchanged="tcMantenimientoPreventivo_ActiveTabChanged">
                     <cc1:TabPanel ID="tpTareas" HeaderText="Tareas" runat="server">
+                        <HeaderTemplate>
+                            Tareas
+                        </HeaderTemplate>
                         <ContentTemplate>
                             <asp:UpdatePanel ID="upTareas" runat="server">
                                 <ContentTemplate>
@@ -48,7 +53,7 @@
                                             </td>
                                             <td>
                                                 <asp:TextBox ID="txtDesde" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                                <asp:ImageButton ID="imgDesde" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                                                <asp:ImageButton ID="imgDesde" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                                                 <cc1:CalendarExtender ID="ceDesde" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgDesde"
                                                     TargetControlID="txtDesde">
                                                 </cc1:CalendarExtender>
@@ -58,7 +63,7 @@
                                                     ControlToValidate="txtDesde" Display="None" Operator="DataTypeCheck" Type="Date"
                                                     ValidationGroup="tareas"></asp:CompareValidator>
                                                 <asp:TextBox ID="txtHasta" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                                <asp:ImageButton ID="imgHasta" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                                                <asp:ImageButton ID="imgHasta" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                                                 <cc1:CalendarExtender ID="ceHasta" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgHasta"
                                                     TargetControlID="txtHasta">
                                                 </cc1:CalendarExtender>
@@ -74,10 +79,10 @@
                                         </tr>
                                         <tr>
                                             <td style="padding-left: 20px">
-                                                Tareas a realizar
+                                                Tareas a Realizar
                                             </td>
                                             <td>
-                                                <asp:ListBox ID="lstTareas" runat="server" SelectionMode="Multiple" Height="150px" CssClass="text_custom">
+                                                <asp:ListBox ID="lstTareas" runat="server" SelectionMode="Single" Height="150px" CssClass="text_custom">
                                                 </asp:ListBox>
                                                 <asp:CustomValidator ID="cvTareas" runat="server" ErrorMessage="Debe seleccionar al menos una tarea."
                                                     Display="None" ValidationGroup="tareas" OnServerValidate="cvTareas_ServerValidate"></asp:CustomValidator>
@@ -99,7 +104,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <asp:GridView ID="gvTareas" runat="server" AutoGenerateColumns="false" OnRowDeleting="gvTareas_RowDeleting"
+                                                <asp:GridView ID="gvTareas" runat="server" AutoGenerateColumns="false" OnRowDeleting="gvTareas_RowDeleting" OnRowDataBound="gvTareas_RowDataBound" OnRowCreated="gvTareas_RowCreated"
                                                     Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
@@ -113,7 +118,7 @@
                                                         <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
-                                                                    ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                                    ImageUrl="~/Images/basuravacio.gif" Text="Delete" ToolTip="Eliminar" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -181,7 +186,7 @@
                                                         <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
-                                                                    ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                                    ImageUrl="~/Images/basuravacio.gif" Text="Delete" ToolTip="Eliminar" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -238,7 +243,7 @@
                                                         <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
-                                                                    ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                                                    ImageUrl="~/Images/basuravacio.gif" Text="Delete" ToolTip="Eliminar" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -271,7 +276,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        Contacto de cliente
+                                        Contacto del Cliente
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtContactoCliente" runat="server" Width="210px" ValidationGroup="solicitud" CssClass="text_custom"></asp:TextBox>
@@ -281,7 +286,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        N° orden del Cliente
+                                        N° Orden del Cliente
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtNroOrdenCliente" runat="server" Width="210px" ValidationGroup="solicitud" CssClass="text_custom"></asp:TextBox>
@@ -291,7 +296,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        Teléfono de contacto
+                                        Teléfono de Contacto
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="210px" ValidationGroup="solicitud" CssClass="text_custom"></asp:TextBox>
@@ -301,7 +306,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        E-mail de contacto
+                                        E-mail de Contacto
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtMailContacto" runat="server" Width="210px" ValidationGroup="solicitud" CssClass="text_custom"></asp:TextBox>
@@ -317,10 +322,34 @@
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpRegistroCalidad" HeaderText="Registro de Calidad" runat="server">
                         <ContentTemplate>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                           <ContentTemplate>
                             <div style="width: 600px">
-                                Adjuntos Calidad....
+                                    <asp:GridView ID="gvCalidad" runat="server" AutoGenerateColumns="False" Width="100%" EmptyDataText="No Existen Registros de Calidad Asignados" onrowcommand="gvCalidad_RowCommand">
+                                        <Columns>
+                                            <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="False" />
+                                            <asp:BoundField DataField="NombreArchivo" HeaderText="Archivo Calidad" HeaderStyle-HorizontalAlign="Left"/> 
+                                            <asp:TemplateField  ItemStyle-HorizontalAlign="Center" >
+                                                <ItemTemplate>
+                                                
+                                                    <asp:ImageButton ID="imgAdjunto" runat="server" CausesValidation="False" 
+                                                    CommandName="Descargar" 
+                                                    CommandArgument='<%# Bind("Id") %>'
+                                                    ImageUrl="~/Images/guardar.gif" Text="Descargar" ToolTip="Descargar el Archivo"  />
+                                                    
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
                             </div>
                         </ContentTemplate>
+                        <Triggers>
+                        <asp:PostBackTrigger ControlID="gvCalidad" />
+                        </Triggers>
+                        </asp:UpdatePanel>
+                        
+                        </ContentTemplate>
+                         
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
                         <ContentTemplate>
@@ -331,25 +360,41 @@
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
                         <ContentTemplate>
-                            <table class="text_custom" width="600px">
+                        <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <table class="text_custom" width="400px">
                                 <tr>
                                     <td colspan="2" style="height: 20px">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        Gastos Estimados
+                                       Ingresar Gastos Estimados
                                     </td>
-                                    <td>
+                                    <td colspan="2" style="height: 20px">
                                         <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12" CssClass="text_custom"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvPresupuesto" runat="server" ErrorMessage="Debe ingresar el monto del presupuesto."
-                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"></asp:RequiredFieldValidator>
                                         <asp:CompareValidator ID="cvPresupuesto" runat="server" ErrorMessage="El monto del presupuesto no es válido."
                                             Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"
                                             Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
                                     </td>
+                                    <td colspan="2" style="height: 20px">
+                                    
+                                    <asp:ImageButton runat="server" ID="btnAceptarGastos" CommandArgument="Aceptar" CommandName="Aceptar"   ImageUrl="~/images/aprobar.gif"  OnClick="ImageButton1_Click1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="height: 20px">
+                                    </td>
+                                    <td >
+                                        Gastos Estimados:<asp:Label runat="server" ID="lblGastos" Visible="true" ForeColor="Red" Font-Bold="true" ></asp:Label>
+                                    </td>
+                                    <td colspan="2" style="height: 20px">
+                                     
+                                    </td>
                                 </tr>
                             </table>
+                            </ContentTemplate>
+                            </asp:UpdatePanel>
                         </ContentTemplate>
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpConfirmacion" HeaderText="Confirmación" runat="server">
@@ -371,4 +416,6 @@
     </table>
     </asp:Panel>
     <uc1:MantenimientoPreventivo ID="ucMantenimientoPreventivo" runat="server" Visible="false" Imprimible="false" />
+   
+
 </asp:Content>

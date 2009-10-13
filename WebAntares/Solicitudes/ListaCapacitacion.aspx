@@ -34,7 +34,7 @@
                     <asp:BoundField DataField="Instructor" HeaderText="Instructor" HeaderStyle-HorizontalAlign="Center" />
                         <asp:TemplateField HeaderText="Visualizar" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
-                                <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar" ImageUrl="~/images/calendar.png" Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("IdSolicitud") %>' />
+                                <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar" ImageUrl="~/Images/calendario.gif" Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("IdSolicitud") %>' />
                             </ItemTemplate>
                          </asp:TemplateField>
                         <asp:CommandField HeaderText="Editar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
@@ -44,7 +44,7 @@
                         ShowEditButton="True" />
                         <asp:CommandField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                         ButtonType="Image" 
-                        DeleteImageUrl="~/images/delete.gif" 
+                        DeleteImageUrl="~/Images/basuravacio.gif" 
                         ShowCancelButton="False" 
                         ShowDeleteButton="True" />            
                     </Columns>

@@ -67,7 +67,7 @@ public partial class Solicitudes_PersonaHoras : System.Web.UI.Page
 
             case "Mantenimiento Preventivo":
                 SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                    fecha_Inicio = DateTime.Parse(sol_Pre.FechaInicio);
+                    fecha_Inicio = sol_Pre.FechaInicio;
                     
                 break;
             case "Obras e Instalaciones":

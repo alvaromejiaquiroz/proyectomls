@@ -87,7 +87,7 @@
                                     <ItemTemplate>
                                         <div ID="noprint2">
                                             <asp:ImageButton ID="ImageButton5" runat="server" CausesValidation="False" 
-                                                CommandName="Delete" ImageUrl="~/Images/delete.gif" Text="Delete" />
+                                                CommandName="Delete" ImageUrl="~/Images/basuravacio.gif" Text="Delete" />
                                         </div>
                                     </ItemTemplate>
                         </asp:TemplateField>

@@ -17,12 +17,17 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        CargaDatosSolicitud();
         if (!Page.IsPostBack)
         {
             LlenaCombo();
         }
     }
 
+    protected void CargaDatosSolicitud()
+    {
+       
+    }
     protected void LlenaCombo()
     {
         cmbEstados.Items.Add(new ListItem("Seleccione...", "-1"));
@@ -37,8 +42,9 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
         txtAprobador.Text = string.Empty;
         txtCausa.Text = string.Empty;
         txtReprogramacion.Text = string.Empty;
-        txtInicio.Text = string.Empty;
-        txtFin.Text = string.Empty;
+
+        txtInicio.Text = DateTime.Today.ToString("dd/MM/yyyy");
+        txtReprogramacion.Text = DateTime.Today.ToString("dd/MM/yyyy");
         switch ((eEstados)int.Parse(cmbEstados.SelectedValue))
         {
             case eEstados.Reprogramado:
@@ -55,7 +61,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 cvFin.Enabled = true;
                 cvFechas.Enabled = true;
                 break;
-            case eEstados.Suspendido:
+            case eEstados.Cancelado:
                 btnAceptar.Visible = false;
                 cmbEstados.Enabled = false;
                 pnlReprogramado.Visible = true;
@@ -228,14 +234,38 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
             sol.AprobadorReprosusp = txtAprobador.Text;
             switch (cmbEstados.SelectedItem.ToString())
             {
+
                 case "Reprogramado":
-                    sol.Status = eEstados.Reprogramado.ToString();
-                    sol.FechaReprogramacion = txtReprogramacion.Text;
-                    sol.ProximaFechaInicio = txtInicio.Text;
-                    sol.ProximaFechaFin = txtFin.Text;
-                    break;
+                    switch (sol.IdTipoSolicitud)
+                    {
+                        case 1:
+                            sol.Status = eEstados.Reprogramado.ToString();
+                            sol.FechaReprogramacion = txtReprogramacion.Text;
+
+                            SolicitudPreventivo sP = SolicitudPreventivo.FindOne(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                            SolicitudTareas sT = SolicitudTareas.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+                            if ((sP != null) && (sT != null))
+                            {
+                            sP.FechaInicio = DateTime.Parse(txtInicio.Text);
+                            sP.FechaFin = DateTime.Parse(txtFin.Text);
+                            sol.ProximaFechaInicio = sT.FechaInicio.ToString();
+                            sol.ProximaFechaFin = sT.FechaFin.ToString();
+                            sT.FechaInicio = DateTime.Parse(txtInicio.Text);
+                            sT.FechaFin = DateTime.Parse(txtFin.Text);
+                            sP.Update();
+                            sT.Update();
+                            }
+                            break;
+                        default:
+                            sol.Status = eEstados.Reprogramado.ToString();
+                            sol.FechaReprogramacion = txtReprogramacion.Text;
+                            sol.ProximaFechaInicio = txtInicio.Text;
+                            sol.ProximaFechaFin = txtFin.Text;
+                            break;
+                    } break;
+
                 case "Cancelado":
-                    sol.Status = eEstados.Suspendido.ToString();
+                    sol.Status = eEstados.Cancelado.ToString();
                     sol.FechaSuspencion = txtReprogramacion.Text;
                     break;
             }

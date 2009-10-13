@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="site" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="site"  %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,11 +55,6 @@
 
     <style type="text/css">
     
-        #menu
-        {
-            height: 100%;
-            width: 100%;
-        }
     </style>
 </head>
 <body style="margin: 0 0 0 0">
@@ -129,7 +124,19 @@
                     <tr>
                         <td >
                             <asp:ContentPlaceHolder ID="PageContainer" runat="server">
-                            </asp:ContentPlaceHolder>
+                           </asp:ContentPlaceHolder>
+                           
+                            <asp:UpdateProgress ID="UpdateProgress1"  DisplayAfter="2" runat="server"  DynamicLayout="true" Visible="true">
+                            <ProgressTemplate>
+                                <div style="position:absolute; top:50%; left:50%; height:75px; width:100px; background-color:transparent; text-align:LEFT;" visible="false">
+                                    <asp:image ID="foto_update" runat="server" ImageUrl="~/images/espera_2.gif"/>
+                                    
+                                    Cargando
+                                    
+                                </div>   
+                            </ProgressTemplate>
+                            </asp:UpdateProgress>
+
                         </td>
                     </tr>
                 <!--style="height: 400px; width: 100%"> -->

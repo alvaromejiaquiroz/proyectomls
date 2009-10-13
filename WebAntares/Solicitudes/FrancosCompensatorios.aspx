@@ -24,7 +24,7 @@
             </td>
             <td>
                 <asp:TextBox ID="txtFecha" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                <asp:ImageButton ID="imgFecha" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                <asp:ImageButton ID="imgFecha" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                 <cc1:CalendarExtender ID="ceFecha" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFecha"
                     TargetControlID="txtFecha">
                 </cc1:CalendarExtender>

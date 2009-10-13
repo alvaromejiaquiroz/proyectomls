@@ -18,7 +18,7 @@
             Número
         </td>
         <td colspan="2">
-            <asp:Literal ID="litNumero" runat="server"></asp:Literal>
+            <asp:Literal ID="litNumero" runat="server"  ></asp:Literal>
         </td>
     </tr>
     <tr>
@@ -34,7 +34,7 @@
             Estado
         </td>
         <td colspan="2">
-            <asp:Literal ID="litEstado" runat="server"></asp:Literal>
+            <asp:Literal ID="litEstado" runat="server" ></asp:Literal>
         </td>
     </tr>
     <tr>
@@ -47,6 +47,30 @@
     </tr>
     <tr>
         <td colspan="3" style="height: 20px"></td>
+    </tr>
+      <tr>
+        <td style="padding-left: 20px;width:400px">
+        <div id="divReprogramacion" runat="server" visible="false" style="position:inherit;">
+        <table >
+            <tr>
+                <td><asp:Literal ID="litReprogramacion" runat="server"></asp:Literal></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td>Aprobador de la Reprogramación:</td>
+                <td colspan="2"><asp:Literal ID="litAprobadorReprogramacion" runat="server"></asp:Literal></td>
+            </tr>
+            <tr>
+                <td>Fecha de Reprogramación:</td>
+                <td colspan="2"><asp:Literal ID="litFechaReprogramacion" runat="server"></asp:Literal></td>
+            </tr>
+        
+        </table>
+            
+            <br />
+            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+        </div>
+        </td>
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
@@ -108,12 +132,12 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Complemento
+            Datos Cliente
         </td>
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Cliente
+            Contrato
         </td>
         <td colspan="2">
             <asp:Literal ID="litCliente" runat="server"></asp:Literal>
@@ -121,7 +145,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Contacto de cliente
+            Contacto del Cliente
         </td>
         <td colspan="2">
             <asp:Literal ID="litContactoCliente" runat="server"></asp:Literal>
@@ -129,7 +153,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Nro. de orden
+            Nro. Orden del Cliente
         </td>
         <td colspan="2">
             <asp:Literal ID="litNroOrden" runat="server"></asp:Literal>
@@ -137,7 +161,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Teléfono de contacto
+            Teléfono de Contacto
         </td>
         <td colspan="2">
             <asp:Literal ID="litTelefonoContacto" runat="server"></asp:Literal>
@@ -145,7 +169,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            E-mail de contacto
+            E-mail de Contacto
         </td>
         <td colspan="2">
             <asp:Literal ID="litMailContacto" runat="server"></asp:Literal>
@@ -155,6 +179,39 @@
         <td colspan="3" style="height: 20px"></td>
     </tr>
     <tr>
+    <td style="padding-left: 20px;">
+    <div ID="pnlCalidad" runat="server" Visible="false">
+                <table >
+                <tr>
+                    <td colspan="3" style="font-weight:bold;" >
+                    Archivo de Calidad
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                       <asp:GridView ID="gvCalidad" runat="server" AutoGenerateColumns="False"  EmptyDataText="No Existen Registros de Calidad Asignados" Width="100%">
+                                        <Columns>
+                                            <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="False" />
+                                            <asp:BoundField DataField="NombreArchivo" HeaderText="Archivo Calidad" HeaderStyle-HorizontalAlign="Left"/> 
+                                            <asp:TemplateField  ItemStyle-HorizontalAlign="Center" >
+                                                <ItemTemplate>
+                                                
+                                                    <asp:ImageButton ID="imgAdjunto" runat="server" CausesValidation="False" 
+                                                    CommandName="Descargar" 
+                                                    CommandArgument='<%# Bind("Id") %>'
+                                                    ImageUrl="~/Images/guardar.gif" Text="Descargar" ToolTip="Descargar el Archivo"  />
+                                                    
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                    </td>
+                </tr>
+                </table>
+        </div>
+    </td>
+    </tr>
+    <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
             Adjuntos
         </td>
@@ -162,7 +219,7 @@
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
             <asp:GridView ID="gvAdjuntos" runat="server" AutoGenerateColumns="False" 
-                Width="100%" EmptyDataText="No se han adjuntado archivos en la solicitud." 
+                Width="100%" EmptyDataText="No se han adjuntado archivos" 
                 onrowcommand="gvAdjuntos_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="FileName" HeaderText="Archivo" Visible="true" HeaderStyle-HorizontalAlign="Center" />
@@ -191,7 +248,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Monto
+            Gastos Estimados
         </td>
         <td colspan="2">
             <asp:Literal ID="litMonto" runat="server"></asp:Literal>

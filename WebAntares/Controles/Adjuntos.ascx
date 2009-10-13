@@ -34,7 +34,7 @@
                             <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgAdjunto" runat="server" CausesValidation="False" CommandName="Delete"
-                                        ImageUrl="~/Images/delete.gif" Text="Delete" ToolTip="Eliminar" />
+                                        ImageUrl="~/Images/basuravacio.gif" Text="Delete" ToolTip="Eliminar" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

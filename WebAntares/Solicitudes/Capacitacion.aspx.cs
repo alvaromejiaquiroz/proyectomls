@@ -22,38 +22,7 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             FillSol();
-            //UsuariosEmpleados ue = BiFactory.Empleado;
-
-            //if (ue != null)
-            //{
-            //    string id = Request.QueryString["id"];
-            //    CargarCombos();
-
-            //    if (id != null)
-            //    {
-            //        sol_Cap = SolicitudCapacitacion.FindFirst(Expression.Eq("IdSolicitud", int.Parse(id)));
-            //        if (sol_Cap != null)
-            //        {
-            //            BiFactory.Sol = Solicitud.GetById(sol_Cap.IdSolicitud);
-            //            cmbNivelCapacitacion.SelectedValue = sol_Cap.Nivel;
-            //            txtAreaEstudios.Text = sol_Cap.AreaEstudio;
-            //            txtEntidad.Text = sol_Cap.EntidadEducativa;
-            //            txtDuracion.Text = sol_Cap.Duracion;
-            //            txtInstructor.Text = sol_Cap.Instructor;
-            //            txtPuntuacionExamen.Text = sol_Cap.PuntuacionExamen;
-            //            txtInicio.Text = sol_Cap.FechaInicio;
-            //            txtFin.Text = sol_Cap.FechaFin;
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    HtmlGenericControl lb = (HtmlGenericControl)Master.FindControl("divMensajes");
-            //    if (lb != null)
-            //    {
-            //        lb.InnerText = "El Usuario NO esta relacionado con un Empleado";
-            //    }
-            //}
+    
         }
     }
 
@@ -100,6 +69,7 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
 
     private void FillSol()
     {
+
         sol_Cap = SolicitudCapacitacion.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
         if (sol_Cap != null)
         {

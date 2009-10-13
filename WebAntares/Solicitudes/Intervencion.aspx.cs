@@ -53,7 +53,13 @@ public partial class _Default : System.Web.UI.Page
         
     private void GrabarSolicitud()
     {
-        Solicitud sol = BiFactory.Sol;
+        Solicitud sol;
+        if (BiFactory.Sol == null)
+        {
+            sol = new Solicitud();
+        }
+
+        sol = BiFactory.Sol;
         sol.Descripcion = txtTitulo.Text;
         sol.FechaCreacion = System.DateTime.Now;
         sol.IdTipoSolicitud = int.Parse(ucTipoSolicitud.value);

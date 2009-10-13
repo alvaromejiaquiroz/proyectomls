@@ -32,9 +32,9 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             FillSolicitudEmpleados();
             FillSolicitudVehiculos();
             LoadDataComplementaria();
-
-
+            FillAdjuntosCalidad();
             string accion;
+            
             if (Session["Accion"] != null)
             {
                 accion = Session["Accion"].ToString();
@@ -44,7 +44,11 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                     SolicitudPreventivo sol_p = SolicitudPreventivo.FindOne(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
                    
                     cboSitios.Enabled = false;
-
+                    txtDesde.Enabled = false;
+                    txtHasta.Enabled = false;
+                    lstTareas.Enabled = false;
+                    btnAgregarTarea.Enabled = false;
+                    Session["Accion"] = null;
                 }
             }
         }
@@ -57,15 +61,27 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         SolicitudPreventivo sol_p = SolicitudPreventivo.FindOne(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
         if (sol_p != null)
         {
+            
             cmbClientes.SelectedValue = sol.IdCliente.ToString();
             Sitios unSitio = Sitios.FindOne(Expression.Eq("IdSitio", sol_p.IdSitio));
             cboSitios.SelectedIndex = unSitio.IdSitio;
             cboSitios.SelectedValue = unSitio.Descripcion;
+
+            SolicitudTareas sT = SolicitudTareas.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+            if (sT != null)
+            {
+                txtDesde.Text = sT.FechaInicio.ToShortDateString();
+                txtHasta.Text = sT.FechaFin.ToShortDateString();
+            }
+
             txtContactoCliente.Text = sol.Contacto;
             txtMailContacto.Text = sol.ContactoMail;
             txtNroOrdenCliente.Text = sol.NroOrdenCte;
             txtTelefonoContacto.Text = sol.ContactoTel;
-            txtPresupuesto.Text = sol_p.Presupuesto;
+            
+            txtPresupuesto.Text = "";
+            lblGastos.Visible = true;
+            lblGastos.Text = "$"+sol_p.Presupuesto;
 
             ucAdjuntos.ListaAdjuntos(sol.Id_Solicitud.ToString());
         }
@@ -97,6 +113,9 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                     }
                 }
             }
+            //Aca asocio el/los registros de calidad necesarios de la solicitud
+            AdjuntaRegistroCalidad();
+            FillAdjuntosCalidad();
             FillTareas();
         }
     }
@@ -149,9 +168,18 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     protected void gvTareas_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SolicitudTareas t;
-        t = SolicitudTareas.FindFirst(Expression.Eq("Id", int.Parse(gvTareas.DataKeys[e.RowIndex].Value.ToString())));
+        int idSolicitud =int.Parse(gvTareas.DataKeys[e.RowIndex].Value.ToString());
+        t = SolicitudTareas.FindFirst(Expression.Eq("Id",idSolicitud ));
+        
         t.Delete();
         
+        SolicitudArchivoCalidad  S = SolicitudArchivoCalidad.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+        if (S != null)
+        {
+            S.Delete();
+            FillAdjuntosCalidad();
+        }
+
         t = SolicitudTareas.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
 
         if (t == null)
@@ -269,9 +297,22 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
             sol.Status = eEstados.Pendiente.ToString();
             Sol_P.IdSitio = int.Parse(cboSitios.SelectedValue);
-            Sol_P.FechaFin = DateTime.Now.ToString();
-            Sol_P.FechaInicio = DateTime.Now.ToString();
-            Sol_P.Presupuesto = txtPresupuesto.Text;
+            //Sol_P.FechaFin = DateTime.Now.ToString();
+            //Sol_P.FechaInicio = DateTime.Now.ToString();
+
+            SolicitudTareas st = SolicitudTareas.FindOne(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+            Sol_P.FechaFin = st.FechaFin;
+            Sol_P.FechaInicio = st.FechaInicio;
+            
+            if (txtPresupuesto.Text == "")
+            {
+                Sol_P.Presupuesto = lblGastos.Text.Replace("$","");
+            }
+            else
+            {
+
+                Sol_P.Presupuesto = txtPresupuesto.Text;
+            }
             sol.Save();
             Sol_P.Save();
             
@@ -290,6 +331,14 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             ucMantenimientoPreventivo.TelefonoContacto = sol.ContactoTel;
             ucMantenimientoPreventivo.MailContacto = sol.ContactoMail;
             ucMantenimientoPreventivo.Adjuntos = sol.GetAdjuntos();
+
+            SolicitudArchivoCalidad S = SolicitudArchivoCalidad.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+            if (S != null)
+            {
+                ucMantenimientoPreventivo.HabilitarArchivoCalidad = true;
+                ucMantenimientoPreventivo.Calidad = CalidadArchivos.FindAll(Expression.Eq("Id", S.IdCalidadArchivo)); ;
+            }
+
             ucMantenimientoPreventivo.Monto = Sol_P.Presupuesto;
 
             ucMantenimientoPreventivo.Visible = true;
@@ -378,5 +427,92 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     protected void cvVehiculos_ServerValidate(object source, ServerValidateEventArgs args)
     {
         args.IsValid = lstVehiculos.SelectedIndex >= 0;
+    }
+    
+    protected void AdjuntaRegistroCalidad()
+    {
+        int idSitio = int.Parse(cboSitios.SelectedValue);
+        int idSemestre = int.Parse(lstTareas.SelectedValue);
+        SolicitudArchivoCalidad adjunto;
+        CalidadArchivos  archivoCalidad  =  CalidadArchivos.FindOne(Expression.Eq("IdSitio", idSitio), Expression.Eq("IdTarea", idSemestre)); ;
+        if (archivoCalidad != null)
+        {
+            adjunto =  new SolicitudArchivoCalidad();
+            adjunto.IdSolicitud = BiFactory.Sol.Id_Solicitud;
+            adjunto.IdCalidadArchivo = archivoCalidad.Id;
+            adjunto.Save();
+        }
+
+    }
+
+    protected void FillAdjuntosCalidad()
+    {
+        SolicitudArchivoCalidad  S = SolicitudArchivoCalidad.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+        if (S != null)
+        {
+            gvCalidad.DataSource = CalidadArchivos.FindAll(Expression.Eq("Id", S.IdCalidadArchivo));
+            gvCalidad.DataKeyNames = new string[] { "Id" };
+            gvCalidad.DataBind();
+        }
+        else
+        {
+            gvCalidad.DataSource= null;
+            gvCalidad.DataBind();
+
+
+        }
+
+    }
+    
+    protected void gvCalidad_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        Int32 Id = Int32.Parse(e.CommandArgument.ToString());
+        CalidadArchivos Archivo = CalidadArchivos.FindOne(Expression.Eq("Id", Id));
+        
+        switch (e.CommandName)
+        {
+            case "Descargar":
+                System.IO.FileInfo file = new System.IO.FileInfo(Archivo.RutaArchivo);
+                if (file.Exists)
+                {
+                    Response.Clear();
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + Archivo.NombreArchivo);
+                    Response.AddHeader("Content-Length", file.Length.ToString());
+                    Response.ContentType = "application/octet-stream";
+                    Response.WriteFile(file.FullName);
+                    Response.End();
+                }
+                break;
+        }
+    }
+
+    protected void tcMantenimientoPreventivo_ActiveTabChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void ImageButton1_Click1(object sender, ImageClickEventArgs e)
+    {
+        lblGastos.Visible = true;
+        lblGastos.Text = "$" + txtPresupuesto.Text;
+        txtPresupuesto.Text = "";
+
+    }
+
+    protected void gvTareas_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+     
+    }
+    protected void gvTareas_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        string accion ;
+        if (Session["Accion"] != null)
+        {
+            accion  = Session["Accion"].ToString();
+            if (accion == "e")
+            {
+                e.Row.Cells[6].Visible = false;
+            }
+        }
+
     }
 }

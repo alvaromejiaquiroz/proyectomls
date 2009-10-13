@@ -108,8 +108,8 @@ public partial class Reportes_MostrarSolicitud : System.Web.UI.Page
 
         //Panel Preventiva
         lblPvSitio.Text = sitio.Descripcion + " (" + sitio.Direccion + ")";
-        lblPvFechaFin.Text = DateTime.Parse(SolPre.FechaFin).ToShortDateString();
-        lblPvFechaInicio.Text = DateTime.Parse(SolPre.FechaInicio).ToShortDateString();
+        lblPvFechaFin.Text = SolPre.FechaFin.ToShortDateString();
+        lblPvFechaInicio.Text = SolPre.FechaInicio.ToShortDateString();
         
         //Panel Comun
 

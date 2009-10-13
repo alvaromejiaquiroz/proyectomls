@@ -44,13 +44,13 @@
                             <asp:BoundField DataField="Duracion" HeaderText="Duración" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField HeaderText="Visualizar" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
-                                <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar" ImageUrl="~/images/calendar.png" Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("IdSolicitud") %>' />
+                                <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar" ImageUrl="~/Images/calendario.gif" Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("IdSolicitud") %>' />
                             </ItemTemplate>
                          </asp:TemplateField>
                             <asp:CommandField ButtonType="Image" HeaderText="Editar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                                 EditImageUrl="~/images/b_edit.gif" EditText="Editar" ShowCancelButton="False"
                                 ShowEditButton="True" />
-                            <asp:CommandField ButtonType="Image" DeleteImageUrl="~/images/delete.gif" DeleteText="Eliminar" HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
+                            <asp:CommandField ButtonType="Image" DeleteImageUrl="~/Images/basuravacio.gif" DeleteText="Eliminar" HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                                 ShowCancelButton="False" ShowDeleteButton="True" />
                             </Columns>
                         </asp:GridView>

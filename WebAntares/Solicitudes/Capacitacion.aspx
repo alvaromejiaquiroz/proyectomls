@@ -33,7 +33,7 @@
             </td>
             <td>
                 <asp:TextBox ID="txtInicio" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                <asp:ImageButton ID="imgInicio" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                <asp:ImageButton ID="imgInicio" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                 <cc1:CalendarExtender ID="ceInicio" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgInicio"
                     TargetControlID="txtInicio">
                 </cc1:CalendarExtender>
@@ -48,7 +48,7 @@
             </td>
             <td>
                 <asp:TextBox ID="txtFin" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                <asp:ImageButton ID="imgfin" runat="server" CausesValidation="false" ImageUrl="~/images/calendar.png" />
+                <asp:ImageButton ID="imgfin" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                 <cc1:CalendarExtender ID="ceFin" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFin"
                     TargetControlID="txtFin">
                 </cc1:CalendarExtender>
