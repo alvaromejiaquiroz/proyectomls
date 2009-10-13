@@ -228,16 +228,6 @@
         <modelProperty Id="aed10552-0a07-4e25-8c18-5aef4b348bac" name="Foto" column="Foto" length="0" />
       </properties>
     </modelClass>
-    <modelClass name="SolicitudPreventivo" schema="dbo" table="Solicitud_Preventivo">
-      <properties>
-        <modelProperty Id="8f30ae73-720d-4293-8ce9-243a558bb60b" name="Id" column="id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="d453c3df-bfe1-4ace-84e6-deb559bb0084" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" notNull="true" />
-        <modelProperty Id="b37a213d-9455-47c4-9678-ffc984228d64" name="IdSitio" column="IdSitio" columnType="Int32" length="0" />
-        <modelProperty Id="704590f3-2536-46a5-aa5e-55ec4e236812" name="FechaInicio" column="Fecha_Inicio" length="0" />
-        <modelProperty Id="62633008-3d91-464e-9851-ad404e0ba4c6" name="FechaFin" column="Fecha_Fin" length="0" />
-        <modelProperty Id="19a1fb1a-7281-47e9-b453-8282fe268b28" name="Presupuesto" column="Presupuesto" length="0" />
-      </properties>
-    </modelClass>
     <modelClass name="SolicitudTareas" schema="dbo" table="Solicitud_Tareas">
       <properties>
         <modelProperty Id="b2132cbe-efe6-4d3b-867a-00ada21590f7" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
@@ -325,6 +315,35 @@
         <modelProperty Id="b9c32167-593d-4863-be79-f61a36ae9cae" name="FechaAprobacionTecnica" column="Fecha_Aprobacion_Tecnica" columnType="DateTime" insert="false" length="0" update="false" />
         <modelProperty Id="0d610129-6190-45c1-a92f-bca24ce54dfd" name="AprobacionCalidad" column="Aprobacion_Calidad" columnType="Boolean" insert="false" length="0" update="false" />
         <modelProperty Id="a22f2182-433f-45a4-913f-746b6f4112a6" name="FechaAprobacionCalidad" column="Fecha_Aprobacion_Calidad" columnType="DateTime" insert="false" length="0" update="false" />
+      </properties>
+    </modelClass>
+    <modelClass name="CalidadArchivos" schema="dbo" table="Calidad_Archivos">
+      <properties>
+        <modelProperty Id="d4b20125-25bb-4a74-9d69-5325b3bf3647" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="a5a20463-afb7-49cc-b611-4bb005ed67a9" name="IdSitio" column="Id_Sitio" columnType="Int32" length="0" />
+        <modelProperty Id="426ab477-ca03-41ac-9c44-62633b1a5bb2" name="IdTarea" column="Id_Tarea" columnType="Int32" length="0" />
+        <modelProperty Id="8e754699-a933-46f5-9ed7-6dbc01931e88" name="NombreArchivo" column="Nombre_Archivo" length="0" />
+        <modelProperty Id="bd03d98e-81b0-4e60-9979-b98aa376e75f" name="RutaArchivo" column="Ruta_Archivo" length="0" />
+        <modelProperty Id="839fdfb7-f932-4c28-bf00-59423689782f" name="Año" column="Año" length="0" />
+        <modelProperty Id="40868808-0311-424e-ab0e-18fba99f1b91" name="FechaActualizacion" column="FechaActualizacion" columnType="DateTime" insert="false" length="0" update="false" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudArchivoCalidad" schema="dbo" table="Solicitud_Archivo_Calidad">
+      <properties>
+        <modelProperty Id="ae5bc414-29aa-4bf8-8e05-4a2f298adb81" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="e73bc9de-bb83-483c-b882-a87a31e6fde5" name="IdSolicitud" column="Id_Solicitud" columnType="Int32" length="0" />
+        <modelProperty Id="c45f6200-585a-4835-a25d-a317977ff723" name="IdCalidadArchivo" column="Id_Calidad_Archivo" columnType="Int32" length="0" />
+        <modelProperty Id="f61812c1-4a00-4f1a-978b-8f2cb9073966" name="FechaActualizacion" column="FechaActualizacion" columnType="DateTime" insert="false" length="0" update="false" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudPreventivo" schema="dbo" table="Solicitud_Preventivo">
+      <properties>
+        <modelProperty Id="0f9028aa-026d-4e31-b52f-618e1fd65da0" name="Id" column="id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="935e1bec-20d1-4b0a-b5b4-de8d5b7f3299" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" notNull="true" />
+        <modelProperty Id="e9f139b3-b90f-4cb6-b021-31772ab564b0" name="IdSitio" column="IdSitio" columnType="Int32" length="0" />
+        <modelProperty Id="a31f7713-2d90-4f6a-8ec2-3cd6cf18f758" name="FechaInicio" column="Fecha_Inicio" columnType="DateTime" length="0" />
+        <modelProperty Id="9068c55e-9c9f-4948-a5b6-33e8d692a606" name="FechaFin" column="Fecha_Fin" columnType="DateTime" length="0" />
+        <modelProperty Id="b43a0cce-c8b1-4d82-a349-52a8d90bc2f2" name="Presupuesto" column="Presupuesto" length="0" />
       </properties>
     </modelClass>
   </classes>

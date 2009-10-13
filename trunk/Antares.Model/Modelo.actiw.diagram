@@ -128,22 +128,16 @@
         <elementListCompartment Id="bb1b8a9f-c65c-4496-9fa2-b5e1faf2adad" absoluteBounds="2.515, 3.66, 1.4700000000000002, 5.13787841796875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7bd9ba49-4821-4fae-af50-266aa8dc3566" isExpanded="false" absoluteBounds="4.375, 2.375, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudPreventivo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c274b20b-e168-4315-b255-e9c051ad8805" absoluteBounds="4.3900000000000006, 2.785, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="9051c157-e633-41bd-8c04-53444e49c145" isExpanded="false" absoluteBounds="2.5, 0.5, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudTareas" />
       <nestedChildShapes>
         <elementListCompartment Id="33835d7c-41eb-4d90-8301-56ef99c54a23" absoluteBounds="2.515, 0.91, 1.4700000000000002, 1.029195149739583" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="715e0a3e-7110-455d-aaab-80e9f71c43c5" isExpanded="false" absoluteBounds="6.375, 0.5, 1.5, 0.4">
+    <classShape Id="715e0a3e-7110-455d-aaab-80e9f71c43c5" isExpanded="false" absoluteBounds="6.875, 0.5, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/TiposolicitudXPerfil" />
       <nestedChildShapes>
-        <elementListCompartment Id="459e8e63-f580-425c-bd6b-9d89a373455e" absoluteBounds="6.39, 0.91, 1.4700000000000002, 0.70050048828125011" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="459e8e63-f580-425c-bd6b-9d89a373455e" absoluteBounds="6.89, 0.91, 1.4700000000000002, 0.70050048828125011" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="6f1db9a4-b625-458f-ae2c-d1423617dc68" isExpanded="false" absoluteBounds="7, 5.625, 1.5, 0.4">
@@ -170,10 +164,28 @@
         <elementListCompartment Id="3074e0fd-0109-46c4-8a84-ee8eada10c96" absoluteBounds="7.015, 7.035, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="9f85bef0-ab6a-457e-95b0-1510f3ad346e" absoluteBounds="0.5, 2.25, 1.5, 4.66179443359375">
+    <classShape Id="9f85bef0-ab6a-457e-95b0-1510f3ad346e" isExpanded="false" absoluteBounds="0.5, 2.25, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Solicitud" />
       <nestedChildShapes>
         <elementListCompartment Id="758d8bc7-1d5d-4e20-be7f-e50af5942f2d" absoluteBounds="0.515, 2.66, 1.4700000000000002, 4.15179443359375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c13271b9-6dc1-497c-8c40-f349f401e4a5" isExpanded="false" absoluteBounds="0.5, 5, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/CalidadArchivos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3e89baa6-047b-46f7-8cc3-02974d1204d1" absoluteBounds="0.515, 5.41, 1.4700000000000002, 1.3578898111979165" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="431c59ae-425e-4541-95d6-2ed8fd13e757" absoluteBounds="2.5, 5.75, 1.5, 1.3748478190104168">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudArchivoCalidad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e1704d6b-cdac-4a30-8eae-49d38a1fd072" absoluteBounds="2.5149999999999997, 6.16, 1.4700000000000002, 0.86484781901041663" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6fc9719d-9658-44a3-b20f-5ac670b92cc5" isExpanded="false" absoluteBounds="4.5, 2.25, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudPreventivo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="15a2bf43-2d25-4f36-a690-1627f149079d" absoluteBounds="4.515, 2.66, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
