@@ -20,17 +20,17 @@ function MoveTab(num)
 <asp:ScriptManager ID="ScriptManager1" runat="server">
 </asp:ScriptManager>
 
-    <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" 
-            BackColor="#F7F6F3" DynamicHorizontalOffset="2" Font-Names="Verdana" 
-            Font-Size="0.8em" ForeColor="#7C6F57" 
-            onmenuitemdatabound="Menu1_MenuItemDataBound" StaticSubMenuIndent="10px">
-            <StaticSelectedStyle BackColor="#5D7B9D" />
+    <asp:Menu ID="Menu1" runat="server"  Orientation="Horizontal"
+            BackColor="#FFFBD6" DynamicHorizontalOffset="2" Font-Names="Verdana" 
+            Font-Size="0.8em" ForeColor="#990000" 
+            StaticSubMenuIndent="10px">
+            <StaticSelectedStyle BackColor="#FFCC66" />
             <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-            <DynamicHoverStyle BackColor="#7C6F57" ForeColor="White" />
-            <DynamicMenuStyle BackColor="#F7F6F3" />
-            <DynamicSelectedStyle BackColor="#5D7B9D" />
+            <DynamicHoverStyle BackColor="#990000" ForeColor="White" />
+            <DynamicMenuStyle BackColor="#FFFBD6" />
+            <DynamicSelectedStyle BackColor="#FFCC66" />
             <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-            <StaticHoverStyle BackColor="#7C6F57" ForeColor="White" />
+            <StaticHoverStyle BackColor="#990000" ForeColor="White" />
         </asp:Menu>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
       
@@ -39,7 +39,7 @@ function MoveTab(num)
         &gt;<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <br />
     </div>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" Visible="false">
     <ContentTemplate>
     <cc1:TabContainer ID="Tabs" runat="server" Height="450px" >
                     <cc1:TabPanel ID="tpFalla" HeaderText="1" runat="server">
