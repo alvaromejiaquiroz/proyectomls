@@ -137,6 +137,8 @@ public partial class Controles_MantenimientoPreventivoRendicion : System.Web.UI.
             GridView horas = (GridView)e.Row.Cells[0].FindControl("gvHorasPersonal");
             horas.DataSource = SolicitudRendicionPersonalHoras.GetPersonasHorasEnSolicitud(int.Parse(SolicitudInicial), solicitudRecursosEmpleados.IdEmpleado);
             horas.DataBind();
+            
+
         }
     }
 

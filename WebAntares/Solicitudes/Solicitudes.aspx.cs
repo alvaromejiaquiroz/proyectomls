@@ -28,7 +28,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
     private void FillGrid(int pageIndex)
     {
-        DbDataReader reader = Antares.model.Solicitud.GetReader(IdSolicitud, TipoSolicitud,PerfilUsuario,IdResponsable ,IdEmpleadoUsuario, Estado , Fecha);
+//        DbDataReader reader = Antares.model.Solicitud.GetReader(IdSolicitud, TipoSolicitud,PerfilUsuario,IdResponsable ,IdEmpleadoUsuario, Estado , Fecha);
+        DbDataReader reader = Antares.model.Solicitud.GetReader(IdSolicitud, TipoSolicitud, IdEmpleado.ToString(), Estado, Fecha, PerfilUsuario);
         DataTable table = new DataTable();
         table.Load(reader);
         GridView1.DataSource = table;
@@ -168,8 +169,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         if (IsValid)
         {
             IdSolicitud = txtNroSolicitud.Text;
-            TipoSolicitud = cboTipoSolicitud1.value; 
-            IdResponsable = cboPersonal.Value;
+            TipoSolicitud = cboTipoSolicitud1.value;
+            IdEmpleado = cboPersonal.Value;
             Estado = cmbEstados.SelectedValue;
             Fecha = txtDesde.Text;
 
@@ -340,10 +341,10 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         set { ViewState["TipoSolicitud"] = value; }
     }
 
-    public string IdResponsable
+    public string IdEmpleado
     {
-        get { return ViewState["IdResponsable"].ToString(); }
-        set { ViewState["IdResponsable"] = value; }
+        get { return ViewState["IdEmpleado"].ToString(); }
+        set { ViewState["IdEmpleado"] = value; }
     }
   
     public string IdUsuario
