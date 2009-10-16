@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
@@ -15,7 +16,7 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
     public Solicitud sol;
 
     private TipoSolicitudEnum _tipoSolicitud;
-
+    private bool calidad;
     public TipoSolicitudEnum TipoSol
     {
         get { return _tipoSolicitud; }
@@ -35,6 +36,7 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
                 break;
             case TipoSolicitudEnum.MantenimientoPreventivoRendicion:
                 html = "MantPreventivoRendicionUpload";
+                calidad = true;
                 break;
             case TipoSolicitudEnum.MantenimientoCorrectivoRendicion:
                 html = "MantCorrectivoRendicionUpload";
@@ -52,11 +54,25 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
         Page.ClientScript.RegisterStartupScript(GetType(), "UploadScript", ClientScriptHelper.UploadFrameLoad(iUploadFrame.ClientID, btnUpload.ClientID));
         if (sol != null)
         {
-            FillAdjuntos();
+            if (calidad)
+            {
+                   FillAdjuntosCalidad();
+            }
+            else
+            {
+                   FillAdjuntos();
+            }
         }
         if (Request.Files.Count == 1)
         {
-            Guardar();
+            if (calidad)
+            {
+                GuardarCalidad();
+            }
+            else
+            {
+                Guardar();
+            }
             Response.Write("Cargando...");
             Response.End();
         }
@@ -71,11 +87,13 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
     {
         Adjunto adj = new Adjunto();
         SolicitudAdjuntos solAdj = new SolicitudAdjuntos();
+        
         if (sol == null)
         {
             sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
         }
 
+        
         solAdj.IdSolicitud = sol.Id_Solicitud;
 
 
@@ -143,6 +161,24 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
         }
     }
 
+    private void FillAdjuntosCalidad()
+    {
+        gvFiles.DataSource = sol.GetAdjuntosCalidad();
+        gvFiles.DataKeyNames = new string[] { "IdAdjunto" };
+        gvFiles.DataBind();
+    }
+
+    public void ListaAdjuntosCalidad(string idSol)
+    {
+        Solicitud sol = Solicitud.Find(int.Parse(idSol));
+        if (sol != null)
+        {
+            gvFiles.DataSource = sol.GetAdjuntosCalidad();
+            gvFiles.DataKeyNames = new string[] { "IdAdjunto" };
+            gvFiles.DataBind();
+        }
+    }
+    
     protected void gvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         Adjunto t = Adjunto.FindFirst(Expression.Eq("IdAdjunto", int.Parse(gvFiles.DataKeys[e.RowIndex].Value.ToString())));
@@ -162,4 +198,79 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
         e.Row.ID = "FileRow" + uniqueId.ToString();
         uniqueId += 1;
     }
+  
+    private void GuardarCalidad()
+    {
+        Adjunto adj = new Adjunto();
+        SolicitudAdjuntos solAdj = new SolicitudAdjuntos();
+
+        if (sol == null)
+        {
+            sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
+        }
+
+        solAdj.IdSolicitud = sol.Id_Solicitud;
+
+        long lMaxFileSize = 3000000;
+        string sFileDir = Server.MapPath("~/Archivos_Calidad/Uploads/" + DateTime.Now.Year.ToString() + "/");
+        if (!Directory.Exists(sFileDir))
+        {
+            Directory.CreateDirectory(sFileDir);
+        }
+
+
+        if ((Request.Files[0] != null) && (Request.Files[0].ContentLength > 0))
+        {
+            //determine file name
+            string OriginalName = System.IO.Path.GetFileName(Request.Files[0].FileName);
+
+            try
+            {
+                if (!File.Exists(sFileDir + Request.Files[0].FileName))
+                {
+                    if ((Request.Files[0].ContentLength <= lMaxFileSize))
+                    {
+                        //Save File on disk
+                        //sFileName = System.Guid.NewGuid().ToString();
+                        Request.Files[0].SaveAs(sFileDir + OriginalName);
+                        //relacionar el adjunto
+                        adj.PathFile = sFileDir + OriginalName;
+                        adj.Date = System.DateTime.Now;
+                        adj.FileName = OriginalName;
+                        adj.Size = Request.Files[0].ContentLength;
+                        adj.ContentType = Request.Files[0].ContentType;
+                        adj.Calidad = true;
+                        adj.Save();
+
+                        solAdj.IdAdjunto = adj.IdAdjunto;
+                        solAdj.Save();
+
+                        lblMessage.Visible = true;
+                        lblMessage.Text = "El Archivo se adjunto Correctamente.";
+                    }
+                    else //reject file
+                    {
+                        lblMessage.Visible = true;
+                        lblMessage.Text = "El tamaño del archivo supera el limite de " + lMaxFileSize;
+                    }
+                }
+                else
+                {
+                    lblMessage.Visible = true;
+                    lblMessage.Text = "El archivo " + OriginalName + " ya existe ";
+
+                }
+
+            }
+            catch (Exception ee)//in case of an error
+            {
+                lblMessage.Visible = true;
+                lblMessage.Text = ee.Message;
+            }
+        }
+        FillAdjuntos();
+     
+    }
+
+    
 }

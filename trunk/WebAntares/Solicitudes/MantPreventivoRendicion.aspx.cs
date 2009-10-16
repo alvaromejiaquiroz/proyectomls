@@ -17,6 +17,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
     protected override void OnInitComplete(EventArgs e)
     {
         ucAdjuntos.sol = BiFactory.Sol;
+        Adjuntos1.sol = BiFactory.Sol;
         base.OnInitComplete(e);
     }
 
@@ -29,7 +30,28 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
             FillSolicitudEmpleados();
             FillSolicitudVehiculos();
             FillDatosClientes();
+            //FillAdjuntosCalidad();
             //btnPopUp.Style.Add("display", "none");
+
+        }
+        else
+        {
+            if (Session["PostBackCalidad"] != null)
+            {
+                bool postbackcalidad = bool.Parse(Session["PostBackCalidad"].ToString());
+                if (postbackcalidad)
+                {
+                    foreach (AjaxControlToolkit.TabPanel tab in tcMantenimientoPreventivo.Tabs)
+                    {
+                        if (tab.ID == "tpUp" || tab.ID =="tpAdjuntos")
+                        {
+                            tab.Focus();
+                            Session["PostBackCalidad"] = null;
+                        }
+                    }
+                }
+            }
+
         }
     }
 
@@ -57,6 +79,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
             hdnSitio.Value = unSitio.IdSitio.ToString();
             litSitio.Text = unSitio.Descripcion;
             ucAdjuntos.ListaAdjuntos(sol.Id_Solicitud.ToString());
+            Adjuntos1.ListaAdjuntosCalidad(sol.Id_Solicitud.ToString());
         }
     }
 
@@ -87,13 +110,22 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
             FillTareas();
         }
     }
-
     
     private void FillTareas()
     {
         gvTareas.DataSource = SolicitudTareas.GetReader(BiFactory.Sol.Id_Solicitud);
         gvTareas.DataKeyNames = new string[] { "Id" };
         gvTareas.DataBind();
+        
+        
+        SolicitudPreventivo sol_p = SolicitudPreventivo.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+
+        txtDesde.Text = sol_p.FechaInicio.ToShortDateString();
+        txtHasta.Text = sol_p.FechaFin.ToShortDateString();
+        txtDesde.Enabled = false;
+        txtHasta.Enabled = false;
+        lstTareas.Enabled = false;
+        btnAgregarTarea.Enabled = false;
     }
 
     public void CargaComboPersonal()
@@ -512,4 +544,6 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
         gvHorasVehiculos.DataKeyNames = new string[] { "Id" };
         gvHorasVehiculos.DataBind();
     }
+    
+      
 }

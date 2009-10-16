@@ -13,25 +13,29 @@ EnableEventValidation="false"
         </tr>
         <tr>
             <td>
-              <asp:UpdatePanel ID="upSolicitudes" runat="server">
+              <asp:UpdatePanel ID="upSSolicitudes" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <asp:GridView ID="GridView1" runat="server" AllowPaging="true" 
-                            AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand"
-                            OnRowDataBound="GridView1_RowDataBound" OnDataBound="GridView1_DataBound" 
-                            onpageindexchanging="GridView1_PageIndexChanging">
+                            OnRowCommand="GridView1_RowCommand"
+                            AutoGenerateColumns="False"
+                            OnRowDataBound="GridView1_RowDataBound" 
+                            onpageindexchanging="GridView1_PageIndexChanging" 
+                            onload="GridView1_Load"  >
+                            
+                            
                             <Columns>
                                 <asp:BoundField DataField="Solicitud" HeaderText="Nro.Solicitud" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="Tipo" HeaderText="Tipo" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="Descripcion" HeaderText="Descripción" HeaderStyle-HorizontalAlign="Left" ></asp:BoundField>
-                                <asp:BoundField DataField="Fecha" HeaderText="Fecha" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"  />
+                                <asp:BoundField DataField="Fecha" HeaderText="Fecha" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" dataformatstring="{0:dd/MM/yyyy}" htmlencode="false" ItemStyle-Font-Bold="true"  />
                                 <asp:BoundField DataField="Responsable" HeaderText="Responsable" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="Id_Reporte" HeaderText="Report" Visible="false" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:TemplateField HeaderText="Estado" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Image ID="imgStatus" runat="server" />
+                                        <asp:Image ID="imgEstado" runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Solicitud" ItemStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="Solicitudcx" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar Solicitud" ImageUrl="~/images/versolicitud.gif" Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("Solicitud") %>' />
                                     </ItemTemplate>
@@ -44,7 +48,7 @@ EnableEventValidation="false"
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Aprobar" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="imgAprobar" runat="server" CausesValidation="False" CommandArgument='<%# Bind("Solicitud") %>'
+                                        <asp:ImageButton ID="imgAprobar" runat="server" CausesValidation="false" CommandArgument='<%# Bind("Solicitud") %>'
                                             CommandName="Aprobar" ImageUrl="~/images/aprobar.gif" ToolTip="Aprobar Solicitud" />
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
@@ -60,7 +64,7 @@ EnableEventValidation="false"
                         </asp:GridView>
                     </ContentTemplate>
                     <Triggers>
-<%--                        <asp:AsyncPostBackTrigger ControlID="cmdBuscar" />--%>
+                     
                     </Triggers>
                 </asp:UpdatePanel>
             </td>

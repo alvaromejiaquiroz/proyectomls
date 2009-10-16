@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Globalization;
 using Antares.model;
 using WebAntares;
 using System.Web.UI.HtmlControls;
@@ -13,6 +14,8 @@ using System.Data.Common;
 
 public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Page
 {
+    string Sector = "Gestion_Tecnica";
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -21,17 +24,60 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
             {
                 FillGrid(0);
             }
-
-
         }
-
-        else { FillGrid(0); }
-
-
     }
-    protected void GridView1_DataBound(object sender, EventArgs e)
+    protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            Solicitud S = Solicitud.FindOne(Expression.Eq("Id_Solicitud", (DataBinder.Eval(e.Row.DataItem, "Solicitud"))));
+            HyperLink lnkReporte = (HyperLink)e.Row.FindControl("lnkReporte");
+            HyperLink lnkSolicitud = (HyperLink)e.Row.FindControl("lnkReporte");
 
+            Image imgStatus = (Image)e.Row.FindControl("imgEstado");
+            
+            lnkReporte.Visible = false;
+
+            
+            string valorEstado = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Status"));
+            switch (valorEstado )
+            {
+
+                case "Anulado":
+             
+                        imgStatus.ImageUrl = "../images/deshabilitado.gif";
+                        imgStatus.ToolTip = "Anulado";
+                        break;
+                    
+                case "Pendiente":
+                        imgStatus.ImageUrl = "../images/pendiente.gif";
+                        imgStatus.ToolTip = "Pendiente";
+                        break;
+
+                case "Realizado":
+                        if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Reporte")) != null)
+                        {
+                            lnkReporte.Visible = true;
+                        }
+                        imgStatus.ImageUrl = "../images/realizado.gif";
+                        imgStatus.ToolTip = "Realizado";
+                        break;
+                    
+                case "Reprogramado":
+                        imgStatus.ImageUrl = "../images/reprogramado.gif";
+                        imgStatus.ToolTip = "REPROGRAMADO: " +  S.Causa;
+                        break;
+                case "Cancelado":
+                        imgStatus.ImageUrl = "../images/cancelado.gif";
+                        imgStatus.ToolTip = "CANCELADO: " + S.Causa;
+                        break;
+                case "Vencido":
+                        imgStatus.ImageUrl = "../images/vencido.gif";
+                        imgStatus.ToolTip = "VENCIDO: se ha exedido el plazo para la realización de esta Solicitud";
+                        break;
+            }
+            
+        }
     }
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -39,48 +85,34 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
     }
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+        string a = e.CommandName.ToString();
+
         if (!e.CommandName.Equals("Page"))
         {
             Int32 IdSolicitud = Int32.Parse(e.CommandArgument.ToString());
-            BiFactory.Sol = Solicitud.GetById(IdSolicitud);
-
+            
+             
             switch (e.CommandName)
             {
                 case "Visualizar":
                     Response.Redirect("~/Reportes/MostrarSolicitud.aspx?id=" + IdSolicitud.ToString());
                     break;
                 case "Aprobar":
-                    BiFactory.Sol.AprobacionTecnica = true;
-                    BiFactory.Sol.FechaAprobacionTecnica = DateTime.Now;
-                    BiFactory.Sol.Update();
-                    Response.Redirect("./AprobacionSolicitudesGestion.aspx");
+                    AprobarSolicitud(IdSolicitud,true);
                     break;
                 case "Rechazar":
-                    BiFactory.Sol.AprobacionTecnica = false;
-                    BiFactory.Sol.FechaAprobacionTecnica = DateTime.Now;
-                    BiFactory.Sol.Update();
-                    Response.Redirect("./AprobacionSolicitudesGestion.aspx");
-                    break; 
+                    AprobarSolicitud(IdSolicitud, false);
+
+                    break;
 
             }
+            Response.Redirect("./AprobacionSolicitudesGestion.aspx");
         }
     }
-    protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            Image imgStatus = (Image)e.Row.FindControl("imgStatus");
-            imgStatus.ImageUrl = "../images/realizado.gif";
-            imgStatus.ToolTip = "Realizado";
-        }       
-    }
+    
     private void FillGrid(int pageIndex)
     {
-        string IdSolicitud= string.Empty;
-        string TipoSolicitud = string.Empty;
-        string IdResponsable = string.Empty;
-        //Realizado es 2 y aprovada por Tecnico NULL
-        DbDataReader reader = Antares.model.Solicitud.GetReader(IdSolicitud, TipoSolicitud,BiFactory.User.IdPerfil.ToString(),BiFactory.User.IdUsuario,"2",string.Empty );
+        DbDataReader reader = Antares.model.Solicitud.GetReaderSinAprobacion("GestionTecnico");
         DataTable table = new DataTable();
         table.Load(reader);
         GridView1.DataSource = table;
@@ -99,5 +131,40 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
             return false; 
         }
 
+    }
+    protected void GridView1_Load(object sender, EventArgs e)
+    {
+
+    }
+    private void AprobarSolicitud(int id, bool aprueba)
+    {
+        Solicitud sol = Solicitud.FindOne(Expression.Eq("Id_Solicitud", id));
+        SolicitudAprobaciones apro;
+        
+        if (sol != null)
+        {
+
+            apro = SolicitudAprobaciones.FindFirst(Expression.Eq("IdSolicitud",sol.Id_Solicitud),Expression.Eq("Sector",Sector));
+
+            if (apro == null)
+            {
+                apro = new SolicitudAprobaciones();
+                apro.IdSolicitud = sol.Id_Solicitud;
+                apro.Sector = Sector;
+
+                
+            }
+            
+            if (aprueba)
+                {
+                    apro.Aprobado = true;
+                }
+                else
+                {
+                    apro.Aprobado = false;
+                }
+                apro.Save();
+        }
+                    
     }
 }
