@@ -102,11 +102,11 @@ namespace Antares.model
             {
                 if (idEmpleado != "null")
                 {
-                    qry = qry + ",@IdEmpleado = null";
+                    qry = qry + ",@IdEmpleado = " + idEmpleado; 
                 }
                 else
                 {
-                    qry = qry + ",@IdEmpleado = " + idEmpleado;
+                    qry = qry + ",@IdEmpleado = null";
                 }
             }
             else
@@ -239,7 +239,6 @@ where sv.Id_solicitud = @idSolicitud
                 }
             }
         }
-
 
         public static DbDataReader GetMisSolicitudes(string idEmpleado)
         {
