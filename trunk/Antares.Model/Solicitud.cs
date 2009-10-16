@@ -21,7 +21,7 @@ namespace Antares.model
             return Solicitud.FindByPrimaryKey(pid);
         }
 
-        public TipoSolicitud Tipo
+        public virtual  TipoSolicitud Tipo
         {
             get
             {
@@ -71,7 +71,7 @@ namespace Antares.model
             return oConn.ExecuteReader();
         }
 
-        public static DbDataReader GetReader(string idSol ,string idTipoSolicitud,string Perfil,int idEmpleado , string estado , string Fecha)
+        public static DbDataReader GetReader(string idSol ,string idTipoSolicitud,string idEmpleado , string estado , string Fecha , string Perfil)
         {
             if (idSol == string.Empty)
             {
@@ -88,9 +88,31 @@ namespace Antares.model
                 estado = "null";
             }
 
+            if (idEmpleado == "-1")
+            {
+                idEmpleado = "null";        
+            }
+
             string qry = "Proc_getSolicitudes @idSolicitud=" + idSol + 
-                ", @idTipoSolicitud =" + idTipoSolicitud + 
+                ", @idTipoSolicitud =" + idTipoSolicitud +
                 ", @idEstado =" + estado;
+            //si el perfil es menor a 4 significa que es gerente, ve todas las solicitides, sino busca por usuario o responsable
+            if (int.Parse(Perfil) < 4)
+            
+            {
+                if (idEmpleado != "null")
+                {
+                    qry = qry + ",@IdEmpleado = null";
+                }
+                else
+                {
+                    qry = qry + ",@IdEmpleado = " + idEmpleado;
+                }
+            }
+            else
+            {
+                qry = qry + ",@IdEmpleado = " + idEmpleado;
+            }
             
             if (Fecha != string.Empty)
             {
@@ -99,37 +121,52 @@ namespace Antares.model
                 //Mando la fecha con formato ISO 112 , por la cultura del browser, es lo unico que se me ocurrio
                 qry = qry + ",@Fecha ='" + date.ToString("yyyyMMdd") + "'";
             }
-            //si el perfil es menor a 4 significa que es gerente, ve todas las solicitides, sino busca por usuario o responsable
-            if (int.Parse(Perfil) < 4)
+            
+            
+            return ExecuteDbReader(qry);
+        }
+        
+        public static DbDataReader GetReaderSinAprobacion(string Sector)
+        {   
+            string qry = string.Empty;
+            switch (Sector)
             {
-                Perfil = "null";
-                qry = qry + ",@IdEmpleado = null";
-            }
-            else
-            {
-                qry = qry + ",@IdEmpleado = " + idEmpleado.ToString();
+                case "GestionTecnico":
+                    {
+                        qry = "Proc_getSolicitudesTecnicasSinAprobacion ";
+                        break;
+                    }
+                case "Calidad":
+                    {
+                         qry = "Proc_getSolicitudesCalidadSinAprobacion ";
+                        break;
+                    }
+
             }
             return ExecuteDbReader(qry);
         }
 
-   
-
-        public DbDataReader GetAdjuntos()
+        public virtual  DbDataReader GetAdjuntos()
         {
             // Expects a root type
             ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
             DbConnection db = (DbConnection)sess.Connection;// ActiveRecordMediator.GetSessionFactoryHolder().GetSessionFactory().GetCurrentSession().Connection;
             DbCommand oConn = db.CreateCommand();
-//            string sSQL = @"select a.IdAdjunto , FileName, Date, Size from adjunto a inner join solicitudAdjuntos sa
-//                            on a.idadjunto = sa.idadjunto
-//                            where sa.idsolicitud = " + this.Id_Solicitud;
-
             string sSQL = @"exec dbo.Prod_GetSolicitud_Adjuntos @idSolicitud = " + this.Id_Solicitud.ToString();
             oConn.CommandText = sSQL;
             return oConn.ExecuteReader();
         }
+        public virtual  DbDataReader GetAdjuntosCalidad()
+        {
+            ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
+            DbConnection db = (DbConnection)sess.Connection;// ActiveRecordMediator.GetSessionFactoryHolder().GetSessionFactory().GetCurrentSession().Connection;
+            DbCommand oConn = db.CreateCommand();
+            string sSQL = @"exec dbo.Prod_GetSolicitud_Adjuntos @idSolicitud = " + this.Id_Solicitud.ToString() + " ,@Calidad = 1";
+            oConn.CommandText = sSQL;
+            return oConn.ExecuteReader();
+        }
 
-        public DbDataReader GetTareasRendidas()
+        public virtual DbDataReader GetTareasRendidas()
         {
             #region DefSP
             //create proc proc_getTareasHorasFromSolicitud
@@ -153,7 +190,7 @@ namespace Antares.model
 
         }
 
-        public DbDataReader GetVehiculosRendidos()
+        public virtual DbDataReader GetVehiculosRendidos()
         {
             #region defSP
             /*
@@ -186,7 +223,7 @@ where sv.Id_solicitud = @idSolicitud
             return oConn.ExecuteReader();
         }
 
-        public string RelacionadaCon
+        public virtual string RelacionadaCon
         {
             get
             {
@@ -455,7 +492,7 @@ where se.id_empleado = @idPersona
             return r;
         }
 
-        public DbDataReader GetAdjuntos(string IdSolicitud)
+        public virtual  DbDataReader GetAdjuntos(string IdSolicitud)
         {
             string sSql = @"exec dbo.Prod_GetSolicitud_Adjuntos @idSolicitud = " + IdSolicitud.ToString();
             return CommonFunctions.ExecuteDbReader(sSql);
