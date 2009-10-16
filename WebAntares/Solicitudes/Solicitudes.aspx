@@ -39,7 +39,7 @@
         </tr>
         <tr>
             <td style="padding-left: 20px">
-                Responsable
+                Empleado
             </td>
             <td>
                 <uc2:CboGeneric ID="cboPersonal" runat="server" NameId="id_empleados" NameDescript="Empleado"
@@ -94,7 +94,7 @@
                             <Columns>
                                 <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" ItemStyle-Font-Bold="true"/>
                                 <asp:BoundField DataField="Tipo" HeaderText="Tipo" HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px" />
-                                <asp:BoundField DataField="Descripcion" HeaderText="Ref" HeaderStyle-HorizontalAlign="Center"  HeaderStyle-Width="400px"> </asp:BoundField>
+                                <asp:BoundField DataField="Descripcion" HeaderText="Ref" HeaderStyle-HorizontalAlign="Center"  HeaderStyle-Width="150px"> </asp:BoundField>
                                 <asp:BoundField DataField="Fecha" HeaderText="Fecha" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" dataformatstring="{0:dd/MM/yyyy}" htmlencode="false" ItemStyle-Font-Bold="true" />
                                 <asp:BoundField DataField="Id_Responsable" HeaderText="Id_Responsable" Visible="false" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="Responsable" HeaderText="Responsable" HeaderStyle-HorizontalAlign="Center" />
@@ -121,7 +121,7 @@
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Solicitud" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="40px" Visible="true">
+                                <asp:TemplateField HeaderText="Solicitud" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="40px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar Solicitud" ImageUrl="~/images/versolicitud.gif" Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("Solicitud") %>' />
                                     </ItemTemplate>
@@ -134,7 +134,7 @@
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Reporte" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center"
-                                    ShowHeader="true" HeaderStyle-Width="40px" Visible="true">
+                                    ShowHeader="true" HeaderStyle-Width="40px" >
                                     <ItemTemplate>
                                         <asp:HyperLink ID="lnkReporte" runat="server" ToolTip="Visualizar Reporte" ImageUrl="~/images/verreporte.gif" Target="_blank" NavigateUrl='<%# "VisualizarReporte.aspx?id=" + Eval("Id_Reporte") %>' />
                                     </ItemTemplate>

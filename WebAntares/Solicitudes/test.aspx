@@ -2,6 +2,7 @@
 
 <%@ Register src="../Controles/Adjuntos.ascx" tagname="Adjuntos" tagprefix="uc1" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register src="../Controles/Adjuntos_Calidad.ascx" tagname="Adjuntos_Calidad" tagprefix="uc2" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -16,6 +17,7 @@ function MoveTab(num)
 </script>
 </head>
 <body>
+    <asp:Button ID="Button4" runat="server" Text="Button" onclick="Button4_Click" />
     <form id="form1" runat="server">
 <asp:ScriptManager ID="ScriptManager1" runat="server">
 </asp:ScriptManager>
@@ -41,7 +43,7 @@ function MoveTab(num)
     </div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" Visible="false">
     <ContentTemplate>
-    <cc1:TabContainer ID="Tabs" runat="server" Height="450px" >
+    <cc1:TabContainer ID="Tabs" runat="server" Height="50px" ActiveTabIndex="2" >
                     <cc1:TabPanel ID="tpFalla" HeaderText="1" runat="server">
                         <ContentTemplate>
                           <input id="Button1" type="button" value="Next" onclick="MoveTab(1)" />
@@ -61,9 +63,16 @@ function MoveTab(num)
    
     
     
+        
+        <uc2:Adjuntos_Calidad ID="Adjuntos_Calidad1" runat="server" />
+   
     
+    
+        
     </ContentTemplate>
     </asp:UpdatePanel>
+    
+    
 </form>
 </body>
 </html>

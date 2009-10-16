@@ -28,7 +28,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
     private void FillGrid(int pageIndex)
     {
-        DbDataReader reader = Antares.model.Solicitud.GetReader(IdSolicitud, TipoSolicitud,PerfilUsuario ,IdEmpleadoUsuario, Estado , Fecha);
+        DbDataReader reader = Antares.model.Solicitud.GetReader(IdSolicitud, TipoSolicitud,PerfilUsuario,IdResponsable ,IdEmpleadoUsuario, Estado , Fecha);
         DataTable table = new DataTable();
         table.Load(reader);
         GridView1.DataSource = table;
@@ -173,7 +173,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             Estado = cmbEstados.SelectedValue;
             Fecha = txtDesde.Text;
 
-            System.Threading.Thread.Sleep(1000);
+         //   System.Threading.Thread.Sleep(1000);
     
             FillGrid(0);
         }
@@ -181,14 +181,14 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
     protected void GridView1_DataBound(object sender, EventArgs e)
     {
-        if (BiFactory.User.IdPerfil == 1)
-        {
-            GridView1.Columns[11].Visible = true;
-        }
-        else
-        {
-            GridView1.Columns[11].Visible = false;
-        }
+        //if (BiFactory.User.IdPerfil == 1)
+        //{
+        //    GridView1.Columns[11].Visible = true;
+        //}
+        //else
+        //{
+        //    GridView1.Columns[11].Visible = false;
+        //}
     }
 
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -206,11 +206,33 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             Image imgEstadoCalidad = (Image)e.Row.FindControl("imgStatusCalidad");
             Image imgEliminar = (Image)e.Row.FindControl("imgEliminar");
 
-
-            imgEstadoCoord.ImageUrl = "../images/candado.gif";
-            imgEstadoCalidad.ImageUrl = "../images/candado.gif";
+            //me fijo si la solicitud esta habilitada por calidad o la gerencia tecnica
+            string aprobacion;
+            aprobacion= DataBinder.Eval(e.Row.DataItem, "A_TEC").ToString();
+           
             imgEstadoCoord.ToolTip = "Bloqueado";
             imgEstadoCalidad.ToolTip = "Bloqueado";
+
+            imgEstadoCalidad.ImageUrl = "../images/candado.gif";
+            imgEstadoCoord.ImageUrl = "../images/candado.gif";
+            if (aprobacion != string.Empty)
+            {
+                if (bool.Parse(aprobacion))
+                {
+                    imgEstadoCoord.ImageUrl = "../images/adelante.gif";
+                    imgEstadoCoord.ToolTip = "Aprobado";
+                }
+            } 
+            aprobacion = DataBinder.Eval(e.Row.DataItem, "A_CAL").ToString();
+            if (aprobacion != string.Empty)
+            {
+                if (bool.Parse(aprobacion))
+                {
+                    imgEstadoCalidad.ImageUrl = "../images/adelante.gif";
+                    imgEstadoCalidad.ToolTip = "Aprobado";
+                }
+            }
+            
             lnkReporte.Visible = false;
 
             Image imgStatus = (Image)e.Row.FindControl("imgStatus");
@@ -368,16 +390,15 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             {
                 if (int.Parse(PerfilUsuario) < 4) 
                 {
+                    c.Visible = true;
                     switch (c.Text)
                     {
                         //AT  AC  Editar Solicitud Cambiar Estado 
                         case "Cambiar Estado":
                             c.Visible = true;
                             break;
-                        //case "Editar":
-                        //    c.Visible = true;
-                        //    break;
 
+                 
                     }
                 }
             }

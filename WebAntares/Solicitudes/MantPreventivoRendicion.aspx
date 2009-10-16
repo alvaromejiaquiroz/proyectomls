@@ -3,8 +3,12 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
-<%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
+<%--<%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>--%>
+<%@ Register Src="../Controles/Adjuntos_Calidad.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
+<%@ Register Src="../Controles/Adjuntos_Calidad.ascx" TagName="Calidad" TagPrefix="uc3" %>
 <%@ Register src="../Controles/MantenimientoPreventivoRendicion.ascx" tagname="MantenimientoPreventivoRendicion" tagprefix="uc1" %>
+
+
 <asp:Content ID="cMantenimientoPreventivoRendicion" ContentPlaceHolderID="PageContainer"
     runat="Server">
     <asp:Panel ID="pnlMantenimientoPreventivoRendicion" runat="server">
@@ -101,6 +105,7 @@
                                             <tr>
                                                 <td colspan="2">
                                                     <asp:GridView ID="gvTareas" runat="server" AutoGenerateColumns="false" OnRowDeleting="gvTareas_RowDeleting"
+                                                    
                                                         Width="100%">
                                                         <Columns>
                                                             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
@@ -111,12 +116,7 @@
                                                                 ItemStyle-HorizontalAlign="Center" />
                                                             <asp:BoundField DataField="Fin" HeaderText="Fin" HeaderStyle-HorizontalAlign="Center"
                                                                 ItemStyle-HorizontalAlign="Center" />
-                                                            <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
-                                                                <ItemTemplate>
-                                                                    <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
-                                                                        ImageUrl="~/Images/basuravacio.gif" Text="Delete" ToolTip="Eliminar" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
+                                                            
                                                         </Columns>
                                                     </asp:GridView>
                                                 </td>
@@ -125,6 +125,39 @@
                                         <div class="text_custom">
                                             <asp:ValidationSummary ID="vsTareas" runat="server" ValidationGroup="tareas" />
                                         </div>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </ContentTemplate>
+                        </cc1:TabPanel>
+                        <cc1:TabPanel ID="tpDescripcion" HeaderText="Detalles" runat="server">
+                            <HeaderTemplate>
+                                Detalles
+                            </HeaderTemplate>
+                            <ContentTemplate>
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <ContentTemplate>
+                                    <table class="text_custom" width="600px">
+                                    <tr>
+                                        <td >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td >
+                                            Descripcion del Trabajo Realizado
+                                        </td>
+                                        <td>
+                                        
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    
+                                    <td>
+                                            <asp:TextBox ID="TextBox1" runat="server" TextMode="MultiLine" Height="160px" Width="100%"></asp:TextBox>
+                                    
+                                    </td>
+                                    
+                                    </tr>
+                                    </table>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             </ContentTemplate>
@@ -581,13 +614,13 @@
                             </table>
                         </ContentTemplate>
                     </cc1:TabPanel>
-                        <cc1:TabPanel ID="tpRegistroCalidad" HeaderText="Registro de Calidad" runat="server">
-                        <ContentTemplate>
-                            <div style="width: 600px">
-                                Adjuntos Calidad....
-                            </div>
-                        </ContentTemplate>
-                    </cc1:TabPanel>
+                        <cc1:TabPanel ID="tpUp" HeaderText="testupload" runat="server">
+                            <ContentTemplate>
+                             <uc3:Calidad ID="Adjuntos1" runat="server" TipoAdjunto="Calidad" />
+                            </ContentTemplate>
+                            
+                        </cc1:TabPanel>
+                      
                         <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
                             <ContentTemplate>
                                 <div style="width: 600px">
