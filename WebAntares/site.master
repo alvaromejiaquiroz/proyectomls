@@ -4,6 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Antares</title>
+    <style type="text/css">
+           .dynamic_menu_fix
+           {
+               z-index: 100;
+           }
+       </style>
     <link href="~/App_Themes/antares/msvs_template_simple_tables.css" rel="stylesheet"         type="text/css" />
 
     
@@ -15,7 +21,7 @@
             };
         } 
         
-        $(document).ready(function() {
+        /*$(document).ready(function() {
             var oMen = $("#ctl00_divMensajes");
             if (oMen.text() != "") {
                 oMen.slideDown(300);
@@ -36,7 +42,7 @@
                 }
             )
 
-        })
+        })*/
     </script>
 
     <style type="text/css">
@@ -66,17 +72,24 @@
                     </tr>
                 </table>
             </td>
-            <td align="right" style="width:740px">
-            Sistema de Gestión
-          <%--      <div class="header_custom" style="height:40px;vertical-align:middle;font-size:20px;padding-right:20px;padding-top:20px">
+            <td align="right">
+                <div class="header_custom" style="height:40px;vertical-align:middle;font-size:20px;padding-right:20px;padding-top:20px">
                     Sistema de Gestión
-                </div>--%>
+                </div>
             </td>
             <td id="header_logo" style="width:125px">
                 <img alt="Energia en Comunicacion" src="../images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
             </td>
         </tr>
+        <tr>
+            <td colspan="3">
+                <asp:Menu ID="ucMenu" runat="server" Orientation="Horizontal" CssClass="text_custom" Width="100%">
+                    <DynamicMenuStyle CssClass="dynamic_menu_fix" />
+                </asp:Menu>
+            </td>
+        </tr>
     </table>
+    
     <!--
   
   
@@ -87,29 +100,10 @@
         </asp:ScriptManager>
     <table border="0" cellspacing="0" cellpadding="0" id="content-container">
         <tr>
-            <td id="content-left">
-                <table width="100%" style="border-style: solid; border-color: #707070; border-width: 3px">
-                    <tr class="header_menu_custom">
-                        <td align="center">
-                            Menú principal
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding:20px">
-                            <div id="menu" runat="server" align="left">
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
             <td id="content">
-            <table width="100%" >
-                    <tr >
-                        <td align="center">                 
-                        </td>
-                    </tr>
+                <table width="100%" >
                     <tr>
-                        <td >
+                        <td>
                             <asp:ContentPlaceHolder ID="PageContainer" runat="server">
                            </asp:ContentPlaceHolder>
                            
