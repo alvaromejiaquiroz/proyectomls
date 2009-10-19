@@ -1,3 +1,31 @@
-﻿<form method="post" target="_self" enctype="multipart/form-data" action="../Solicitudes/MantPreventivoRendicion.aspx">
-    <input type="file" name="fileUpload" /><input type="submit" value="Subir Archivo" />
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+<link href="~/App_Themes/antares/msvs_template_simple_tables.css" rel="stylesheet"         type="text/css" />
+   <style type="text/css">
+        
+        span { font-family:Verdana; font-size:"10px"
+    
+    }
+    </style>
+</head>
+
+<form method="post" target="_self" enctype="multipart/form-data" action="../Solicitudes/MantPreventivoRendicion.aspx">
+<table>
+<tr>
+    <td>
+    <input type="file" name="fileUpload" /><br />
+    <input type="submit" value="Subir Archivo" CssClass="button_custom"/><br />
+    </td>
+     <td>
+    <INPUT TYPE=RADIO NAME="rbTipo" VALUE="Calidad" />               <span >Registro Calidad </span><br />
+    <INPUT TYPE=RADIO NAME="rbTipo" VALUE="Comun" checked="checked"/><span > Adjunto</span><br />
+
+    </td>
+</tr>
+</table>
+
+<hr />
 </form>

@@ -101,7 +101,7 @@
                                 <asp:BoundField DataField="Id_Reporte" HeaderText="Report" Visible="false" HeaderStyle-HorizontalAlign="Center" />
                                 <asp:TemplateField HeaderText="Estado" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="40px">
                                     <ItemTemplate>
-                                        <asp:Image ID="imgStatus" runat="server" />
+                                        <asp:Image ID="imgEstado" runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText=" AT " ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="40px">
@@ -128,7 +128,7 @@
                                  </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Cambiar Estado" ItemStyle-HorizontalAlign="Center" ShowHeader="true" FooterStyle-Wrap="true"  HeaderStyle-Wrap="true" HeaderStyle-HorizontalAlign="Justify" HeaderStyle-Width="40px">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="imgEstado" runat="server" CausesValidation="False" CommandArgument='<%# Bind("Solicitud") %>'
+                                        <asp:ImageButton ID="imgCambiarEstado" runat="server" CausesValidation="False" CommandArgument='<%# Bind("Solicitud") %>'
                                             CommandName="CambiarEstado" ImageUrl="~/images/cambiar_estado_solicitud.gif" ToolTip="Cambiar estado" ImageAlign="Middle"/>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />

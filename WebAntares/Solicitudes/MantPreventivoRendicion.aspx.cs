@@ -17,7 +17,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
     protected override void OnInitComplete(EventArgs e)
     {
         ucAdjuntos.sol = BiFactory.Sol;
-        Adjuntos1.sol = BiFactory.Sol;
+        
         base.OnInitComplete(e);
     }
 
@@ -25,34 +25,16 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            lblDescripcionTrabajo.Attributes.Add("style", "overflow:hidden;");
             CargarCombos();
             FillTareas();
             FillSolicitudEmpleados();
             FillSolicitudVehiculos();
             FillDatosClientes();
-            //FillAdjuntosCalidad();
-            //btnPopUp.Style.Add("display", "none");
+            
 
         }
-        else
-        {
-            if (Session["PostBackCalidad"] != null)
-            {
-                bool postbackcalidad = bool.Parse(Session["PostBackCalidad"].ToString());
-                if (postbackcalidad)
-                {
-                    foreach (AjaxControlToolkit.TabPanel tab in tcMantenimientoPreventivo.Tabs)
-                    {
-                        if (tab.ID == "tpUp" || tab.ID =="tpAdjuntos")
-                        {
-                            tab.Focus();
-                            Session["PostBackCalidad"] = null;
-                        }
-                    }
-                }
-            }
-
-        }
+        
     }
 
     protected void gvSolicitudVehiculos_rowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -79,7 +61,8 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
             hdnSitio.Value = unSitio.IdSitio.ToString();
             litSitio.Text = unSitio.Descripcion;
             ucAdjuntos.ListaAdjuntos(sol.Id_Solicitud.ToString());
-            Adjuntos1.ListaAdjuntosCalidad(sol.Id_Solicitud.ToString());
+            ucAdjuntos.ListaAdjuntosCalidad(sol.Id_Solicitud.ToString());
+
         }
     }
 
@@ -164,7 +147,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
         }
         foreach (Antares.model.Empresas emp in Antares.model.Empresas.FindAll())
         {
-            cmbClientes.Items.Add(new ListItem(emp.Nombre + " (" + emp.Localidad + ")", emp.IdEmpresa.ToString()));
+            cmbClientes.Items.Add(new ListItem(emp.Nombre , emp.IdEmpresa.ToString()));
         }
     }
 
@@ -264,12 +247,12 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
     {
         if (IsValid && EsSolicitudValida())
         {
-            //Solicitud Sol_Original = Solicitud.FindFirst(Expression.Eq("IdSolicitudInicial",BiFactory.Sol.Id_Solicitud));
+          
             Solicitud Sol_Original = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
             Sol_Original.Status = eEstados.Realizado.ToString();
             Sol_Original.Update();
 
-            //Solicitud Reporte = Solicitud.GetById(BiFactory.Sol.IdSolicitudInicial);
+            
             Solicitud Reporte = Solicitud.FindFirst(Expression.Eq("IdSolicitudInicial", Sol_Original.Id_Solicitud));
             SolicitudPreventivo preventivo = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", Reporte.Id_Solicitud));
 
@@ -283,6 +266,8 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
 
             //Agregar la fecha de solicitud a la solicitud del tipo preventivo, asi tambien a correctivo
             Reporte.Status = eEstados.Realizado.ToString();
+            Reporte.DescripcionReporte = lblDescripcionTrabajo.Text;
+            Reporte.Save();
             r.Save();
 
             pnlMantenimientoPreventivoRendicion.Visible = false;
@@ -306,7 +291,13 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
             ucMantenimientoPreventivoRendicion.Visible = true;
         }
     }
-        
+
+    protected void btnAceptarDescripcion_Trabajo_Click(object sender, EventArgs e)
+    {
+        lblDescripcionTrabajo.Text = txtDescripcionTrabajo.Text;
+        txtDescripcionTrabajo.Text = string.Empty;
+    }
+    
     protected void cmbResponsable_SelectedIndexChanged(object sender, EventArgs e)
     {
         int idResponsable = int.Parse(cmbResponsable.SelectedValue);

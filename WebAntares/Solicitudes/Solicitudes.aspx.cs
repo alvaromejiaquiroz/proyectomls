@@ -200,9 +200,11 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             Solicitud S = Solicitud.FindOne(Expression.Eq("Id_Solicitud", (DataBinder.Eval(e.Row.DataItem, "Solicitud"))));
             HyperLink lnkReporte = (HyperLink)e.Row.FindControl("lnkReporte");
             HyperLink lnkVisualizar = (HyperLink)e.Row.FindControl("lnkReporte");
+
             
             Image imgEditar = (Image)e.Row.FindControl("imgEdit");
             Image imgEstado = (Image)e.Row.FindControl("imgEstado");
+            Image imgCambiarEstado = (Image)e.Row.FindControl("imgCambiarEstado");
             Image imgEstadoCoord = (Image)e.Row.FindControl("imgStatusCoord");
             Image imgEstadoCalidad = (Image)e.Row.FindControl("imgStatusCalidad");
             Image imgEliminar = (Image)e.Row.FindControl("imgEliminar");
@@ -236,32 +238,34 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             
             lnkReporte.Visible = false;
 
-            Image imgStatus = (Image)e.Row.FindControl("imgStatus");
+            
             
             string valorEstado = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Status"));
             string valorTipoSolicitud  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Tipo"));
             string valorIdResponsable  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Responsable"));
 
             imgEditar.Visible = false;
-            imgEstado.Visible = false;
+            imgCambiarEstado.Visible = true;
+
             if (BiFactory.Empleado.IdEmpleados == int.Parse(valorIdResponsable))
             {
                 imgEditar.Visible = true;
                 imgEstado.Visible = true;
 
             }
-            if (BiFactory.User.IdPerfil == 1)
-            {
-                imgEliminar.Visible = false;
-
-            }
-
+           
             if (BiFactory.User.IdPerfil < 4)
             {
                 imgEditar.Visible = true;
                 imgEstado.Visible = true;
             }
 
+            if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Reporte")) != string.Empty)
+            {
+                lnkReporte.Visible = true;
+                //imgCambiarEstado.Visible = false;
+            }
+                        
             
             switch (valorEstado )
             {
@@ -270,31 +274,28 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                     e.Row.Cells[4].Font.Bold = true;
                         //e.Row.Cells[4].ForeColor = System.Drawing.Color.Red;
                         imgEditar.Visible = false;
-                        imgEstado.Visible = false;
+                        //imgEstado.Visible = false;
                         lnkReporte.Visible = false;
-                        imgStatus.ImageUrl = "../images/deshabilitado.gif";
-                        imgStatus.ToolTip = "Anulado";
+                        imgEstado.ImageUrl = "../images/deshabilitado.gif";
+                        imgEstado.ToolTip = "Anulado";
                         break;
                     
                 case "Pendiente":
                         //e.Row.Cells[4].Font.Bold = true;
                         //e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFAF6E");
                         //e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
-                        imgStatus.ImageUrl = "../images/pendiente.gif";
-                        imgStatus.ToolTip = "Pendiente";
+                        imgEstado.ImageUrl = "../images/pendiente.gif";
+                        imgEstado.ToolTip = "Pendiente";
                         break;
 
                 case "Realizado":
                         //e.Row.Cells[4].Font.Bold = true;
                         imgEditar.Visible = false;
-                        imgEstado.Visible = false;
+                        imgCambiarEstado.Visible = false;
                         //e.Row.Cells[4].ForeColor = System.Drawing.Color.Green;
-                        if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Reporte")) != null)
-                        {
-                            lnkReporte.Visible = true;
-                        }
-                        imgStatus.ImageUrl = "../images/realizado.gif";
-                        imgStatus.ToolTip = "Realizado";
+
+                        imgEstado.ImageUrl = "../images/realizado.gif";
+                        imgEstado.ToolTip = "Realizado";
                         imgEstadoCoord.ImageUrl = "../images/pendiente.gif";
                         imgEstadoCalidad.ImageUrl = "../images/pendiente.gif";
                         imgEstadoCoord.ToolTip = "Pendiente de Aprobación TECNICA";
@@ -302,28 +303,20 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         break;
                     
                 case "Reprogramado":
-                        //e.Row.Cells[4].Font.Bold = true;
-                        //e.Row.Cells[4].ForeColor = System.Drawing.Color.Blue;
-                        imgStatus.ImageUrl = "../images/reprogramado.gif";
-                        imgStatus.ToolTip = "Reprogramado";
-                        
-                        imgStatus.ToolTip = "REPROGRAMADO: " +  S.Causa;
+
+                        imgEstado.ImageUrl = "../images/reprogramado.gif";
+                        imgEstado.ToolTip = "REPROGRAMADO: " + S.Causa;
                         break;
                 case "Cancelado":
-                        //e.Row.Cells[4].Font.Bold = true;
+                    
                         imgEditar.Visible = false;
-                        imgEstado.Visible = false;
-                        //e.Row.Cells[4].ForeColor = System.Drawing.Color.Gray;
-                        imgStatus.ImageUrl = "../images/cancelado.gif";
-                        
-                        imgStatus.ToolTip = "CANCELADO: " + S.Causa;
+                        imgCambiarEstado.Visible = false;
+                        imgEstado.ImageUrl = "../images/cancelado.gif";
+                        imgEstado.ToolTip = "CANCELADO: " + S.Causa;
                         break;
                 case "Vencido":
-                        //imgEditar.Visible = true;
-                        //imgEstado.Visible = true;
-                        imgStatus.ImageUrl = "../images/vencido.gif";
-                        imgStatus.ToolTip = "VENCIDO: se ha exedido el plazo para la realización de esta Solicitud";
-                       
+                        imgEstado.ImageUrl = "../images/vencido.gif";
+                        imgEstado.ToolTip = "VENCIDO: se ha exedido el plazo para la realización de esta Solicitud";
                         break;
             }
         }
