@@ -2531,6 +2531,70 @@ namespace Antares.model {
         }
     }
     
+    [ActiveRecord("Solicitud_Aprobaciones", Schema="dbo")]
+    public partial class SolicitudAprobaciones : ActiveRecordBase<SolicitudAprobaciones> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private string _sector;
+        
+        private bool _aprobado;
+        
+        private System.DateTime _fechaActualizacion;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Id_Solicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("Sector", ColumnType="String")]
+        public virtual string Sector {
+            get {
+                return this._sector;
+            }
+            set {
+                this._sector = value;
+            }
+        }
+        
+        [Property("Aprobado", ColumnType="Boolean")]
+        public virtual bool Aprobado {
+            get {
+                return this._aprobado;
+            }
+            set {
+                this._aprobado = value;
+            }
+        }
+        
+        [Property("FechaActualizacion", ColumnType="DateTime", Insert=false, Update=false)]
+        public virtual System.DateTime FechaActualizacion {
+            get {
+                return this._fechaActualizacion;
+            }
+            set {
+                this._fechaActualizacion = value;
+            }
+        }
+    }
+    
     [ActiveRecord("Solicitud", Schema="dbo")]
     public partial class Solicitud : ActiveRecordBase<Solicitud> {
         
@@ -2574,13 +2638,7 @@ namespace Antares.model {
         
         private int _idSolicitudInicial;
         
-        private bool _aprobacionTecnica;
-        
-        private System.DateTime _fechaAprobacionTecnica;
-        
-        private bool _aprobacionCalidad;
-        
-        private System.DateTime _fechaAprobacionCalidad;
+        private string _descripcionReporte;
         
         [PrimaryKey(PrimaryKeyType.Native, "Id_Solicitud", ColumnType="Int32")]
         public virtual int Id_Solicitud {
@@ -2782,107 +2840,13 @@ namespace Antares.model {
             }
         }
         
-        [Property("Aprobacion_Tecnica", ColumnType="Boolean", Insert=false, Update=false)]
-        public virtual bool AprobacionTecnica {
+        [Property("Descripcion_Reporte", ColumnType="String", Insert=false, Update=false)]
+        public virtual string DescripcionReporte {
             get {
-                return this._aprobacionTecnica;
+                return this._descripcionReporte;
             }
             set {
-                this._aprobacionTecnica = value;
-            }
-        }
-        
-        [Property("Fecha_Aprobacion_Tecnica", ColumnType="DateTime", Insert=false, Update=false)]
-        public virtual System.DateTime FechaAprobacionTecnica {
-            get {
-                return this._fechaAprobacionTecnica;
-            }
-            set {
-                this._fechaAprobacionTecnica = value;
-            }
-        }
-        
-        [Property("Aprobacion_Calidad", ColumnType="Boolean", Insert=false, Update=false)]
-        public virtual bool AprobacionCalidad {
-            get {
-                return this._aprobacionCalidad;
-            }
-            set {
-                this._aprobacionCalidad = value;
-            }
-        }
-        
-        [Property("Fecha_Aprobacion_Calidad", ColumnType="DateTime", Insert=false, Update=false)]
-        public virtual System.DateTime FechaAprobacionCalidad {
-            get {
-                return this._fechaAprobacionCalidad;
-            }
-            set {
-                this._fechaAprobacionCalidad = value;
-            }
-        }
-    }
-    
-    [ActiveRecord("Solicitud_Aprobaciones", Schema="dbo")]
-    public partial class SolicitudAprobaciones : ActiveRecordBase<SolicitudAprobaciones> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private string _sector;
-        
-        private bool _aprobado;
-        
-        private System.DateTime _fechaActualizacion;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("Id_Solicitud", ColumnType="Int32")]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("Sector", ColumnType="String")]
-        public virtual string Sector {
-            get {
-                return this._sector;
-            }
-            set {
-                this._sector = value;
-            }
-        }
-        
-        [Property("Aprobado", ColumnType="Boolean")]
-        public virtual bool Aprobado {
-            get {
-                return this._aprobado;
-            }
-            set {
-                this._aprobado = value;
-            }
-        }
-        
-        [Property("FechaActualizacion", ColumnType="DateTime", Insert=false, Update=false)]
-        public virtual System.DateTime FechaActualizacion {
-            get {
-                return this._fechaActualizacion;
-            }
-            set {
-                this._fechaActualizacion = value;
+                this._descripcionReporte = value;
             }
         }
     }
