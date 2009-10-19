@@ -77,6 +77,11 @@ namespace Antares.model
             string sSql = @"exec dbo.Prod_GetPersonaHoras_Detalle_EnSolicitud @idSolicitud = " + IdSolicitud.ToString() + ", @idPersona = " + IdPersona.ToString();
             return CommonFunctions.ExecuteDbReader(sSql);
         }
+        public static DbDataReader GetPersonaHoras_Detalle_EnSolicitud(int IdSolicitud)
+        {
+            string sSql = @"exec dbo.Prod_GetPersonaHoras_Detalle_EnSolicitud @idSolicitud = " + IdSolicitud.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+        }
 
         public static DbDataReader GetPersonasEnSolicitud(int IdSolicitud)
         {
