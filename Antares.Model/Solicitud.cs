@@ -215,9 +215,9 @@ where sv.Id_solicitud = @idSolicitud
 
         private static DbDataReader ExecuteDbReader(string SSQLQuery)
         {
-            // Expects a root type
+           
             ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
-            DbConnection db = (DbConnection)sess.Connection;// ActiveRecordMediator.GetSessionFactoryHolder().GetSessionFactory().GetCurrentSession().Connection;
+            DbConnection db = (DbConnection)sess.Connection;
             DbCommand oConn = db.CreateCommand();
             oConn.CommandText = SSQLQuery;
             return oConn.ExecuteReader();
@@ -442,6 +442,25 @@ where se.id_empleado = @idPersona
                 }
             }
             return existe;
+
+        }
+
+        public static string GetResponsable(string idSolicitud)
+        {
+            string sSQL = @"exec Proc_GetResponsableSolicitud ";
+            sSQL += " @idSolicitud = " + idSolicitud.ToString();
+
+            DbDataReader dr = ExecuteDbReader(sSQL);
+
+            string responsable = string.Empty;
+            while (dr.Read())
+            {
+                if ((dr.HasRows) && (dr["Nombre_Responsable"].ToString() != string.Empty))
+                {
+                    responsable = dr["Nombre_Responsable"].ToString();
+                }
+            }
+            return responsable;
 
         }
 

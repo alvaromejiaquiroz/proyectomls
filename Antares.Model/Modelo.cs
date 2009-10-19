@@ -71,142 +71,6 @@ namespace Antares.model {
         }
     }
     
-    [ActiveRecord("OP_Sitios", Schema="dbo")]
-    public partial class Sitios : ActiveRecordBase<Sitios> {
-        
-        private int _idSitio;
-        
-        private string _long;
-        
-        private string _telefono;
-        
-        private string _jefatura;
-        
-        private string _lat;
-        
-        private string _cP;
-        
-        private string _localidad;
-        
-        private string _provincia;
-        
-        private string _codigo;
-        
-        private string _descripcion;
-        
-        private string _direccion;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id_Sitio", ColumnType="Int32")]
-        public virtual int IdSitio {
-            get {
-                return this._idSitio;
-            }
-            set {
-                this._idSitio = value;
-            }
-        }
-        
-        [Property("Long", ColumnType="String")]
-        public virtual string Long {
-            get {
-                return this._long;
-            }
-            set {
-                this._long = value;
-            }
-        }
-        
-        [Property("Telefono", ColumnType="String")]
-        public virtual string Telefono {
-            get {
-                return this._telefono;
-            }
-            set {
-                this._telefono = value;
-            }
-        }
-        
-        [Property("Jefatura", ColumnType="String")]
-        public virtual string Jefatura {
-            get {
-                return this._jefatura;
-            }
-            set {
-                this._jefatura = value;
-            }
-        }
-        
-        [Property("Lat", ColumnType="String")]
-        public virtual string Lat {
-            get {
-                return this._lat;
-            }
-            set {
-                this._lat = value;
-            }
-        }
-        
-        [Property("CP", ColumnType="String")]
-        public virtual string CP {
-            get {
-                return this._cP;
-            }
-            set {
-                this._cP = value;
-            }
-        }
-        
-        [Property("Localidad", ColumnType="String")]
-        public virtual string Localidad {
-            get {
-                return this._localidad;
-            }
-            set {
-                this._localidad = value;
-            }
-        }
-        
-        [Property("Provincia", ColumnType="String")]
-        public virtual string Provincia {
-            get {
-                return this._provincia;
-            }
-            set {
-                this._provincia = value;
-            }
-        }
-        
-        [Property("Codigo", ColumnType="String")]
-        public virtual string Codigo {
-            get {
-                return this._codigo;
-            }
-            set {
-                this._codigo = value;
-            }
-        }
-        
-        [Property("Descripcion", ColumnType="String")]
-        public virtual string Descripcion {
-            get {
-                return this._descripcion;
-            }
-            set {
-                this._descripcion = value;
-            }
-        }
-        
-        [Property("Direccion", ColumnType="String")]
-        public virtual string Direccion {
-            get {
-                return this._direccion;
-            }
-            set {
-                this._direccion = value;
-            }
-        }
-    }
-    
     [ActiveRecord("Vehiculos", Schema="dbo")]
     public partial class Vehiculos : ActiveRecordBase<Vehiculos> {
         
@@ -2847,6 +2711,214 @@ namespace Antares.model {
             }
             set {
                 this._descripcionReporte = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("OP_Sitios", Schema="dbo")]
+    public partial class Sitios : ActiveRecordBase<Sitios> {
+        
+        private int _idSitio;
+        
+        private string _codigo;
+        
+        private string _descripcion;
+        
+        private string _nombre;
+        
+        private string _tipo;
+        
+        private string _operador;
+        
+        private string _codigoOperador;
+        
+        private string _direccion;
+        
+        private string _cP;
+        
+        private string _lat;
+        
+        private string _long;
+        
+        private string _localidad;
+        
+        private string _provincia;
+        
+        private string _uoPrimaria;
+        
+        private string _uoCodigo;
+        
+        private string _usuariosSitio;
+        
+        private bool _activo;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id_Sitio", ColumnType="Int32")]
+        public virtual int IdSitio {
+            get {
+                return this._idSitio;
+            }
+            set {
+                this._idSitio = value;
+            }
+        }
+        
+        [Property("Codigo", ColumnType="String")]
+        public virtual string Codigo {
+            get {
+                return this._codigo;
+            }
+            set {
+                this._codigo = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String")]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+        
+        [Property("Nombre", ColumnType="String")]
+        public virtual string Nombre {
+            get {
+                return this._nombre;
+            }
+            set {
+                this._nombre = value;
+            }
+        }
+        
+        [Property("Tipo", ColumnType="Char")]
+        public virtual string Tipo {
+            get {
+                return this._tipo;
+            }
+            set {
+                this._tipo = value;
+            }
+        }
+        
+        [Property("Operador", ColumnType="String")]
+        public virtual string Operador {
+            get {
+                return this._operador;
+            }
+            set {
+                this._operador = value;
+            }
+        }
+        
+        [Property("Codigo_Operador", ColumnType="Char")]
+        public virtual string CodigoOperador {
+            get {
+                return this._codigoOperador;
+            }
+            set {
+                this._codigoOperador = value;
+            }
+        }
+        
+        [Property("Direccion", ColumnType="String")]
+        public virtual string Direccion {
+            get {
+                return this._direccion;
+            }
+            set {
+                this._direccion = value;
+            }
+        }
+        
+        [Property("CP", ColumnType="String")]
+        public virtual string CP {
+            get {
+                return this._cP;
+            }
+            set {
+                this._cP = value;
+            }
+        }
+        
+        [Property("Lat", ColumnType="String")]
+        public virtual string Lat {
+            get {
+                return this._lat;
+            }
+            set {
+                this._lat = value;
+            }
+        }
+        
+        [Property("Long", ColumnType="String")]
+        public virtual string Long {
+            get {
+                return this._long;
+            }
+            set {
+                this._long = value;
+            }
+        }
+        
+        [Property("Localidad", ColumnType="String")]
+        public virtual string Localidad {
+            get {
+                return this._localidad;
+            }
+            set {
+                this._localidad = value;
+            }
+        }
+        
+        [Property("Provincia", ColumnType="String")]
+        public virtual string Provincia {
+            get {
+                return this._provincia;
+            }
+            set {
+                this._provincia = value;
+            }
+        }
+        
+        [Property("UO_Primaria", ColumnType="String")]
+        public virtual string UoPrimaria {
+            get {
+                return this._uoPrimaria;
+            }
+            set {
+                this._uoPrimaria = value;
+            }
+        }
+        
+        [Property("UO_Codigo", ColumnType="Char")]
+        public virtual string UoCodigo {
+            get {
+                return this._uoCodigo;
+            }
+            set {
+                this._uoCodigo = value;
+            }
+        }
+        
+        [Property("Usuarios_Sitio", ColumnType="String")]
+        public virtual string UsuariosSitio {
+            get {
+                return this._usuariosSitio;
+            }
+            set {
+                this._usuariosSitio = value;
+            }
+        }
+        
+        [Property("Activo", ColumnType="Boolean")]
+        public virtual bool Activo {
+            get {
+                return this._activo;
+            }
+            set {
+                this._activo = value;
             }
         }
     }
