@@ -14,12 +14,6 @@
         <elementListCompartment Id="7fe21751-61a0-48b2-9715-641fb2bc5592" absoluteBounds="7.0150000000000006, 4.16, 1.4700000000000002, 0.53615315755208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8dd61c57-662d-4802-ab86-c4bdca7d76af" isExpanded="false" absoluteBounds="7, 1.25, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Sitios" />
-      <nestedChildShapes>
-        <elementListCompartment Id="d541f50b-8ff2-4ca4-b641-258c70171778" absoluteBounds="7.015, 1.6600000000000001, 1.4700000000000002, 2.015279134114583" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="a8cb7df3-7058-488c-874d-74dd8bfbaaf1" isExpanded="false" absoluteBounds="7, 1.875, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Vehiculos" />
       <nestedChildShapes>
@@ -188,10 +182,16 @@
         <elementListCompartment Id="304ac908-c1f3-48f9-8ccc-75eb578d60c4" absoluteBounds="0.515, 5.41, 1.4700000000000002, 1.029195149739583" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0db473e8-3044-46a3-8d2c-b1957ce4cb23" absoluteBounds="0.5, 2.25, 1.5, 4.16875244140625">
+    <classShape Id="0db473e8-3044-46a3-8d2c-b1957ce4cb23" isExpanded="false" absoluteBounds="0.5, 2.25, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Solicitud" />
       <nestedChildShapes>
         <elementListCompartment Id="3d3b40d0-f662-4b4c-8e0d-64d27d5a93d0" absoluteBounds="0.515, 2.66, 1.4700000000000002, 3.65875244140625" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8743265b-8dcb-4feb-ada1-85203adc178e" isExpanded="false" absoluteBounds="4.625, 5.625, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Sitios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7ad1fe30-ce26-4882-bb8c-28da6bbb5132" absoluteBounds="4.64, 6.035, 1.4700000000000002, 3.001363118489583" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

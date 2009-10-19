@@ -14,21 +14,6 @@
         <modelProperty Id="9ca37bd0-b35c-401e-bebf-c9f95efb509e" name="Tarea" column="Tarea" length="0" />
       </properties>
     </modelClass>
-    <modelClass name="Sitios" schema="dbo" table="OP_Sitios">
-      <properties>
-        <modelProperty Id="d9d8a61c-0abd-43f6-8b86-acc907f6b3dd" name="IdSitio" column="Id_Sitio" columnType="Int32" length="0" keyType="PrimaryKey" />
-        <modelProperty Id="5e200c03-52ac-4cfc-876c-e69682b58afb" name="Long" column="Long" length="0" />
-        <modelProperty Id="71db2642-0bce-47b9-a707-80b90b28fee3" name="Telefono" column="Telefono" length="0" />
-        <modelProperty Id="efb80010-7584-4366-a2dd-515d9b3d0db5" name="Jefatura" column="Jefatura" length="0" />
-        <modelProperty Id="29f6f23f-e04e-4a23-bc06-d4ad27a9268a" name="Lat" column="Lat" length="0" />
-        <modelProperty Id="8b3b9335-34d8-4387-bd48-3ea31cf7c1ef" name="CP" column="CP" length="0" />
-        <modelProperty Id="c8b67c55-cb5c-4801-b983-fb97aeb5a763" name="Localidad" column="Localidad" length="0" />
-        <modelProperty Id="3ba27910-0016-454a-8146-0429d7f3170b" name="Provincia" column="Provincia" length="0" />
-        <modelProperty Id="46fff2ab-c8a7-45e0-9fa9-11c6fac613e2" name="Codigo" column="Codigo" length="0" />
-        <modelProperty Id="a28e2744-1da2-4945-bff8-31b987041ba2" name="Descripcion" column="Descripcion" length="0" />
-        <modelProperty Id="8251480d-0fa3-4d05-86ce-d64f2804c87c" name="Direccion" column="Direccion" length="0" />
-      </properties>
-    </modelClass>
     <modelClass name="Vehiculos" schema="dbo" table="Vehiculos">
       <properties>
         <modelProperty Id="252dac4b-4772-4e15-a71c-50db2c32eb62" name="IdVehiculos" column="ID_Vehiculos" columnType="Int32" length="0" keyType="PrimaryKey" />
@@ -350,6 +335,27 @@
         <modelProperty Id="eee0a100-43ba-4587-b3c3-4026175aa101" name="Reporte" column="Reporte" length="0" />
         <modelProperty Id="7c116ebf-7e59-4635-b4e8-5aef5254df64" name="IdSolicitudInicial" column="id_Solicitud_Inicial" columnType="Int32" length="0" />
         <modelProperty Id="30874b60-5781-4ae7-aea9-8d3084265571" name="DescripcionReporte" column="Descripcion_Reporte" insert="false" length="0" update="false" />
+      </properties>
+    </modelClass>
+    <modelClass name="Sitios" schema="dbo" table="OP_Sitios">
+      <properties>
+        <modelProperty Id="2a501f63-7307-477b-918b-fdd9dfecfa4f" name="IdSitio" column="Id_Sitio" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="b6e835ea-a0ec-428f-b1d6-6eb3358e016c" name="Codigo" column="Codigo" length="0" />
+        <modelProperty Id="6afd8897-9e0c-42b9-9430-306784ba8070" name="Descripcion" column="Descripcion" length="0" />
+        <modelProperty Id="8adc731a-e13e-4184-8963-3b1f6858e459" name="Nombre" column="Nombre" length="0" />
+        <modelProperty Id="6a1e05ef-d340-43cb-a3e2-553b22123233" name="Tipo" column="Tipo" columnType="Char" length="0" />
+        <modelProperty Id="a8d8eaf4-a152-4eec-b815-3df003120d50" name="Operador" column="Operador" length="0" />
+        <modelProperty Id="9b2a1fe5-8893-4268-865e-b2fcbfc35c8a" name="CodigoOperador" column="Codigo_Operador" columnType="Char" length="0" />
+        <modelProperty Id="df9d61e3-5b86-4bd9-a5e7-6551e2013b48" name="Direccion" column="Direccion" length="0" />
+        <modelProperty Id="bdd31057-56bf-45db-8fd4-2449b512262a" name="CP" column="CP" length="0" />
+        <modelProperty Id="5bab107e-45d9-4ba6-a427-7a5ffbf6b926" name="Lat" column="Lat" length="0" />
+        <modelProperty Id="5612796c-3eb5-4219-91d6-8647196a2152" name="Long" column="Long" length="0" />
+        <modelProperty Id="01c4c92f-b31a-4db6-abc0-38c2468e80ac" name="Localidad" column="Localidad" length="0" />
+        <modelProperty Id="0ecf5687-4912-4e90-8bf3-bcfdb9b1adc6" name="Provincia" column="Provincia" length="0" />
+        <modelProperty Id="7cd45c6a-a686-422a-bd63-66c4f3de7290" name="UoPrimaria" column="UO_Primaria" length="0" />
+        <modelProperty Id="ccf10f72-4c24-46b5-bb35-2055cefcbfee" name="UoCodigo" column="UO_Codigo" columnType="Char" length="0" />
+        <modelProperty Id="1cf07f92-3c78-4d05-a551-f28d74a59663" name="UsuariosSitio" column="Usuarios_Sitio" length="0" />
+        <modelProperty Id="5c63f5ca-ea9e-4fc8-8a61-f042af60fdf4" name="Activo" column="Activo" columnType="Boolean" length="0" />
       </properties>
     </modelClass>
   </classes>
