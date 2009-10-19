@@ -318,34 +318,6 @@
         <modelProperty Id="b43a0cce-c8b1-4d82-a349-52a8d90bc2f2" name="Presupuesto" column="Presupuesto" length="0" />
       </properties>
     </modelClass>
-    <modelClass name="Solicitud" schema="dbo" table="Solicitud">
-      <properties>
-        <modelProperty Id="6dc6d69e-9805-48cc-bc1e-736548ed7e08" name="Id_Solicitud" column="Id_Solicitud" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="0605246a-fb59-4333-9e31-3a75eeb52cc3" name="IdTipoSolicitud" column="IdTipoSolicitud" columnType="Int32" length="0" />
-        <modelProperty Id="0c235c94-9474-4e9b-bce8-f7e72b976382" name="FechaCreacion" column="FechaCreacion" columnType="DateTime" length="0" />
-        <modelProperty Id="774e0856-0dac-40ee-b12f-899c2f6b0905" name="IdUsuarioCreador" column="IdUsuarioCreador" columnType="Int32" length="0" />
-        <modelProperty Id="a4e49450-b595-4017-903f-8ce14c014c7f" name="Status" column="Status" length="0" />
-        <modelProperty Id="bba57735-0179-471d-96c3-fba2a926a651" name="Descripcion" column="Descripcion" length="0" />
-        <modelProperty Id="844339ec-9f81-4238-b295-1991e17d009a" name="IdCliente" column="IdCliente" columnType="Int32" length="0" />
-        <modelProperty Id="ea3a5c5d-b126-4e28-91e2-9ea66346e628" name="Contacto" column="Contacto" length="0" />
-        <modelProperty Id="2683a82a-fe8a-4d76-8d95-d24fd53ed1b9" name="ContactoMail" column="Contacto_Mail" length="0" />
-        <modelProperty Id="927ae7b6-75db-4238-9182-2eed810fa48e" name="ContactoTel" column="Contacto_Tel" length="0" />
-        <modelProperty Id="29b5e8bf-4a6d-4e1d-bb6f-dee7bffe6f14" name="NroOrdenCte" column="NroOrdenCte" length="0" />
-        <modelProperty Id="7b9d05b9-f5f7-41f8-8e0b-b869d596a073" name="AprobadorReprosusp" column="Aprobador_ReproSusp" length="0" />
-        <modelProperty Id="8e2610a1-8ab8-4c6f-87f8-bd6cca633814" name="FechaSuspencion" column="Fecha_Suspencion" length="0" />
-        <modelProperty Id="0d5bcd51-5276-408a-957c-394fcc83dbf6" name="FechaReprogramacion" column="Fecha_Reprogramacion" length="0" />
-        <modelProperty Id="7fa0b754-b8b4-452b-bed2-f75f0b3e1f76" name="ProximaFechaInicio" column="Proxima_Fecha_inicio" length="0" />
-        <modelProperty Id="8a8f4491-a24d-4a14-8376-85ebafbedd3e" name="ProximaFechaFin" column="Proxima_Fecha_Fin" length="0" />
-        <modelProperty Id="462cde4d-de64-4f8f-8d90-092bba53625e" name="IdResponsable" column="IdResponsable" columnType="Int32" length="0" />
-        <modelProperty Id="cc20f309-aa50-4a2d-ac6b-d95dea6be1ff" name="Causa" column="Causa" length="0" />
-        <modelProperty Id="23e7bb16-0be6-4f5a-adf8-4310d687728f" name="Reporte" column="Reporte" length="0" />
-        <modelProperty Id="76921c62-0498-48eb-993d-c7c90ba9d2a8" name="IdSolicitudInicial" column="id_Solicitud_Inicial" columnType="Int32" length="0" />
-        <modelProperty Id="3e447abf-66f5-4f00-8884-ef10263ea982" name="AprobacionTecnica" column="Aprobacion_Tecnica" columnType="Boolean" insert="false" length="0" update="false" />
-        <modelProperty Id="8530e14e-2af8-415b-9481-9e799889db28" name="FechaAprobacionTecnica" column="Fecha_Aprobacion_Tecnica" columnType="DateTime" insert="false" length="0" update="false" generator="None" />
-        <modelProperty Id="fc43238b-df8b-4ead-9b32-4a892466aad0" name="AprobacionCalidad" column="Aprobacion_Calidad" columnType="Boolean" insert="false" length="0" update="false" />
-        <modelProperty Id="c3db2c64-e6e0-4cd7-82be-b0c156f67b46" name="FechaAprobacionCalidad" column="Fecha_Aprobacion_Calidad" columnType="DateTime" insert="false" length="0" update="false" />
-      </properties>
-    </modelClass>
     <modelClass name="SolicitudAprobaciones" schema="dbo" table="Solicitud_Aprobaciones">
       <properties>
         <modelProperty Id="ad615943-fce7-4910-b441-08184010075d" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
@@ -353,6 +325,31 @@
         <modelProperty Id="85cfae5b-ea12-4ad3-8919-8ce173ac3fae" name="Sector" column="Sector" length="0" />
         <modelProperty Id="21223251-91cd-4cb5-9ae8-71e0e92b242c" name="Aprobado" column="Aprobado" columnType="Boolean" length="0" />
         <modelProperty Id="dd709e3d-f72d-4081-a4b8-47813adf4ae6" name="FechaActualizacion" column="FechaActualizacion" columnType="DateTime" insert="false" length="0" update="false" />
+      </properties>
+    </modelClass>
+    <modelClass name="Solicitud" schema="dbo" table="Solicitud">
+      <properties>
+        <modelProperty Id="6672284b-4bdb-434f-adfc-df221b2cdb70" name="Id_Solicitud" column="Id_Solicitud" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="639f7204-d589-44c8-aee9-23a483371984" name="IdTipoSolicitud" column="IdTipoSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="ec313e3a-d16f-4996-87fa-c27d790a3b7f" name="FechaCreacion" column="FechaCreacion" columnType="DateTime" length="0" />
+        <modelProperty Id="5f6e5a32-690c-471c-9f27-2ca85eb6df4a" name="IdUsuarioCreador" column="IdUsuarioCreador" columnType="Int32" length="0" />
+        <modelProperty Id="3e6f99f5-734e-45ed-9e85-14f908f6577d" name="Status" column="Status" length="0" />
+        <modelProperty Id="e281405a-c0dc-4a71-96f7-75b17aac03b0" name="Descripcion" column="Descripcion" length="0" />
+        <modelProperty Id="23fc0d7f-1bbf-4b2e-93b0-29c1e775ce37" name="IdCliente" column="IdCliente" columnType="Int32" length="0" />
+        <modelProperty Id="dd355dd6-5356-4e62-81da-5aced2cbdf13" name="Contacto" column="Contacto" length="0" />
+        <modelProperty Id="bb762213-e223-4848-a779-49a1f873c002" name="ContactoMail" column="Contacto_Mail" length="0" />
+        <modelProperty Id="32f6d103-eac6-4506-9544-42128d54a84a" name="ContactoTel" column="Contacto_Tel" length="0" />
+        <modelProperty Id="56dbae99-35bf-4158-ad68-1c93185871f0" name="NroOrdenCte" column="NroOrdenCte" length="0" />
+        <modelProperty Id="b554e02a-e9e5-4afb-b2c8-fcf738c94699" name="AprobadorReprosusp" column="Aprobador_ReproSusp" length="0" />
+        <modelProperty Id="07971062-a45b-4b7a-ad4f-501322a8b812" name="FechaSuspencion" column="Fecha_Suspencion" length="0" />
+        <modelProperty Id="0c5b8cc2-f5ba-4477-9b38-0b472589aae8" name="FechaReprogramacion" column="Fecha_Reprogramacion" length="0" />
+        <modelProperty Id="af5be882-fea5-47f9-acd2-a218756988c7" name="ProximaFechaInicio" column="Proxima_Fecha_inicio" length="0" />
+        <modelProperty Id="4146f60f-c296-4232-b16d-0a7611c96d53" name="ProximaFechaFin" column="Proxima_Fecha_Fin" length="0" />
+        <modelProperty Id="1a9b03f1-9ff3-410c-8d0d-aca084b9f656" name="IdResponsable" column="IdResponsable" columnType="Int32" length="0" />
+        <modelProperty Id="382b247c-dc95-4c60-921b-674e3d602a3f" name="Causa" column="Causa" length="0" />
+        <modelProperty Id="eee0a100-43ba-4587-b3c3-4026175aa101" name="Reporte" column="Reporte" length="0" />
+        <modelProperty Id="7c116ebf-7e59-4635-b4e8-5aef5254df64" name="IdSolicitudInicial" column="id_Solicitud_Inicial" columnType="Int32" length="0" />
+        <modelProperty Id="30874b60-5781-4ae7-aea9-8d3084265571" name="DescripcionReporte" column="Descripcion_Reporte" insert="false" length="0" update="false" />
       </properties>
     </modelClass>
   </classes>
