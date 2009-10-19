@@ -51,69 +51,96 @@ public partial class site : System.Web.UI.MasterPage
                     Imagen_Usuario.ToolTip = "Este usuario no esta relacionado con ningun Empleado, Contactarse con Sistemas";
                 
                 }
+               
+                //BindMenu();
                 
-
-                BindMenu(); 
             };
         }
 
-      
-
+        if (!IsPostBack)
+        {
+            LoadNodos();
+        }
     }
-    private void BindMenu()
-    {
+        
+    //private void BindMenu()
+    //{
     
+    //    foreach (SiteMapNode adminNode in SiteMap.RootNode.ChildNodes)
+    //    {
+    //        if (adminNode.Roles.Count > 0)
+    //        {
+
+    //            if (adminNode.Roles.Contains(BiFactory.User.IdPerfil.ToString()))
+    //                if (true)
+    //                {
+    //                    //HtmlGenericControl uMenu = new HtmlGenericControl("Estilo_menu");
+    //                    HtmlGenericControl uMenu = new HtmlGenericControl("menu");
+    //                    uMenu.Attributes.Add("id", "raiz");
+    //                    menu.Controls.Add(uMenu);
+                       
+    //                    AddItem(adminNode.Title , adminNode.Url, uMenu);
+    //                    HtmlGenericControl uChi = new HtmlGenericControl("ul");
+    //                    uChi.Attributes.Add("id", "uno");
+    //                    uMenu.Controls.Add(uChi);
+    //                    AddChilds(adminNode, uChi);
+
+    //                }
+    //        }
+    //    }
+    //}
+
+    //private void AddChilds(SiteMapNode adminNode, HtmlGenericControl uParent)
+    //{
+    //    foreach (SiteMapNode n in adminNode.ChildNodes)
+    //    {
+    //        if (n.ChildNodes.Count > 0)
+    //        {
+    //            AddItem(n.Title, n.Url, uParent);
+    //            HtmlGenericControl uChi = new HtmlGenericControl("ul");
+    //            uChi.Attributes.Add("id", "uno");
+    //            uParent.Controls.Add(uChi);
+    //            AddChilds(n, uChi);
+    //        }
+    //        else { AddItem(n.Title, n.Url, uParent); }
+    //    }
+    //}
+
+    //public void AddItem(string text, string url, HtmlGenericControl uParent)
+    //{
+    //    HtmlAnchor a = new HtmlAnchor();
+    //    a.InnerHtml =   text ;
+    //    a.HRef = url;
+
+    //    HtmlGenericControl li = new HtmlGenericControl("li");
+    //    li.Controls.Add(a);
+    //    uParent.Controls.Add(li);
+    //}
+
+    private void LoadNodos()
+    {
         foreach (SiteMapNode adminNode in SiteMap.RootNode.ChildNodes)
         {
-            if (adminNode.Roles.Count > 0)
+            if (adminNode.Roles.Contains(BiFactory.User.IdPerfil.ToString()))
             {
-
-                if (adminNode.Roles.Contains(BiFactory.User.IdPerfil.ToString()))
-                    if (true)
-                    {
-                        //HtmlGenericControl uMenu = new HtmlGenericControl("Estilo_menu");
-                        HtmlGenericControl uMenu = new HtmlGenericControl("menu");
-                        uMenu.Attributes.Add("id", "raiz");
-                        menu.Controls.Add(uMenu);
-                       
-                        AddItem(adminNode.Title , adminNode.Url, uMenu);
-                        HtmlGenericControl uChi = new HtmlGenericControl("ul");
-                        uChi.Attributes.Add("id", "uno");
-                        uMenu.Controls.Add(uChi);
-                        AddChilds(adminNode, uChi);
-
-                    }
+                MenuItem item = new MenuItem(adminNode.Title, adminNode.Title);
+                ucMenu.Items.Add(item);
+                foreach (SiteMapNode node in adminNode.ChildNodes)
+                {
+                    LoadNodo(node, item);
+                }
             }
         }
-
-    
     }
 
-    private void AddChilds(SiteMapNode adminNode, HtmlGenericControl uParent)
+    private void LoadNodo(SiteMapNode node, MenuItem parent)
     {
-        foreach (SiteMapNode n in adminNode.ChildNodes)
+        MenuItem item = new MenuItem(node.Title, node.Description, string.Empty, node.Url);
+        parent.ChildItems.Add(item);
+        foreach (SiteMapNode nodeChild in node.ChildNodes)
         {
-            if (n.ChildNodes.Count > 0)
-            {
-                AddItem(n.Title, n.Url, uParent);
-                HtmlGenericControl uChi = new HtmlGenericControl("ul");
-                uChi.Attributes.Add("id", "uno");
-                uParent.Controls.Add(uChi);
-                AddChilds(n, uChi);
-            }
-            else { AddItem(n.Title, n.Url, uParent); }
+            LoadNodo(nodeChild, item);
         }
-    }
-
-    public void AddItem(string text, string url, HtmlGenericControl uParent)
-    {
-        HtmlAnchor a = new HtmlAnchor();
-        a.InnerHtml =   text ;
-        a.HRef = url;
-
-        HtmlGenericControl li = new HtmlGenericControl("li");
-        li.Controls.Add(a);
-        uParent.Controls.Add(li);
     }
 
     public string Translate(string text)
