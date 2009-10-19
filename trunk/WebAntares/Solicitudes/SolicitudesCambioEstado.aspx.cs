@@ -98,7 +98,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 reporte.IdTipoSolicitud =  sol.IdTipoSolicitud;
                 reporte.IdUsuarioCreador = BiFactory.User.IdUsuario;
                 reporte.Reporte = "SI";
-                reporte.Status = eEstados.Realizado.ToString();
+                //reporte.Status = eEstados.Realizado.ToString();
                 reporte.FechaCreacion = DateTime.Now;
                 reporte.NroOrdenCte = sol.NroOrdenCte;
                 reporte.Contacto = sol.Contacto;

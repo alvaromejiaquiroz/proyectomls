@@ -4,8 +4,8 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
 <%--<%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>--%>
-<%@ Register Src="../Controles/Adjuntos_Calidad.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
-<%@ Register Src="../Controles/Adjuntos_Calidad.ascx" TagName="Calidad" TagPrefix="uc3" %>
+<%@ Register Src="../Controles/Adjuntos_Calidad_NEW.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
+
 <%@ Register src="../Controles/MantenimientoPreventivoRendicion.ascx" tagname="MantenimientoPreventivoRendicion" tagprefix="uc1" %>
 
 
@@ -138,23 +138,38 @@
                                     <ContentTemplate>
                                     <table class="text_custom" width="600px">
                                     <tr>
-                                        <td >
-                                        </td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td >
-                                            Descripcion del Trabajo Realizado
-                                        </td>
+                                        <td>Descripcion del Trabajo Realizado</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
                                         <td>
-                                        
+                                            <asp:TextBox ID="txtDescripcionTrabajo" runat="server" TextMode="MultiLine" Height="160px" Width="100%"></asp:TextBox>
                                         </td>
+                                        <td></td>
+
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <asp:Button ID="btnAceptarDescripcion_Trabajo" runat="server" Text="Aceptar Descripción"
+                                                OnClick="btnAceptarDescripcion_Trabajo_Click" Visible="true" CssClass="button_custom" />
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="La descripción del trabajo realizado es obligatoria"
+                                                ControlToValidate="lblDescripcionTrabajo" Display="None" ValidationGroup="solicitud"></asp:RequiredFieldValidator>
+                                               
+                                                       
+                                        </td>
+                                        <td></td>
                                     
-                                    <td>
-                                            <asp:TextBox ID="TextBox1" runat="server" TextMode="MultiLine" Height="160px" Width="100%"></asp:TextBox>
+                                    </tr>
                                     
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            <asp:TextBox ID="lblDescripcionTrabajo" runat="server"  TextMode="MultiLine"  CausesValidation="true" BorderStyle="NotSet" BorderWidth="0px" Enabled="false" Height="160px" Width="100%" ></asp:textbox>
+                                        </td>
+                                        <td></td>
                                     
                                     </tr>
                                     </table>
@@ -614,13 +629,6 @@
                             </table>
                         </ContentTemplate>
                     </cc1:TabPanel>
-                        <cc1:TabPanel ID="tpUp" HeaderText="testupload" runat="server">
-                            <ContentTemplate>
-                             <uc3:Calidad ID="Adjuntos1" runat="server" TipoAdjunto="Calidad" />
-                            </ContentTemplate>
-                            
-                        </cc1:TabPanel>
-                      
                         <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
                             <ContentTemplate>
                                 <div style="width: 600px">

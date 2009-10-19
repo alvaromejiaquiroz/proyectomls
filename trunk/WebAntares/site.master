@@ -4,23 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Antares</title>
-    <link href="~/App_Themes/antares/msvs_template_simple_tables.css" rel="stylesheet"
-        type="text/css" />
+    <link href="~/App_Themes/antares/msvs_template_simple_tables.css" rel="stylesheet"         type="text/css" />
 
-    <script src="../Libs/jquery-1.2.6.js" type="text/javascript"></script>
-
-    <script src="../Libs/jquery.tabs.js" type="text/javascript"></script>
-
-    <script src="../Libs/ui.core.packed.js" type="text/javascript"></script>
-
-    <script src="../Libs/ui.datepicker.packed.js" type="text/javascript"></script>
-
-    <script src="../Libs/jquery.form.js" type="text/javascript"></script>
-
-    <script src="../Libs/ui.datepicker-es.js" type="text/javascript"></script>
-
-    <script src="../Libs/jquery.numeric.pack.js" type="text/javascript"></script>
-
+    
     <script language="javascript" type="text/javascript">
         //funcion adicional para controlar el rango de fechas
         function customRange(input) {
@@ -81,9 +67,10 @@
                 </table>
             </td>
             <td align="right" style="width:740px">
-                <div class="header_custom" style="height:40px;vertical-align:middle;font-size:20px;padding-right:20px;padding-top:20px">
+            Sistema de Gestión
+          <%--      <div class="header_custom" style="height:40px;vertical-align:middle;font-size:20px;padding-right:20px;padding-top:20px">
                     Sistema de Gestión
-                </div>
+                </div>--%>
             </td>
             <td id="header_logo" style="width:125px">
                 <img alt="Energia en Comunicacion" src="../images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
