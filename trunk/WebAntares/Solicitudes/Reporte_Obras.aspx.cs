@@ -253,10 +253,11 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         ucObrasRendicion.FechaEntrega = Obra.FechaFin;
         ucObrasRendicion.RequisitosAprobacion = Obra.RequisitosAprovacion;
         ucObrasRendicion.RequisitosIngreso = Obra.RequisitosIngreso;
-        ucObrasRendicion.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+        ucObrasRendicion.Personal = SolicitudRecursosEmpleados.GetPersonaHoras_Detalle_EnSolicitud(BiFactory.Sol.Id_Solicitud);
         ucObrasRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
         ucObrasRendicion.Monto = Obra.Presupuesto;
         ucObrasRendicion.Adjuntos = Sol_Original.GetAdjuntos();
+        ucObrasRendicion.Responsable = Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
         ucObrasRendicion.Visible = true;
     }
 

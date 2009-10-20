@@ -137,20 +137,11 @@ public partial class Controles_ObrasRendicion : System.Web.UI.UserControl
         }
     }
 
-    protected void gvPersonal_RowDataBound(object sender, GridViewRowEventArgs e)
+    public string Responsable
     {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            DbDataRecord record = (DbDataRecord)e.Row.DataItem;
-            ((Literal)e.Row.Cells[0].FindControl("litEmpleado")).Text = record["Empleado"].ToString();
-            ((CheckBox)e.Row.Cells[0].FindControl("chkResponsable")).Checked = (bool)record["Responsable"];
-            SolicitudRecursosEmpleados solicitudRecursosEmpleados = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("Id", (int)record["Id"]));
-            GridView horas = (GridView)e.Row.Cells[0].FindControl("gvHorasPersonal");
-            horas.DataSource = SolicitudRendicionPersonalHoras.GetPersonasHorasEnSolicitud(int.Parse(SolicitudInicial), solicitudRecursosEmpleados.IdEmpleado);
-            horas.DataBind();
-        }
+        set { litResponsable.Text = value; }
     }
-
+    
     protected void gvVehiculos_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)

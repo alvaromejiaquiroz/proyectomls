@@ -19,31 +19,33 @@ public partial class Solicitudes_test : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string fecha = "30/10/2009";
-        CultureInfo nfo = new CultureInfo("es-ES");
-        DateTime date = DateTime.Parse(fecha, nfo);
+        //string fecha = "30/10/2009";
+        //CultureInfo nfo = new CultureInfo("es-ES");
+        //DateTime date = DateTime.Parse(fecha, nfo);
 
-        CultureInfo nfo2 = new CultureInfo("en-US");
-        Console.WriteLine(date.ToString(nfo2));
+        //CultureInfo nfo2 = new CultureInfo("en-US");
+        //Console.WriteLine(date.ToString(nfo2));
 
-        Label1.Text = date.ToString("yyyyMMdd");
+        //Label1.Text = date.ToString("yyyyMMdd");
         if (!Page.IsPostBack)
         {
-           cargamenu();
-             CargaMenu2();
+            //cargamenu();
+            //CargaMenu2();
+            Menu1.DataSource = GetSiteMapDataSource();
+            Menu1.DataBind();
         }
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        if (Tabs.ActiveTab.TabIndex <= Tabs.Tabs.Count)
-        {
-            Tabs.ActiveTab =Tabs.Tabs[ Tabs.ActiveTab.TabIndex + 1];
+        //if (Tabs.ActiveTab.TabIndex <= Tabs.Tabs.Count)
+        //{
+        //    Tabs.ActiveTab =Tabs.Tabs[ Tabs.ActiveTab.TabIndex + 1];
 
-        }
-        else
-        {
-            Tabs.ActiveTab = Tabs.Tabs[1]   ;
-        }
+        //}
+        //else
+        //{
+        //    Tabs.ActiveTab = Tabs.Tabs[1]   ;
+        //}
 
 
     }
@@ -87,8 +89,23 @@ public partial class Solicitudes_test : System.Web.UI.Page
         
         Menu1.Visible = true;
         Menu1.Enabled = true;
-        Menu1.DataBind();
+        //Menu1.DataBind();
     }
+
+    private SiteMapDataSource GetSiteMapDataSource()
+    {
+        XmlSiteMapProvider xmlSiteMap = new XmlSiteMapProvider();
+        System.Collections.Specialized.NameValueCollection
+               myCollection = new
+               System.Collections.Specialized.NameValueCollection(1);
+        myCollection.Add("siteMapFile", "Web.sitemap");
+        xmlSiteMap.Initialize("provider", myCollection);
+        xmlSiteMap.BuildSiteMap();
+        SiteMapDataSource siteMap = new SiteMapDataSource();
+        siteMap.ShowStartingNode = false;
+        return siteMap;
+    }
+
     private void agregaNodo(SiteMapNode nodo , MenuItem m)
     {
         
