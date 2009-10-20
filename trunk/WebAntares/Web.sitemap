@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode title="Menu">
-        <siteMapNode title="Administración" description="Administración" roles="1,4">
+        <siteMapNode title="Seguridad" description="Administración" roles="1,4">
           <siteMapNode url="~/usuarios/usuarios.aspx" title="Usuarios" description="Usuarios" roles="administrators, editors"/>
         </siteMapNode>
-        <siteMapNode title="Facturas y Pagos" roles="1,4">
+        <siteMapNode title="Administración" roles="1,4">
               <siteMapNode title="Cargar Facturas" url="~/Administracion/Facturas.aspx" roles="administrators, editors,2"/>
               <siteMapNode title="Listado de Facturas" url="~/Administracion/ListadoFacturas.aspx" roles="administrators, editors,2"/>
               <siteMapNode title="Pagos" url="~/Administracion/Pagos.aspx" roles="administrators, editors,2"/>
@@ -26,17 +26,13 @@
               </siteMapNode>
         </siteMapNode>
 
-        <siteMapNode title="Gestion y Mantenimiento" roles="1,2,3">
-               <siteMapNode title="Aprobación de Intervenciones"     url="~/Solicitudes/AprobacionSolicitudesGestion.aspx" roles="1,2,3"/>
-        </siteMapNode>
-          
-        <siteMapNode title="Calidad" roles="1,2,8">
-               <siteMapNode title="Aprobación de Registros"     url="~/Solicitudes/#" roles="1,2,8"/>
+        <siteMapNode title="Aprobaciones" roles="1,2,3">
+               <siteMapNode title="Aprobación Técnica"     url="~/Solicitudes/AprobacionSolicitudesGestion.aspx" roles="1,2,3"/>
+               <siteMapNode title="Aprobación Calidad"     url="~/Solicitudes/#" roles="1,2,8"/>
         </siteMapNode>
         
         <siteMapNode title="Testing" roles="1">
                 <siteMapNode title="Prueba"          url="~/solicitudes/test.aspx" roles="1"/>
         </siteMapNode>
-
-    </siteMapNode>
+  </siteMapNode>
 </siteMap>

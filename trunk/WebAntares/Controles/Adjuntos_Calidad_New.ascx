@@ -34,17 +34,11 @@
                         OnRowDataBound="gvCalidad_RowDataBound" OnRowDeleting="gvCalidad_RowDeleting" 
                          Width="100%">
                         <Columns>
-                            <asp:BoundField DataField="IdAdjunto" HeaderText="Id" ReadOnly="True" 
-                                Visible="false" />
-                            <asp:BoundField DataField="FileName" HeaderStyle-HorizontalAlign="Center" 
-                                HeaderText="Archivo" Visible="true" />
-                            <asp:BoundField DataField="Date" DataFormatString="{0:dd/MM/yyyy}" 
-                                HeaderStyle-HorizontalAlign="Center" HeaderText="Fecha" 
-                                ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="size" HeaderStyle-HorizontalAlign="Center" 
-                                HeaderText="Tamaño" ItemStyle-HorizontalAlign="Center" />
-                            <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="Eliminar" 
-                                ItemStyle-HorizontalAlign="Center">
+                            <asp:BoundField DataField="IdAdjunto" HeaderText="Id" ReadOnly="True" Visible="false" />
+                            <asp:BoundField DataField="FileName" HeaderStyle-HorizontalAlign="Center" HeaderText="Archivo" Visible="true" />
+                            <asp:BoundField DataField="Date" DataFormatString="{0:dd/MM/yyyy}"   HeaderStyle-HorizontalAlign="Center" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="size" HeaderStyle-HorizontalAlign="Center"  HeaderText="Tamaño" ItemStyle-HorizontalAlign="Center" />
+                            <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="Eliminar"  ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgAdjunto" runat="server" CausesValidation="False" 
                                         CommandName="Delete" ImageUrl="~/Images/basuravacio.gif" Text="Delete" 

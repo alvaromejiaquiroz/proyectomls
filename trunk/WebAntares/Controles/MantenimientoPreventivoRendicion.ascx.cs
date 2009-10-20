@@ -116,9 +116,18 @@ public partial class Controles_MantenimientoPreventivoRendicion : System.Web.UI.
         }
     }
 
+    public DbDataReader Calidad
+    {
+        set
+        {
+            gvCalidad.DataSource = value;
+            gvCalidad.DataBind();
+        }
+    }
+    
     public string Monto
     {
-        set { litMonto.Text = value; }
+        set { litMonto.Text = "$" + value; }
     }
 
     public bool Imprimible
@@ -129,6 +138,20 @@ public partial class Controles_MantenimientoPreventivoRendicion : System.Web.UI.
             pnlImprimir.Visible = value;
             imgAntares.Visible = value;
         }
+    }
+
+    public string Descripcion_TrabajoRealizado
+    {
+        set { lblDescripcion_TrabajoRealizado.Text =  value; }
+    }
+
+    public bool HabilitarArchivoCalidad
+    {
+        set
+        {
+            pnlCalidad.Visible = value;
+        }
+
     }
 
     protected void gvVehiculos_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -164,5 +187,29 @@ public partial class Controles_MantenimientoPreventivoRendicion : System.Web.UI.
                 }
                 break;
         }
+    }
+    protected void gvCalidad_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        Int32 Id = Int32.Parse(e.CommandArgument.ToString());
+        Adjunto Adj = Adjunto.FindOne(Expression.Eq("IdAdjunto", Id));
+
+            switch (e.CommandName)
+            {
+                case "download":
+
+                    System.IO.FileInfo file = new System.IO.FileInfo(Adj.PathFile);
+                    if (file.Exists)
+                    {
+                        Response.Clear();
+                        Response.AddHeader("Content-Disposition", "attachment; filename=" + Adj.FileName);
+                        Response.AddHeader("Content-Length", file.Length.ToString());
+                        Response.ContentType = "application/octet-stream";
+                        Response.WriteFile(file.FullName);
+                        Response.End();
+
+                    }
+                    break;
+            }
+        
     }
 }

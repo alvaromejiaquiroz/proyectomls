@@ -104,6 +104,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
             gvAdjuntos.DataBind();
         }
     }
+
     public CalidadArchivos[] Calidad
     {
         set
@@ -115,7 +116,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
 
     public string Monto
     {
-        set { litMonto.Text = value; }
+        set { litMonto.Text = "$" + value; }
     }
         
     public bool Imprimible
@@ -146,6 +147,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
         }
 
     }
+
     public bool HabilitarArchivoCalidad
     {
         set
@@ -154,6 +156,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
         }
 
     }
+
     protected void gvAdjuntos_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         Int32 Id = Int32.Parse(e.CommandArgument.ToString());
@@ -172,6 +175,27 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
                     Response.WriteFile(file.FullName);
                     Response.End();
 
+                }
+                break;
+        }
+    }
+    protected void gvCalidad_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        Int32 Id = Int32.Parse(e.CommandArgument.ToString());
+        CalidadArchivos Archivo = CalidadArchivos.FindOne(Expression.Eq("Id", Id));
+
+        switch (e.CommandName)
+        {
+            case "Descargar":
+                System.IO.FileInfo file = new System.IO.FileInfo(Archivo.RutaArchivo);
+                if (file.Exists)
+                {
+                    Response.Clear();
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + Archivo.NombreArchivo);
+                    Response.AddHeader("Content-Length", file.Length.ToString());
+                    Response.ContentType = "application/octet-stream";
+                    Response.WriteFile(file.FullName);
+                    Response.End();
                 }
                 break;
         }

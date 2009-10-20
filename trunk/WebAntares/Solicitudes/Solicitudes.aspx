@@ -25,7 +25,7 @@
             </td>
             <td>
                 <asp:TextBox ID="txtNroSolicitud" runat="server" CssClass="text_custom" 
-                    Width="289px"></asp:TextBox>
+                    Width="250px"></asp:TextBox>
                 <asp:CompareValidator ID="cvNroSolicitud" runat="server" Display="None" ErrorMessage="El número de solicitud no es válido." ControlToValidate="txtNroSolicitud" Operator="DataTypeCheck" Type="Integer" ValidationGroup="buscar"></asp:CompareValidator>
             </td>
         </tr>
@@ -34,7 +34,7 @@
                 Tipo de Solicitud
             </td>
             <td>
-                <uc1:cboTipoSolicitud ID="cboTipoSolicitud1" runat="server" />
+                <uc1:cboTipoSolicitud ID="cboTipoSolicitud1"  runat="server"  />
             </td>
         </tr>
         <tr>
@@ -43,7 +43,7 @@
             </td>
             <td>
                 <uc2:CboGeneric ID="cboPersonal" runat="server" NameId="id_empleados" NameDescript="Empleado"
-                    SourceData="vw_personas" TipoOrigen="Vista" />
+                    SourceData="vw_personas" TipoOrigen="Vista" Width="250px" />
             </td>
         </tr>
         <tr>
@@ -51,7 +51,7 @@
                 Estado
             </td>
             <td>
-                <asp:DropDownList ID="cmbEstados" runat="server" CssClass="text_custom">
+                <asp:DropDownList ID="cmbEstados" runat="server" CssClass="text_custom" Width="250px">
                 </asp:DropDownList>
             </td>
         </tr>

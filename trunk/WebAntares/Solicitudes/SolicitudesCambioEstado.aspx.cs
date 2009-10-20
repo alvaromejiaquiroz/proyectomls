@@ -234,7 +234,6 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
             sol.AprobadorReprosusp = txtAprobador.Text;
             switch (cmbEstados.SelectedItem.ToString())
             {
-
                 case "Reprogramado":
                     switch (sol.IdTipoSolicitud)
                     {

@@ -132,10 +132,11 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         cboSitios.Enabled = true;
         cboSitios.Items.Clear();
         cboSitios.Items.Add(new ListItem("Seleccione...", "-1"));
-        foreach (Antares.model.Sitios sitio in Antares.model.Sitios.FindAll())
+        foreach (Antares.model.Sitios sitio in Antares.model.Sitios.FindAll(Expression.Eq("Activo",true)))
         {
-            cboSitios.Items.Add(new ListItem(sitio.Descripcion, sitio.IdSitio.ToString()));
+            cboSitios.Items.Add(new ListItem(sitio.Nombre, sitio.IdSitio.ToString()));
         }
+        
     }
 
     public void CargarCombos()
@@ -148,7 +149,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             lstTareas.Items.Add(new ListItem(t.Tarea, t.Id.ToString()));
         }
 
-        foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.FindAll())
+        foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.FindAll(Expression.Eq("Estado","activo")))
         {
             lstVehiculos.Items.Add(new ListItem(vehi.Marca + " " + vehi.Modelo + " " + vehi.Patente, vehi.IdVehiculos.ToString()));
         }
@@ -159,7 +160,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
         cmbResponsable.Items.Clear();
         cmbResponsable.Items.Add(new ListItem("Seleccione...", "-1"));
-        foreach (Antares.model.Personal responsable in Antares.model.Personal.FindAll())
+        foreach (Antares.model.Personal responsable in Antares.model.Personal.FindAll(Expression.Eq("Activo", "si")))
         {
             cmbResponsable.Items.Add(new ListItem(responsable.Apellido + ", " + responsable.Nombres, responsable.IdEmpleados.ToString()));
         }
@@ -297,9 +298,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
             sol.Status = eEstados.Pendiente.ToString();
             Sol_P.IdSitio = int.Parse(cboSitios.SelectedValue);
-            //Sol_P.FechaFin = DateTime.Now.ToString();
-            //Sol_P.FechaInicio = DateTime.Now.ToString();
-
+            
             SolicitudTareas st = SolicitudTareas.FindOne(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
             Sol_P.FechaFin = st.FechaFin;
             Sol_P.FechaInicio = st.FechaInicio;
@@ -515,4 +514,5 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         }
 
     }
+    
 }

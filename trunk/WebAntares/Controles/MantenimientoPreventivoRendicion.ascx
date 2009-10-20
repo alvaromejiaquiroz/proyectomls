@@ -1,24 +1,25 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MantenimientoPreventivoRendicion.ascx.cs" Inherits="Controles_MantenimientoPreventivoRendicion" %>
 
-<table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
+<table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left;padding-left:50%">
     <tr class="header_custom">
         <td align="center" colspan="3">
-            Reporte de mantenimiento preventivo
+            REPORTE DE MANTENIMIENTO PREVENTIVO
         </td>
     </tr>
     <tr>
         <td colspan="2" style="height: 20px">
         </td>
-        <td rowspan="3" align="right" valign="top" style="padding-right:10px">
+        <td rowspan="3" align="right" valign="top" style="padding-right:10px;padding-top:10px">
             <asp:Image ID="imgAntares" runat="server" AlternateText="Antares" ToolTip="Antares" ImageUrl="~/images/LogoAntaresThumbnail.png" />
         </td>
     </tr>
     <tr>
         <td style="padding-left: 20px;width:200px">
-            Número
+            Número 
         </td>
         <td colspan="2">
-            <asp:Literal ID="litNumero" runat="server"></asp:Literal>
+        <asp:Label ID="litNumero" runat="server" style="font-weight:bold;"></asp:Label>
+            
         </td>
     </tr>
     <tr>
@@ -38,6 +39,22 @@
         </td>
     </tr>
     <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+      <tr>
+        <td colspan="3" style="padding-left: 20px;font-weight:bold">
+            Responsable
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-left: 20px">
+            Apellido y Nombres
+        </td>
+        <td colspan="2">
+            <asp:Literal ID="litResponsable" runat="server"></asp:Literal>
+        </td>
+    </tr>
+    <tr>
         <td style="padding-left: 20px">
             Sitio
         </td>
@@ -45,14 +62,31 @@
             <asp:Literal ID="litSitio" runat="server"></asp:Literal>
         </td>
     </tr>
+    
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
+    
+    <tr>
+        <td colspan="3" style="padding-left: 20px;font-weight:bold">
+            Descripción del Trabajo Realizado
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="padding-left: 20px;">
+            <asp:label id="lblDescripcion_TrabajoRealizado" runat="server" BorderStyle="None"></asp:label>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
             Tareas
         </td>
     </tr>
+    
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
             <asp:GridView ID="gvTareas" runat="server" AutoGenerateColumns="false" Width="100%">
@@ -69,19 +103,7 @@
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
-    <tr>
-        <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Responsable
-        </td>
-    </tr>
-    <tr>
-        <td style="padding-left: 20px">
-            Apellido y Nombres
-        </td>
-        <td colspan="2">
-            <asp:Literal ID="litResponsable" runat="server"></asp:Literal>
-        </td>
-    </tr>
+  
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
@@ -93,7 +115,7 @@
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
             <asp:GridView ID="gvPersonal" runat="server" AutoGenerateColumns="False"
-                Width="100%" EmptyDataText="No se han cargado las horas de ningún empleado.">
+                Width="100%" EmptyDataText="No se han Asignado horas aún." BorderStyle="None">
                 <Columns>
                     <asp:BoundField DataField="Nombre" HeaderText="Empleado" />
                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
@@ -154,7 +176,7 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Complemento
+            Datos del Cliente
         </td>
     </tr>
     <tr>
@@ -197,14 +219,57 @@
             <asp:Literal ID="litMailContacto" runat="server"></asp:Literal>
         </td>
     </tr>
+    
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
+    
+   
+    <tr>
+        <td colspan="3" style="padding-left: 20px;">
+          <div ID="pnlCalidad" runat="server" Visible="false">
+                <table >
+                <tr>
+                    <td colspan="3" style="font-weight:bold;" >
+                    Archivo de Calidad
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                       <asp:GridView ID="gvCalidad" runat="server" AutoGenerateColumns="False"  EmptyDataText="No Existen Registros de Calidad Asignados" Width="100%" onrowcommand="gvCalidad_RowCommand">
+                    <Columns>
+                    <asp:BoundField DataField="FileName" HeaderText="Archivo" Visible="true" HeaderStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="Date" HeaderText="Fecha" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" />
+                    <asp:BoundField DataField="size" HeaderText="Tamaño" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+                    <asp:TemplateField HeaderText="Download" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" Visible="true">
+                    <ItemTemplate>
+                    <asp:ImageButton ID="imgAdjunto" runat="server" CausesValidation="False" CommandName="download" CommandArgument='<%# Bind("IdAdjunto") %>'
+                        ImageUrl="~/Images/guardar.gif" Text="download" ToolTip="Descargar el archivo" />
+                    </ItemTemplate>
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
+
+                    </Columns>
+                                    </asp:GridView>
+                    </td>
+                </tr>
+                </table>
+        </div>
+  
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    
+    
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
             Adjuntos
         </td>
     </tr>
+    
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
             <asp:GridView ID="gvAdjuntos" runat="server" AutoGenerateColumns="False" Width="100%" EmptyDataText="No se han adjuntado archivos en la solicitud." onrowcommand="gvAdjuntos_RowCommand">
@@ -230,15 +295,18 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Presupuesto
+            Gastos Totales
         </td>
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Monto
+            <asp:Label ID="litMonto" runat="server" style="color:#000000; font-weight:bold;"></asp:Label>
         </td>
         <td colspan="2">
-            <asp:Literal ID="litMonto" runat="server"></asp:Literal>
+            <%--
+            <asp:Literal ID="litMonto" runat="server" ></asp:Literal>
+            <asp:Label ID="litMonto" runat="server" style="color:Red;"></asp:Label> 
+            --%>
         </td>
     </tr>
     <tr>
@@ -253,10 +321,18 @@
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
+    <tr>
+        <td colspan="2" style="height: 20px">
+                    
+        </td>
+        <td rowspan="3" align="right" valign="top" style="padding-right:10px;padding-bottom:10px;">
+            <asp:Image ID="Image1" runat="server"  AlternateText="Antares" ToolTip="Antares" ImageUrl="~/images/BV_Certification_ISO9001.gif" Height="50px" />
+        </td>
+    </tr>
 </table>
 <asp:Panel ID="pnlImprimir" runat="server">
     <div style="margin: 20px;text-align: center">
-        Sistema de gestión de tareas - V 1.0 - ANTARES COM S.A
+        Sistema de Gestión  - ANTARES COM S.A. - V 1.0 
     </div>
     <div style="margin: 20px;text-align: center">
         <input type="button" class="button_custom" onclick="window.print()" value="Imprimir" />
