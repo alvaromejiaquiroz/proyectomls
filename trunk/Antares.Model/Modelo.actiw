@@ -14,28 +14,6 @@
         <modelProperty Id="9ca37bd0-b35c-401e-bebf-c9f95efb509e" name="Tarea" column="Tarea" length="0" />
       </properties>
     </modelClass>
-    <modelClass name="Vehiculos" schema="dbo" table="Vehiculos">
-      <properties>
-        <modelProperty Id="252dac4b-4772-4e15-a71c-50db2c32eb62" name="IdVehiculos" column="ID_Vehiculos" columnType="Int32" length="0" keyType="PrimaryKey" />
-        <modelProperty Id="d7a00c1f-75b1-42e6-bbd4-d2b1d537b40b" name="Color" column="Color" length="0" />
-        <modelProperty Id="f7e8da00-e3ca-4487-8fdc-6ff88fe86be2" name="FechaCompra" column="Fecha_Compra" columnType="Int32" length="0" />
-        <modelProperty Id="7472a849-a118-430e-b76b-1108aa6f4b50" name="VencimientoCedulaVerde" column="Vencimiento_Cedula_Verde" length="0" />
-        <modelProperty Id="37cae888-ce34-4784-b2ab-102d72c62a5f" name="Estado" column="Estado" length="0" />
-        <modelProperty Id="a39e5ce6-d505-4495-911b-ca5f412edc0e" name="Prendado" column="Prendado" length="0" />
-        <modelProperty Id="d50febc2-96d1-4290-9fc1-01758e33ad16" name="Responsable" column="Responsable" length="0" />
-        <modelProperty Id="a778c478-759c-4cb5-a0d7-0239dcbece44" name="Aseguradora" column="Aseguradora" length="0" />
-        <modelProperty Id="ba7bf2de-86cb-4fd7-a833-c14d5928582e" name="VencimientoSeguro" column="Vencimiento_Seguro" length="0" />
-        <modelProperty Id="d30f7bad-0c24-4e5b-bd39-462910684d1b" name="Motor" column="Motor" length="0" />
-        <modelProperty Id="61f8c5f9-6df6-4b3f-b346-707beba3b22a" name="Chasis" column="Chasis" length="0" />
-        <modelProperty Id="c2d69afb-ced9-46b0-8dec-3d1b534e9daa" name="Base" column="Base" length="0" />
-        <modelProperty Id="df4620e9-8c30-41bd-9260-8e2f0a5816da" name="Marca" column="Marca" length="0" />
-        <modelProperty Id="eba5fb50-fdae-48cd-a1fa-0ac43c578303" name="Modelo" column="Modelo" length="0" />
-        <modelProperty Id="cdced3e5-41af-4f38-aaf9-a50ae1b085e6" name="Año" column="Año" length="0" />
-        <modelProperty Id="da0a1056-282f-47b5-9a4b-fb0c4063a9f6" name="NUnidad" column="N_Unidad" length="0" />
-        <modelProperty Id="a4173729-04f8-45d2-9837-4b166baf88b0" name="Patente" column="Patente" length="0" />
-        <modelProperty Id="e1666c6b-d500-4b53-b065-1b581790ef2c" name="DV" column="DV" columnType="Int32" length="0" />
-      </properties>
-    </modelClass>
     <modelClass name="Empresas" schema="dbo" table="Empresas">
       <properties>
         <modelProperty Id="6db3360e-a657-4191-a822-f84eb9d682cc" name="IdEmpresa" column="Id_Empresa" columnType="Int32" length="0" keyType="PrimaryKey" />
@@ -179,40 +157,6 @@
         <modelProperty Id="8ba91abe-2854-40f6-bfc1-36e94f7cb3cb" name="Descripcion" column="Descripcion" length="0" />
       </properties>
     </modelClass>
-    <modelClass name="Personal" schema="dbo" table="Personal">
-      <properties>
-        <modelProperty Id="3aa1f44b-56dc-4025-bfc1-529c31cc8121" name="IdEmpleados" column="Id_Empleados" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="e31bc4d6-81a3-43a4-99f6-f54b2f2045d2" name="NLegajo" column="N_Legajo" length="0" />
-        <modelProperty Id="0ec97088-c7f8-4197-ad53-300c3a07b9e9" name="Apellido" column="Apellido" length="0" notNull="true" />
-        <modelProperty Id="86fb11c2-e7df-4fe4-a02f-e66379cee777" name="Nombres" column="Nombres" length="0" notNull="true" />
-        <modelProperty Id="4259c63f-23b7-4715-938f-9a33f3962ba6" name="Zona" column="Zona" length="0" />
-        <modelProperty Id="735070e0-a28f-424e-a369-41db817eaafd" name="Base" column="Base" length="0" />
-        <modelProperty Id="b65d3407-c59e-4d0e-baf5-88d8b183de11" name="TelCelular" column="Tel_Celular" length="0" />
-        <modelProperty Id="302498c7-deda-42aa-80e6-db41394397f8" name="TelParticular" column="Tel_Particular" length="0" />
-        <modelProperty Id="9e6bb25f-4cb4-4d7d-9c3b-20b9350b9c78" name="Calle" column="Calle" length="0" />
-        <modelProperty Id="7ed70bb9-5e52-48cf-aef1-c74e98d21219" name="Numero" column="Numero" length="0" />
-        <modelProperty Id="602621ab-f071-434b-8c33-1aa0f2af38ef" name="PisoDto" column="Piso_Dto" length="0" />
-        <modelProperty Id="d6a31a67-7af6-41ed-8281-cc3f3da9f4d8" name="CP" column="CP" length="0" />
-        <modelProperty Id="9888c1a7-44af-4bd9-a79c-d777b836b7e9" name="Localidad" column="Localidad" length="0" />
-        <modelProperty Id="7ac86ccd-a26c-4656-b680-fcb3823a5741" name="Pcia" column="Pcia" length="0" />
-        <modelProperty Id="d7357590-42d6-4632-81f1-1cfaa6c5d429" name="FechaNacimiento" column="Fecha_Nacimiento" length="0" />
-        <modelProperty Id="4dab7112-c154-46b0-8568-d96d2bfb0c97" name="Nacionalidad" column="Nacionalidad" length="0" />
-        <modelProperty Id="cbf40862-0b1e-417d-b7e0-72e15c604500" name="DocTipo" column="Doc_Tipo" length="0" />
-        <modelProperty Id="d9e5494c-8912-46bf-a828-ce54f5725fc7" name="DocNumero" column="Doc_Numero" length="0" />
-        <modelProperty Id="92b0ad42-5a55-4dfc-bab7-509b1858cbfb" name="CUIL" column="CUIL" length="0" />
-        <modelProperty Id="2f8dd333-aae0-4756-b32a-8c6f045cdafe" name="CAT" column="CAT" length="0" />
-        <modelProperty Id="e827fa01-2e27-4aeb-9b8e-1c61b6ebdae4" name="HabilitadoConducirV" column="Habilitado_Conducir_V" length="0" notNull="true" />
-        <modelProperty Id="f7fff94d-45bb-4581-a794-b5302aadf036" name="BancoEnQuePercibeHaberes" column="Banco_en_que_percibe_Haberes" length="0" />
-        <modelProperty Id="bb2753d0-9059-497f-8634-9c1a5293e8d3" name="CtaGalicia" column="Cta_GALICIA" length="0" />
-        <modelProperty Id="d13dce39-0fd4-4e49-8dee-0ed7e6e19dd9" name="CtaRio" column="Cta_RIO" length="0" />
-        <modelProperty Id="75ff74d3-9267-4fe0-9339-55d62d59b856" name="CtaParibas" column="Cta_PARIBAS" length="0" />
-        <modelProperty Id="e6730a14-bedf-4e81-861c-63a0a82d5985" name="TipoDeContrato" column="Tipo_de_Contrato" length="0" />
-        <modelProperty Id="0fc99587-cc5d-48a1-857f-cf69b401892b" name="FechaDeIngreso" column="Fecha_de_Ingreso" length="0" />
-        <modelProperty Id="c186de30-9ebf-4540-b412-288fecf42053" name="FechaFinContrato" column="Fecha_Fin_Contrato" length="0" />
-        <modelProperty Id="aaa1d590-ac3c-4b86-bf1a-5f8e979134a7" name="Activo" column="Activo" length="0" notNull="true" />
-        <modelProperty Id="aed10552-0a07-4e25-8c18-5aef4b348bac" name="Foto" column="Foto" length="0" />
-      </properties>
-    </modelClass>
     <modelClass name="SolicitudTareas" schema="dbo" table="Solicitud_Tareas">
       <properties>
         <modelProperty Id="b2132cbe-efe6-4d3b-867a-00ada21590f7" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
@@ -334,7 +278,7 @@
         <modelProperty Id="382b247c-dc95-4c60-921b-674e3d602a3f" name="Causa" column="Causa" length="0" />
         <modelProperty Id="eee0a100-43ba-4587-b3c3-4026175aa101" name="Reporte" column="Reporte" length="0" />
         <modelProperty Id="7c116ebf-7e59-4635-b4e8-5aef5254df64" name="IdSolicitudInicial" column="id_Solicitud_Inicial" columnType="Int32" length="0" />
-        <modelProperty Id="30874b60-5781-4ae7-aea9-8d3084265571" name="DescripcionReporte" column="Descripcion_Reporte" insert="false" length="0" update="false" />
+        <modelProperty Id="30874b60-5781-4ae7-aea9-8d3084265571" name="DescripcionReporte" column="Descripcion_Reporte" insert="false" length="0" />
       </properties>
     </modelClass>
     <modelClass name="Sitios" schema="dbo" table="OP_Sitios">
@@ -343,9 +287,9 @@
         <modelProperty Id="b6e835ea-a0ec-428f-b1d6-6eb3358e016c" name="Codigo" column="Codigo" length="0" />
         <modelProperty Id="6afd8897-9e0c-42b9-9430-306784ba8070" name="Descripcion" column="Descripcion" length="0" />
         <modelProperty Id="8adc731a-e13e-4184-8963-3b1f6858e459" name="Nombre" column="Nombre" length="0" />
-        <modelProperty Id="6a1e05ef-d340-43cb-a3e2-553b22123233" name="Tipo" column="Tipo" columnType="Char" length="0" />
+        <modelProperty Id="6a1e05ef-d340-43cb-a3e2-553b22123233" name="Tipo" column="Tipo" length="0" />
         <modelProperty Id="a8d8eaf4-a152-4eec-b815-3df003120d50" name="Operador" column="Operador" length="0" />
-        <modelProperty Id="9b2a1fe5-8893-4268-865e-b2fcbfc35c8a" name="CodigoOperador" column="Codigo_Operador" columnType="Char" length="0" />
+        <modelProperty Id="9b2a1fe5-8893-4268-865e-b2fcbfc35c8a" name="CodigoOperador" column="Codigo_Operador" length="0" />
         <modelProperty Id="df9d61e3-5b86-4bd9-a5e7-6551e2013b48" name="Direccion" column="Direccion" length="0" />
         <modelProperty Id="bdd31057-56bf-45db-8fd4-2449b512262a" name="CP" column="CP" length="0" />
         <modelProperty Id="5bab107e-45d9-4ba6-a427-7a5ffbf6b926" name="Lat" column="Lat" length="0" />
@@ -353,9 +297,72 @@
         <modelProperty Id="01c4c92f-b31a-4db6-abc0-38c2468e80ac" name="Localidad" column="Localidad" length="0" />
         <modelProperty Id="0ecf5687-4912-4e90-8bf3-bcfdb9b1adc6" name="Provincia" column="Provincia" length="0" />
         <modelProperty Id="7cd45c6a-a686-422a-bd63-66c4f3de7290" name="UoPrimaria" column="UO_Primaria" length="0" />
-        <modelProperty Id="ccf10f72-4c24-46b5-bb35-2055cefcbfee" name="UoCodigo" column="UO_Codigo" columnType="Char" length="0" />
+        <modelProperty Id="ccf10f72-4c24-46b5-bb35-2055cefcbfee" name="UoCodigo" column="UO_Codigo" length="0" />
         <modelProperty Id="1cf07f92-3c78-4d05-a551-f28d74a59663" name="UsuariosSitio" column="Usuarios_Sitio" length="0" />
         <modelProperty Id="5c63f5ca-ea9e-4fc8-8a61-f042af60fdf4" name="Activo" column="Activo" columnType="Boolean" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="Vehiculos" schema="dbo" table="Vehiculos">
+      <properties>
+        <modelProperty Id="19aefec6-0ba8-449b-be3d-6deb4fb916a6" name="IdVehiculos" column="ID_Vehiculos" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="8f11ed87-7f6d-4d26-967c-d2ed9429cd88" name="NUnidad" column="N_Unidad" length="0" />
+        <modelProperty Id="fdee0414-ec3e-4a67-b4e1-ac151c395b35" name="Patente" column="Patente" length="0" />
+        <modelProperty Id="1ebaa173-bcb6-439d-a03e-b3c9dd528524" name="DV" column="DV" columnType="Int32" length="0" />
+        <modelProperty Id="1c9c59b6-1a5b-4617-b3ed-fba083a7ab15" name="Marca" column="Marca" length="0" />
+        <modelProperty Id="7bc62856-58cf-4cce-a653-e62edbb683ca" name="Modelo" column="Modelo" length="0" />
+        <modelProperty Id="b8d67ea3-56db-4ead-88ad-cc5a1e20178b" name="Año" column="Año" columnType="AnsiString" length="0" />
+        <modelProperty Id="43bc02fa-6ec9-4655-a9f9-28daeb79b245" name="Motor" column="Motor" length="0" />
+        <modelProperty Id="1fc7dbb1-e9d9-4e55-97e6-7b73a78fb3dc" name="Chasis" column="Chasis" length="0" />
+        <modelProperty Id="4bc2717e-d1a7-4ba5-ab98-045f73cb615f" name="Base" column="Base" length="0" />
+        <modelProperty Id="eac169b7-6e1a-422e-885e-8b254a16bde8" name="Responsable" column="Responsable" length="0" />
+        <modelProperty Id="04bfaef3-448e-4f23-b1bd-f1cec29c1ec6" name="Aseguradora" column="Aseguradora" length="0" />
+        <modelProperty Id="6f1e0d08-e8d1-4955-b459-f13f45f9093f" name="VencimientoSeguro" column="Vencimiento_Seguro" columnType="DateTime" length="0" update="false" />
+        <modelProperty Id="79fb3bcc-02ce-40a4-9b19-868176922af7" name="VencimientoCedulaVerde" column="Vencimiento_Cedula_Verde" columnType="DateTime" length="0" update="false" />
+        <modelProperty Id="c5c0f33b-bd7a-4351-a9dc-35a1e985ed00" name="Estado" column="Estado" length="0" />
+        <modelProperty Id="64f80e2f-ea71-40a2-87c1-934b7a58f321" name="Prendado" column="Prendado" length="0" />
+        <modelProperty Id="0564b299-d7c4-4559-8efa-d1ea7b365e57" name="Color" column="Color" length="0" />
+        <modelProperty Id="23ac6b8a-539e-4bc1-801f-48da5b8a18a0" name="FechaCompra" column="Fecha_Compra" columnType="Int32" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="Personal" schema="dbo" table="Personal">
+      <properties>
+        <modelProperty Id="9e9ca6da-4913-47bc-a1a7-7e43ac77ef54" name="IdEmpleados" column="Id_Empleados" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="dfbaabfa-c902-4d04-86e9-4f5869cec5c4" name="NLegajo" column="N_Legajo" columnType="AnsiString" length="0" />
+        <modelProperty Id="2fff7781-fc57-4044-baa1-f8f14311ee1b" name="Apellido" column="Apellido" length="0" notNull="true" />
+        <modelProperty Id="56074daa-98b8-4f49-9fb2-99cf2b333f65" name="Nombres" column="Nombres" length="0" notNull="true" />
+        <modelProperty Id="38a84313-2557-4a61-a729-56419236c19b" name="Zona" column="Zona" length="0" />
+        <modelProperty Id="0d7e6549-1a4b-46a1-835f-82fa88f5bb7e" name="Base" column="Base" length="0" />
+        <modelProperty Id="dc6db178-42a9-40ac-b753-f46de1898f9f" name="TelCelular" column="Tel_Celular" length="0" />
+        <modelProperty Id="343c8b6e-8730-43a9-afec-b9a6da68e2f5" name="TelParticular" column="Tel_Particular" length="0" />
+        <modelProperty Id="2acdbd6d-fc15-4edb-b379-fc22edf0d40b" name="CelPatrticular" column="Cel_Patrticular" length="0" />
+        <modelProperty Id="da9fc008-bfa5-491c-bdd5-05939d6fe650" name="Calle" column="Calle" length="0" />
+        <modelProperty Id="eee714ee-d1ee-4a03-ba9f-15c741325140" name="Numero" column="Numero" length="0" />
+        <modelProperty Id="b2a9938f-0e38-435a-9e62-95730fb55f2f" name="PisoDto" column="Piso_Dto" length="0" />
+        <modelProperty Id="1e7ff7c4-8652-4107-8859-c89aeef7b5ea" name="CP" column="CP" length="0" />
+        <modelProperty Id="b21a4681-cf56-4154-85d8-189c19ffe03b" name="Localidad" column="Localidad" length="0" />
+        <modelProperty Id="8a2111d3-d841-4dc8-bccd-27e4d3aa293e" name="Pcia" column="Pcia" length="0" />
+        <modelProperty Id="885c69cc-a934-407d-8ba9-dd7a3af2c5d9" name="FechaNacimiento" column="Fecha_Nacimiento" columnType="DateTime" insert="false" length="0" update="false" />
+        <modelProperty Id="74b19e08-6389-4e9b-a44b-0f528b318fe7" name="Nacionalidad" column="Nacionalidad" length="0" />
+        <modelProperty Id="783364db-e53c-49ac-9472-5947ceeb22a0" name="DocTipo" column="Doc_Tipo" length="0" />
+        <modelProperty Id="deb87ef5-ddbc-426b-8e4a-0fc08a8e5268" name="DocNumero" column="Doc_Numero" length="0" />
+        <modelProperty Id="3c2f39c8-297c-453b-9688-97f790f738f6" name="CUIL" column="CUIL" length="0" />
+        <modelProperty Id="a89895d6-35c4-4375-bd3f-3c6e42fbe4e5" name="CAT" column="CAT" length="0" />
+        <modelProperty Id="5f40ab75-0eff-42f9-ad08-fda31e6722c0" name="EstadoCivil" column="Estado_Civil" length="0" />
+        <modelProperty Id="00c01671-d1aa-4a03-be9b-b908891881e5" name="NumHijos" column="Num_Hijos" length="0" />
+        <modelProperty Id="1f36cb55-387d-4226-a66c-0bdfebe18b54" name="HabilitadoConducirV" column="Habilitado_Conducir_V" length="0" notNull="true" />
+        <modelProperty Id="f1a57fbf-00d4-4d4d-8f84-5213236b18bb" name="BancoEnQuePercibeHaberes" column="Banco_en_que_percibe_Haberes" length="0" />
+        <modelProperty Id="f2ad26a1-316d-4fa5-accb-24261a8cf319" name="CtaHaberes" column="Cta_Haberes" length="0" />
+        <modelProperty Id="408b6887-ec00-4646-b20a-5217547474dd" name="CtaGalicia" column="Cta_GALICIA" length="0" />
+        <modelProperty Id="63ed705f-97d5-4d3e-93f4-fee867c32726" name="CtaRio" column="Cta_RIO" length="0" />
+        <modelProperty Id="75e01fc7-86e0-4e3d-945e-f6a526671629" name="CtaParibas" column="Cta_PARIBAS" length="0" />
+        <modelProperty Id="322218f7-d8a2-47ba-b46a-b5797c03d119" name="TipoDeContrato" column="Tipo_de_Contrato" length="0" />
+        <modelProperty Id="d3ef538e-ea67-4712-a347-f07edcb3cab0" name="NumContrato" column="num_Contrato" length="0" />
+        <modelProperty Id="b8d18cc9-1189-421a-9751-ffce112d54bd" name="FechaDeIngreso" column="Fecha_de_Ingreso" columnType="DateTime" length="0" update="false" />
+        <modelProperty Id="fddfca9e-9f2d-4db1-a1d5-aba420894af3" name="FechaFinContrato" column="Fecha_Fin_Contrato" columnType="DateTime" length="0" update="false" />
+        <modelProperty Id="dd9dad16-61da-42e0-9212-037c7f911004" name="Activo" column="Activo" length="0" notNull="true" />
+        <modelProperty Id="f852026c-b41b-4625-a5d7-5f87eca04c7a" name="Puesto" column="Puesto" length="0" />
+        <modelProperty Id="20ff44d0-681b-4174-8091-744a67f0a006" name="UltimoExamenPeriodico" column="Ultimo_Examen_Periodico" columnType="Timestamp" length="0" update="false" />
+        <modelProperty Id="d0614ecb-7b06-4106-a48a-c1d0f2df6962" name="Foto" column="foto" length="0" />
       </properties>
     </modelClass>
   </classes>

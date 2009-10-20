@@ -71,226 +71,6 @@ namespace Antares.model {
         }
     }
     
-    [ActiveRecord("Vehiculos", Schema="dbo")]
-    public partial class Vehiculos : ActiveRecordBase<Vehiculos> {
-        
-        private int _idVehiculos;
-        
-        private string _color;
-        
-        private int _fechaCompra;
-        
-        private string _vencimientoCedulaVerde;
-        
-        private string _estado;
-        
-        private string _prendado;
-        
-        private string _responsable;
-        
-        private string _aseguradora;
-        
-        private string _vencimientoSeguro;
-        
-        private string _motor;
-        
-        private string _chasis;
-        
-        private string _base;
-        
-        private string _marca;
-        
-        private string _modelo;
-        
-        private string _año;
-        
-        private string _nUnidad;
-        
-        private string _patente;
-        
-        private int _dV;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "ID_Vehiculos", ColumnType="Int32")]
-        public virtual int IdVehiculos {
-            get {
-                return this._idVehiculos;
-            }
-            set {
-                this._idVehiculos = value;
-            }
-        }
-        
-        [Property("Color", ColumnType="String")]
-        public virtual string Color {
-            get {
-                return this._color;
-            }
-            set {
-                this._color = value;
-            }
-        }
-        
-        [Property("Fecha_Compra", ColumnType="Int32")]
-        public virtual int FechaCompra {
-            get {
-                return this._fechaCompra;
-            }
-            set {
-                this._fechaCompra = value;
-            }
-        }
-        
-        [Property("Vencimiento_Cedula_Verde", ColumnType="String")]
-        public virtual string VencimientoCedulaVerde {
-            get {
-                return this._vencimientoCedulaVerde;
-            }
-            set {
-                this._vencimientoCedulaVerde = value;
-            }
-        }
-        
-        [Property("Estado", ColumnType="String")]
-        public virtual string Estado {
-            get {
-                return this._estado;
-            }
-            set {
-                this._estado = value;
-            }
-        }
-        
-        [Property("Prendado", ColumnType="String")]
-        public virtual string Prendado {
-            get {
-                return this._prendado;
-            }
-            set {
-                this._prendado = value;
-            }
-        }
-        
-        [Property("Responsable", ColumnType="String")]
-        public virtual string Responsable {
-            get {
-                return this._responsable;
-            }
-            set {
-                this._responsable = value;
-            }
-        }
-        
-        [Property("Aseguradora", ColumnType="String")]
-        public virtual string Aseguradora {
-            get {
-                return this._aseguradora;
-            }
-            set {
-                this._aseguradora = value;
-            }
-        }
-        
-        [Property("Vencimiento_Seguro", ColumnType="String")]
-        public virtual string VencimientoSeguro {
-            get {
-                return this._vencimientoSeguro;
-            }
-            set {
-                this._vencimientoSeguro = value;
-            }
-        }
-        
-        [Property("Motor", ColumnType="String")]
-        public virtual string Motor {
-            get {
-                return this._motor;
-            }
-            set {
-                this._motor = value;
-            }
-        }
-        
-        [Property("Chasis", ColumnType="String")]
-        public virtual string Chasis {
-            get {
-                return this._chasis;
-            }
-            set {
-                this._chasis = value;
-            }
-        }
-        
-        [Property("Base", ColumnType="String")]
-        public virtual string Base {
-            get {
-                return this._base;
-            }
-            set {
-                this._base = value;
-            }
-        }
-        
-        [Property("Marca", ColumnType="String")]
-        public virtual string Marca {
-            get {
-                return this._marca;
-            }
-            set {
-                this._marca = value;
-            }
-        }
-        
-        [Property("Modelo", ColumnType="String")]
-        public virtual string Modelo {
-            get {
-                return this._modelo;
-            }
-            set {
-                this._modelo = value;
-            }
-        }
-        
-        [Property("Año", ColumnType="String")]
-        public virtual string Año {
-            get {
-                return this._año;
-            }
-            set {
-                this._año = value;
-            }
-        }
-        
-        [Property("N_Unidad", ColumnType="String")]
-        public virtual string NUnidad {
-            get {
-                return this._nUnidad;
-            }
-            set {
-                this._nUnidad = value;
-            }
-        }
-        
-        [Property("Patente", ColumnType="String")]
-        public virtual string Patente {
-            get {
-                return this._patente;
-            }
-            set {
-                this._patente = value;
-            }
-        }
-        
-        [Property("DV", ColumnType="Int32")]
-        public virtual int DV {
-            get {
-                return this._dV;
-            }
-            set {
-                this._dV = value;
-            }
-        }
-    }
-    
     [ActiveRecord("Empresas", Schema="dbo")]
     public partial class Empresas : ActiveRecordBase<Empresas> {
         
@@ -1299,370 +1079,6 @@ namespace Antares.model {
             }
             set {
                 this._descripcion = value;
-            }
-        }
-    }
-    
-    [ActiveRecord("Personal", Schema="dbo")]
-    public partial class Personal : ActiveRecordBase<Personal> {
-        
-        private int _idEmpleados;
-        
-        private string _nLegajo;
-        
-        private string _apellido;
-        
-        private string _nombres;
-        
-        private string _zona;
-        
-        private string _base;
-        
-        private string _telCelular;
-        
-        private string _telParticular;
-        
-        private string _calle;
-        
-        private string _numero;
-        
-        private string _pisoDto;
-        
-        private string _cP;
-        
-        private string _localidad;
-        
-        private string _pcia;
-        
-        private string _fechaNacimiento;
-        
-        private string _nacionalidad;
-        
-        private string _docTipo;
-        
-        private string _docNumero;
-        
-        private string _cUIL;
-        
-        private string _cAT;
-        
-        private string _habilitadoConducirV;
-        
-        private string _bancoEnQuePercibeHaberes;
-        
-        private string _ctaGalicia;
-        
-        private string _ctaRio;
-        
-        private string _ctaParibas;
-        
-        private string _tipoDeContrato;
-        
-        private string _fechaDeIngreso;
-        
-        private string _fechaFinContrato;
-        
-        private string _activo;
-        
-        private string _foto;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id_Empleados", ColumnType="Int32")]
-        public virtual int IdEmpleados {
-            get {
-                return this._idEmpleados;
-            }
-            set {
-                this._idEmpleados = value;
-            }
-        }
-        
-        [Property("N_Legajo", ColumnType="String")]
-        public virtual string NLegajo {
-            get {
-                return this._nLegajo;
-            }
-            set {
-                this._nLegajo = value;
-            }
-        }
-        
-        [Property("Apellido", ColumnType="String", NotNull=true)]
-        public virtual string Apellido {
-            get {
-                return this._apellido;
-            }
-            set {
-                this._apellido = value;
-            }
-        }
-        
-        [Property("Nombres", ColumnType="String", NotNull=true)]
-        public virtual string Nombres {
-            get {
-                return this._nombres;
-            }
-            set {
-                this._nombres = value;
-            }
-        }
-        
-        [Property("Zona", ColumnType="String")]
-        public virtual string Zona {
-            get {
-                return this._zona;
-            }
-            set {
-                this._zona = value;
-            }
-        }
-        
-        [Property("Base", ColumnType="String")]
-        public virtual string Base {
-            get {
-                return this._base;
-            }
-            set {
-                this._base = value;
-            }
-        }
-        
-        [Property("Tel_Celular", ColumnType="String")]
-        public virtual string TelCelular {
-            get {
-                return this._telCelular;
-            }
-            set {
-                this._telCelular = value;
-            }
-        }
-        
-        [Property("Tel_Particular", ColumnType="String")]
-        public virtual string TelParticular {
-            get {
-                return this._telParticular;
-            }
-            set {
-                this._telParticular = value;
-            }
-        }
-        
-        [Property("Calle", ColumnType="String")]
-        public virtual string Calle {
-            get {
-                return this._calle;
-            }
-            set {
-                this._calle = value;
-            }
-        }
-        
-        [Property("Numero", ColumnType="String")]
-        public virtual string Numero {
-            get {
-                return this._numero;
-            }
-            set {
-                this._numero = value;
-            }
-        }
-        
-        [Property("Piso_Dto", ColumnType="String")]
-        public virtual string PisoDto {
-            get {
-                return this._pisoDto;
-            }
-            set {
-                this._pisoDto = value;
-            }
-        }
-        
-        [Property("CP", ColumnType="String")]
-        public virtual string CP {
-            get {
-                return this._cP;
-            }
-            set {
-                this._cP = value;
-            }
-        }
-        
-        [Property("Localidad", ColumnType="String")]
-        public virtual string Localidad {
-            get {
-                return this._localidad;
-            }
-            set {
-                this._localidad = value;
-            }
-        }
-        
-        [Property("Pcia", ColumnType="String")]
-        public virtual string Pcia {
-            get {
-                return this._pcia;
-            }
-            set {
-                this._pcia = value;
-            }
-        }
-        
-        [Property("Fecha_Nacimiento", ColumnType="String")]
-        public virtual string FechaNacimiento {
-            get {
-                return this._fechaNacimiento;
-            }
-            set {
-                this._fechaNacimiento = value;
-            }
-        }
-        
-        [Property("Nacionalidad", ColumnType="String")]
-        public virtual string Nacionalidad {
-            get {
-                return this._nacionalidad;
-            }
-            set {
-                this._nacionalidad = value;
-            }
-        }
-        
-        [Property("Doc_Tipo", ColumnType="String")]
-        public virtual string DocTipo {
-            get {
-                return this._docTipo;
-            }
-            set {
-                this._docTipo = value;
-            }
-        }
-        
-        [Property("Doc_Numero", ColumnType="String")]
-        public virtual string DocNumero {
-            get {
-                return this._docNumero;
-            }
-            set {
-                this._docNumero = value;
-            }
-        }
-        
-        [Property("CUIL", ColumnType="String")]
-        public virtual string CUIL {
-            get {
-                return this._cUIL;
-            }
-            set {
-                this._cUIL = value;
-            }
-        }
-        
-        [Property("CAT", ColumnType="String")]
-        public virtual string CAT {
-            get {
-                return this._cAT;
-            }
-            set {
-                this._cAT = value;
-            }
-        }
-        
-        [Property("Habilitado_Conducir_V", ColumnType="String", NotNull=true)]
-        public virtual string HabilitadoConducirV {
-            get {
-                return this._habilitadoConducirV;
-            }
-            set {
-                this._habilitadoConducirV = value;
-            }
-        }
-        
-        [Property("Banco_en_que_percibe_Haberes", ColumnType="String")]
-        public virtual string BancoEnQuePercibeHaberes {
-            get {
-                return this._bancoEnQuePercibeHaberes;
-            }
-            set {
-                this._bancoEnQuePercibeHaberes = value;
-            }
-        }
-        
-        [Property("Cta_GALICIA", ColumnType="String")]
-        public virtual string CtaGalicia {
-            get {
-                return this._ctaGalicia;
-            }
-            set {
-                this._ctaGalicia = value;
-            }
-        }
-        
-        [Property("Cta_RIO", ColumnType="String")]
-        public virtual string CtaRio {
-            get {
-                return this._ctaRio;
-            }
-            set {
-                this._ctaRio = value;
-            }
-        }
-        
-        [Property("Cta_PARIBAS", ColumnType="String")]
-        public virtual string CtaParibas {
-            get {
-                return this._ctaParibas;
-            }
-            set {
-                this._ctaParibas = value;
-            }
-        }
-        
-        [Property("Tipo_de_Contrato", ColumnType="String")]
-        public virtual string TipoDeContrato {
-            get {
-                return this._tipoDeContrato;
-            }
-            set {
-                this._tipoDeContrato = value;
-            }
-        }
-        
-        [Property("Fecha_de_Ingreso", ColumnType="String")]
-        public virtual string FechaDeIngreso {
-            get {
-                return this._fechaDeIngreso;
-            }
-            set {
-                this._fechaDeIngreso = value;
-            }
-        }
-        
-        [Property("Fecha_Fin_Contrato", ColumnType="String")]
-        public virtual string FechaFinContrato {
-            get {
-                return this._fechaFinContrato;
-            }
-            set {
-                this._fechaFinContrato = value;
-            }
-        }
-        
-        [Property("Activo", ColumnType="String", NotNull=true)]
-        public virtual string Activo {
-            get {
-                return this._activo;
-            }
-            set {
-                this._activo = value;
-            }
-        }
-        
-        [Property("Foto", ColumnType="String")]
-        public virtual string Foto {
-            get {
-                return this._foto;
-            }
-            set {
-                this._foto = value;
             }
         }
     }
@@ -2704,7 +2120,7 @@ namespace Antares.model {
             }
         }
         
-        [Property("Descripcion_Reporte", ColumnType="String", Insert=false, Update=false)]
+        [Property("Descripcion_Reporte", ColumnType="String", Insert=false)]
         public virtual string DescripcionReporte {
             get {
                 return this._descripcionReporte;
@@ -2792,7 +2208,7 @@ namespace Antares.model {
             }
         }
         
-        [Property("Tipo", ColumnType="Char")]
+        [Property("Tipo", ColumnType="String")]
         public virtual string Tipo {
             get {
                 return this._tipo;
@@ -2812,7 +2228,7 @@ namespace Antares.model {
             }
         }
         
-        [Property("Codigo_Operador", ColumnType="Char")]
+        [Property("Codigo_Operador", ColumnType="String")]
         public virtual string CodigoOperador {
             get {
                 return this._codigoOperador;
@@ -2892,7 +2308,7 @@ namespace Antares.model {
             }
         }
         
-        [Property("UO_Codigo", ColumnType="Char")]
+        [Property("UO_Codigo", ColumnType="String")]
         public virtual string UoCodigo {
             get {
                 return this._uoCodigo;
@@ -2919,6 +2335,674 @@ namespace Antares.model {
             }
             set {
                 this._activo = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Vehiculos", Schema="dbo")]
+    public partial class Vehiculos : ActiveRecordBase<Vehiculos> {
+        
+        private int _idVehiculos;
+        
+        private string _nUnidad;
+        
+        private string _patente;
+        
+        private int _dV;
+        
+        private string _marca;
+        
+        private string _modelo;
+        
+        private string _año;
+        
+        private string _motor;
+        
+        private string _chasis;
+        
+        private string _base;
+        
+        private string _responsable;
+        
+        private string _aseguradora;
+        
+        private System.DateTime _vencimientoSeguro;
+        
+        private System.DateTime _vencimientoCedulaVerde;
+        
+        private string _estado;
+        
+        private string _prendado;
+        
+        private string _color;
+        
+        private int _fechaCompra;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "ID_Vehiculos", ColumnType="Int32")]
+        public virtual int IdVehiculos {
+            get {
+                return this._idVehiculos;
+            }
+            set {
+                this._idVehiculos = value;
+            }
+        }
+        
+        [Property("N_Unidad", ColumnType="String")]
+        public virtual string NUnidad {
+            get {
+                return this._nUnidad;
+            }
+            set {
+                this._nUnidad = value;
+            }
+        }
+        
+        [Property("Patente", ColumnType="String")]
+        public virtual string Patente {
+            get {
+                return this._patente;
+            }
+            set {
+                this._patente = value;
+            }
+        }
+        
+        [Property("DV", ColumnType="Int32")]
+        public virtual int DV {
+            get {
+                return this._dV;
+            }
+            set {
+                this._dV = value;
+            }
+        }
+        
+        [Property("Marca", ColumnType="String")]
+        public virtual string Marca {
+            get {
+                return this._marca;
+            }
+            set {
+                this._marca = value;
+            }
+        }
+        
+        [Property("Modelo", ColumnType="String")]
+        public virtual string Modelo {
+            get {
+                return this._modelo;
+            }
+            set {
+                this._modelo = value;
+            }
+        }
+        
+        [Property("Año", ColumnType="AnsiString")]
+        public virtual string Año {
+            get {
+                return this._año;
+            }
+            set {
+                this._año = value;
+            }
+        }
+        
+        [Property("Motor", ColumnType="String")]
+        public virtual string Motor {
+            get {
+                return this._motor;
+            }
+            set {
+                this._motor = value;
+            }
+        }
+        
+        [Property("Chasis", ColumnType="String")]
+        public virtual string Chasis {
+            get {
+                return this._chasis;
+            }
+            set {
+                this._chasis = value;
+            }
+        }
+        
+        [Property("Base", ColumnType="String")]
+        public virtual string Base {
+            get {
+                return this._base;
+            }
+            set {
+                this._base = value;
+            }
+        }
+        
+        [Property("Responsable", ColumnType="String")]
+        public virtual string Responsable {
+            get {
+                return this._responsable;
+            }
+            set {
+                this._responsable = value;
+            }
+        }
+        
+        [Property("Aseguradora", ColumnType="String")]
+        public virtual string Aseguradora {
+            get {
+                return this._aseguradora;
+            }
+            set {
+                this._aseguradora = value;
+            }
+        }
+        
+        [Property("Vencimiento_Seguro", ColumnType="DateTime", Update=false)]
+        public virtual System.DateTime VencimientoSeguro {
+            get {
+                return this._vencimientoSeguro;
+            }
+            set {
+                this._vencimientoSeguro = value;
+            }
+        }
+        
+        [Property("Vencimiento_Cedula_Verde", ColumnType="DateTime", Update=false)]
+        public virtual System.DateTime VencimientoCedulaVerde {
+            get {
+                return this._vencimientoCedulaVerde;
+            }
+            set {
+                this._vencimientoCedulaVerde = value;
+            }
+        }
+        
+        [Property("Estado", ColumnType="String")]
+        public virtual string Estado {
+            get {
+                return this._estado;
+            }
+            set {
+                this._estado = value;
+            }
+        }
+        
+        [Property("Prendado", ColumnType="String")]
+        public virtual string Prendado {
+            get {
+                return this._prendado;
+            }
+            set {
+                this._prendado = value;
+            }
+        }
+        
+        [Property("Color", ColumnType="String")]
+        public virtual string Color {
+            get {
+                return this._color;
+            }
+            set {
+                this._color = value;
+            }
+        }
+        
+        [Property("Fecha_Compra", ColumnType="Int32")]
+        public virtual int FechaCompra {
+            get {
+                return this._fechaCompra;
+            }
+            set {
+                this._fechaCompra = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Personal", Schema="dbo")]
+    public partial class Personal : ActiveRecordBase<Personal> {
+        
+        private int _idEmpleados;
+        
+        private string _nLegajo;
+        
+        private string _apellido;
+        
+        private string _nombres;
+        
+        private string _zona;
+        
+        private string _base;
+        
+        private string _telCelular;
+        
+        private string _telParticular;
+        
+        private string _celPatrticular;
+        
+        private string _calle;
+        
+        private string _numero;
+        
+        private string _pisoDto;
+        
+        private string _cP;
+        
+        private string _localidad;
+        
+        private string _pcia;
+        
+        private System.DateTime _fechaNacimiento;
+        
+        private string _nacionalidad;
+        
+        private string _docTipo;
+        
+        private string _docNumero;
+        
+        private string _cUIL;
+        
+        private string _cAT;
+        
+        private string _estadoCivil;
+        
+        private string _numHijos;
+        
+        private string _habilitadoConducirV;
+        
+        private string _bancoEnQuePercibeHaberes;
+        
+        private string _ctaHaberes;
+        
+        private string _ctaGalicia;
+        
+        private string _ctaRio;
+        
+        private string _ctaParibas;
+        
+        private string _tipoDeContrato;
+        
+        private string _numContrato;
+        
+        private System.DateTime _fechaDeIngreso;
+        
+        private System.DateTime _fechaFinContrato;
+        
+        private string _activo;
+        
+        private string _puesto;
+        
+        private System.DateTime _ultimoExamenPeriodico;
+        
+        private string _foto;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id_Empleados", ColumnType="Int32")]
+        public virtual int IdEmpleados {
+            get {
+                return this._idEmpleados;
+            }
+            set {
+                this._idEmpleados = value;
+            }
+        }
+        
+        [Property("N_Legajo", ColumnType="AnsiString")]
+        public virtual string NLegajo {
+            get {
+                return this._nLegajo;
+            }
+            set {
+                this._nLegajo = value;
+            }
+        }
+        
+        [Property("Apellido", ColumnType="String", NotNull=true)]
+        public virtual string Apellido {
+            get {
+                return this._apellido;
+            }
+            set {
+                this._apellido = value;
+            }
+        }
+        
+        [Property("Nombres", ColumnType="String", NotNull=true)]
+        public virtual string Nombres {
+            get {
+                return this._nombres;
+            }
+            set {
+                this._nombres = value;
+            }
+        }
+        
+        [Property("Zona", ColumnType="String")]
+        public virtual string Zona {
+            get {
+                return this._zona;
+            }
+            set {
+                this._zona = value;
+            }
+        }
+        
+        [Property("Base", ColumnType="String")]
+        public virtual string Base {
+            get {
+                return this._base;
+            }
+            set {
+                this._base = value;
+            }
+        }
+        
+        [Property("Tel_Celular", ColumnType="String")]
+        public virtual string TelCelular {
+            get {
+                return this._telCelular;
+            }
+            set {
+                this._telCelular = value;
+            }
+        }
+        
+        [Property("Tel_Particular", ColumnType="String")]
+        public virtual string TelParticular {
+            get {
+                return this._telParticular;
+            }
+            set {
+                this._telParticular = value;
+            }
+        }
+        
+        [Property("Cel_Patrticular", ColumnType="String")]
+        public virtual string CelPatrticular {
+            get {
+                return this._celPatrticular;
+            }
+            set {
+                this._celPatrticular = value;
+            }
+        }
+        
+        [Property("Calle", ColumnType="String")]
+        public virtual string Calle {
+            get {
+                return this._calle;
+            }
+            set {
+                this._calle = value;
+            }
+        }
+        
+        [Property("Numero", ColumnType="String")]
+        public virtual string Numero {
+            get {
+                return this._numero;
+            }
+            set {
+                this._numero = value;
+            }
+        }
+        
+        [Property("Piso_Dto", ColumnType="String")]
+        public virtual string PisoDto {
+            get {
+                return this._pisoDto;
+            }
+            set {
+                this._pisoDto = value;
+            }
+        }
+        
+        [Property("CP", ColumnType="String")]
+        public virtual string CP {
+            get {
+                return this._cP;
+            }
+            set {
+                this._cP = value;
+            }
+        }
+        
+        [Property("Localidad", ColumnType="String")]
+        public virtual string Localidad {
+            get {
+                return this._localidad;
+            }
+            set {
+                this._localidad = value;
+            }
+        }
+        
+        [Property("Pcia", ColumnType="String")]
+        public virtual string Pcia {
+            get {
+                return this._pcia;
+            }
+            set {
+                this._pcia = value;
+            }
+        }
+        
+        [Property("Fecha_Nacimiento", ColumnType="DateTime", Insert=false, Update=false)]
+        public virtual System.DateTime FechaNacimiento {
+            get {
+                return this._fechaNacimiento;
+            }
+            set {
+                this._fechaNacimiento = value;
+            }
+        }
+        
+        [Property("Nacionalidad", ColumnType="String")]
+        public virtual string Nacionalidad {
+            get {
+                return this._nacionalidad;
+            }
+            set {
+                this._nacionalidad = value;
+            }
+        }
+        
+        [Property("Doc_Tipo", ColumnType="String")]
+        public virtual string DocTipo {
+            get {
+                return this._docTipo;
+            }
+            set {
+                this._docTipo = value;
+            }
+        }
+        
+        [Property("Doc_Numero", ColumnType="String")]
+        public virtual string DocNumero {
+            get {
+                return this._docNumero;
+            }
+            set {
+                this._docNumero = value;
+            }
+        }
+        
+        [Property("CUIL", ColumnType="String")]
+        public virtual string CUIL {
+            get {
+                return this._cUIL;
+            }
+            set {
+                this._cUIL = value;
+            }
+        }
+        
+        [Property("CAT", ColumnType="String")]
+        public virtual string CAT {
+            get {
+                return this._cAT;
+            }
+            set {
+                this._cAT = value;
+            }
+        }
+        
+        [Property("Estado_Civil", ColumnType="String")]
+        public virtual string EstadoCivil {
+            get {
+                return this._estadoCivil;
+            }
+            set {
+                this._estadoCivil = value;
+            }
+        }
+        
+        [Property("Num_Hijos", ColumnType="String")]
+        public virtual string NumHijos {
+            get {
+                return this._numHijos;
+            }
+            set {
+                this._numHijos = value;
+            }
+        }
+        
+        [Property("Habilitado_Conducir_V", ColumnType="String", NotNull=true)]
+        public virtual string HabilitadoConducirV {
+            get {
+                return this._habilitadoConducirV;
+            }
+            set {
+                this._habilitadoConducirV = value;
+            }
+        }
+        
+        [Property("Banco_en_que_percibe_Haberes", ColumnType="String")]
+        public virtual string BancoEnQuePercibeHaberes {
+            get {
+                return this._bancoEnQuePercibeHaberes;
+            }
+            set {
+                this._bancoEnQuePercibeHaberes = value;
+            }
+        }
+        
+        [Property("Cta_Haberes", ColumnType="String")]
+        public virtual string CtaHaberes {
+            get {
+                return this._ctaHaberes;
+            }
+            set {
+                this._ctaHaberes = value;
+            }
+        }
+        
+        [Property("Cta_GALICIA", ColumnType="String")]
+        public virtual string CtaGalicia {
+            get {
+                return this._ctaGalicia;
+            }
+            set {
+                this._ctaGalicia = value;
+            }
+        }
+        
+        [Property("Cta_RIO", ColumnType="String")]
+        public virtual string CtaRio {
+            get {
+                return this._ctaRio;
+            }
+            set {
+                this._ctaRio = value;
+            }
+        }
+        
+        [Property("Cta_PARIBAS", ColumnType="String")]
+        public virtual string CtaParibas {
+            get {
+                return this._ctaParibas;
+            }
+            set {
+                this._ctaParibas = value;
+            }
+        }
+        
+        [Property("Tipo_de_Contrato", ColumnType="String")]
+        public virtual string TipoDeContrato {
+            get {
+                return this._tipoDeContrato;
+            }
+            set {
+                this._tipoDeContrato = value;
+            }
+        }
+        
+        [Property("num_Contrato", ColumnType="String")]
+        public virtual string NumContrato {
+            get {
+                return this._numContrato;
+            }
+            set {
+                this._numContrato = value;
+            }
+        }
+        
+        [Property("Fecha_de_Ingreso", ColumnType="DateTime", Update=false)]
+        public virtual System.DateTime FechaDeIngreso {
+            get {
+                return this._fechaDeIngreso;
+            }
+            set {
+                this._fechaDeIngreso = value;
+            }
+        }
+        
+        [Property("Fecha_Fin_Contrato", ColumnType="DateTime", Update=false)]
+        public virtual System.DateTime FechaFinContrato {
+            get {
+                return this._fechaFinContrato;
+            }
+            set {
+                this._fechaFinContrato = value;
+            }
+        }
+        
+        [Property("Activo", ColumnType="String", NotNull=true)]
+        public virtual string Activo {
+            get {
+                return this._activo;
+            }
+            set {
+                this._activo = value;
+            }
+        }
+        
+        [Property("Puesto", ColumnType="String")]
+        public virtual string Puesto {
+            get {
+                return this._puesto;
+            }
+            set {
+                this._puesto = value;
+            }
+        }
+        
+        [Property("Ultimo_Examen_Periodico", ColumnType="Timestamp", Update=false)]
+        public virtual System.DateTime UltimoExamenPeriodico {
+            get {
+                return this._ultimoExamenPeriodico;
+            }
+            set {
+                this._ultimoExamenPeriodico = value;
+            }
+        }
+        
+        [Property("foto", ColumnType="String")]
+        public virtual string Foto {
+            get {
+                return this._foto;
+            }
+            set {
+                this._foto = value;
             }
         }
     }
