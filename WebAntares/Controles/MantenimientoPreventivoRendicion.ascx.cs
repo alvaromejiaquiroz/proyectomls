@@ -102,6 +102,11 @@ public partial class Controles_MantenimientoPreventivoRendicion : System.Web.UI.
         set { litMailContacto.Text = value; }
     }
 
+    public string Responsable
+    {
+        set { litResponsable.Text = value; }
+    }
+
     public DbDataReader Adjuntos
     {
         set
@@ -123,22 +128,6 @@ public partial class Controles_MantenimientoPreventivoRendicion : System.Web.UI.
             btnFinalizar.Visible = !value;
             pnlImprimir.Visible = value;
             imgAntares.Visible = value;
-        }
-    }
-
-    protected void gvPersonal_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            DbDataRecord record = (DbDataRecord)e.Row.DataItem;
-            ((Literal)e.Row.Cells[0].FindControl("litEmpleado")).Text = record["Empleado"].ToString();
-            ((CheckBox)e.Row.Cells[0].FindControl("chkResponsable")).Checked = (bool)record["Responsable"];
-            SolicitudRecursosEmpleados solicitudRecursosEmpleados = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("Id", (int)record["Id"]));
-            GridView horas = (GridView)e.Row.Cells[0].FindControl("gvHorasPersonal");
-            horas.DataSource = SolicitudRendicionPersonalHoras.GetPersonasHorasEnSolicitud(int.Parse(SolicitudInicial), solicitudRecursosEmpleados.IdEmpleado);
-            horas.DataBind();
-            
-
         }
     }
 

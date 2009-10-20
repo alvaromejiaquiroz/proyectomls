@@ -71,48 +71,34 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
+            Responsable
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-left: 20px">
+            Apellido y Nombres
+        </td>
+        <td colspan="2">
+            <asp:Literal ID="litResponsable" runat="server"></asp:Literal>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="padding-left: 20px;font-weight:bold">
             Personal
         </td>
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
-            <asp:GridView ID="gvPersonal" runat="server" AutoGenerateColumns="False" ShowHeader="false"
-                Width="100%" onrowdatabound="gvPersonal_RowDataBound">
+            <asp:GridView ID="gvPersonal" runat="server" AutoGenerateColumns="False"
+                Width="100%" EmptyDataText="No se han cargado las horas de ningún empleado.">
                 <Columns>
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <table cellpadding="0" cellspacing="1px" width="100%">
-                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:16px">
-                                    <td align="center">
-                                        Empleado
-                                    </td>
-                                    <td align="center">
-                                        Responsable
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Literal ID="litEmpleado" runat="server"></asp:Literal>
-                                    </td>
-                                    <td align="center">
-                                        <asp:CheckBox ID="chkResponsable" runat="server" Enabled="false" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <asp:GridView ID="gvHorasPersonal" runat="server" AutoGenerateColumns="False" 
-                                            Width="100%" EmptyDataText="No se han cargado las horas de este empleado.">
-                                        <Columns>
-                                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
-                                            <asp:BoundField DataField="Horas" HeaderText="Horas" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:0.0}" />
-                                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
-                                        </Columns>
-                                        </asp:GridView>
-                                    </td>
-                                </tr>
-                            </table>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                    <asp:BoundField DataField="Nombre" HeaderText="Empleado" />
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
+                    <asp:BoundField DataField="Horas" HeaderText="Horas" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:0.0}" />
+                    <asp:BoundField DataField="Detalle" HeaderText="Descripción" />
                 </Columns>
             </asp:GridView>
         </td>
@@ -133,7 +119,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
                             <table cellpadding="0" cellspacing="0" width="100%" style="border-style: solid; border-color: #ffffff; border-width: 1px">
-                                <tr style="background-color:#8B8B7A;font-weight:bold;color:#FFFFFF;height:16px">
+                                <tr style="font-weight:bold;height:16px">
                                     <td align="center">
                                         Vehículo
                                     </td>

@@ -306,7 +306,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             ucMantenimientoCorrectivoRendicion.Falla = Corr.FallaReportada;
             ucMantenimientoCorrectivoRendicion.Servicios = SolicitudServiciosAfectados.GetServiciosAfectados(BiFactory.Sol.Id_Solicitud);
             ucMantenimientoCorrectivoRendicion.Plazo = cmbPlazoAtencion.SelectedItem.Text;
-            ucMantenimientoCorrectivoRendicion.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoCorrectivoRendicion.Personal = SolicitudRecursosEmpleados.GetPersonaHoras_Detalle_EnSolicitud(BiFactory.Sol.Id_Solicitud);
             ucMantenimientoCorrectivoRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
             ucMantenimientoCorrectivoRendicion.Cliente = cmbClientes.SelectedItem.Text;
             ucMantenimientoCorrectivoRendicion.ContactoCliente = Sol_Original.Contacto;
@@ -315,6 +315,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             ucMantenimientoCorrectivoRendicion.MailContacto = Sol_Original.ContactoMail;
             ucMantenimientoCorrectivoRendicion.Adjuntos = Sol_Original.GetAdjuntos();
             ucMantenimientoCorrectivoRendicion.Monto = Corr.Presupuesto;
+            ucMantenimientoCorrectivoRendicion.Responsable = Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
             ucMantenimientoCorrectivoRendicion.Visible = true;
         }        
     }
