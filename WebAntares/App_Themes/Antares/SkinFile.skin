@@ -31,3 +31,20 @@ Font-Names="Verdana"
 
 </asp:GridView>
 
+<asp:Menu SkinID="MenuSkin" runat="server"
+    ForeColor="black"
+    Font-Size="small" 
+    Font-Names="Arial"
+    DynamicHorizontalOffset="3" 
+    DynamicVerticalOffset="5"
+    StaticEnableDefaultPopOutImage="true"
+    CssClass="Menu-Skin-Horizontal"
+    DynamicPopOutImageUrl="~/Images/flecha_menu16x16.png"
+    StaticPopOutImageUrl="~/Images/flecha_menu16x16.png">
+    <StaticMenuItemStyle    ForeColor="black" BorderStyle="solid" BorderWidth="1px" HorizontalPadding="2px" VerticalPadding="4px" CssClass="Menu-Skin-StaticItem" />
+    <StaticHoverStyle       ForeColor="White"  CssClass="Menu-Skin-StaticItem_Hover"/>
+    <DynamicMenuItemStyle   ForeColor="black" BorderStyle="solid" BorderWidth="1px" Font-Size="small" BorderColor="#648ABD" HorizontalPadding="2px" VerticalPadding="4px" Width="10.5em" CssClass="Menu-Skin-StaticItem" />
+    <DynamicHoverStyle      ForeColor="White" CssClass="Menu-Skin-StaticItem_Hover" />
+    
+</asp:Menu>
+

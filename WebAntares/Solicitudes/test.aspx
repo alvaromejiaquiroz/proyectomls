@@ -16,6 +16,8 @@
     <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
         <DynamicMenuStyle CssClass="IE8Fix" />
     </asp:Menu>
+    <asp:Button runat="server" ID="btnSend" onclick="btnSend_Click" Text="mande"  /></asp:button>
+    
 </form>
 </body>
 </html>

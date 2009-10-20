@@ -51,42 +51,45 @@
 </head>
 <body style="margin: 0 0 0 0">
     <form id="form1" runat="server">
-    <table border="0" cellspacing="0" cellpadding="0" id="header">
-        <tr>
-            <td>
-                <table>
+    <table border="0" cellspacing="0" cellpadding="0" width="1000px">
+        <tr >
+            <td align="left">
+            <div >
+                <table width="20%" >
                     <tr>
                         <td>
-                            <div id="foto_usuario">
+                            <div >
                                 <asp:Image ID="Imagen_Usuario" runat="server" class="Imagen_Usuario" />
                             </div>
                         </td>
                         <td>
-                            <div>
+                            <div >
                                 <asp:LoginName ID="ucLoginName" runat="server" ForeColor="#000000" Font-Bold="false" CssClass="text_custom" />
                             </div>
-                            <div>
+                            <div >
                                 <asp:LoginStatus ID="ucLoginStatus" runat="server" ForeColor="#000000" CssClass="text_custom" OnLoggingOut="LoginStatus1_LoggingOut" />
                             </div>
                         </td>
                     </tr>
                 </table>
+            </div>
             </td>
-            <td align="right">
-                <div class="header_custom" style="height:40px;vertical-align:middle;font-size:20px;padding-right:20px;padding-top:20px">
-                    Sistema de Gestión
-                </div>
+            <td align="center">
+                <div class="" style="height:40px;vertical-align:middle;font-size:28px;font-weight:bolder;padding-top:20px"> Sistema de Gestión </div>
             </td>
-            <td id="header_logo" style="width:125px">
+            <td id="header_logo" align="right">
                 <img alt="Energia en Comunicacion" src="../images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
             </td>
         </tr>
+        </table>
+        <table border="0" cellspacing="0" cellpadding="0" width="1000px">
         <tr>
-            <td colspan="3">
-                <asp:Menu ID="ucMenu" runat="server" Orientation="Horizontal" CssClass="text_custom" Width="100%">
+            <td >
+                <asp:Menu ID="ucMenu" runat="server" Orientation="Horizontal" CssClass="text_menu" Width="100%" Height="25px"  SkinID="MenuSkin" >
                     <DynamicMenuStyle CssClass="dynamic_menu_fix" />
                 </asp:Menu>
             </td>
+            
         </tr>
     </table>
     
@@ -98,13 +101,13 @@
 -->
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="True" EnableScriptLocalization="True">
         </asp:ScriptManager>
-    <table border="0" cellspacing="0" cellpadding="0" id="content-container">
+    <table border="0" cellspacing="0" cellpadding="0" id="content-container" >
         <tr>
             <td id="content">
-                <table width="100%" >
+                <table width="100%">
                     <tr>
-                        <td>
-                            <asp:ContentPlaceHolder ID="PageContainer" runat="server">
+                        <td  colspan="50px" align="left">
+                            <asp:ContentPlaceHolder ID="PageContainer" runat="server" >
                            </asp:ContentPlaceHolder>
                            
                             <asp:UpdateProgress ID="UpdateProgress1"  DisplayAfter="2" runat="server"  DynamicLayout="true" Visible="true">
@@ -120,8 +123,7 @@
 
                         </td>
                     </tr>
-                <!--style="height: 400px; width: 100%"> -->
-                <%--<div id="divMensajes" runat="server">                 </div>--%>
+                
             </table>
             </td>
         </tr>
@@ -131,12 +133,15 @@
   FOOTER
   
 -->
-    <table border="0" cellspacing="0" cellpadding="0" id="footer">
+<br>
+<br>
+<br>
+    <table border="0" cellspacing="0" cellpadding="0" width="1000px" >
         <tr>
-            <td>
-                <p>
-                    Sistema de Gestión de Tareas - V 1.0 - ANTARES COM S.A
-                </p>
+            <td align="center">
+                
+                    Sistema de Gestión - ANTARES COM S.A. - v 2.0
+                
             </td>
         </tr>
     </table>

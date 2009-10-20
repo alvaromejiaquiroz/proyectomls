@@ -25,7 +25,8 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                 {
                     case (int)EnumTipoSolicitud.MantenimientoPreventivo:
                         SolicitudPreventivo solicitudPreventivo = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
-                        ucMantenimientoPreventivoRendicion.Numero = solicitud.Id_Solicitud.ToString();
+                        //ucMantenimientoPreventivoRendicion.Numero = solicitud.Id_Solicitud.ToString();
+                        ucMantenimientoPreventivoRendicion.Numero = solicitud.IdSolicitudInicial.ToString();
                         ucMantenimientoPreventivoRendicion.SolicitudInicial = solicitud.IdSolicitudInicial.ToString();
                         ucMantenimientoPreventivoRendicion.Titulo = solicitud.Descripcion;
                         ucMantenimientoPreventivoRendicion.Estado = solicitud.Status;
@@ -41,6 +42,12 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucMantenimientoPreventivoRendicion.Adjuntos = solicitud.GetAdjuntos();
                         ucMantenimientoPreventivoRendicion.Monto = solicitudPreventivo.Presupuesto;
                         ucMantenimientoPreventivoRendicion.Responsable = Solicitud.GetResponsable(solicitudPreventivo.IdSolicitud.ToString());
+                        ucMantenimientoPreventivoRendicion.Descripcion_TrabajoRealizado = solicitud.DescripcionReporte;
+                        
+                        ucMantenimientoPreventivoRendicion.HabilitarArchivoCalidad = true;
+                        ucMantenimientoPreventivoRendicion.Calidad = solicitud.GetAdjuntosCalidad();
+            
+
                         ucMantenimientoPreventivoRendicion.Visible = true;
                         break;
                     case (int)EnumTipoSolicitud.MantenimientoCorrectivo:

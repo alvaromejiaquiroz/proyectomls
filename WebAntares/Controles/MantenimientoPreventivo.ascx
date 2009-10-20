@@ -3,7 +3,7 @@
 <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
     <tr class="header_custom">
         <td align="center" colspan="3">
-            Solicitud de Mantenimiento Preventivo
+            SOLICITUD DE MANTENIMIENTO PREVENTIVO
         </td>
     </tr>
     <tr>
@@ -189,7 +189,7 @@
                 </tr>
                 <tr>
                     <td >
-                       <asp:GridView ID="gvCalidad" runat="server" AutoGenerateColumns="False"  EmptyDataText="No Existen Registros de Calidad Asignados" Width="100%">
+                       <asp:GridView ID="gvCalidad" runat="server" AutoGenerateColumns="False"  EmptyDataText="No Existen Registros de Calidad Asignados" Width="100%" onrowcommand="gvCalidad_RowCommand">
                                         <Columns>
                                             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="False" />
                                             <asp:BoundField DataField="NombreArchivo" HeaderText="Archivo Calidad" HeaderStyle-HorizontalAlign="Left"/> 

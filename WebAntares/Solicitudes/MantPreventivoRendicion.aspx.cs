@@ -25,12 +25,13 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            lblDescripcionTrabajo.Attributes.Add("style", "overflow:hidden;");
+            //lblDescripcionTrabajo.Attributes.Add("style", "overflow:hidden;");
             CargarCombos();
             FillTareas();
             FillSolicitudEmpleados();
             FillSolicitudVehiculos();
             FillDatosClientes();
+            
             
 
         }
@@ -53,7 +54,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
         txtNroOrdenCliente.Text = BiFactory.Sol.NroOrdenCte;
         txtMailContacto.Text = BiFactory.Sol.ContactoMail;
         txtTelefonoContacto.Text = BiFactory.Sol.ContactoTel;
-        txtPresupuesto.Text = Sp.Presupuesto;
+        lblGastos.Text = "$" + Sp.Presupuesto;
 
         if (Sp!= null)
         {
@@ -116,7 +117,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
         string sql;
         cmbResponsable.Items.Clear();
         cmbResponsable.Items.Add(new ListItem("Seleccione...", "-1"));
-        sql = " Id_Empleados not in (select Id_Empleado from dbo.Solicitud_Recursos_Empleados where id_solicitud = " + BiFactory.Sol.Id_Solicitud.ToString() + ")";
+        sql = " Activo = 'si' and Id_Empleados not in (select Id_Empleado from dbo.Solicitud_Recursos_Empleados where id_solicitud = " + BiFactory.Sol.Id_Solicitud.ToString() + ")";
 
         foreach (Antares.model.Personal p in Antares.model.Personal.FindAll(Expression.Sql(sql)))
         {
@@ -128,7 +129,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
     {
         string sql;
         lstVehiculos.Items.Clear();
-        sql = " Id_Vehiculos not in (select Id_Vehiculo from dbo.Solicitud_Recursos_Vehiculos where id_solicitud = " + BiFactory.Sol.Id_Solicitud.ToString() + ")";
+        sql = " Estado = 'activo' and Id_Vehiculos not in (select Id_Vehiculo from dbo.Solicitud_Recursos_Vehiculos where id_solicitud = " + BiFactory.Sol.Id_Solicitud.ToString() + ")";
 
         foreach (Antares.model.Vehiculos v in Antares.model.Vehiculos.FindAll(Expression.Sql(sql)))
         {
@@ -258,7 +259,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
 
             SolicitudPreventivo r = new SolicitudPreventivo();
             r.IdSolicitud = preventivo.IdSolicitud;
-            r.Presupuesto = txtPresupuesto.Text; ;
+            r.Presupuesto = lblGastos.Text; ;
             r.FechaInicio = DateTime.Parse(txtDesde.Text);
             r.FechaFin = DateTime.Parse(txtHasta.Text);
             r.IdSitio = int.Parse(hdnSitio.Value);
@@ -266,13 +267,13 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
 
             //Agregar la fecha de solicitud a la solicitud del tipo preventivo, asi tambien a correctivo
             Reporte.Status = eEstados.Realizado.ToString();
-            Reporte.DescripcionReporte = lblDescripcionTrabajo.Text;
+            Reporte.DescripcionReporte = txtDescripcionTrabajo.Text;
             Reporte.Save();
             r.Save();
 
             pnlMantenimientoPreventivoRendicion.Visible = false;
 
-            ucMantenimientoPreventivoRendicion.Numero = r.Id.ToString();
+            ucMantenimientoPreventivoRendicion.Numero = Sol_Original.Id_Solicitud.ToString();
             ucMantenimientoPreventivoRendicion.SolicitudInicial = Sol_Original.Id_Solicitud.ToString();
             ucMantenimientoPreventivoRendicion.Titulo = Sol_Original.Descripcion;
             ucMantenimientoPreventivoRendicion.Estado = Sol_Original.Status;
@@ -286,17 +287,21 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
             ucMantenimientoPreventivoRendicion.TelefonoContacto = Sol_Original.ContactoTel;
             ucMantenimientoPreventivoRendicion.MailContacto = Sol_Original.ContactoMail;
             ucMantenimientoPreventivoRendicion.Adjuntos = Sol_Original.GetAdjuntos();
-            ucMantenimientoPreventivoRendicion.Monto = r.Presupuesto;
+            ucMantenimientoPreventivoRendicion.Monto =  r.Presupuesto;
             ucMantenimientoPreventivoRendicion.Responsable = Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
+            ucMantenimientoPreventivoRendicion.Descripcion_TrabajoRealizado = Reporte.DescripcionReporte; ;
+            //SolicitudArchivoCalidad S = SolicitudArchivoCalidad.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+            //if (S != null)
+            //{
+            //    ucMantenimientoPreventivoRendicion.HabilitarArchivoCalidad = true;
+            //    ucMantenimientoPreventivoRendicion.Calidad = CalidadArchivos.FindAll(Expression.Eq("Id", S.IdCalidadArchivo)); ;
+            //}
+            ucMantenimientoPreventivoRendicion.HabilitarArchivoCalidad = true;
+            ucMantenimientoPreventivoRendicion.Calidad = Sol_Original.GetAdjuntosCalidad();
+            
 
             ucMantenimientoPreventivoRendicion.Visible = true;
         }
-    }
-
-    protected void btnAceptarDescripcion_Trabajo_Click(object sender, EventArgs e)
-    {
-        lblDescripcionTrabajo.Text = txtDescripcionTrabajo.Text;
-        txtDescripcionTrabajo.Text = string.Empty;
     }
     
     protected void cmbResponsable_SelectedIndexChanged(object sender, EventArgs e)
@@ -536,6 +541,15 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
         gvHorasVehiculos.DataKeyNames = new string[] { "Id" };
         gvHorasVehiculos.DataBind();
     }
-    
+
+    protected void ImageButton1_Click1(object sender, ImageClickEventArgs e)
+    {
+        lblGastos.Visible = true;
+        lblGastos.Text = "$" + txtPresupuesto.Text;
+        txtPresupuesto.Text = "";
+
+    }
+
+
       
 }

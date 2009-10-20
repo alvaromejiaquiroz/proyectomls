@@ -200,8 +200,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             Solicitud S = Solicitud.FindOne(Expression.Eq("Id_Solicitud", (DataBinder.Eval(e.Row.DataItem, "Solicitud"))));
             HyperLink lnkReporte = (HyperLink)e.Row.FindControl("lnkReporte");
             HyperLink lnkVisualizar = (HyperLink)e.Row.FindControl("lnkReporte");
+            DateTime FechaInicio = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "Fecha"));
 
-            
             Image imgEditar = (Image)e.Row.FindControl("imgEdit");
             Image imgEstado = (Image)e.Row.FindControl("imgEstado");
             Image imgCambiarEstado = (Image)e.Row.FindControl("imgCambiarEstado");
@@ -209,6 +209,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             Image imgEstadoCalidad = (Image)e.Row.FindControl("imgStatusCalidad");
             Image imgEliminar = (Image)e.Row.FindControl("imgEliminar");
 
+            lnkReporte.Visible = false;
+            
             //me fijo si la solicitud esta habilitada por calidad o la gerencia tecnica
             string aprobacion;
             aprobacion= DataBinder.Eval(e.Row.DataItem, "A_TEC").ToString();
@@ -236,10 +238,6 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                 }
             }
             
-            lnkReporte.Visible = false;
-
-            
-            
             string valorEstado = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Status"));
             string valorTipoSolicitud  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Tipo"));
             string valorIdResponsable  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Responsable"));
@@ -260,65 +258,59 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                 imgEstado.Visible = true;
             }
 
-            if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Reporte")) != string.Empty)
-            {
-                lnkReporte.Visible = true;
-                //imgCambiarEstado.Visible = false;
-            }
-                        
             
+                        
             switch (valorEstado )
             {
-
                 case "Anulado":
-                    e.Row.Cells[4].Font.Bold = true;
-                        //e.Row.Cells[4].ForeColor = System.Drawing.Color.Red;
+                        e.Row.Cells[4].Font.Bold = true;
                         imgEditar.Visible = false;
-                        //imgEstado.Visible = false;
                         lnkReporte.Visible = false;
                         imgEstado.ImageUrl = "../images/deshabilitado.gif";
                         imgEstado.ToolTip = "Anulado";
                         break;
                     
                 case "Pendiente":
-                        //e.Row.Cells[4].Font.Bold = true;
-                        //e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFAF6E");
-                        //e.Row.Cells[4].ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
                         imgEstado.ImageUrl = "../images/pendiente.gif";
                         imgEstado.ToolTip = "Pendiente";
-                        break;
+                        if (FechaInicio < DateTime.Today)
+                        {
+                            imgEstado.ImageUrl = "../images/vencido.gif";
+                            imgEstado.ToolTip = "VENCIDO: se ha exedido el plazo para la realización de esta Solicitud";
 
+                        }
+                        
+                        break;
                 case "Realizado":
-                        //e.Row.Cells[4].Font.Bold = true;
                         imgEditar.Visible = false;
                         imgCambiarEstado.Visible = false;
-                        //e.Row.Cells[4].ForeColor = System.Drawing.Color.Green;
-
                         imgEstado.ImageUrl = "../images/realizado.gif";
                         imgEstado.ToolTip = "Realizado";
                         imgEstadoCoord.ImageUrl = "../images/pendiente.gif";
                         imgEstadoCalidad.ImageUrl = "../images/pendiente.gif";
                         imgEstadoCoord.ToolTip = "Pendiente de Aprobación TECNICA";
                         imgEstadoCalidad.ToolTip = "Pendiente de Aprobación de CALIDAD";
+                        lnkReporte.Visible = true;
                         break;
-                    
                 case "Reprogramado":
-
                         imgEstado.ImageUrl = "../images/reprogramado.gif";
                         imgEstado.ToolTip = "REPROGRAMADO: " + S.Causa;
+                        if (FechaInicio < DateTime.Today)
+                        {
+                            imgEstado.ImageUrl = "../images/vencido.gif";
+                            imgEstado.ToolTip = "VENCIDO: se ha exedido el plazo para la realización de esta Solicitud";
+
+                        }
                         break;
                 case "Cancelado":
-                    
                         imgEditar.Visible = false;
                         imgCambiarEstado.Visible = false;
                         imgEstado.ImageUrl = "../images/cancelado.gif";
                         imgEstado.ToolTip = "CANCELADO: " + S.Causa;
                         break;
-                case "Vencido":
-                        imgEstado.ImageUrl = "../images/vencido.gif";
-                        imgEstado.ToolTip = "VENCIDO: se ha exedido el plazo para la realización de esta Solicitud";
-                        break;
-            }
+                }
+
+            
         }
     }
 

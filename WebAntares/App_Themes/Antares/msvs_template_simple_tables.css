@@ -23,8 +23,11 @@ body {
 FORM STYLES
 ******************/
 
+#content-container{
+    padding:50px 0px 0px 400px;
+}
 #content-container form {
-	margin:20px 0px;
+	margin:0px 0px;
 	padding:0px 0px 0px 0px;
 	}
 
@@ -91,7 +94,7 @@ a:visited {
 
 a:hover {
 	color:#000000;
-	text-decoration:underline;
+	/*text-decoration:underline;*/
 	}
 
 a:active {
@@ -306,7 +309,8 @@ LAYOUT STYLES
 	}
 
 #content-container {
-	width:100%;
+	/*width:100%;*/
+	width:1000px;
 	border-bottom:1px solid #000000;
 	padding:0px;
 	margin:0px 0px 0px 0px;
@@ -366,27 +370,6 @@ LAYOUT STYLES
 	table-layout:fixed;
 	}
 
-/******************
-MENU ITEMS
-******************/
-
-
-#mainnav-container ul {
-	margin:1px;
-	padding:0px;
-	}
-
-#mainnav-container li {
-	padding:0px;
-	list-style:none;
-	display:inline;
-	margin:1111px 1111px 211px 1110px;
-	}
-
-#mainnav-side li {
-	padding:0px;
-	margin:0px 0px 1px 1px;
-	}
 /******************
 TABLE STYLES
 ******************/
@@ -467,7 +450,6 @@ img.photosmall {
 {
  position:absolute; elevation:below;
  
- 
 }
 
 .button_custom
@@ -483,11 +465,16 @@ img.photosmall {
 
 .header_custom
 {
-	background-color:#FFC515;
+/*	background-color:#FFC515; */
+    background-color:#545454;
 	font-weight:bold;
 	font-family:Verdana;
-    font-size:10px;
-    color:#666666;
+    font-size:12px;
+    color:#ffffff;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding:10px 10px 10px 10px;
+    
 }
 
 .text_custom
@@ -508,4 +495,40 @@ img.photosmall {
 	border-color:Gray;
 	padding:3px;
 	width:700px;
+}
+
+.text_menu
+{
+    background-color:blue;
+	font-family:Verdana;
+    font-size:12px;
+    font-weight:bold;
+    
+}
+
+.dynamic_menu_fix
+{
+	font-family:Verdana;
+    font-size:12px;
+    font-weight:bolder;
+    
+    
+}
+
+.Menu-Skin-StaticItem
+{
+background-color:#EEEEEE;
+border-style:solid;
+border-color:#888888;
+font-weight:bold;
+
+}
+
+.Menu-Skin-StaticItem_Hover
+{
+background-color:#FFD700;
+border-style:solid;
+border-color:#888888;
+font-weight:bold;
+
 }

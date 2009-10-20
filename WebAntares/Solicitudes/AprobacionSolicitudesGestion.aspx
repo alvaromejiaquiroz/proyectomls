@@ -8,7 +8,7 @@ EnableEventValidation="false"
         <tr class="header_custom">
             <td align="center" colspan="2">
             LISTADO DE SOLICITUDES REALIZADAS
-            <hr />
+            
             </td>
         </tr>
         <tr>
