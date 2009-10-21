@@ -197,7 +197,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
 
     private void CargarCombos()
     {
-        foreach (Antares.model.Vehiculos v in Antares.model.Vehiculos.FindAll())
+        foreach (Antares.model.Vehiculos v in Antares.model.Vehiculos.GetVehiculosActivos())
         {
             lstVehiculos.Items.Add(new ListItem(v.Marca + " " + v.Modelo + " " + v.Patente, v.IdVehiculos.ToString()));
         }
@@ -211,7 +211,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         }
 
         cmbResponsable.Items.Add(new ListItem("Seleccione...", "-1"));
-        foreach (Antares.model.Personal responsable in Antares.model.Personal.FindAll())
+        foreach (Antares.model.Personal responsable in Antares.model.Personal.GetPersonalActivo())
         {
             cmbResponsable.Items.Add(new ListItem(responsable.Apellido + ", " + responsable.Nombres, responsable.IdEmpleados.ToString()));
         }

@@ -401,7 +401,7 @@
                         <ContentTemplate>
                             <div style="width:100%;text-align:center;margin-top:30px">
                                 <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
-                                    Text="Confirmar solicitud" ValidationGroup="solicitud" CssClass="button_custom" />
+                                    Text="Confirmar Solicitud" ValidationGroup="solicitud" CssClass="button_custom" />
                             </div>
                             <div class="text_custom">
                                 <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">

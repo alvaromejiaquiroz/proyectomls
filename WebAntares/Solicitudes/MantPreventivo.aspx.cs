@@ -11,6 +11,7 @@ using NHibernate.Expression;
 using Castle.ActiveRecord.Framework;
 using Castle.ActiveRecord;
 using System.Collections;
+
 /// <summary>
 /// Mantenimiento PREVENTIVO
 /// 
@@ -149,7 +150,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             lstTareas.Items.Add(new ListItem(t.Tarea, t.Id.ToString()));
         }
 
-        foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.FindAll(Expression.Eq("Estado","activo")))
+        foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.GetVehiculosActivos())
         {
             lstVehiculos.Items.Add(new ListItem(vehi.Marca + " " + vehi.Modelo + " " + vehi.Patente, vehi.IdVehiculos.ToString()));
         }
@@ -160,7 +161,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
         cmbResponsable.Items.Clear();
         cmbResponsable.Items.Add(new ListItem("Seleccione...", "-1"));
-        foreach (Antares.model.Personal responsable in Antares.model.Personal.FindAll(Expression.Eq("Activo", "si")))
+        foreach (Antares.model.Personal responsable in Antares.model.Personal.GetPersonalActivo())
         {
             cmbResponsable.Items.Add(new ListItem(responsable.Apellido + ", " + responsable.Nombres, responsable.IdEmpleados.ToString()));
         }
@@ -341,6 +342,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             ucMantenimientoPreventivo.Monto = Sol_P.Presupuesto;
 
             ucMantenimientoPreventivo.Visible = true;
+
+            WebAntares.AntaresHelper.NotificaSolicitud(BiFactory.Sol.Id_Solicitud);
         }
     }
         
@@ -514,5 +517,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         }
 
     }
-    
+   
+   
 }
