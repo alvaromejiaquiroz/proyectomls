@@ -224,7 +224,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             {
                 if (bool.Parse(aprobacion))
                 {
-                    imgEstadoCoord.ImageUrl = "../images/adelante.gif";
+                    imgEstadoCoord.ImageUrl = "../images/realizado.gif";
                     imgEstadoCoord.ToolTip = "Aprobado";
                 }
             } 
@@ -233,7 +233,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             {
                 if (bool.Parse(aprobacion))
                 {
-                    imgEstadoCalidad.ImageUrl = "../images/adelante.gif";
+                    imgEstadoCalidad.ImageUrl = "../images/realizado.gif";
                     imgEstadoCalidad.ToolTip = "Aprobado";
                 }
             }
@@ -287,8 +287,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         imgEstado.ImageUrl = "../images/realizado.gif";
                         imgEstado.ToolTip = "Realizado";
                         imgEstadoCoord.ImageUrl = "../images/pendiente.gif";
+                        imgEstadoCoord.ToolTip = "Pendiente de Aprobación TECNICA";        
                         imgEstadoCalidad.ImageUrl = "../images/pendiente.gif";
-                        imgEstadoCoord.ToolTip = "Pendiente de Aprobación TECNICA";
                         imgEstadoCalidad.ToolTip = "Pendiente de Aprobación de CALIDAD";
                         lnkReporte.Visible = true;
                         break;

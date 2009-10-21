@@ -88,7 +88,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         {
             cmbPlazoAtencion.Items.Add(new ListItem(plazo.Descripcion, plazo.Id.ToString()));
         }
-        foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.FindAll())
+        foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.GetVehiculosActivos())
         {
             lstVehiculos.Items.Add(new ListItem(vehi.Marca + " " + vehi.Modelo + " " + vehi.Patente, vehi.IdVehiculos.ToString()));
         }
@@ -100,7 +100,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         
         cmbResponsable.Items.Clear();
         cmbResponsable.Items.Add(new ListItem("Seleccione...", "-1"));
-        foreach (Antares.model.Personal responsable in Antares.model.Personal.FindAll())
+        foreach (Antares.model.Personal responsable in Antares.model.Personal.GetPersonalActivo())
         {
             cmbResponsable.Items.Add(new ListItem(responsable.Apellido + ", " + responsable.Nombres, responsable.IdEmpleados.ToString()));
         }
@@ -276,6 +276,8 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             ucMantenimientoCorrectivo.Adjuntos = sol.GetAdjuntos();
             ucMantenimientoCorrectivo.Monto = Sol_Cor.Presupuesto;
             ucMantenimientoCorrectivo.Visible = true;
+
+            WebAntares.AntaresHelper.NotificaSolicitud(BiFactory.Sol.Id_Solicitud);
         }
     }
 

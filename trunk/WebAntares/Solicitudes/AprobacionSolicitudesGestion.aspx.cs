@@ -26,6 +26,7 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
             }
         }
     }
+    
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
@@ -79,10 +80,12 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
             
         }
     }
+    
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         FillGrid(e.NewPageIndex);
     }
+    
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         string a = e.CommandName.ToString();
@@ -109,7 +112,12 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
             Response.Redirect("./AprobacionSolicitudesGestion.aspx");
         }
     }
-    
+
+    protected void GridView1_Load(object sender, EventArgs e)
+    {
+
+    }
+
     private void FillGrid(int pageIndex)
     {
         DbDataReader reader = Antares.model.Solicitud.GetReaderSinAprobacion("GestionTecnico");
@@ -119,6 +127,7 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
         GridView1.PageIndex = pageIndex;
         GridView1.DataBind();
     }
+    
     private bool HabilitarSegunPerfil()
     {
 
@@ -132,10 +141,7 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
         }
 
     }
-    protected void GridView1_Load(object sender, EventArgs e)
-    {
-
-    }
+    
     private void AprobarSolicitud(int id, bool aprueba)
     {
         Solicitud sol = Solicitud.FindOne(Expression.Eq("Id_Solicitud", id));
