@@ -156,6 +156,7 @@ namespace Antares.model
             oConn.CommandText = sSQL;
             return oConn.ExecuteReader();
         }
+        
         public virtual  DbDataReader GetAdjuntosCalidad()
         {
             ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
