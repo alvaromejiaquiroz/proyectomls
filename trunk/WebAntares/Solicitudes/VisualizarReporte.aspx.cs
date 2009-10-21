@@ -21,6 +21,7 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
             if (!string.IsNullOrEmpty(Request.QueryString["id"]) && int.TryParse(Request.QueryString["id"], out id))
             {
                 Solicitud solicitud = Solicitud.GetById(id);
+                Solicitud solicitudInicial = Solicitud.GetById(solicitud.IdSolicitudInicial);
                 switch (solicitud.Tipo.IdTiposolicitud)
                 {
                     case (int)EnumTipoSolicitud.MantenimientoPreventivo:
@@ -39,13 +40,13 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucMantenimientoPreventivoRendicion.NroOrden = solicitud.NroOrdenCte;
                         ucMantenimientoPreventivoRendicion.TelefonoContacto = solicitud.ContactoTel;
                         ucMantenimientoPreventivoRendicion.MailContacto = solicitud.ContactoMail;
-                        ucMantenimientoPreventivoRendicion.Adjuntos = solicitud.GetAdjuntos();
+                        ucMantenimientoPreventivoRendicion.Adjuntos = solicitudInicial.GetAdjuntos();
                         ucMantenimientoPreventivoRendicion.Monto = solicitudPreventivo.Presupuesto;
                         ucMantenimientoPreventivoRendicion.Responsable = Solicitud.GetResponsable(solicitudPreventivo.IdSolicitud.ToString());
                         ucMantenimientoPreventivoRendicion.Descripcion_TrabajoRealizado = solicitud.DescripcionReporte;
                         
                         ucMantenimientoPreventivoRendicion.HabilitarArchivoCalidad = true;
-                        ucMantenimientoPreventivoRendicion.Calidad = solicitud.GetAdjuntosCalidad();
+                        ucMantenimientoPreventivoRendicion.Calidad = solicitudInicial.GetAdjuntosCalidad();
             
 
                         ucMantenimientoPreventivoRendicion.Visible = true;
@@ -69,7 +70,7 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucMantenimientoCorrectivoRendicion.NroOrden = solicitud.NroOrdenCte;
                         ucMantenimientoCorrectivoRendicion.TelefonoContacto = solicitud.ContactoTel;
                         ucMantenimientoCorrectivoRendicion.MailContacto = solicitud.ContactoMail;
-                        ucMantenimientoCorrectivoRendicion.Adjuntos = solicitud.GetAdjuntos();
+                        ucMantenimientoCorrectivoRendicion.Adjuntos = solicitudInicial.GetAdjuntos();
                         ucMantenimientoCorrectivoRendicion.Monto = solicitudCorrectivo.Presupuesto;
                         ucMantenimientoCorrectivoRendicion.Responsable = Solicitud.GetResponsable(solicitudCorrectivo.IdSolicitud.ToString());
                         ucMantenimientoCorrectivoRendicion.Visible = true;
@@ -93,7 +94,7 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucObrasRendicion.Personal = SolicitudRecursosEmpleados.GetPersonaHoras_Detalle_EnSolicitud(solicitud.IdSolicitudInicial);
                         ucObrasRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(solicitudObra.IdSolicitud);
                         ucObrasRendicion.Monto = solicitudObra.Presupuesto;
-                        ucObrasRendicion.Adjuntos = solicitud.GetAdjuntos();
+                        ucObrasRendicion.Adjuntos = solicitudInicial.GetAdjuntos();
                         ucObrasRendicion.Responsable = Solicitud.GetResponsable(solicitudObra.IdSolicitud.ToString());
                         ucObrasRendicion.Visible = true;
                         break;
