@@ -34,5 +34,12 @@ namespace Antares.model
             }
         }
 
+        public static Vehiculos[] GetVehiculosActivos()
+        {
+
+           return Antares.model.Vehiculos.FindAll(Expression.Eq("Estado","activo"));
+
+        }
+
     }
 }

@@ -87,5 +87,12 @@ namespace Antares.model
 
         }
 
+        public static Personal[] GetPersonalActivo()
+        {
+
+           return Antares.model.Personal.FindAll(Expression.Eq("Activo", "si"));
+
+        }
+
     }
 }
