@@ -24,14 +24,17 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         if (!Page.IsPostBack)
         {
             CargarCombos();
-            FillServicios();
+            CargaComboSitios();
             FillSolicitudEmpleados();
             FillSolicitudVehiculos();
             LoadDataComplementaria();
             FillCorrectiva();
+            RegistraJS();
+
         }
     }
 
@@ -41,6 +44,14 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         SolicitudCorrectivo Sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
         if (Sol_Cor != null)
         {
+            txtReportoFalla.Enabled = false;
+            txtCausa.Enabled = false;
+            txtFechaReporte.Enabled = false;
+            imgFechaReporte.Enabled = false;
+            ddlHoraReporte.Enabled = false;
+            ddlMinutosReporte.Enabled = false;
+            txtFalla.Enabled = false;
+
             cmbPlazoAtencion.SelectedValue = Sol_Cor.IdPlazoAtencion.ToString();
             txtReportoFalla.Text = Sol_Cor.PersonaReportoFalla;
             txtFalla.Text = Sol_Cor.FallaReportada;
@@ -49,6 +60,19 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             ddlHoraReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Hour.ToString();
             ddlMinutosReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Minute.ToString();
             cmbPlazoAtencion.SelectedValue = Sol_Cor.IdPlazoAtencion.ToString();
+            lblGastos.Text =  "$" + Sol_Cor.Presupuesto.ToString();
+
+            if (Sol_Cor.Penaliza)
+            { rdbPlazo.SelectedIndex = 0; }
+            else { rdbPlazo.SelectedIndex = 1; }
+
+            Sitios unSitio = Sitios.FindOne(Expression.Eq("IdSitio", Sol_Cor.IdSitio));
+            if (unSitio != null)
+            {
+                ListItem l = cboSitios.Items.FindByValue(unSitio.IdSitio.ToString());
+                l.Selected = true;
+                l.Text = unSitio.Nombre;
+            }
         }
 	}
 
@@ -66,28 +90,36 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             txtTelefonoContacto.Text = sol.ContactoTel;
             cmbPlazoAtencion.SelectedValue = sol_cor.IdPlazoAtencion.ToString();
             cmbClientes.SelectedValue = sol.IdCliente.ToString();
-            txtPresupuesto.Text = sol_cor.Presupuesto;
             ucAdjuntos.ListaAdjuntos(sol.Id_Solicitud.ToString());
+
         }
     }
 
-    private void FillServicios()
+    public void CargaComboSitios()
     {
-        gvServicios.DataSource = SolicitudServiciosAfectados.GetServiciosAfectados (BiFactory.Sol.Id_Solicitud);
-        gvServicios.DataKeyNames = new string[] { "Id" };
-        gvServicios.DataBind();
+        cboSitios.Enabled = true;
+        cboSitios.Items.Clear();
+        cboSitios.Items.Add(new ListItem("Seleccione...", "-1"));
+        foreach (Antares.model.Sitios sitio in Antares.model.Sitios.FindAll(Expression.Eq("Activo", true)))
+        {
+            cboSitios.Items.Add(new ListItem(sitio.Nombre, sitio.IdSitio.ToString()));
+        }
+
     }
-    
+
     public void CargarCombos()
     {
-        foreach (Antares.model.Servicios serv in Antares.model.Servicios.FindAll())
-        {
-            lstServiciosAfectados.Items.Add(new ListItem(serv.Descripcion, serv.Id.ToString()));
-        }
+        txtFechaReporte.Text = DateTime.Today.ToString("dd/MM/yyyy");
+        
         foreach (Antares.model.PlazoRealizacion plazo in Antares.model.PlazoRealizacion.FindAll())
         {
             cmbPlazoAtencion.Items.Add(new ListItem(plazo.Descripcion, plazo.Id.ToString()));
+            if (plazo.Descripcion == "72 Horas")
+            {
+                cmbPlazoAtencion.SelectedIndex = cmbPlazoAtencion.Items.Count -1 ;
+            }
         }
+
         foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.GetVehiculosActivos())
         {
             lstVehiculos.Items.Add(new ListItem(vehi.Marca + " " + vehi.Modelo + " " + vehi.Patente, vehi.IdVehiculos.ToString()));
@@ -95,7 +127,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         
         foreach (Antares.model.Empresas emp in Antares.model.Empresas.FindAll())
         {
-            cmbClientes.Items.Add(new ListItem(emp.Nombre + " (" + emp.Localidad + ")", emp.IdEmpresa.ToString()));
+            cmbClientes.Items.Add(new ListItem(emp.Nombre , emp.IdEmpresa.ToString()));
         }
         
         cmbResponsable.Items.Clear();
@@ -105,30 +137,6 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             cmbResponsable.Items.Add(new ListItem(responsable.Apellido + ", " + responsable.Nombres, responsable.IdEmpleados.ToString()));
         }
 
-    }
-
-    protected void btnAsignaServicio_Click(object sender, EventArgs e)
-    {
-        if (IsValid)
-        {
-            int id_Sol = BiFactory.Sol.Id_Solicitud;
-            int idServicio;
-            for (int i = 0; i < lstServiciosAfectados.Items.Count; i++)
-            {
-                if (lstServiciosAfectados.Items[i].Selected)
-                {
-                    idServicio = int.Parse(lstServiciosAfectados.Items[i].Value);
-                    if (SolicitudServiciosAfectados.FindAll(Expression.And(Expression.Eq("IdSolicitud", id_Sol), Expression.Eq("IdServicioAfectado", idServicio))).Length == 0)
-                    {
-                        SolicitudServiciosAfectados t = new SolicitudServiciosAfectados();
-                        t.IdServicioAfectado = int.Parse(lstServiciosAfectados.Items[i].Value.ToString());
-                        t.IdSolicitud = BiFactory.Sol.Id_Solicitud;
-                        t.Save();
-                    }
-                }
-            }
-            FillServicios();
-        }
     }
 
     protected void btnAsignaEmpleadoSolicitud_Click(object sender, EventArgs e)
@@ -220,18 +228,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         {
             Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
             
-            for (int i = 0; i < lstServiciosAfectados.Items.Count; i++)
-            {
-                if (lstServiciosAfectados.Items[i].Selected)
-                {
-                    SolicitudServiciosAfectados t = new SolicitudServiciosAfectados();
-                    t.IdServicioAfectado = int.Parse(lstServiciosAfectados.Items[i].Value.ToString());
-                    t.IdSolicitud = BiFactory.Sol.Id_Solicitud;
-                    t.Save();
-                }
-            }
-            
-            sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
+                        sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
             sol.Contacto = txtContactoCliente.Text;
             sol.NroOrdenCte = txtNroOrdenCliente.Text;
             sol.Status = eEstados.Pendiente.ToString();
@@ -250,7 +247,19 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             Sol_Cor.FallaReportada = txtFalla.Text;
             Sol_Cor.FechanotificacionCliente = DateTime.Parse(txtFechaReporte.Text).AddHours(double.Parse(ddlHoraReporte.SelectedValue)).AddMinutes(double.Parse(ddlMinutosReporte.SelectedValue));
             Sol_Cor.CausaPosible = txtCausa.Text;
-            Sol_Cor.Presupuesto = txtPresupuesto.Text;
+            Sol_Cor.FechaResolucion = DateTime.Parse("1900-01-01");
+
+            Sol_Cor.Penaliza = bool.Parse(rdbPlazo.SelectedValue);
+
+            if (txtPresupuesto.Text == "")
+            { Sol_Cor.Presupuesto = lblGastos.Text.Replace("$", ""); }
+            else
+            { Sol_Cor.Presupuesto = txtPresupuesto.Text; }
+
+            if (cboSitios.SelectedIndex > 0)
+            {
+                Sol_Cor.IdSitio = int.Parse(cboSitios.SelectedValue);
+            }
             
             sol.Save();
             Sol_Cor.Save();
@@ -264,8 +273,12 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             ucMantenimientoCorrectivo.CausaProbable = Sol_Cor.CausaPosible;
             ucMantenimientoCorrectivo.FechaReporte = Sol_Cor.FechanotificacionCliente.ToString("dd/MM/yyyy HH:mm");
             ucMantenimientoCorrectivo.Falla = Sol_Cor.FallaReportada;
-            ucMantenimientoCorrectivo.Servicios = SolicitudServiciosAfectados.GetServiciosAfectados(BiFactory.Sol.Id_Solicitud);
+                
+            ucMantenimientoCorrectivo.Sitio = Sitios.FindFirst(Expression.IdEq(Sol_Cor.IdSitio)).Nombre.ToString();
             ucMantenimientoCorrectivo.Plazo = cmbPlazoAtencion.SelectedItem.Text;
+            string penaliza;
+            if (Sol_Cor.Penaliza) { penaliza = "Genera Penalización"; } else { penaliza = "No Genera Penalizacion"; }
+            ucMantenimientoCorrectivo.Penaliza = penaliza;
             ucMantenimientoCorrectivo.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
             ucMantenimientoCorrectivo.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
             ucMantenimientoCorrectivo.Cliente = cmbClientes.SelectedItem.Text;
@@ -281,28 +294,11 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         }
     }
 
-    protected void cvVehiculos_ServerValidate(object source, ServerValidateEventArgs args)
-    {
-        args.IsValid = lstVehiculos.SelectedIndex >= 0;
-    }
-
-    protected void cvServiciosAfectados_ServerValidate(object source, ServerValidateEventArgs args)
-    {
-        args.IsValid = lstServiciosAfectados.SelectedIndex >= 0;
-    }
-
-    protected void gvSolicitudVehiculos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+   protected void gvSolicitudVehiculos_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SolicitudRecursosVehiculos v = SolicitudRecursosVehiculos.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudVehiculos.DataKeys[e.RowIndex].Value.ToString())));
         v.Delete();
         FillSolicitudVehiculos();
-    }
-
-    protected void gvServicios_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        SolicitudServiciosAfectados s = SolicitudServiciosAfectados.FindFirst(Expression.Eq("Id", int.Parse(gvServicios.DataKeys[e.RowIndex].Value.ToString())));
-        s.Delete();
-        FillServicios();
     }
 
     protected void gvPersonas_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -333,7 +329,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
 
     protected void CargaListaEmpleados(int IdDelResponsable)
     {
-        foreach (Antares.model.Personal persona in Antares.model.Personal.FindAll())
+        foreach (Antares.model.Personal persona in Antares.model.Personal.GetPersonalActivo())
         {
             if (persona.IdEmpleados != IdDelResponsable)
             {
@@ -347,26 +343,51 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         bool esValida = true;
         List<string> errores = new List<string>();
         string idSol = BiFactory.Sol.Id_Solicitud.ToString();
-        if (!Solicitud.TieneServiciosAfectados(idSol) && gvServicios.Rows.Count == 0)
-        {
-            esValida = false;
-            errores.Add("Debe seleccionar al menos un servicio.");
-        }
+        //if (!Solicitud.TieneServiciosAfectados(idSol) && gvServicios.Rows.Count == 0)
+        //{
+        //    esValida = false;
+        //    errores.Add("Debe seleccionar al menos un servicio.");
+        //}
         if (!Solicitud.TieneResponsable(idSol))
         {
             esValida = false;
             errores.Add("Debe asignar al menos un responsable.");
         }
-        if (gvSolicitudVehiculos.Rows.Count == 0)
-        {
-            esValida = false;
-            errores.Add("Debe asignar al menos un vehículo.");
-        }
+        //if (gvSolicitudVehiculos.Rows.Count == 0)
+        //{
+        //    esValida = false;
+        //    errores.Add("Debe asignar al menos un vehículo.");
+        //}
         if (!esValida)
         {
             blErrores.DataSource = errores;
             blErrores.DataBind();
         }
         return esValida;
+    }
+
+    protected void RegistraJS()
+    {
+        //string popupScript = "<script language='JavaScript'>" +
+        //"window.open('PopUp.aspx', 'CustomPopUp', " +
+        //"'width=200, height=200, menubar=yes, resizable=no')" +
+        //"</script>";
+
+
+        string funcionJS = "<script type=\"text/javascript\"> function CopiaValor()" +
+        "{ document.getElementById(\"ctl00_PageContainer_tcMantenimientoPreventivo_tpComplemento_txtContactoCliente\").value " +
+        " = document.getElementById(\"ctl00_PageContainer_tcMantenimientoPreventivo_tpFalla_txtReportoFalla\").value ;} </script>";
+
+        Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "CopiaValor", funcionJS);
+
+
+    }
+
+    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
+    {
+        lblGastos.Visible = true;
+        lblGastos.Text = "$" + txtPresupuesto.Text;
+        txtPresupuesto.Text = "";
+
     }
 }

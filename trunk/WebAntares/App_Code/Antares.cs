@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Data;
 using System.Configuration;
 using System.Web;
@@ -7,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using System.Reflection;
 using System.Net.Mail;
 using Antares.model;
 using NHibernate;
@@ -39,12 +42,13 @@ namespace WebAntares
                 System.Net.Mail.SmtpClient s = new System.Net.Mail.SmtpClient();
                 MailMessage msg = new MailMessage();
                 MailAddress from = new MailAddress("adm.reg@antares.com.ar");
-                
+
+
                 msg.From = from;
                 msg.IsBodyHtml = true;
                 msg.Subject = subject.ToString();
                 msg.Body = mensaje;
-                msg.To.Add("1154215946@sms.ctimovil.com.ar");
+                //msg.To.Add("1154215946@sms.ctimovil.com.ar");
                 msg.To.Add("1154215959@sms.ctimovil.com.ar");
                 msg.To.Add("1154215955@sms.ctimovil.com.ar");
                 s.Send(msg);

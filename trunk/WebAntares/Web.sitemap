@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode title="Menu">
-        <siteMapNode title="Seguridad" description="Administración" roles="1,4">
-          <siteMapNode url="~/usuarios/usuarios.aspx" title="Usuarios" description="Usuarios" roles="administrators, editors"/>
+        <siteMapNode title="Seguridad" description="Administración " roles="1">
+          <siteMapNode url="~/usuarios/usuarios.aspx" title="Usuarios" description="Usuarios" roles="1"/>
         </siteMapNode>
-        <siteMapNode title="Administración" roles="1,4">
-              <siteMapNode title="Cargar Facturas" url="~/Administracion/Facturas.aspx" roles="administrators, editors,2"/>
-              <siteMapNode title="Listado de Facturas" url="~/Administracion/ListadoFacturas.aspx" roles="administrators, editors,2"/>
-              <siteMapNode title="Pagos" url="~/Administracion/Pagos.aspx" roles="administrators, editors,2"/>
+        <siteMapNode title="Administración" roles="1,3">
+              <siteMapNode title="Cargar Facturas" url="~/Administracion/Facturas.aspx" roles="1,3"/>
+              <siteMapNode title="Listado de Facturas" url="~/Administracion/ListadoFacturas.aspx" roles="1,3"/>
+              <siteMapNode title="Pagos" url="~/Administracion/Pagos.aspx" roles="1,3"/>
          </siteMapNode>
         <siteMapNode title="Tiempos" roles="1,4">
-            <siteMapNode title="Tiempos"  url="~/solicitudes/TiemposPersonal.aspx" roles="administrators, editors,2"/>
+            <siteMapNode title="Tiempos"  url="~/solicitudes/TiemposPersonal.aspx" roles=",2"/>
         </siteMapNode>
         <siteMapNode title="Licencias" roles="4">
                 <siteMapNode title="Licencias"                  url="~/solicitudes/ListaLicencias.aspx" roles="4"/>
@@ -28,7 +28,7 @@
 
         <siteMapNode title="Aprobaciones" roles="1,2,3">
                <siteMapNode title="Aprobación Técnica"     url="~/Solicitudes/AprobacionSolicitudesGestion.aspx" roles="1,2,3"/>
-               <siteMapNode title="Aprobación Calidad"     url="~/Solicitudes/#" roles="1,2,8"/>
+               <siteMapNode title="Aprobación Calidad"     url="~/Solicitudes/AprobacionSolicitudesCalidad.aspx" roles="1,2,8"/>
         </siteMapNode>
         
         <siteMapNode title="Testing" roles="1">

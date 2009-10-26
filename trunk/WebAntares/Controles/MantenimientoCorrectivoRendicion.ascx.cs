@@ -65,23 +65,14 @@ public partial class Controles_MantenimientoCorrectivoRendicion : System.Web.UI.
         set { litFalla.Text = value; }
     }
 
-    public DbDataReader Servicios
-    {
-        set
-        {
-            gvServicios.DataSource = value;
-            gvServicios.DataBind();
-        }
-    }
-
-    public string Plazo
-    {
-        set { litPlazo.Text = value; }
-    }
-
     public string Responsable
     {
         set { litResponsable.Text = value; }
+    }
+
+    public string Sitio
+    {
+        set { litSitio.Text = value; }
     }
 
     public DbDataReader Personal
@@ -138,7 +129,7 @@ public partial class Controles_MantenimientoCorrectivoRendicion : System.Web.UI.
 
     public string Monto
     {
-        set { litMonto.Text = value; }
+        set { litMonto.Text = "$"+ value; }
     }
 
     public bool Imprimible
@@ -149,6 +140,20 @@ public partial class Controles_MantenimientoCorrectivoRendicion : System.Web.UI.
             pnlImprimir.Visible = value;
             imgAntares.Visible = value;
         }
+    }
+
+    public string Descripcion_TrabajoRealizado
+    {
+        set { lblDescripcion_TrabajoRealizado.Text = value; }
+    }
+    public string Conformidad_Cliente
+    {
+        set { lblConformidadCliente.Text = value; }
+    }
+
+    public string Fecha_Cierre_Mantenimiento
+    {
+        set { litFechaCierre.Text = value; }
     }
 
     protected void gvVehiculos_RowDataBound(object sender, GridViewRowEventArgs e)

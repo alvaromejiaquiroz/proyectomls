@@ -383,8 +383,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
     protected void CargaListaEmpleados(int IdDelResponsable)
     {
-        //foreach (Antares.model.Personal persona in Antares.model.Personal.FindAll(Expression.Sql(" Id_Empleados <> " + IdDelResponsable.ToString())))
-        foreach (Antares.model.Personal persona in Antares.model.Personal.FindAll())
+        
+        foreach (Antares.model.Personal persona in Antares.model.Personal.GetPersonalActivo())
         {
             if (persona.IdEmpleados != IdDelResponsable)
             {
@@ -492,7 +492,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     {
 
     }
-    protected void ImageButton1_Click1(object sender, ImageClickEventArgs e)
+
+    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
     {
         lblGastos.Visible = true;
         lblGastos.Text = "$" + txtPresupuesto.Text;

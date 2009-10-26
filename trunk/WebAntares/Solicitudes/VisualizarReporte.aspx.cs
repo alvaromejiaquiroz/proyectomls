@@ -53,16 +53,19 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         break;
                     case (int)EnumTipoSolicitud.MantenimientoCorrectivo:
                         SolicitudCorrectivo solicitudCorrectivo = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
-                        ucMantenimientoCorrectivoRendicion.Numero = solicitudCorrectivo.IdSolicitud.ToString();
-                        ucMantenimientoCorrectivoRendicion.SolicitudInicial = solicitud.IdSolicitudInicial.ToString();
+                        //Solicitud r = Solicitud.FindOne(Expression.Eq("IdSolicitudInicial", solicitudInicial.Id_Solicitud));
+                        ucMantenimientoCorrectivoRendicion.Numero = solicitudInicial.Id_Solicitud.ToString();
+                        ucMantenimientoCorrectivoRendicion.SolicitudInicial = solicitudInicial.Id_Solicitud.ToString();
                         ucMantenimientoCorrectivoRendicion.Titulo = solicitud.Descripcion;
                         ucMantenimientoCorrectivoRendicion.Estado = solicitud.Status;
                         ucMantenimientoCorrectivoRendicion.ReportoFalla = solicitudCorrectivo.PersonaReportoFalla;
                         ucMantenimientoCorrectivoRendicion.CausaProbable = solicitudCorrectivo.CausaPosible;
                         ucMantenimientoCorrectivoRendicion.FechaReporte = solicitudCorrectivo.FechanotificacionCliente.ToString("dd/MM/yyyy HH:mm");
                         ucMantenimientoCorrectivoRendicion.Falla = solicitudCorrectivo.FallaReportada;
-                        ucMantenimientoCorrectivoRendicion.Servicios = SolicitudServiciosAfectados.GetServiciosAfectados(solicitudCorrectivo.IdSolicitud);
-                        ucMantenimientoCorrectivoRendicion.Plazo = PlazoRealizacion.FindFirst(Expression.Eq("Id", solicitudCorrectivo.IdPlazoAtencion)).Descripcion;
+                        ucMantenimientoCorrectivoRendicion.Descripcion_TrabajoRealizado = solicitud.DescripcionReporte;
+                        ucMantenimientoCorrectivoRendicion.Conformidad_Cliente = solicitudCorrectivo.ContactoConformidadCliente;
+                        ucMantenimientoCorrectivoRendicion.Fecha_Cierre_Mantenimiento = solicitudCorrectivo.FechaResolucion.ToString();
+                        ucMantenimientoCorrectivoRendicion.Sitio = Sitios.FindFirst(Expression.IdEq(solicitudCorrectivo.IdSitio)).Nombre.ToString();
                         ucMantenimientoCorrectivoRendicion.Personal = SolicitudRecursosEmpleados.GetPersonaHoras_Detalle_EnSolicitud(solicitud.IdSolicitudInicial);
                         ucMantenimientoCorrectivoRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(solicitudCorrectivo.IdSolicitud);
                         ucMantenimientoCorrectivoRendicion.Cliente = Empresas.FindFirst(Expression.Eq("IdEmpresa", solicitud.IdCliente)).Nombre;

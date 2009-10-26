@@ -15,7 +15,7 @@
 
     }
         
-    void Application_Error2(object sender, EventArgs e) 
+    void Application_Error(object sender, EventArgs e) 
     { 
         // Code that runs when an unhandled error occurs
         // At this point we have information about the error
@@ -55,7 +55,7 @@
             myTablaBtn.Rows.Add(new TableRow());
             myTablaBtn.Rows[0].Cells.Add(new TableCell());
             myTablaBtn.Rows[0].Cells[0].Style.Add("width", "25px");
-            myTablaBtn.Rows[0].Cells[0].Text = "<img src='" + httpPathRoot + "/Images/Toolbars/ICON_SOBRE_NAR.gif' onclick=\"SendMail();\" cursor=\"hand\">";
+            myTablaBtn.Rows[0].Cells[0].Text = "<img src='" + httpPathRoot + "/Images/LogoAntaresThumbnail.png' cursor=\"hand\">";
             myTablaBtn.Rows[0].Cells.Add(new TableCell());
             myTablaBtn.Rows[0].Cells[1].Style.Add("width", "150px");
             myTablaBtn.Rows[0].Cells[1].Text = "Reportar error.";

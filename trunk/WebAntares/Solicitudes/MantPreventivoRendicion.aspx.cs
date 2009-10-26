@@ -259,7 +259,18 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
 
             SolicitudPreventivo r = new SolicitudPreventivo();
             r.IdSolicitud = preventivo.IdSolicitud;
-            r.Presupuesto = lblGastos.Text; ;
+            if (txtPresupuesto.Text == "")
+            {
+                r.Presupuesto = lblGastos.Text.Replace("$", "");
+            }
+            else
+            {
+
+                r.Presupuesto = txtPresupuesto.Text;
+            }
+            
+
+
             r.FechaInicio = DateTime.Parse(txtDesde.Text);
             r.FechaFin = DateTime.Parse(txtHasta.Text);
             r.IdSitio = int.Parse(hdnSitio.Value);
@@ -325,8 +336,8 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
 
     protected void CargaListaEmpleados(int IdDelResponsable)
     {
-        //foreach (Antares.model.Personal persona in Antares.model.Personal.FindAll(Expression.Sql(" Id_Empleados <> " + IdDelResponsable.ToString())))
-        foreach (Antares.model.Personal persona in Antares.model.Personal.FindAll())
+        
+        foreach (Antares.model.Personal persona in Antares.model.Personal.GetPersonalActivo())
         {
             if (persona.IdEmpleados != IdDelResponsable)
             {
@@ -542,7 +553,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
         gvHorasVehiculos.DataBind();
     }
 
-    protected void ImageButton1_Click1(object sender, ImageClickEventArgs e)
+    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
     {
         lblGastos.Visible = true;
         lblGastos.Text = "$" + txtPresupuesto.Text;

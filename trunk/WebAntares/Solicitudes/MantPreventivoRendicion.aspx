@@ -617,10 +617,9 @@
                                 </div>
                             </ContentTemplate>
                         </cc1:TabPanel>
-                        <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
-                        <HeaderTemplate>Gastos</HeaderTemplate>
+                    <cc1:TabPanel ID="tpPresupuesto" HeaderText="Gastos" runat="server">
                         <ContentTemplate>
-                               <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
                             <table class="text_custom" width="400px">
                                 <tr>
@@ -629,7 +628,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                       Ingresar Gastos Reales:
+                                       Ingresar Gastos Incurridos
                                     </td>
                                     <td colspan="2" style="height: 20px">
                                         <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12" CssClass="text_custom"></asp:TextBox>
@@ -639,14 +638,15 @@
                                     </td>
                                     <td colspan="2" style="height: 20px">
                                     
-                                    <asp:ImageButton runat="server" ID="btnAceptarGastos" CommandArgument="Aceptar" CommandName="Aceptar"   ImageUrl="~/images/aprobar.gif"  OnClick="ImageButton1_Click1"/>
+                                    <asp:ImageButton runat="server" ID="btnAceptarGastos" CommandArgument="Aceptar" CommandName="Aceptar"   ImageUrl="~/images/aprobar.gif"  OnClick="btnAceptarGastos_Click"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" style="height: 20px">
+                                    <td style="padding-left: 20px">
+                                        Gastos Reales Incurridos
                                     </td>
-                                    <td >
-                                        Total de Gastos:<asp:Label runat="server" ID="lblGastos" Visible="true" ForeColor="Red" Font-Bold="true" ></asp:Label>
+                                    <td colspan="2" style="height: 20px">
+                                       <asp:Label runat="server" ID="lblGastos" Visible="true" ForeColor="Red" Font-Bold="true" ></asp:Label>
                                     </td>
                                     <td colspan="2" style="height: 20px">
                                      

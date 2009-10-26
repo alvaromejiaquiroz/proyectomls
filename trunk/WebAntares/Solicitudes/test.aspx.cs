@@ -3,6 +3,7 @@ using System.Data;
 using System.Configuration;
 using System.Collections;
 using System.Web;
+using System.Net.Mail;
 using System.Globalization;
 using System.Web.Security;
 using System.Web.UI;
@@ -19,9 +20,13 @@ public partial class Solicitudes_test : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        //string responsable =         Solicitud.GetResponsable("670");
+        //Console.WriteLine(responsable);
+
         //string fecha = "30/10/2009";
         //CultureInfo nfo = new CultureInfo("es-ES");
         //DateTime date = DateTime.Parse(fecha, nfo);
+
 
         //CultureInfo nfo2 = new CultureInfo("en-US");
         //Console.WriteLine(date.ToString(nfo2));
@@ -31,8 +36,8 @@ public partial class Solicitudes_test : System.Web.UI.Page
         {
             //cargamenu();
             //CargaMenu2();
-            Menu1.DataSource = GetSiteMapDataSource();
-            Menu1.DataBind();
+            //Menu1.DataSource = GetSiteMapDataSource();
+            //Menu1.DataBind();
         }
     }
     protected void Button1_Click(object sender, EventArgs e)
@@ -150,5 +155,12 @@ public partial class Solicitudes_test : System.Web.UI.Page
     protected void Button4_Click(object sender, EventArgs e)
     {
 
+    }
+    protected void btnSend_Click(object sender, EventArgs e)
+    {
+        //Response.Write( WebAntares.AntaresHelper.EnviaMail("Matias"));
+
+        WebAntares.AntaresHelper.NotificaSolicitud(712);       
+    
     }
 }

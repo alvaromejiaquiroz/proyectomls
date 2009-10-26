@@ -65,8 +65,13 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucMantenimientoCorrectivo.CausaProbable = solicitudCorrectivo.CausaPosible;
                         ucMantenimientoCorrectivo.FechaReporte = solicitudCorrectivo.FechanotificacionCliente.ToString("dd/MM/yyyy HH:mm");
                         ucMantenimientoCorrectivo.Falla = solicitudCorrectivo.FallaReportada;
-                        ucMantenimientoCorrectivo.Servicios = SolicitudServiciosAfectados.GetServiciosAfectados(solicitudCorrectivo.IdSolicitud);
+                        ucMantenimientoCorrectivo.Sitio = Sitios.FindFirst(Expression.IdEq(solicitudCorrectivo.IdSitio)).Nombre.ToString();
                         ucMantenimientoCorrectivo.Plazo = PlazoRealizacion.FindFirst(Expression.Eq("Id", solicitudCorrectivo.IdPlazoAtencion)).Descripcion;
+                        string penaliza;
+                        if (solicitudCorrectivo.Penaliza) { penaliza = "Genera Penalización"; } else { penaliza = "No Genera Penalizacion"; }
+                        ucMantenimientoCorrectivo.Penaliza = penaliza;
+
+
                         ucMantenimientoCorrectivo.Personal = SolicitudRecursosEmpleados.GetReader(solicitudCorrectivo.IdSolicitud);
                         ucMantenimientoCorrectivo.Vehiculos = SolicitudRecursosVehiculos.GetReader(solicitudCorrectivo.IdSolicitud);
                         ucMantenimientoCorrectivo.Cliente = Empresas.FindFirst(Expression.Eq("IdEmpresa", solicitud.IdCliente)).Nombre;

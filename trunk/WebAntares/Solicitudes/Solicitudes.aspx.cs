@@ -200,7 +200,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             Solicitud S = Solicitud.FindOne(Expression.Eq("Id_Solicitud", (DataBinder.Eval(e.Row.DataItem, "Solicitud"))));
             HyperLink lnkReporte = (HyperLink)e.Row.FindControl("lnkReporte");
             HyperLink lnkVisualizar = (HyperLink)e.Row.FindControl("lnkReporte");
-            DateTime FechaInicio = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "Fecha"));
+            DateTime FechaFin = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "FechaFin"));
 
             Image imgEditar = (Image)e.Row.FindControl("imgEdit");
             Image imgEstado = (Image)e.Row.FindControl("imgEstado");
@@ -211,6 +211,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
             lnkReporte.Visible = false;
             
+
             //me fijo si la solicitud esta habilitada por calidad o la gerencia tecnica
             string aprobacion;
             aprobacion= DataBinder.Eval(e.Row.DataItem, "A_TEC").ToString();
@@ -220,23 +221,6 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
             imgEstadoCalidad.ImageUrl = "../images/candado.gif";
             imgEstadoCoord.ImageUrl = "../images/candado.gif";
-            if (aprobacion != string.Empty)
-            {
-                if (bool.Parse(aprobacion))
-                {
-                    imgEstadoCoord.ImageUrl = "../images/realizado.gif";
-                    imgEstadoCoord.ToolTip = "Aprobado";
-                }
-            } 
-            aprobacion = DataBinder.Eval(e.Row.DataItem, "A_CAL").ToString();
-            if (aprobacion != string.Empty)
-            {
-                if (bool.Parse(aprobacion))
-                {
-                    imgEstadoCalidad.ImageUrl = "../images/realizado.gif";
-                    imgEstadoCalidad.ToolTip = "Aprobado";
-                }
-            }
             
             string valorEstado = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Status"));
             string valorTipoSolicitud  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Tipo"));
@@ -273,7 +257,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                 case "Pendiente":
                         imgEstado.ImageUrl = "../images/pendiente.gif";
                         imgEstado.ToolTip = "Pendiente";
-                        if (FechaInicio < DateTime.Today)
+                        if (FechaFin < DateTime.Today)
                         {
                             imgEstado.ImageUrl = "../images/vencido.gif";
                             imgEstado.ToolTip = "VENCIDO: se ha exedido el plazo para la realización de esta Solicitud";
@@ -286,16 +270,19 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         imgCambiarEstado.Visible = false;
                         imgEstado.ImageUrl = "../images/realizado.gif";
                         imgEstado.ToolTip = "Realizado";
+                       
                         imgEstadoCoord.ImageUrl = "../images/pendiente.gif";
-                        imgEstadoCoord.ToolTip = "Pendiente de Aprobación TECNICA";        
+                        imgEstadoCoord.ToolTip = "Pendiente de Aprobación";
                         imgEstadoCalidad.ImageUrl = "../images/pendiente.gif";
-                        imgEstadoCalidad.ToolTip = "Pendiente de Aprobación de CALIDAD";
-                        lnkReporte.Visible = true;
+                        imgEstadoCalidad.ToolTip = "Pendiente de Aprobación";
+
+                        
                         break;
                 case "Reprogramado":
                         imgEstado.ImageUrl = "../images/reprogramado.gif";
                         imgEstado.ToolTip = "REPROGRAMADO: " + S.Causa;
-                        if (FechaInicio < DateTime.Today)
+                        imgCambiarEstado.Visible = true;
+                        if (FechaFin < DateTime.Today)
                         {
                             imgEstado.ImageUrl = "../images/vencido.gif";
                             imgEstado.ToolTip = "VENCIDO: se ha exedido el plazo para la realización de esta Solicitud";
@@ -310,6 +297,49 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                         break;
                 }
 
+
+
+            bool apro;
+            if (aprobacion != string.Empty)
+            {
+                apro = bool.Parse(aprobacion);
+                if (apro)
+                {
+                    imgEstadoCoord.ImageUrl = "../images/realizado.gif";
+                    imgEstadoCoord.ToolTip = "Aprobado";
+                }
+                else
+                {
+                    imgEstadoCoord.ImageUrl = "../images/cancelado.gif";
+                    imgEstadoCoord.ToolTip = "Rechazado";
+                }
+
+            }
+
+            aprobacion = DataBinder.Eval(e.Row.DataItem, "A_CAL").ToString();
+            if (aprobacion != string.Empty)
+            {
+                apro = bool.Parse(aprobacion);
+                if (apro)
+                {
+                    imgEstadoCalidad.ImageUrl = "../images/realizado.gif";
+                    imgEstadoCalidad.ToolTip = "Aprobado";
+                    imgCambiarEstado.Visible = false;
+                }
+                else
+                {
+                    imgEstadoCalidad.ImageUrl = "../images/cancelado.gif";
+                    imgEstadoCalidad.ToolTip = "Rechazado";
+                    imgCambiarEstado.Visible = true;
+                }
+            }
+            string tieneReporte;
+
+            tieneReporte = DataBinder.Eval(e.Row.DataItem, "Id_Reporte").ToString();
+            if (tieneReporte != string.Empty)
+            {
+                lnkReporte.Visible = true;
+            }
             
         }
     }

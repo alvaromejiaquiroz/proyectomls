@@ -226,16 +226,16 @@
     
    
     <tr>
-        <td colspan="3" style="padding-left: 20px;">
+        <td colspan="2" style="padding-left: 20px;">
           <div ID="pnlCalidad" runat="server" Visible="false">
                 <table >
                 <tr>
-                    <td colspan="3" style="font-weight:bold;" >
+                    <td  style="font-weight:bold;" >
                     Archivo de Calidad
                     </td>
                 </tr>
                 <tr>
-                    <td >
+                    <td  colspan="2" >
                        <asp:GridView ID="gvCalidad" runat="server" AutoGenerateColumns="False"  EmptyDataText="No Existen Registros de Calidad Asignados" Width="100%" onrowcommand="gvCalidad_RowCommand">
                     <Columns>
                     <asp:BoundField DataField="FileName" HeaderText="Archivo" Visible="true" HeaderStyle-HorizontalAlign="Center" />
@@ -303,11 +303,20 @@
             <asp:Label ID="litMonto" runat="server" style="color:#000000; font-weight:bold;"></asp:Label>
         </td>
         <td colspan="2">
-            <%--
-            <asp:Literal ID="litMonto" runat="server" ></asp:Literal>
-            <asp:Label ID="litMonto" runat="server" style="color:Red;"></asp:Label> 
-            --%>
         </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td   style="padding-left:20px;font-weight:bolder;border-top: solid 1 black"> Firma Responsable</td>
+        <td   style="padding-left:50px;font-weight:bolder;border-top: solid 1 black"> Firma Conforme Cliente</td>
     </tr>
     <tr>
         <td colspan="3" style="height: 20px"></td>

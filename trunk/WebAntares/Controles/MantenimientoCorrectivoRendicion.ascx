@@ -3,7 +3,7 @@
 <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
     <tr class="header_custom">
         <td align="center" colspan="3">
-            Reporte de mantenimiento correctivo
+           REPORTE DE MANTENIMIENTO CORRECTIVO
         </td>
     </tr>
     <tr>
@@ -18,7 +18,7 @@
             Número
         </td>
         <td colspan="2">
-            <asp:Literal ID="litNumero" runat="server"></asp:Literal>
+             <asp:Label ID="litNumero" runat="server" Font-Bold="true"> </asp:LABEL>
         </td>
     </tr>
     <tr>
@@ -71,7 +71,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Falla
+            Síntoma
         </td>
         <td colspan="2">
             <asp:Literal ID="litFalla" runat="server"></asp:Literal>
@@ -80,34 +80,53 @@
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
+       <tr>
+        <td colspan="3" style="padding-left: 20px;font-weight:bold">
+            Sitio
+        </td>
+    </tr>
+    <tr>
+        <td  style="padding-left: 20px">
+            <asp:Literal ID="litSitio" runat="server"></asp:Literal>
+        </td>
+    </tr>
+     <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+   
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Servicios
+            Descripción del Trabajo Realizado
         </td>
     </tr>
     <tr>
-        <td colspan="3" style="padding-left: 20px;padding-right: 20px">
-            <asp:GridView ID="gvServicios" runat="server" AutoGenerateColumns="false" Width="100%">
-                <Columns>
-                    <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
-                </Columns>
-            </asp:GridView>
+        <td colspan="3" style="padding-left: 20px;">
+            <asp:label id="lblDescripcion_TrabajoRealizado" runat="server" BorderStyle="None"></asp:label>
         </td>
     </tr>
+   
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
-    <tr>
+   
+   
+      <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Plazo
+            Conforme Cliente
         </td>
     </tr>
     <tr>
+        <td colspan="3" style="padding-left: 20px;">
+            <asp:label id="lblConformidadCliente" runat="server" BorderStyle="None"></asp:label>
+        </td>
+    </tr>
+
+   <tr>
         <td style="padding-left: 20px">
-            Plazo de atención
+            Fecha de Cierre del Mantenimiento Correctivo
         </td>
         <td colspan="2">
-            <asp:Literal ID="litPlazo" runat="server"></asp:Literal>
+            <asp:label ID="litFechaCierre" runat="server" Font-Bold="true"></asp:label>
         </td>
     </tr>
     <tr>
@@ -196,9 +215,13 @@
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
+
+   <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Complemento
+            Datos del Cliente
         </td>
     </tr>
     <tr>
@@ -241,6 +264,8 @@
             <asp:Literal ID="litMailContacto" runat="server"></asp:Literal>
         </td>
     </tr>
+
+
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
@@ -271,19 +296,36 @@
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
-    <tr>
+        <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Presupuesto
+            Gastos Totales
         </td>
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Monto
+            <asp:Label ID="litMonto" runat="server" style="color:#000000; font-weight:bold;"></asp:Label>
         </td>
         <td colspan="2">
-            <asp:Literal ID="litMonto" runat="server"></asp:Literal>
         </td>
     </tr>
+    <tr>    
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td   style="padding-left:20px;font-weight:bolder;border-top: solid 1 black"> Firma Responsable</td>
+        <td   style="padding-left:50px;font-weight:bolder;border-top: solid 1 black"> Firma Conforme Cliente</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    
+    
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
