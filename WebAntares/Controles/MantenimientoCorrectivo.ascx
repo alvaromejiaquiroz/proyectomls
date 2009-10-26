@@ -3,7 +3,7 @@
 <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
     <tr class="header_custom">
         <td align="center" colspan="3">
-            Solicitud de Mantenimiento Correctivo
+            SOLICITUD DE MANTENIMIENTO CORRECTIVO
         </td>
     </tr>
     <tr>
@@ -18,7 +18,8 @@
             Número
         </td>
         <td colspan="2">
-            <asp:Literal ID="litNumero" runat="server"></asp:Literal>
+            <asp:Label ID="litNumero" runat="server" Font-Bold="true"> </asp:LABEL>
+            
         </td>
     </tr>
     <tr>
@@ -71,7 +72,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Falla
+            Síntoma
         </td>
         <td colspan="2">
             <asp:Literal ID="litFalla" runat="server"></asp:Literal>
@@ -82,32 +83,31 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Servicios
+            Sitio
         </td>
     </tr>
     <tr>
-        <td colspan="3" style="padding-left: 20px;padding-right: 20px">
-            <asp:GridView ID="gvServicios" runat="server" AutoGenerateColumns="false" Width="100%">
-                <Columns>
-                    <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
-                </Columns>
-            </asp:GridView>
+        <td  style="padding-left: 20px">
+            <asp:Literal ID="litSitio" runat="server"></asp:Literal>
         </td>
     </tr>
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
     <tr>
-        <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Plazo
-        </td>
-    </tr>
-    <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px;font-weight:bold">
             Plazo de atención
         </td>
         <td colspan="2">
             <asp:Literal ID="litPlazo" runat="server"></asp:Literal>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-left: 20px">
+            
+        </td>
+        <td colspan="2" >
+            <asp:Literal ID="litPenaliza" runat="server"></asp:Literal>
         </td>
     </tr>
     <tr>
@@ -140,7 +140,7 @@
     <tr>
         <td colspan="3" style="padding-left: 20px;padding-right: 20px">
             <asp:GridView ID="gvVehiculos" runat="server" AutoGenerateColumns="False"
-                Width="100%">
+                Width="100%" EmptyDataText = "No hay vehiculos asignados">
                 <Columns>
                     <asp:BoundField DataField="Vehiculo" HeaderText="Vehiculo" HeaderStyle-HorizontalAlign="Center" />
                 </Columns>
@@ -152,7 +152,7 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Complemento
+            Datos del Cliente
         </td>
     </tr>
     <tr>
@@ -165,7 +165,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Contacto de cliente
+            Contacto del cliente
         </td>
         <td colspan="2">
             <asp:Literal ID="litContactoCliente" runat="server"></asp:Literal>
@@ -173,7 +173,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Nro. de orden
+            Nro. de Orden del Cliente
         </td>
         <td colspan="2">
             <asp:Literal ID="litNroOrden" runat="server"></asp:Literal>
@@ -234,7 +234,7 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Monto
+            Gastos Estimados
         </td>
         <td colspan="2">
             <asp:Literal ID="litMonto" runat="server"></asp:Literal>

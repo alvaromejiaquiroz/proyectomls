@@ -360,7 +360,7 @@
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
                         <ContentTemplate>
-                        <asp:UpdatePanel runat="server">
+                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
                             <table class="text_custom" width="400px">
                                 <tr>
@@ -379,14 +379,15 @@
                                     </td>
                                     <td colspan="2" style="height: 20px">
                                     
-                                    <asp:ImageButton runat="server" ID="btnAceptarGastos" CommandArgument="Aceptar" CommandName="Aceptar"   ImageUrl="~/images/aprobar.gif"  OnClick="ImageButton1_Click1"/>
+                                    <asp:ImageButton runat="server" ID="btnAceptarGastos" CommandArgument="Aceptar" CommandName="Aceptar"   ImageUrl="~/images/aprobar.gif"  OnClick="btnAceptarGastos_Click"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" style="height: 20px">
+                                    <td style="padding-left: 20px">
+                                        Gastos Estimados:
                                     </td>
-                                    <td >
-                                        Gastos Estimados:<asp:Label runat="server" ID="lblGastos" Visible="true" ForeColor="Red" Font-Bold="true" ></asp:Label>
+                                    <td colspan="2" style="height: 20px">
+                                       <asp:Label runat="server" ID="lblGastos" Visible="true" ForeColor="Red" Font-Bold="true" ></asp:Label>
                                     </td>
                                     <td colspan="2" style="height: 20px">
                                      

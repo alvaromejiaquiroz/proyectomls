@@ -18,6 +18,11 @@
     </asp:Menu>
     <asp:Button runat="server" ID="btnSend" onclick="btnSend_Click" Text="mande"  /></asp:button>
     
+    <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+        <asp:ListItem>si</asp:ListItem>
+        <asp:ListItem Selected="True">no</asp:ListItem>
+    </asp:RadioButtonList>
+    
 </form>
 </body>
 </html>

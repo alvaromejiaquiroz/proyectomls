@@ -31,7 +31,30 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
     protected void LlenaCombo()
     {
         cmbEstados.Items.Add(new ListItem("Seleccione...", "-1"));
-        foreach (Estados e in Estados.FindAll(Expression.Sql("detalle not in ('Pendiente','Anulado')")) )
+
+        string filtro;
+        filtro = " detalle not in ('Pendiente','Anulado') and ";
+        filtro = filtro + " detalle in (";
+
+        if (BiFactory.User.IdPerfil< 6)
+        {
+            filtro = filtro + "'Realizado','Cancelado'";
+            
+        }
+
+        if (BiFactory.User.IdPerfil == 6 || BiFactory.Sol.IdResponsable == BiFactory.Empleado.IdEmpleados)
+        {
+            filtro = filtro = filtro + "'Realizado'";
+
+        }
+
+        if (BiFactory.Sol.Status != "Reprogramado")
+        {
+            filtro = filtro = filtro + ",'Reprogramado'";
+        }
+        filtro = filtro + ")";
+
+        foreach (Estados e in Estados.FindAll(Expression.Sql(filtro)) )
         {
             cmbEstados.Items.Add(new ListItem(e.Detalle, e.IdEstado.ToString()));
         }
@@ -138,14 +161,38 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
 
                 }
 
-
-
                 if (tipo.IdTiposolicitud == 2) ///Mantenimiento Correctivo
                 {
-                    SolicitudCorrectivo Sol_Corr = SolicitudCorrectivo.FindOne(Expression.Eq("IdSolicitud", idSolOrg));
-                    Sol_Corr.Id = 0;
-                    Sol_Corr.IdSolicitud = reporte.Id_Solicitud;
-                    Sol_Corr.SaveCopyAndFlush();
+                    SolicitudCorrectivo Sol_Corr_original= SolicitudCorrectivo.FindOne(Expression.Eq("IdSolicitud", idSolOrg));
+                    Sol_Corr_original.Id = 0;
+                    Sol_Corr_original.IdSolicitud = reporte.Id_Solicitud;
+                    Sol_Corr_original.FechaResolucion = DateTime.Parse("1900-01-01");
+                    Sol_Corr_original.SaveCopyAndFlush();
+
+                    
+                    //Sol_Corr_nueva.IdSolicitud = reporte.Id_Solicitud;
+                    //Sol_Corr_nueva.Presupuesto = Sol_Corr_original.Presupuesto;
+                    //Sol_Corr_nueva.PersonaReportoFalla = Sol_Corr_original.PersonaReportoFalla;
+                    //Sol_Corr_nueva.IdSitio = Sol_Corr_original.IdSitio;
+                    //Sol_Corr_nueva.IdPlazoAtencion = Sol_Corr_original.IdPlazoAtencion;
+                    //Sol_Corr_nueva.FallaReportada = Sol_Corr_original.FallaReportada;
+                    //Sol_Corr_nueva.CausaPosible = Sol_Corr_original.CausaPosible;
+                    //Sol_Corr_nueva.Penaliza = Sol_Corr_original.Penaliza;
+                    
+                    //Sol_Corr_nueva.FechaResolucion = DateTime.MinValue;
+                    //if (Sol_Corr_original.FechanotificacionCliente != null)
+                    //{
+
+                    //    Sol_Corr_nueva.FechanotificacionCliente = Sol_Corr_original.FechanotificacionCliente;
+                    //}
+                    //else
+                    //{
+
+                    //    Sol_Corr_nueva.FechanotificacionCliente = DateTime.MinValue;
+                    //}
+
+                    //Sol_Corr_nueva.Save();
+
 
                     
                     //copio los servicios afectados

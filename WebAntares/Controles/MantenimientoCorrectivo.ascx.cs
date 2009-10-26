@@ -59,18 +59,19 @@ public partial class Controles_MantenimientoCorrectivo : System.Web.UI.UserContr
         set { litFalla.Text = value; }
     }
 
-    public DbDataReader Servicios
+    public string Sitio
     {
-        set
-        {
-            gvServicios.DataSource = value;
-            gvServicios.DataBind();
-        }
+        set { litSitio.Text = value; }
     }
 
     public string Plazo
     {
         set { litPlazo.Text = value; }
+    }
+
+    public string Penaliza
+    {
+        set { litPenaliza.Text = value; }
     }
 
     public DbDataReader Personal
@@ -127,7 +128,7 @@ public partial class Controles_MantenimientoCorrectivo : System.Web.UI.UserContr
 
     public string Monto
     {
-        set { litMonto.Text = value; }
+        set { litMonto.Text = "$" + value; }
     }
 
     public bool Imprimible
@@ -139,6 +140,7 @@ public partial class Controles_MantenimientoCorrectivo : System.Web.UI.UserContr
             imgAntares.Visible = value;
         }
     }
+
     protected void gvFiles_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         

@@ -141,16 +141,16 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
         }
 
     }
-    
+
     private void AprobarSolicitud(int id, bool aprueba)
     {
         Solicitud sol = Solicitud.FindOne(Expression.Eq("Id_Solicitud", id));
         SolicitudAprobaciones apro;
-        
+
         if (sol != null)
         {
 
-            apro = SolicitudAprobaciones.FindFirst(Expression.Eq("IdSolicitud",sol.Id_Solicitud),Expression.Eq("Sector",Sector));
+            apro = SolicitudAprobaciones.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud), Expression.Eq("Sector", Sector));
 
             if (apro == null)
             {
@@ -158,19 +158,36 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
                 apro.IdSolicitud = sol.Id_Solicitud;
                 apro.Sector = Sector;
 
+
+            }
+
+            if (aprueba)
+            {
+                apro.Aprobado = true;
+                apro.Save();
+            }
+            else
+            {
+                apro.Aprobado = false;
+                Solicitud Reporte = Solicitud.FindOne(Expression.Eq("IdSolicitudInicial", sol.Id_Solicitud));
+                if (Reporte != null)
+                {
+                    Reporte.Delete();
+
+                }
                 
+                foreach (Antares.model.SolicitudAprobaciones ap in SolicitudAprobaciones.FindAll(Expression.Eq("IdSolicitud", sol.Id_Solicitud)))
+                {
+                    ap.Delete();
+
+                }
+                sol.Status = "Pendiente";
+                sol.Save();
+
+
             }
             
-            if (aprueba)
-                {
-                    apro.Aprobado = true;
-                }
-                else
-                {
-                    apro.Aprobado = false;
-                }
-                apro.Save();
         }
-                    
+
     }
 }
