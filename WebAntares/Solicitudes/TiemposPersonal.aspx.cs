@@ -29,7 +29,7 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
         cmbPersonal.Items.Clear();
         cmbPersonal.Items.Add(new ListItem("Seleccione...", "-1"));
         
-        foreach (Antares.model.Personal p in Antares.model.Personal.FindAll())
+        foreach (Antares.model.Personal p in Antares.model.Personal.GetPersonalActivo())
         {
             cmbPersonal.Items.Add(new ListItem(p.Apellido + "," + p.Nombres, p.IdEmpleados.ToString()));
         }
@@ -37,7 +37,7 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
 
     protected void FillGrid()
     {
-        //string Semana = cmbFecha.Fecha.ToString("yyyyMMdd");
+        //string Semana = txtDesde.Text.ToString("yyyyMMdd");
         
         gvSolicitudes.DataSource = Personal.GetHorasSolicitudes(cmbPersonal.SelectedValue, txtDesde.Text);
         //gvSolicitudes.DataKeyNames = new string[] { "Id" };

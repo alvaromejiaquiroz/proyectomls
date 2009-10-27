@@ -63,8 +63,8 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             lblGastos.Text =  "$" + Sol_Cor.Presupuesto.ToString();
 
             if (Sol_Cor.Penaliza)
-            { rdbPlazo.SelectedIndex = 0; }
-            else { rdbPlazo.SelectedIndex = 1; }
+            { rdbPlazo.SelectedIndex = 1; }
+            else { rdbPlazo.SelectedIndex =0; }
 
             Sitios unSitio = Sitios.FindOne(Expression.Eq("IdSitio", Sol_Cor.IdSitio));
             if (unSitio != null)
@@ -228,7 +228,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         {
             Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
             
-                        sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
+            sol.IdCliente = int.Parse(cmbClientes.SelectedValue);
             sol.Contacto = txtContactoCliente.Text;
             sol.NroOrdenCte = txtNroOrdenCliente.Text;
             sol.Status = eEstados.Pendiente.ToString();
@@ -273,8 +273,10 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             ucMantenimientoCorrectivo.CausaProbable = Sol_Cor.CausaPosible;
             ucMantenimientoCorrectivo.FechaReporte = Sol_Cor.FechanotificacionCliente.ToString("dd/MM/yyyy HH:mm");
             ucMantenimientoCorrectivo.Falla = Sol_Cor.FallaReportada;
-                
-            ucMantenimientoCorrectivo.Sitio = Sitios.FindFirst(Expression.IdEq(Sol_Cor.IdSitio)).Nombre.ToString();
+            if (Sol_Cor.IdSitio != 0)
+            {
+                ucMantenimientoCorrectivo.Sitio = Sitios.FindFirst(Expression.IdEq(Sol_Cor.IdSitio)).Nombre.ToString();
+            }
             ucMantenimientoCorrectivo.Plazo = cmbPlazoAtencion.SelectedItem.Text;
             string penaliza;
             if (Sol_Cor.Penaliza) { penaliza = "Genera Penalización"; } else { penaliza = "No Genera Penalizacion"; }

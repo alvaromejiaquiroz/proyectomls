@@ -32,25 +32,46 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
     {
         cmbEstados.Items.Add(new ListItem("Seleccione...", "-1"));
 
-        string filtro;
+        string filtro = string.Empty;
+        string filtroRepro = string.Empty;
+        string filtroResponsable = string.Empty;
+
         filtro = " detalle not in ('Pendiente','Anulado') and ";
         filtro = filtro + " detalle in (";
 
+
+       
         if (BiFactory.User.IdPerfil< 6)
         {
-            filtro = filtro + "'Realizado','Cancelado'";
+            filtroResponsable =  "'Realizado','Cancelado'";
+            
+            if (BiFactory.Sol.Status != "Reprogramado" && BiFactory.User.IdPerfil <= 4)
+            {
+                filtroRepro = ",'Reprogramado'";
+                filtroResponsable = filtroResponsable +  filtroRepro ;
+            }
+
             
         }
 
-        if (BiFactory.User.IdPerfil == 6 || BiFactory.Sol.IdResponsable == BiFactory.Empleado.IdEmpleados)
+        int idResponsable = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("IdSolicitud",BiFactory.Sol.Id_Solicitud),Expression.Eq("Responsable",true)).IdEmpleado;
+
+        if (BiFactory.User.IdPerfil == 6 || idResponsable == BiFactory.Empleado.IdEmpleados)
         {
-            filtro = filtro = filtro + "'Realizado'";
+            if (filtroResponsable != string.Empty)
+            {
+                filtroResponsable = ",'Realizado'";
+            }
+            else
+            {
+                filtroResponsable = "'Realizado'";
+            }
 
         }
 
-        if (BiFactory.Sol.Status != "Reprogramado")
+        if (filtroResponsable != string.Empty)
         {
-            filtro = filtro = filtro + ",'Reprogramado'";
+            filtro = filtro + filtroResponsable;
         }
         filtro = filtro + ")";
 

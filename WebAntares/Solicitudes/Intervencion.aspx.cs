@@ -4,6 +4,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using NHibernate;
+using NHibernate.Expression;
 using Antares.model;
 using Gos.Usuarios;
 using WebAntares;
@@ -48,7 +50,7 @@ public partial class _Default : System.Web.UI.Page
             Response.Redirect("./Solicitudes.aspx");
         }
         txtTitulo.Text = sol.Descripcion;
-        lblUserLogueado.Text = sol.IdUsuarioCreador.ToString();
+        lblUserLogueado.Text = BiFactory.User.LoginName.ToString();
     }
         
     private void GrabarSolicitud()

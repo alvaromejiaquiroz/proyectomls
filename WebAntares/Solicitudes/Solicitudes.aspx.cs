@@ -42,7 +42,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         PerfilUsuario = BiFactory.User.IdPerfil.ToString();
         IdEmpleadoUsuario = BiFactory.Empleado.IdEmpleados;
 
-        if (BiFactory.User.IdPerfil >3)
+        if (BiFactory.User.IdPerfil >5)
         {
             cboPersonal.BindCBO();
             cboPersonal.Value = BiFactory.Empleado.IdEmpleados.ToString();
@@ -210,6 +210,9 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             Image imgEliminar = (Image)e.Row.FindControl("imgEliminar");
 
             lnkReporte.Visible = false;
+            imgEditar.Visible = false;
+            imgCambiarEstado.Visible = false;
+            
             
 
             //me fijo si la solicitud esta habilitada por calidad o la gerencia tecnica
@@ -226,20 +229,18 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             string valorTipoSolicitud  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Tipo"));
             string valorIdResponsable  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Responsable"));
 
-            imgEditar.Visible = false;
-            imgCambiarEstado.Visible = true;
-
+            
             if (BiFactory.Empleado.IdEmpleados == int.Parse(valorIdResponsable))
             {
                 imgEditar.Visible = true;
-                imgEstado.Visible = true;
+                imgCambiarEstado.Visible = true;
 
             }
            
-            if (BiFactory.User.IdPerfil < 4)
+            if (BiFactory.User.IdPerfil <=5)
             {
                 imgEditar.Visible = true;
-                imgEstado.Visible = true;
+                imgCambiarEstado.Visible = true;
             }
 
             
@@ -310,7 +311,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                 }
                 else
                 {
-                    imgEstadoCoord.ImageUrl = "../images/cancelado.gif";
+                    imgEstadoCoord.ImageUrl = "../images/vencido.gif";
                     imgEstadoCoord.ToolTip = "Rechazado";
                 }
 
@@ -328,7 +329,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
                 }
                 else
                 {
-                    imgEstadoCalidad.ImageUrl = "../images/cancelado.gif";
+                    imgEstadoCalidad.ImageUrl = "../images/vencido.gif";
                     imgEstadoCalidad.ToolTip = "Rechazado";
                     imgCambiarEstado.Visible = true;
                 }

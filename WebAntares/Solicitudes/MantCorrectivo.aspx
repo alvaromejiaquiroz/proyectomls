@@ -303,8 +303,8 @@
                                 <tr>
                                 <td style="padding-left: 20px">
                                          <asp:RadioButtonList ID="rdbPlazo" runat="server" RepeatDirection="Vertical" TextAlign="left" > 
-                                        <asp:ListItem Selected="True"  Text="No Penaliza" Value="false"></asp:ListItem>
-                                        <asp:ListItem Text = "Penaliza" value="true"></asp:ListItem>
+                                        <asp:ListItem Selected="True"   Text="No Penaliza" Value="false"></asp:ListItem>
+                                        <asp:ListItem                   Text = "Penaliza"  Value="true"></asp:ListItem>
                                         </asp:RadioButtonList>
                             
                                 </td>

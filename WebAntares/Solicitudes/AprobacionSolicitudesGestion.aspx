@@ -12,6 +12,10 @@ EnableEventValidation="false"
             </td>
         </tr>
         <tr>
+                <td style="height:20px">
+                </td>
+        </tr>
+        <tr>
             <td>
               <asp:UpdatePanel ID="upSSolicitudes" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
@@ -74,6 +78,10 @@ EnableEventValidation="false"
             <td>
                 &nbsp;
             </td>
+        </tr>
+        <tr>
+                <td style="height:50px">
+                </td>
         </tr>
       
     </table>
