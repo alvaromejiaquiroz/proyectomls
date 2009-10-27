@@ -26,8 +26,8 @@
               </siteMapNode>
         </siteMapNode>
 
-        <siteMapNode title="Aprobaciones" roles="1,2,3">
-               <siteMapNode title="Aprobación Técnica"     url="~/Solicitudes/AprobacionSolicitudesGestion.aspx" roles="1,2,3"/>
+        <siteMapNode title="Aprobaciones" roles="1,2,3,4,8">
+               <siteMapNode title="Aprobación Técnica"     url="~/Solicitudes/AprobacionSolicitudesGestion.aspx" roles="1,2,3,4"/>
                <siteMapNode title="Aprobación Calidad"     url="~/Solicitudes/AprobacionSolicitudesCalidad.aspx" roles="1,2,8"/>
         </siteMapNode>
         

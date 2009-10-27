@@ -19,6 +19,8 @@ using Antares.model;
 using WebAntares;
 using Castle.ActiveRecord.Framework;
 using System.Collections;
+//using Microsoft.Practices.EnterpriseLibrary.Logging;
+
 
 
 namespace WebAntares
@@ -71,6 +73,12 @@ namespace WebAntares
 
             WebAntares.AntaresHelper.EnviaMail(subject,mensaje);
 
+
+        }
+
+        public static void Loguea_Evento(string texto)
+        {
+                        //Logger.Write("Testing");
 
         }
     }

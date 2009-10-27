@@ -17,13 +17,18 @@
             </td>
         </tr>
         </table>
-     <table >   
+    
+    <table width="700px" >
+     <tr>
+        <td style="text-align:right;height:20px"> </td>
+        <td> </td>
+     </tr>
         <tr>
-            <td colspan="10">
+            <td style="text-align:right;width:50%;padding-right:5px" >
                 Estado
             </td>
-            <td></td>
-            <td colspan="10">
+        
+            <td style="text-align:left;width:50%">
                 <asp:DropDownList ID="cmbEstados" runat="server" CssClass="text_custom">
                 </asp:DropDownList>
                 <asp:CompareValidator ID="cvEstados" runat="server" ErrorMessage="Debe seleccionar un estado."
@@ -31,17 +36,22 @@
                     ValidationGroup="estado"></asp:CompareValidator>
             </td>
         </tr>
+        
         <tr>
-        <td></td>
-            <td align="center" colspan="10">
+            <td colspan="2" align="center">
                 <asp:Button ID="btnAceptar" runat="server" OnClick="btnAceptar_Click" Text="Aceptar" ValidationGroup="estado" CssClass="button_custom" />
-            </td>
-            <td>
-            
-            </td>
+             </td>
+            <td> </td>
+     
         </tr>
+         <tr>
+            <td style="text-align:right;height:20px"> </td>
+            <td> </td>
+         </tr>
+            
         </table>
-        <table>
+        
+    <table>
         <tr>
             <td colspan="2">
                 <div class="text_custom">

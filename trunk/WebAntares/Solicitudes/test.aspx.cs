@@ -160,7 +160,8 @@ public partial class Solicitudes_test : System.Web.UI.Page
     {
         //Response.Write( WebAntares.AntaresHelper.EnviaMail("Matias"));
 
-        WebAntares.AntaresHelper.NotificaSolicitud(712);       
+        //WebAntares.AntaresHelper.NotificaSolicitud(712);
+        WebAntares.AntaresHelper.Loguea_Evento("hola");
     
     }
 }
