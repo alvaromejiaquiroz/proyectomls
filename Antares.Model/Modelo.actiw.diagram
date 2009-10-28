@@ -68,16 +68,10 @@
         <elementListCompartment Id="cb6c28c8-07a4-4295-905a-bc90c259520e" absoluteBounds="0.515, 3.66, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="931d4412-700f-4b74-8f4e-6ff018f3e2ed" isExpanded="false" absoluteBounds="4.375, 3.125, 1.5, 0.4">
+    <classShape Id="931d4412-700f-4b74-8f4e-6ff018f3e2ed" isExpanded="false" absoluteBounds="2.5, 2.875, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudObraReporteTareas" />
       <nestedChildShapes>
-        <elementListCompartment Id="3ae59a2f-15ea-4ce9-9ee4-4ecc66f7b18e" absoluteBounds="4.39, 3.535, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="36478f75-5b7c-45bf-a1e4-907470c6a67a" isExpanded="false" absoluteBounds="2.5, 2.375, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudCorrectivo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="8de5e710-a51e-4119-9454-cd039a5380b1" absoluteBounds="2.515, 2.785, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3ae59a2f-15ea-4ce9-9ee4-4ecc66f7b18e" absoluteBounds="2.5149999999999997, 3.285, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="09b97760-cf71-4fac-b934-0580c12576ad" isExpanded="false" absoluteBounds="0.5, 4.125, 1.5, 0.4">
@@ -170,7 +164,7 @@
         <elementListCompartment Id="304ac908-c1f3-48f9-8ccc-75eb578d60c4" absoluteBounds="0.515, 5.41, 1.4700000000000002, 1.029195149739583" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0db473e8-3044-46a3-8d2c-b1957ce4cb23" absoluteBounds="0.5, 2.25, 1.5, 4.16875244140625">
+    <classShape Id="0db473e8-3044-46a3-8d2c-b1957ce4cb23" isExpanded="false" absoluteBounds="0.5, 2.25, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Solicitud" />
       <nestedChildShapes>
         <elementListCompartment Id="3d3b40d0-f662-4b4c-8e0d-64d27d5a93d0" absoluteBounds="0.515, 2.66, 1.4700000000000002, 3.65875244140625" name="Properties" titleTextColor="Black" itemTextColor="Black" />
@@ -182,7 +176,7 @@
         <elementListCompartment Id="7ad1fe30-ce26-4882-bb8c-28da6bbb5132" absoluteBounds="4.64, 6.035, 1.4700000000000002, 3.001363118489583" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="692e33cf-2d83-460d-8ae4-d4e3044bf056" absoluteBounds="6.875, 1, 1.5, 3.67571044921875">
+    <classShape Id="692e33cf-2d83-460d-8ae4-d4e3044bf056" isExpanded="false" absoluteBounds="6.875, 1, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Vehiculos" />
       <nestedChildShapes>
         <elementListCompartment Id="427641e3-33e0-431a-9b14-61af4ca24d18" absoluteBounds="6.89, 1.4100000000000001, 1.4700000000000002, 3.16571044921875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
@@ -192,6 +186,12 @@
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Personal" />
       <nestedChildShapes>
         <elementListCompartment Id="71e32cc6-5ff3-4e7b-9ae6-2c48e9039673" absoluteBounds="0.515, 7.285, 1.4700000000000002, 6.2883097330729161" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6857f572-797a-4dac-9cba-fabf1e612e76" absoluteBounds="4.5, 3, 1.5, 2.68962646484375">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudCorrectivo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="65032c36-3561-447c-b5d6-884b907723dc" absoluteBounds="4.515, 3.41, 1.4700000000000002, 2.17962646484375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -15,7 +15,7 @@ namespace Antares.model
     {
 
         private TipoSolicitud _tipo = null;
-
+        
         public static Solicitud GetById(Int32 pid)
         {
             return Solicitud.FindByPrimaryKey(pid);
@@ -37,7 +37,7 @@ namespace Antares.model
                 return _tipo;
             }
         }
-
+        
         public static DbDataReader GetReader()
         {
             // Expects a root type
@@ -516,6 +516,7 @@ where se.id_empleado = @idPersona
             string sSql = @"exec dbo.Prod_GetSolicitud_Adjuntos @idSolicitud = " + IdSolicitud.ToString();
             return CommonFunctions.ExecuteDbReader(sSql);
         }
+
 
     }
     /// <summary>

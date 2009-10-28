@@ -92,18 +92,6 @@
         <modelProperty Id="c048ef1b-c74c-4d34-9a6a-7e59cdbd359a" name="FechaFin" column="FechaFin" length="0" />
       </properties>
     </modelClass>
-    <modelClass name="SolicitudCorrectivo" schema="dbo" table="Solicitud_Correctivo">
-      <properties>
-        <modelProperty Id="6f63db97-8925-4baa-b72f-e891702518f3" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="b9036727-5c7d-4eff-b891-1bec3e3e3b55" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" notNull="true" />
-        <modelProperty Id="3162d0b6-00e1-4cdc-b542-09a50fefd67b" name="FallaReportada" column="FallaReportada" length="0" />
-        <modelProperty Id="bf09c5e6-6a5e-4a06-b144-24602020c0fc" name="IdPlazoAtencion" column="IdPlazoAtencion" columnType="Int32" length="0" notNull="true" />
-        <modelProperty Id="845cda65-5103-4b9b-84ce-2d89713c8eab" name="FechanotificacionCliente" column="FechaNotificacion_Cliente" columnType="Timestamp" length="0" />
-        <modelProperty Id="6100e439-d6b1-4a5d-bc37-b8c007f2a542" name="CausaPosible" column="Causa_Posible" length="0" />
-        <modelProperty Id="37e34cd0-6ce6-4dea-af45-d38f890a9c59" name="PersonaReportoFalla" column="PersonaReportoFalla" length="0" />
-        <modelProperty Id="6530e085-0326-4e8f-8ea3-72354f697827" name="Presupuesto" column="Presupuesto" length="0" />
-      </properties>
-    </modelClass>
     <modelClass name="SolicitudRecursosVehiculos" lazy="true" schema="dbo" table="Solicitud_Recursos_Vehiculos">
       <properties>
         <modelProperty Id="6377a0dc-d928-446c-a5c0-cfecfedf68ef" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
@@ -363,6 +351,22 @@
         <modelProperty Id="f852026c-b41b-4625-a5d7-5f87eca04c7a" name="Puesto" column="Puesto" length="0" />
         <modelProperty Id="20ff44d0-681b-4174-8091-744a67f0a006" name="UltimoExamenPeriodico" column="Ultimo_Examen_Periodico" columnType="Timestamp" length="0" update="false" />
         <modelProperty Id="d0614ecb-7b06-4106-a48a-c1d0f2df6962" name="Foto" column="foto" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudCorrectivo" schema="dbo" table="Solicitud_Correctivo">
+      <properties>
+        <modelProperty Id="c796fb03-0a41-4d54-a06f-c1c5de1458b2" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="7cba50d3-d7bb-44cc-8c5f-7d4fb4dba95b" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" notNull="true" />
+        <modelProperty Id="7a526ea2-f125-4695-9519-3ddfbe005071" name="FallaReportada" column="FallaReportada" length="0" />
+        <modelProperty Id="682f2e01-e073-45a8-b52c-1fdaf7434416" name="IdPlazoAtencion" column="IdPlazoAtencion" columnType="Int32" length="0" notNull="true" />
+        <modelProperty Id="f5d8ceb1-074f-45f3-bc5e-1b3e677874cc" name="FechanotificacionCliente" column="FechaNotificacion_Cliente" columnType="DateTime" length="0" />
+        <modelProperty Id="f283b562-a242-443c-9033-b873be7fbdb4" name="CausaPosible" column="Causa_Posible" length="0" />
+        <modelProperty Id="5585d644-32ab-4814-8747-1eb232ffc85f" name="PersonaReportoFalla" column="PersonaReportoFalla" length="0" />
+        <modelProperty Id="4b8fa2e7-8807-4e0d-ae1e-6e3dc43fb5f4" name="Presupuesto" column="Presupuesto" length="0" />
+        <modelProperty Id="87952728-a2bd-4c32-9199-6b0b5f136ea4" name="Penaliza" column="Penaliza" columnType="Boolean" length="0" />
+        <modelProperty Id="47f264a7-d095-4b1b-be3a-c41cd53cce09" name="IdSitio" column="IdSitio" columnType="Int32" length="0" />
+        <modelProperty Id="3734834d-abfc-434f-9567-d0a6ae83b85c" name="FechaResolucion" column="FechaResolucion" columnType="DateTime" length="0" />
+        <modelProperty Id="11796cf9-eea1-4ebc-9053-6af72b5ba13c" name="ContactoConformidadCliente" column="Contacto_Conformidad_Cliente" length="0" />
       </properties>
     </modelClass>
   </classes>
