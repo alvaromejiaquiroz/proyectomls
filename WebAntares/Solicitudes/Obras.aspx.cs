@@ -152,7 +152,14 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             Sol_Ob.FechaFin = DateTime.Parse(txtEntrega.Text).ToString();
             Sol_Ob.RequisitosAprovacion = txtRequisitosAprovacion.Text;
             Sol_Ob.RequisitosIngreso = txtRequisitoIngreso.Text;
-            Sol_Ob.Presupuesto = txtPresupuesto.Text;
+            if (txtPresupuesto.Text == "")
+            {
+                Sol_Ob.Presupuesto = lblGastos.Text.Replace("$", "");
+            }
+            else
+            {
+                Sol_Ob.Presupuesto = txtPresupuesto.Text;
+            }
             sol.Save();
             Sol_Ob.Save();
 
@@ -250,5 +257,11 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
         }
         return esValida;
     }
- 
+
+    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
+    {
+        lblGastos.Visible = true;
+        lblGastos.Text = "$" + txtPresupuesto.Text;
+        txtPresupuesto.Text = "";
+    } 
 }

@@ -290,25 +290,41 @@
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
                         <ContentTemplate>
-                            <table class="text_custom" width="600px">
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <table class="text_custom" width="400px">
                                 <tr>
                                     <td colspan="2" style="height: 20px">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        Monto
+                                       Ingresar Gastos Estimados
                                     </td>
-                                    <td>
+                                    <td colspan="2" style="height: 20px">
                                         <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12" CssClass="text_custom"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvPresupuesto" runat="server" ErrorMessage="Debe ingresar el monto del presupuesto."
-                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"></asp:RequiredFieldValidator>
                                         <asp:CompareValidator ID="cvPresupuesto" runat="server" ErrorMessage="El monto del presupuesto no es válido."
                                             Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"
                                             Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
                                     </td>
+                                    <td colspan="2" style="height: 20px">
+                                    <asp:ImageButton runat="server" ID="btnAceptarGastos" CommandArgument="Aceptar" CommandName="Aceptar"   ImageUrl="~/images/aprobar.gif"  OnClick="btnAceptarGastos_Click"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Gastos Estimados:
+                                    </td>
+                                    <td colspan="2" style="height: 20px">
+                                       <asp:Label runat="server" ID="lblGastos" Visible="true" ForeColor="Red" Font-Bold="true" ></asp:Label>
+                                    </td>
+                                    <td colspan="2" style="height: 20px">
+                                     
+                                    </td>
                                 </tr>
                             </table>
+                            </ContentTemplate>
+                            </asp:UpdatePanel>
                         </ContentTemplate>
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
