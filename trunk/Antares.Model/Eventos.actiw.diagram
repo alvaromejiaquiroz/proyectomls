@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activeRecordMapping dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Eventos">
+  <modelMoniker Id="a6d88c60-3947-4ffa-a774-4ca9ff585b80" />
+  <nestedChildShapes>
+    <classShape Id="95cb6705-fc36-4bc7-bbc5-c5d196880683" absoluteBounds="0.5, 1.375, 1.5, 1.0461531575520833">
+      <modelClassMoniker name="/a6d88c60-3947-4ffa-a774-4ca9ff585b80/TipoEvento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="db839842-e7b9-4be7-ac88-4ada6f23d84a" absoluteBounds="0.515, 1.7850000000000001, 1.4700000000000002, 0.53615315755208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="73d44cc6-c660-4909-a0ea-73ec828d5c35" absoluteBounds="2.5, 0.5, 1.5, 1.7035424804687502">
+      <modelClassMoniker name="/a6d88c60-3947-4ffa-a774-4ca9ff585b80/Evento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6e09391e-1cba-4bc8-ab87-e977fb2f8300" absoluteBounds="2.515, 0.91, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</activeRecordMapping>
