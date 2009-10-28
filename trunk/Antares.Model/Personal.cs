@@ -69,8 +69,7 @@ namespace Antares.model
                 return new Personal();
             }
         }
-
-
+        
         public static DbDataReader GetHorasSolicitudes()
         {
 
@@ -89,8 +88,7 @@ namespace Antares.model
 
         public static Personal[] GetPersonalActivo()
         {
-
-           return Antares.model.Personal.FindAll(Expression.Eq("Activo", "si"));
+            return Antares.model.Personal.FindAll(Expression.Eq("Activo", "si"));
 
         }
 

@@ -567,106 +567,6 @@ namespace Antares.model {
         }
     }
     
-    [ActiveRecord("Solicitud_Correctivo", Schema="dbo")]
-    public partial class SolicitudCorrectivo : ActiveRecordBase<SolicitudCorrectivo> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private string _fallaReportada;
-        
-        private int _idPlazoAtencion;
-        
-        private System.DateTime _fechanotificacionCliente;
-        
-        private string _causaPosible;
-        
-        private string _personaReportoFalla;
-        
-        private string _presupuesto;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("IdSolicitud", ColumnType="Int32", NotNull=true)]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("FallaReportada", ColumnType="String")]
-        public virtual string FallaReportada {
-            get {
-                return this._fallaReportada;
-            }
-            set {
-                this._fallaReportada = value;
-            }
-        }
-        
-        [Property("IdPlazoAtencion", ColumnType="Int32", NotNull=true)]
-        public virtual int IdPlazoAtencion {
-            get {
-                return this._idPlazoAtencion;
-            }
-            set {
-                this._idPlazoAtencion = value;
-            }
-        }
-        
-        [Property("FechaNotificacion_Cliente", ColumnType="Timestamp")]
-        public virtual System.DateTime FechanotificacionCliente {
-            get {
-                return this._fechanotificacionCliente;
-            }
-            set {
-                this._fechanotificacionCliente = value;
-            }
-        }
-        
-        [Property("Causa_Posible", ColumnType="String")]
-        public virtual string CausaPosible {
-            get {
-                return this._causaPosible;
-            }
-            set {
-                this._causaPosible = value;
-            }
-        }
-        
-        [Property("PersonaReportoFalla", ColumnType="String")]
-        public virtual string PersonaReportoFalla {
-            get {
-                return this._personaReportoFalla;
-            }
-            set {
-                this._personaReportoFalla = value;
-            }
-        }
-        
-        [Property("Presupuesto", ColumnType="String")]
-        public virtual string Presupuesto {
-            get {
-                return this._presupuesto;
-            }
-            set {
-                this._presupuesto = value;
-            }
-        }
-    }
-    
     [ActiveRecord("Solicitud_Recursos_Vehiculos", Lazy=true, Schema="dbo")]
     public partial class SolicitudRecursosVehiculos : ActiveRecordBase<SolicitudRecursosVehiculos> {
         
@@ -3003,6 +2903,154 @@ namespace Antares.model {
             }
             set {
                 this._foto = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Correctivo", Schema="dbo")]
+    public partial class SolicitudCorrectivo : ActiveRecordBase<SolicitudCorrectivo> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private string _fallaReportada;
+        
+        private int _idPlazoAtencion;
+        
+        private System.DateTime _fechanotificacionCliente;
+        
+        private string _causaPosible;
+        
+        private string _personaReportoFalla;
+        
+        private string _presupuesto;
+        
+        private bool _penaliza;
+        
+        private int _idSitio;
+        
+        private System.DateTime _fechaResolucion;
+        
+        private string _contactoConformidadCliente;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("IdSolicitud", ColumnType="Int32", NotNull=true)]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("FallaReportada", ColumnType="String")]
+        public virtual string FallaReportada {
+            get {
+                return this._fallaReportada;
+            }
+            set {
+                this._fallaReportada = value;
+            }
+        }
+        
+        [Property("IdPlazoAtencion", ColumnType="Int32", NotNull=true)]
+        public virtual int IdPlazoAtencion {
+            get {
+                return this._idPlazoAtencion;
+            }
+            set {
+                this._idPlazoAtencion = value;
+            }
+        }
+        
+        [Property("FechaNotificacion_Cliente", ColumnType="DateTime")]
+        public virtual System.DateTime FechanotificacionCliente {
+            get {
+                return this._fechanotificacionCliente;
+            }
+            set {
+                this._fechanotificacionCliente = value;
+            }
+        }
+        
+        [Property("Causa_Posible", ColumnType="String")]
+        public virtual string CausaPosible {
+            get {
+                return this._causaPosible;
+            }
+            set {
+                this._causaPosible = value;
+            }
+        }
+        
+        [Property("PersonaReportoFalla", ColumnType="String")]
+        public virtual string PersonaReportoFalla {
+            get {
+                return this._personaReportoFalla;
+            }
+            set {
+                this._personaReportoFalla = value;
+            }
+        }
+        
+        [Property("Presupuesto", ColumnType="String")]
+        public virtual string Presupuesto {
+            get {
+                return this._presupuesto;
+            }
+            set {
+                this._presupuesto = value;
+            }
+        }
+        
+        [Property("Penaliza", ColumnType="Boolean")]
+        public virtual bool Penaliza {
+            get {
+                return this._penaliza;
+            }
+            set {
+                this._penaliza = value;
+            }
+        }
+        
+        [Property("IdSitio", ColumnType="Int32")]
+        public virtual int IdSitio {
+            get {
+                return this._idSitio;
+            }
+            set {
+                this._idSitio = value;
+            }
+        }
+        
+        [Property("FechaResolucion", ColumnType="DateTime")]
+        public virtual System.DateTime FechaResolucion {
+            get {
+                return this._fechaResolucion;
+            }
+            set {
+                this._fechaResolucion = value;
+            }
+        }
+        
+        [Property("Contacto_Conformidad_Cliente", ColumnType="String")]
+        public virtual string ContactoConformidadCliente {
+            get {
+                return this._contactoConformidadCliente;
+            }
+            set {
+                this._contactoConformidadCliente = value;
             }
         }
     }
