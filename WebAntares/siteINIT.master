@@ -4,9 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Antares</title>
+    <link href="App_Themes/Antares/msvs_template_simple_tables.css" rel="stylesheet"
+        type="text/css" />
 </head>
 <body>
-    <img src="../images/LogoAntares.png"  style=" visibility:hidden; padding-top:5px;padding-right:5px; width:240px ;height:160px; float: right;" /> 
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
