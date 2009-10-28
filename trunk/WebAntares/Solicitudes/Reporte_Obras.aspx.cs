@@ -151,8 +151,8 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         txtTelefonoContacto.Text = BiFactory.Sol.ContactoTel;
         txtDescripcionTareas.Text = o.DescripcionTareas;
         txtPresupuesto.Text = o.Presupuesto;
-        txtInicio.Text = o.FechaInicio;
-        txtEntrega.Text = o.FechaFin;
+        txtInicio.Text = o.FechaInicio.Substring(0, 10);
+        txtEntrega.Text = o.FechaFin.Substring(0, 10);
         txtRequisitosAprovacion.Text = o.RequisitosAprovacion;
         txtRequisitoIngreso.Text = o.RequisitosIngreso;
     }
@@ -234,6 +234,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         //r.FechaEntregaCliente = txtEntrega.Text;
         //r.FechaActualizacion = DateTime.Now;
         Reporte.Status = eEstados.Realizado.ToString();
+        Reporte.DescripcionReporte = txtDescripcionTrabajo.Text;
         Reporte.Save();
         //r.Save();
 
@@ -257,6 +258,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         ucObrasRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
         ucObrasRendicion.Monto = Obra.Presupuesto;
         ucObrasRendicion.Adjuntos = Sol_Original.GetAdjuntos();
+        ucObrasRendicion.Descripcion_TrabajoRealizado = txtDescripcionTrabajo.Text;
         ucObrasRendicion.Responsable = Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
         ucObrasRendicion.Visible = true;
     }
@@ -419,6 +421,13 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         gvHorasVehiculos.DataKeyNames = new string[] { "Id" };
         gvHorasVehiculos.DataBind();
     }
+
+    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
+    {
+        lblGastos.Visible = true;
+        lblGastos.Text = "$" + txtPresupuesto.Text;
+        txtPresupuesto.Text = "";
+    } 
 }
 
 

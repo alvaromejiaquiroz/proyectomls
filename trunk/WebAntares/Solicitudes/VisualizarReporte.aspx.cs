@@ -80,8 +80,8 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         break;
                     case (int)EnumTipoSolicitud.Obras:
                         SolicitudObra solicitudObra = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
-                        ucObrasRendicion.Numero = solicitudObra.IdSolicitud.ToString();
-                        ucObrasRendicion.SolicitudInicial = solicitud.IdSolicitudInicial.ToString();
+                        ucObrasRendicion.Numero = solicitudInicial.Id_Solicitud.ToString();
+                        ucObrasRendicion.SolicitudInicial = solicitudInicial.Id_Solicitud.ToString();
                         ucObrasRendicion.Titulo = solicitud.Descripcion;
                         ucObrasRendicion.Estado = solicitud.Status;
                         ucObrasRendicion.Cliente = Empresas.FindFirst(Expression.Eq("IdEmpresa", solicitud.IdCliente)).Nombre;
@@ -99,6 +99,7 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucObrasRendicion.Monto = solicitudObra.Presupuesto;
                         ucObrasRendicion.Adjuntos = solicitudInicial.GetAdjuntos();
                         ucObrasRendicion.Responsable = Solicitud.GetResponsable(solicitudObra.IdSolicitud.ToString());
+                        ucObrasRendicion.Descripcion_TrabajoRealizado = solicitud.DescripcionReporte;
                         ucObrasRendicion.Visible = true;
                         break;
                 }

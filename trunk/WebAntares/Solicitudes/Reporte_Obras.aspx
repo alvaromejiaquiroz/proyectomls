@@ -82,6 +82,37 @@
                             </table>
                         </ContentTemplate>
                     </cc1:TabPanel>
+                    <cc1:TabPanel ID="tpDescripcion" HeaderText="Detalles" runat="server">
+                        <HeaderTemplate>
+                            Detalles
+                        </HeaderTemplate>
+                        <ContentTemplate>
+                            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                <ContentTemplate>
+                                <table class="text_custom" width="600px">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Descripción del Trabajo Realizado</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:TextBox ID="txtDescripcionTrabajo" runat="server" TextMode="MultiLine" Height="160px" Width="100%" CausesValidation="true"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="La descripción del trabajo realizado es obligatoria"
+                                            ControlToValidate="txtDescripcionTrabajo" Display="None" ValidationGroup="solicitud"></asp:RequiredFieldValidator>
+
+                                    </td>
+                                    <td></td>
+                              
+                                </tr>
+                                </table>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </ContentTemplate>
+                    </cc1:TabPanel>
                     <cc1:TabPanel ID="tpTareas" HeaderText="Tareas" runat="server">
                         <ContentTemplate>
                             <table class="text_custom" width="600px">
@@ -94,10 +125,8 @@
                                         Descripción de tareas solicitadas
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtDescripcionTareas" runat="server" Width="250px" 
+                                        <asp:TextBox ID="txtDescripcionTareas" runat="server" Width="250px" ReadOnly="true" 
                                             Height="64px" TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvDescripcionTareas" runat="server" ErrorMessage="Debe ingresar la descripción de tareas solicitadas."
-                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtDescripcionTareas"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                                 <tr>
@@ -105,16 +134,7 @@
                                         Fecha de inicio
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtInicio" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                        <asp:ImageButton ID="imgInicio" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
-                                        <cc1:CalendarExtender ID="ceInicio" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgInicio"
-                                            TargetControlID="txtInicio">
-                                        </cc1:CalendarExtender>
-                                        <asp:RequiredFieldValidator ID="rfvInicio" runat="server" ErrorMessage="Debe ingresar la fecha de inicio."
-                                            ControlToValidate="txtInicio" Display="None" ValidationGroup="solicitud"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="cvInicio" runat="server" ErrorMessage="La fecha de inicio no es válida."
-                                            ControlToValidate="txtInicio" Display="None" Operator="DataTypeCheck" Type="Date"
-                                            ValidationGroup="solicitud"></asp:CompareValidator>
+                                        <asp:TextBox ID="txtInicio" runat="server" MaxLength="10" Width="80px" ReadOnly="true" CssClass="text_custom"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -122,19 +142,7 @@
                                         Fecha de entrega
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtEntrega" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                        <asp:ImageButton ID="imgEntrega" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
-                                        <cc1:CalendarExtender ID="ceEntrega" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgEntrega"
-                                            TargetControlID="txtEntrega">
-                                        </cc1:CalendarExtender>
-                                        <asp:RequiredFieldValidator ID="rfvEntrega" runat="server" ErrorMessage="Debe ingresar la fecha de entrega."
-                                            ControlToValidate="txtEntrega" Display="None" ValidationGroup="solicitud"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="cvEntrega" runat="server" ErrorMessage="La fecha de entrega no es válida."
-                                            ControlToValidate="txtEntrega" Display="None" Operator="DataTypeCheck" Type="Date"
-                                            ValidationGroup="solicitud"></asp:CompareValidator>
-                                        <asp:CompareValidator ID="cvFechas" runat="server" ErrorMessage="La fecha de inicio debe ser menor o igual que la fecha de entrega."
-                                            ControlToCompare="txtEntrega" ControlToValidate="txtInicio" Display="None" Operator="LessThanEqual"
-                                            Type="Date" ValidationGroup="solicitud"></asp:CompareValidator>
+                                        <asp:TextBox ID="txtEntrega" runat="server" MaxLength="10" Width="80px" ReadOnly="true" CssClass="text_custom"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -142,10 +150,8 @@
                                         Requisitos de aprobación
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtRequisitosAprovacion" runat="server" Width="254px" Height="64px" 
+                                        <asp:TextBox ID="txtRequisitosAprovacion" runat="server" ReadOnly="true" Width="254px" Height="64px" 
                                             TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvRequisitosAprovacion" runat="server" ErrorMessage="Debe ingresar los requisitos de aprobación."
-                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtRequisitosAprovacion"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                                 <tr>
@@ -153,9 +159,7 @@
                                         Requisitos de ingreso
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtRequisitoIngreso" runat="server" Width="254px" Height="64px" TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvRequisitoIngreso" runat="server" ErrorMessage="Debe ingresar los requisitos de ingreso."
-                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtRequisitoIngreso"></asp:RequiredFieldValidator>
+                                        <asp:TextBox ID="txtRequisitoIngreso" runat="server" ReadOnly="true" Width="254px" Height="64px" TextMode="MultiLine" CssClass="text_custom"></asp:TextBox>
                                     </td>
                                 </tr>
                             </table>
@@ -553,25 +557,41 @@
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
                         <ContentTemplate>
-                            <table class="text_custom" width="600px">
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <table class="text_custom" width="400px">
                                 <tr>
                                     <td colspan="2" style="height: 20px">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                        Monto
+                                       Ingresar Gastos Estimados
                                     </td>
-                                    <td>
+                                    <td colspan="2" style="height: 20px">
                                         <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12" CssClass="text_custom"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvPresupuesto" runat="server" ErrorMessage="Debe ingresar el monto del presupuesto."
-                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"></asp:RequiredFieldValidator>
                                         <asp:CompareValidator ID="cvPresupuesto" runat="server" ErrorMessage="El monto del presupuesto no es válido."
                                             Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"
                                             Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
                                     </td>
+                                    <td colspan="2" style="height: 20px">
+                                    <asp:ImageButton runat="server" ID="btnAceptarGastos" CommandArgument="Aceptar" CommandName="Aceptar"   ImageUrl="~/images/aprobar.gif"  OnClick="btnAceptarGastos_Click"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 20px">
+                                        Gastos Estimados:
+                                    </td>
+                                    <td colspan="2" style="height: 20px">
+                                       <asp:Label runat="server" ID="lblGastos" Visible="true" ForeColor="Red" Font-Bold="true" ></asp:Label>
+                                    </td>
+                                    <td colspan="2" style="height: 20px">
+                                     
+                                    </td>
                                 </tr>
                             </table>
+                            </ContentTemplate>
+                            </asp:UpdatePanel>
                         </ContentTemplate>
                     </cc1:TabPanel>
                     <cc1:TabPanel ID="tpAdjuntos" HeaderText="Adjuntos" runat="server">
