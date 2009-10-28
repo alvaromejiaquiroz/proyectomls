@@ -118,7 +118,7 @@ public partial class Controles_Obras : System.Web.UI.UserControl
 
     public string Monto
     {
-        set { litMonto.Text = value; }
+        set { litMonto.Text = "$" + value; }
     }
 
     public bool Imprimible

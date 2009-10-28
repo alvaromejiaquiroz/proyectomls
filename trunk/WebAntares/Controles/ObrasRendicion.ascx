@@ -90,6 +90,19 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
+            Descripción del Trabajo Realizado
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="padding-left: 20px;">
+            <asp:label id="lblDescripcion_TrabajoRealizado" runat="server" BorderStyle="None"></asp:label>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="padding-left: 20px;font-weight:bold">
             Tareas
         </td>
     </tr>
@@ -250,6 +263,22 @@
                 </Columns>
             </asp:GridView>
         </td>
+    </tr>
+    <tr>    
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td   style="padding-left:20px;font-weight:bolder;border-top: solid 1 black"> Firma Responsable</td>
+        <td   style="padding-left:50px;font-weight:bolder;border-top: solid 1 black"> Firma Conforme Cliente</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
     </tr>
     <tr>
         <td colspan="3" style="height: 20px"></td>
