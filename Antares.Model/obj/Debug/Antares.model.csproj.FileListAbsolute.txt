@@ -28,3 +28,8 @@ D:\temp\Antares\proyectomls\Antares.Model\bin\Debug\pt\Castle.Components.Validat
 D:\temp\Antares\proyectomls\Antares.Model\obj\Debug\ResolveAssemblyReference.cache
 D:\temp\Antares\proyectomls\Antares.Model\obj\Debug\Antares.model.dll
 D:\temp\Antares\proyectomls\Antares.Model\obj\Debug\Antares.model.pdb
+C:\Documents and Settings\Adrián\Mis documentos\Proyects\MLS\Antares.Model\bin\Debug\Antares.model.dll
+C:\Documents and Settings\Adrián\Mis documentos\Proyects\MLS\Antares.Model\bin\Debug\Antares.model.pdb
+C:\Documents and Settings\Adrián\Mis documentos\Proyects\MLS\Antares.Model\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Adrián\Mis documentos\Proyects\MLS\Antares.Model\obj\Debug\Antares.model.dll
+C:\Documents and Settings\Adrián\Mis documentos\Proyects\MLS\Antares.Model\obj\Debug\Antares.model.pdb
