@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" runat="Server">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td align="center">
+            <td align="center" style="padding-top:50px">
         <asp:Login ID="Login1" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderStyle="Solid"
             BorderWidth="1px" FailureText="No esta autorizado para ingresar." Font-Names="Verdana"
             Font-Size="10px" InstructionText="Ingrese el usuario y contraseña" LoginButtonText="Ingresar"

@@ -31,7 +31,7 @@ public partial class Login_Login1t : System.Web.UI.Page
                 //BiFactory.registra("Login", "Ingreso");
                 //FormsAuthentication.RedirectFromLoginPage(BiFactory.User.Nombre, true);
 
-
+                Logger.Log(TipoEvento.Login);
 
                 //FormsAuthentication.Authenticate = true;
                 //FormsAuthentication.CookieMode = HttpCookieMode.UseCookies;
