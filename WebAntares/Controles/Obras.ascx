@@ -3,7 +3,7 @@
 <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
     <tr class="header_custom">
         <td align="center" colspan="3">
-            Solicitud de obras e instalaciones
+            SOLICITUD DE OBRAS E INSTALACIONES
         </td>
     </tr>
     <tr>

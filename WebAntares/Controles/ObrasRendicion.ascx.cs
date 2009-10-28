@@ -70,6 +70,11 @@ public partial class Controles_ObrasRendicion : System.Web.UI.UserControl
         set { litRequisitosIngreso.Text = value; }
     }
 
+    public string Descripcion_TrabajoRealizado
+    {
+        set { lblDescripcion_TrabajoRealizado.Text = value; }
+    }
+
     public DbDataReader Personal
     {
         set
