@@ -14,7 +14,7 @@ using Antares.model;
 public partial class Admin_Usuarios : System.Web.UI.Page
 {
 
-    static Gos.Usuarios.Usuarios oUsuario = new Gos.Usuarios.Usuarios();
+    static Usuarios oUsuario = new Usuarios();
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,7 +28,7 @@ public partial class Admin_Usuarios : System.Web.UI.Page
     }
     private void FillGrid()
     {
-        GridView1.DataSource = Gos.Usuarios.Usuarios.FindAll();
+        GridView1.DataSource = Usuarios.FindAll();
         GridView1.DataKeyNames = new string[] { "IdUsuario" };
         GridView1.AutoGenerateColumns = false;
         GridView1.DataBind();
@@ -74,7 +74,7 @@ public partial class Admin_Usuarios : System.Web.UI.Page
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        oUsuario = Gos.Usuarios.Usuarios.FindFirst(Expression.Eq("IdUsuario", int.Parse(GridView1.SelectedValue.ToString())));
+        oUsuario = Usuarios.FindFirst(Expression.Eq("IdUsuario", int.Parse(GridView1.SelectedValue.ToString())));
         showData();
         cmdAccion.Text = "Modificar";
     }
@@ -86,7 +86,7 @@ public partial class Admin_Usuarios : System.Web.UI.Page
 
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        oUsuario = Gos.Usuarios.Usuarios.FindFirst(Expression.Eq("IdUsuario", int.Parse(GridView1.DataKeys[e.RowIndex].Value.ToString())));
+        oUsuario = Usuarios.FindFirst(Expression.Eq("IdUsuario", int.Parse(GridView1.DataKeys[e.RowIndex].Value.ToString())));
         showData();
         cmdAccion.Text = "Eliminar";
     }

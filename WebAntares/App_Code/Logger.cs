@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Configuration;
+using System.Collections.Generic;
+using System.IO;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -21,6 +23,34 @@ public static class Logger
         Log(tipoEvento, null);
     }
 
+    private static  void LogToFile (TipoEvento tipoEvento, string detalle)
+        {
+        StreamWriter st;
+        if (!Directory.Exists(HttpContext.Current.Server.MapPath ( "~/Logs")))
+        {
+            Directory.CreateDirectory(HttpContext.Current.Server.MapPath ( "~/Logs"));
+        }
+
+        string unPath = HttpContext.Current.Server.MapPath ( "~/Logs/Log_" + DateTime.Today.ToString("yyyyMMdd") + ".log");
+
+        if (!File.Exists(unPath ))
+            {
+                File.CreateText(unPath).Close();
+
+                
+            }
+        
+        st = File.AppendText(unPath);
+
+        if (detalle == null)
+        {
+            detalle = string.Empty;
+        }
+        st.WriteLine( DateTime.Now.ToString() + " - [" + TipoEvento.Login.ToString() + "] - " + BiFactory.User.LoginName + " - " + detalle);
+        st.Close();
+
+        }
+
     public static void Log(TipoEvento tipoEvento, string detalle)
     {
         Evento evento = new Evento();
@@ -39,10 +69,14 @@ public static class Logger
         evento.Host = host;
         evento.Detalle = detalle;
         evento.Save();
+        LogToFile(tipoEvento, detalle);
+
     }
+       
 }
 
 public enum TipoEvento
 {
     Login = 1
+    
 }

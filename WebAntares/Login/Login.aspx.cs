@@ -25,23 +25,15 @@ public partial class Login_Login1t : System.Web.UI.Page
             
             if (BiFactory.CheckLogin(Login1.UserName, Login1.Password))
             {
-               // Session["user"] = Login1.UserName;
-                //FormsAuthentication.SetAuthCookie(biFactory.User().Apellido + "," + biFactory.User().Nombre, Login1.DisplayRememberMe);
                 FormsAuthentication.SetAuthCookie(BiFactory.User.Nombre, true);
-                //BiFactory.registra("Login", "Ingreso");
-                //FormsAuthentication.RedirectFromLoginPage(BiFactory.User.Nombre, true);
-
-                Logger.Log(TipoEvento.Login);
-
-                //FormsAuthentication.Authenticate = true;
-                //FormsAuthentication.CookieMode = HttpCookieMode.UseCookies;
+                Logger.Log(TipoEvento.Login,"Inició Session");
                 Response.Redirect("../default.aspx");
 
             }
             else
             {
                 Session["user"] = null;
-                //biFactory.registra("Login", "No Valido");
+              //  Logger.Log(TipoEvento.Login, Login1.UserName.ToString() + " Intento Conectarse al Sistema");
             }
         }
         catch (Exception ex)

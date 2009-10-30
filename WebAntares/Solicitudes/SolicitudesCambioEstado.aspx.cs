@@ -17,70 +17,13 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        CargaDatosSolicitud();
+        
         if (!Page.IsPostBack)
         {
             LlenaCombo();
         }
     }
 
-    protected void CargaDatosSolicitud()
-    {
-       
-    }
-    protected void LlenaCombo()
-    {
-        cmbEstados.Items.Add(new ListItem("Seleccione...", "-1"));
-
-        string filtro = string.Empty;
-        string filtroRepro = string.Empty;
-        string filtroResponsable = string.Empty;
-
-        filtro = " detalle not in ('Pendiente','Anulado') and ";
-        filtro = filtro + " detalle in (";
-
-
-       
-        if (BiFactory.User.IdPerfil< 6)
-        {
-            filtroResponsable =  "'Realizado','Cancelado'";
-            
-            if (BiFactory.Sol.Status != "Reprogramado" && BiFactory.User.IdPerfil <= 4)
-            {
-                filtroRepro = ",'Reprogramado'";
-                filtroResponsable = filtroResponsable +  filtroRepro ;
-            }
-
-            
-        }
-
-        int idResponsable = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("IdSolicitud",BiFactory.Sol.Id_Solicitud),Expression.Eq("Responsable",true)).IdEmpleado;
-
-        if (BiFactory.User.IdPerfil == 6 || idResponsable == BiFactory.Empleado.IdEmpleados)
-        {
-            if (filtroResponsable != string.Empty)
-            {
-                filtroResponsable = ",'Realizado'";
-            }
-            else
-            {
-                filtroResponsable = "'Realizado'";
-            }
-
-        }
-
-        if (filtroResponsable != string.Empty)
-        {
-            filtro = filtro + filtroResponsable;
-        }
-        filtro = filtro + ")";
-
-        foreach (Estados e in Estados.FindAll(Expression.Sql(filtro)) )
-        {
-            cmbEstados.Items.Add(new ListItem(e.Detalle, e.IdEstado.ToString()));
-        }
-    }
-    
     protected void IniciaPanel()
     {
         txtAprobador.Text = string.Empty;
@@ -89,9 +32,10 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
 
         txtInicio.Text = DateTime.Today.ToString("dd/MM/yyyy");
         txtReprogramacion.Text = DateTime.Today.ToString("dd/MM/yyyy");
-        switch ((eEstados)int.Parse(cmbEstados.SelectedValue))
+     //   switch ((eEstados)int.Parse(cmbEstados.SelectedValue))
+        switch (cmbEstados.SelectedValue)
         {
-            case eEstados.Reprogramado:
+            case "Reprogramado":
                 btnAceptar.Visible = false;
                 cmbEstados.Enabled = false;
                 pnlReprogramado.Visible = true;
@@ -105,7 +49,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 cvFin.Enabled = true;
                 cvFechas.Enabled = true;
                 break;
-            case eEstados.Cancelado:
+            case "Cancelado":
                 btnAceptar.Visible = false;
                 cmbEstados.Enabled = false;
                 pnlReprogramado.Visible = true;
@@ -119,7 +63,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 cvFin.Enabled = false;
                 cvFechas.Enabled = false;
                 break;
-            case eEstados.Realizado:
+            case "Realizado":
                 MakeRendicion(BiFactory.Sol.Id_Solicitud);
                 break;
         }
@@ -142,7 +86,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 reporte.IdTipoSolicitud =  sol.IdTipoSolicitud;
                 reporte.IdUsuarioCreador = BiFactory.User.IdUsuario;
                 reporte.Reporte = "SI";
-                //reporte.Status = eEstados.Realizado.ToString();
+                reporte.Status = eEstados.Pendiente.ToString();
                 reporte.FechaCreacion = DateTime.Now;
                 reporte.NroOrdenCte = sol.NroOrdenCte;
                 reporte.Contacto = sol.Contacto;
@@ -190,41 +134,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                     Sol_Corr_original.FechaResolucion = DateTime.Parse("1900-01-01");
                     Sol_Corr_original.SaveCopyAndFlush();
 
-                    
-                    //Sol_Corr_nueva.IdSolicitud = reporte.Id_Solicitud;
-                    //Sol_Corr_nueva.Presupuesto = Sol_Corr_original.Presupuesto;
-                    //Sol_Corr_nueva.PersonaReportoFalla = Sol_Corr_original.PersonaReportoFalla;
-                    //Sol_Corr_nueva.IdSitio = Sol_Corr_original.IdSitio;
-                    //Sol_Corr_nueva.IdPlazoAtencion = Sol_Corr_original.IdPlazoAtencion;
-                    //Sol_Corr_nueva.FallaReportada = Sol_Corr_original.FallaReportada;
-                    //Sol_Corr_nueva.CausaPosible = Sol_Corr_original.CausaPosible;
-                    //Sol_Corr_nueva.Penaliza = Sol_Corr_original.Penaliza;
-                    
-                    //Sol_Corr_nueva.FechaResolucion = DateTime.MinValue;
-                    //if (Sol_Corr_original.FechanotificacionCliente != null)
-                    //{
-
-                    //    Sol_Corr_nueva.FechanotificacionCliente = Sol_Corr_original.FechanotificacionCliente;
-                    //}
-                    //else
-                    //{
-
-                    //    Sol_Corr_nueva.FechanotificacionCliente = DateTime.MinValue;
-                    //}
-
-                    //Sol_Corr_nueva.Save();
-
-
-                    
-                    //copio los servicios afectados
-                    SolicitudServiciosAfectados[] ss = SolicitudServiciosAfectados.FindAll(Expression.Eq("IdSolicitud", idSolOrg));
-                    foreach (SolicitudServiciosAfectados s in ss)
-                    {
-                        s.Id = 0;
-                        s.IdSolicitud = reporte.Id_Solicitud;
-                        s.SaveCopyAndFlush();
-                    }
-                    
+                  
                 }
 
                 if (tipo.IdTiposolicitud == 6) ///Obras e Instalaciones
@@ -238,7 +148,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
 
                 }
 
-                //copio los agentes
+                //copio las PErsonas
                 SolicitudRecursosEmpleados[] ee = SolicitudRecursosEmpleados.FindAll(Expression.Eq("IdSolicitud", idSolOrg));
                 foreach (SolicitudRecursosEmpleados e in ee)
                 {
@@ -347,5 +257,32 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
         btnAceptar.Visible = true;
         cmbEstados.Enabled = true;
         pnlReprogramado.Visible = false;
+    }
+
+    protected void LlenaCombo()
+    {
+        cmbEstados.Items.Add(new ListItem("Seleccione...", "-1"));
+
+        
+        cmbEstados.DataSource = AntaresHelper.GetListaEstadosAutorizados(BiFactory.Perfil.Detalle);
+        cmbEstados.DataTextField = "Valor";
+        cmbEstados.DataValueField = "Valor";
+        cmbEstados.DataBind();
+
+        if (!cmbEstados.Items.Contains(new ListItem("Reprogramado")) || (BiFactory.Sol.Status == "Reprogramado"))
+        {
+            cmbEstados.Items.Remove(new ListItem("Reprogramado", "Reprogramado"));
+        }
+  
+
+        int idResponsable = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud), Expression.Eq("Responsable", true)).IdEmpleado;
+        if (idResponsable == BiFactory.Empleado.IdEmpleados)
+        {
+            if (!cmbEstados.Items.Contains(new ListItem("Realizado")))
+            {
+                cmbEstados.Items.Add(new ListItem("Realizado", "Realizado"));
+            }
+        }
+
     }
 }

@@ -25,7 +25,7 @@
             <td>
                 <asp:TextBox ID="txtFecha" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
                 <asp:ImageButton ID="imgFecha" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
-                <cc1:CalendarExtender ID="ceFecha" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFecha"
+                <cc1:CalendarExtender ID="ceFecha" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFecha" CssClass="cal_Theme1" 
                     TargetControlID="txtFecha">
                 </cc1:CalendarExtender>
                 <asp:RequiredFieldValidator ID="rfvFecha" runat="server" ErrorMessage="Debe ingresar la fecha."

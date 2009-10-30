@@ -56,7 +56,7 @@
                                         <asp:TextBox ID="txtFechaReporte" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
                                         <asp:ImageButton ID="imgFechaReporte" runat="server" CausesValidation="False" 
                                             ImageUrl="~/Images/calendario.gif" />
-                                        <cc1:CalendarExtender ID="ceFechaReporte" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFechaReporte"
+                                        <cc1:CalendarExtender ID="ceFechaReporte" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFechaReporte" CssClass="cal_Theme1" 
                                             TargetControlID="txtFechaReporte" Enabled="True">
                                         </cc1:CalendarExtender>
                                         <asp:DropDownList ID="ddlHoraReporte" runat="server" CssClass="text_custom">
@@ -368,7 +368,7 @@
                                                             CssClass="text_custom"></asp:TextBox>
                                                         <asp:ImageButton ID="imgHorasPersonalDia" runat="server" CausesValidation="false"
                                                             ImageUrl="~/Images/calendario.gif" />
-                                                        <cc1:CalendarExtender ID="ceHorasPersonalDia" runat="server" Format="dd/MM/yyyy"
+                                                        <cc1:CalendarExtender ID="ceHorasPersonalDia" runat="server" Format="dd/MM/yyyy" CssClass="cal_Theme1" 
                                                             PopupButtonID="imgHorasPersonalDia" TargetControlID="txtHorasPersonalDia">
                                                         </cc1:CalendarExtender>
                                                         <asp:RequiredFieldValidator ID="rfvHorasPersonalDia" runat="server" ErrorMessage="Debe ingresar el día."
@@ -551,7 +551,7 @@
                                                             CssClass="text_custom"></asp:TextBox>
                                                         <asp:ImageButton ID="imgHorasVehiculosDia" runat="server" CausesValidation="false"
                                                             ImageUrl="~/Images/calendario.gif" />
-                                                        <cc1:CalendarExtender ID="ceHorasVehiculosDia" runat="server" Format="dd/MM/yyyy"
+                                                        <cc1:CalendarExtender ID="ceHorasVehiculosDia" runat="server" Format="dd/MM/yyyy" CssClass="cal_Theme1" 
                                                             PopupButtonID="imgHorasVehiculosDia" TargetControlID="txtHorasVehiculosDia">
                                                         </cc1:CalendarExtender>
                                                         <asp:RequiredFieldValidator ID="rfvHorasVehiculosDia" runat="server" ErrorMessage="Debe ingresar el día."

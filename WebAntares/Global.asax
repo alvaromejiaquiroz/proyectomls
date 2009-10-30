@@ -258,6 +258,7 @@
         // o SQLServer, el evento no se genera.
         Session.Abandon();
         FormsAuthentication.SignOut();
+        
 
     }
        

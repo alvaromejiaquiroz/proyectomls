@@ -156,6 +156,8 @@ public partial class site : System.Web.UI.MasterPage
     }
     protected void LoginStatus1_LoggingOut(object sender, LoginCancelEventArgs e)
     {
+        Logger.Log(TipoEvento.Login, "Termino Session");
+
         Session.Abandon();
         FormsAuthentication.SignOut();
     }

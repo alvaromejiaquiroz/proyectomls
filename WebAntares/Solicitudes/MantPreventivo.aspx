@@ -54,7 +54,7 @@
                                             <td>
                                                 <asp:TextBox ID="txtDesde" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
                                                 <asp:ImageButton ID="imgDesde" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
-                                                <cc1:CalendarExtender ID="ceDesde" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgDesde"
+                                                <cc1:CalendarExtender ID="ceDesde" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgDesde" CssClass="cal_Theme1" 
                                                     TargetControlID="txtDesde">
                                                 </cc1:CalendarExtender>
                                                 <asp:RequiredFieldValidator ID="rfvDesde" runat="server" ErrorMessage="Debe ingresar la fecha desde."
@@ -64,7 +64,7 @@
                                                     ValidationGroup="tareas"></asp:CompareValidator>
                                                 <asp:TextBox ID="txtHasta" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
                                                 <asp:ImageButton ID="imgHasta" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
-                                                <cc1:CalendarExtender ID="ceHasta" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgHasta"
+                                                <cc1:CalendarExtender ID="ceHasta" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgHasta" CssClass="cal_Theme1" 
                                                     TargetControlID="txtHasta">
                                                 </cc1:CalendarExtender>
                                                 <asp:RequiredFieldValidator ID="rfvHasta" runat="server" ErrorMessage="Debe ingresar la fecha hasta."

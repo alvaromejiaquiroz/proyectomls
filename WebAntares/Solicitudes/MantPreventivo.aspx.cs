@@ -343,7 +343,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
             ucMantenimientoPreventivo.Visible = true;
 
-            WebAntares.AntaresHelper.NotificaSolicitud(BiFactory.Sol.Id_Solicitud);
+            WebAntares.AntaresHelper.NotificaSolicitud(sol.Id_Solicitud);
         }
     }
         

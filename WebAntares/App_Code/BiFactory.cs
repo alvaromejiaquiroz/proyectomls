@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Web;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.Sql;
+using System.Globalization;
 using Castle.ActiveRecord;
 using Castle.ActiveRecord.Framework;
 using Castle.ActiveRecord.Framework.Config;
 
-using Gos.Usuarios;
-using System.Reflection;
 
-using System.Web;
-using System.Web.UI.WebControls;
+using System.Reflection;
 using Antares.model;
+using NHibernate;
 using NHibernate.Expression;
 
 
@@ -20,18 +22,32 @@ namespace WebAntares
     public static class BiFactory
     {
 
-        public static Gos.Usuarios.Usuarios User
+        public static Usuarios User
         {
             get
             {
-                if ((Gos.Usuarios.Usuarios)System.Web.HttpContext.Current.Session["user"] != null)
+                if ((Usuarios)System.Web.HttpContext.Current.Session["user"] != null)
                 {
-                    return (Gos.Usuarios.Usuarios)System.Web.HttpContext.Current.Session["user"];
+                    return (Usuarios)System.Web.HttpContext.Current.Session["user"];
                 }
                 else
                 {
-                    return new Gos.Usuarios.Usuarios();
+                    return new Usuarios();
                 }
+            }
+        }
+
+        public static Antares.model.Perfiles Perfil
+        {
+            get
+            {
+                Antares.model.Perfiles P = null;
+                if ((Usuarios)System.Web.HttpContext.Current.Session["user"] != null)
+                {
+                    Usuarios user = (Usuarios)System.Web.HttpContext.Current.Session["user"];
+                     P = Perfiles.FindFirst(Expression.Eq("IdPerfil", user.IdPerfil));
+                }
+                return P;
             }
         }
 
@@ -75,7 +91,7 @@ namespace WebAntares
 
         public static bool CheckLogin(string User, string Login)
         {
-            if (biUsuarios.FindAll().Length == 0)
+            if (Usuarios.FindAll().Length == 0)
             {
                 Usuarios a = new Usuarios();
 
@@ -85,16 +101,20 @@ namespace WebAntares
                 a.Save();
             }
 
-            System.Web.HttpContext.Current.Session["user"] = (Gos.Usuarios.Usuarios)biUsuarios.CheckLogin(User, Login);
+            System.Web.HttpContext.Current.Session["user"] = Usuarios.CheckLogin(User, Login);
 
             return (System.Web.HttpContext.Current.Session["user"] != null);
 
         }
+ 
         public static void initActiveRecord()
         {
 
             XmlConfigurationSource config = new XmlConfigurationSource(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ARConfig.xml");
 
+            
+            Assembly asm = Assembly.Load("Antares.model");
+            ActiveRecordStarter.Initialize(new Assembly[] { asm }, config);
             // Se crea la instancia de configuracion
             //IConfigurationSource config = ActiveRecordSectionHandler.Instance;
 
@@ -104,9 +124,9 @@ namespace WebAntares
             /*Assembly asm = Assembly.Load("Gos.Usuarios");
             ActiveRecordStarter.Initialize(asm, config);
             */
-            Assembly asm1 = Assembly.Load("Gos.Usuarios");
-            Assembly asm2 = Assembly.Load("Antares.model");
-            ActiveRecordStarter.Initialize(new Assembly[] { asm1, asm2 }, config);
+            //Assembly asm1 = Assembly.Load("Gos.Usuarios");
+            //Assembly asm2 = Assembly.Load("Antares.model");
+            //ActiveRecordStarter.Initialize(new Assembly[] { asm1, asm2 }, config);
 
             // Se elimna el esquema de la base de datos
             //ActiveRecordStarter.DropSchema();
@@ -137,18 +157,20 @@ namespace WebAntares
 
             //creamos los perfiles
 
-            if (Gos.Usuarios.Perfiles.FindAll().Length == 0)
+            if (Perfiles.FindAll().Length == 0)
             {
                 string[] items = { "Administrador", "Supervisor", "Usuario", "Consultor" };
                 foreach (string s in items)
                 {
-                    Gos.Usuarios.Perfiles e = new Gos.Usuarios.Perfiles();
+                    Perfiles e = new Perfiles();
                     e.Detalle = s;
                     e.Save();
                 }
             }
 
         }
+
+        
     }
 
 

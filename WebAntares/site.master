@@ -11,9 +11,9 @@
                z-index: 100;
            }
        </style>
-    <link href="~/App_Themes/antares/msvs_template_simple_tables.css" rel="stylesheet"         type="text/css" />
-
     
+    <link href="~/App_Themes/antares/msvs_template_simple_tables.css" rel="stylesheet"         type="text/css" />
+	
     <script language="javascript" type="text/javascript">
         //funcion adicional para controlar el rango de fechas
         function customRange(input) {
@@ -21,29 +21,7 @@
                 maxDate: (input.id == desde ? $("#" + hasta).datepicker("getDate") : null)
             };
         } 
-        
-        /*$(document).ready(function() {
-            var oMen = $("#ctl00_divMensajes");
-            if (oMen.text() != "") {
-                oMen.slideDown(300);
-                setTimeout(function() {
-                    oMen.slideUp(1000);
-                }, 15000);
-
-            }
-            //todos los que tengan class numeric son numericos 
-            $(".numeric").numeric();
-
-            $("#breadcrumb-left").hover(
-                function() {
-                    if (oMen.text() != "") oMen.slideDown(300);
-                },
-                function() {
-                    if (oMen.text() != "") oMen.slideUp(500);
-                }
-            )
-
-        })*/
+       
     </script>
 
     <style type="text/css">
@@ -58,7 +36,7 @@
             <div >
                 <table width="20%" >
                     <tr>
-                        <td>
+                        <td >
                             <div >
                                 <asp:Image ID="Imagen_Usuario" runat="server" class="Imagen_Usuario" />
                             </div>
