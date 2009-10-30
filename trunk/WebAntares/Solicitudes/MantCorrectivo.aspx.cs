@@ -292,7 +292,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             ucMantenimientoCorrectivo.Monto = Sol_Cor.Presupuesto;
             ucMantenimientoCorrectivo.Visible = true;
 
-            WebAntares.AntaresHelper.NotificaSolicitud(BiFactory.Sol.Id_Solicitud);
+            WebAntares.AntaresHelper.NotificaSolicitud(sol.Id_Solicitud);
         }
     }
 

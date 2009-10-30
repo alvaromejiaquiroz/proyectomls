@@ -183,6 +183,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             ucObras.Monto = Sol_Ob.Presupuesto;
             ucObras.Adjuntos = sol.GetAdjuntos();
             ucObras.Visible = true;
+            WebAntares.AntaresHelper.NotificaSolicitud(sol.Id_Solicitud);
         }
     }
 

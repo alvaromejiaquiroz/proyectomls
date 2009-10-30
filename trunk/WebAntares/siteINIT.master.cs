@@ -43,7 +43,9 @@ public partial class site2 : System.Web.UI.MasterPage
         }
     }
     protected void LoginStatus1_LoggingOut(object sender, LoginCancelEventArgs e)
+
     {
+        
         Session.Abandon();
         FormsAuthentication.SignOut();
     }

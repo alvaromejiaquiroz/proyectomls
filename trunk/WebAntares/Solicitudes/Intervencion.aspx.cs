@@ -7,7 +7,6 @@ using System.Data;
 using NHibernate;
 using NHibernate.Expression;
 using Antares.model;
-using Gos.Usuarios;
 using WebAntares;
 
 public partial class _Default : System.Web.UI.Page

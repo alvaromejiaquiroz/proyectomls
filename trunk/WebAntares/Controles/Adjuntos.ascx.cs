@@ -81,6 +81,7 @@ public partial class Controles_Adjuntos : System.Web.UI.UserControl
     protected void btnUpload_Click(object sender, EventArgs e)
     {
         
+        
     }
 
     public bool Guardar()

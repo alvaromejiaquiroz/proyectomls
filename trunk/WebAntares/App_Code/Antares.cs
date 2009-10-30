@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using System.Data.SqlClient;
+using System.Data.Common;
 using System.Configuration;
 using System.Web;
 using System.Web.Security;
@@ -19,7 +21,8 @@ using Antares.model;
 using WebAntares;
 using Castle.ActiveRecord.Framework;
 using System.Collections;
-//using Microsoft.Practices.EnterpriseLibrary.Logging;
+
+
 
 
 
@@ -35,8 +38,8 @@ namespace WebAntares
             // TODO: Add constructor logic here
             //
         }
-        
-        public static string EnviaMail(string subject,string mensaje)
+
+        public static string EnviaMail(string subject, string mensaje)
         {
             string resultado = "OK";
             try
@@ -67,19 +70,73 @@ namespace WebAntares
         {
             BiFactory.Sol = Solicitud.GetById(idSol);
 
-            string subject = "Notificación";
+            string subject = string.Empty;
             string mensaje = "Se creo la Solicitud Nro." + BiFactory.Sol.Id_Solicitud.ToString() +
-                " del Tipo " + BiFactory.Sol.Tipo.Descripcion + " y el Responsable es " + Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
+                "- Tipo " + BiFactory.Sol.Tipo.Descripcion + "- Responsable:" + Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
 
-            WebAntares.AntaresHelper.EnviaMail(subject,mensaje);
+            WebAntares.AntaresHelper.EnviaMail(subject, mensaje);
 
 
         }
 
         public static void Loguea_Evento(string texto)
         {
-                        //Logger.Write("Testing");
+            //Logger.Write("Testing");
 
         }
+
+        public static DbDataReader GetListaEstadosAutorizados(string Perfil)
+        {
+            ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
+            DbConnection db = (DbConnection)sess.Connection;
+            DbCommand oConn = db.CreateCommand();
+            
+            SqlParameterCollection p;
+            
+            oConn.Parameters.Add(new SqlParameter("@perfil",Perfil));
+            oConn.Parameters.Add(new SqlParameter("@objeto","Estados"));
+            oConn.CommandType = CommandType.StoredProcedure;
+            oConn.CommandText = "Proc_GetAcciones";
+            DbDataReader dr =  oConn.ExecuteReader();
+            return dr;
+
+            //string[] listaEstados;
+            //ArrayList lista = new ArrayList();
+            
+            //AccionValores[] Lista = new AccionValores();
+
+            //while (dr.Read())
+            //{
+            //    if (dr.HasRows)
+            //    {
+            //        AccionValores r = new AccionValores();
+            //        if (dr["Detalle"] != System.DBNull.Value)
+            //        {
+            //            r.Perfil = dr["Detalle"].ToString();
+
+            //        }
+
+            //        if (dr["valor"] != System.DBNull.Value)
+            //        {
+            //            r.Valor = dr["valor"].ToString();
+
+            //        }
+            //        lista.Add(r);
+
+            //    }
+
+            //}
+            //return lista;
+
+
+        }
+    }
+
+    public class AccionValores
+    {
+        public string Perfil;
+        public string Valor;
+
+
     }
 }
