@@ -517,6 +517,47 @@ where se.id_empleado = @idPersona
             return CommonFunctions.ExecuteDbReader(sSql);
         }
 
+        public static string PeronalSinHorasCargadasPersonal_En_Solicitud(int idSol)
+        {
+            string sSql = @"exec dbo.Proc_ValidaHoras_Personal_En_Reporte @idSolicitud = " + idSol.ToString();
+
+            DbDataReader dr = CommonFunctions.ExecuteDbReader(sSql);
+
+            string Personas = string.Empty;
+
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (dr["Nombre"] != System.DBNull.Value)
+                    {
+                        Personas = Personas + dr["Nombre"].ToString() + "  "  ;
+
+                    }
+                }
+            }
+            return Personas;
+
+        }
+
+        public static bool TieneHorasCargadasPersonal_En_Solicitud(int idSol)
+        {
+            string sSql = @"exec dbo.Proc_ValidaHoras_Personal_En_Reporte @idSolicitud = " + idSol.ToString();
+
+            DbDataReader dr = CommonFunctions.ExecuteDbReader(sSql);
+
+            bool tiene = false;
+
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    tiene = true;
+                }
+            }
+            return tiene;
+
+        }
 
     }
     /// <summary>

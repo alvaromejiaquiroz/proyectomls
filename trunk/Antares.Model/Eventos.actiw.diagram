@@ -8,10 +8,10 @@
         <elementListCompartment Id="db839842-e7b9-4be7-ac88-4ada6f23d84a" absoluteBounds="0.515, 1.7850000000000001, 1.4700000000000002, 0.53615315755208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="73d44cc6-c660-4909-a0ea-73ec828d5c35" absoluteBounds="2.5, 0.5, 1.5, 1.7035424804687502">
+    <classShape Id="73d44cc6-c660-4909-a0ea-73ec828d5c35" absoluteBounds="2.125, 1.375, 1.5, 1.7035424804687502">
       <modelClassMoniker name="/a6d88c60-3947-4ffa-a774-4ca9ff585b80/Evento" />
       <nestedChildShapes>
-        <elementListCompartment Id="6e09391e-1cba-4bc8-ab87-e977fb2f8300" absoluteBounds="2.515, 0.91, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6e09391e-1cba-4bc8-ab87-e977fb2f8300" absoluteBounds="2.14, 1.7850000000000001, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

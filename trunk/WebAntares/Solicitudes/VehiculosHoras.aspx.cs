@@ -69,7 +69,7 @@ public partial class Solicitudes_VehiculosHoras : System.Web.UI.Page
                 break;
             case "Obras e Instalaciones":
                     SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                    fecha_Inicio= DateTime.Parse(sol_Obr.FechaInicio);
+                    fecha_Inicio= sol_Obr.FechaInicio;
                     
                 break;
 

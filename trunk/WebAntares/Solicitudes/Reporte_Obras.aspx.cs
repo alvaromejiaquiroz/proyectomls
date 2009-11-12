@@ -10,6 +10,8 @@ using System.Web.UI.HtmlControls;
 using NHibernate.Expression;
 using Castle.ActiveRecord.Framework;
 using Castle.ActiveRecord;
+using System.Data.Common;
+using System.Globalization;
 
 public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
 {
@@ -25,8 +27,8 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         {
             CargarCombos();
             FillCamposObra();
-            FillSolicitudVehiculos();
-            FillSolicitudEmpleados();
+            FillSolicitudVehiculos(0);
+            FillSolicitudEmpleados(0);
         }
     }
 
@@ -34,14 +36,14 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
     {
         SolicitudRecursosVehiculos t = SolicitudRecursosVehiculos.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudVehiculos.DataKeys[e.RowIndex].Value.ToString())));
         t.Delete();
-        FillSolicitudVehiculos();
+        FillSolicitudVehiculos(0);
     }
 
     protected void gvPersonas_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SolicitudRecursosVehiculos t = SolicitudRecursosVehiculos.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudVehiculos.DataKeys[e.RowIndex].Value.ToString())));
         t.Delete();
-        FillSolicitudVehiculos();
+        FillSolicitudVehiculos(0);
     }
 
     protected void btnAsignaVehiculoSolicitud_Click(object sender, EventArgs e)
@@ -66,7 +68,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
                     }
                 }
             }
-            FillSolicitudVehiculos();
+            FillSolicitudVehiculos(0);
         }
     }
 
@@ -108,7 +110,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
                 }
             }
         }
-        FillSolicitudEmpleados();
+        FillSolicitudEmpleados(0);
     }
 
     protected void cmbResponsable_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,23 +153,37 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         txtTelefonoContacto.Text = BiFactory.Sol.ContactoTel;
         txtDescripcionTareas.Text = o.DescripcionTareas;
         txtPresupuesto.Text = o.Presupuesto;
-        txtInicio.Text = o.FechaInicio.Substring(0, 10);
-        txtEntrega.Text = o.FechaFin.Substring(0, 10);
+        //txtInicio.Text = o.FechaInicio.Substring(0, 10);
+        //txtEntrega.Text = o.FechaFin.Substring(0, 10);
+        txtInicio.Text = o.FechaInicio.ToString("dd/MM/yyyy");
+        txtEntrega.Text = o.FechaFin.ToString("dd/MM/yyyy");
         txtRequisitosAprovacion.Text = o.RequisitosAprovacion;
         txtRequisitoIngreso.Text = o.RequisitosIngreso;
     }
 
-    private void FillSolicitudEmpleados()
+    private void FillSolicitudEmpleados(int pageIndex)
     {
-        gvSolicitudPersonas.DataSource = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+
+        DbDataReader reader = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+        DataTable table = new DataTable();
+        table.Load(reader);
+
+        gvSolicitudPersonas.DataSource = table;
+        gvSolicitudPersonas.PageIndex = pageIndex;
         gvSolicitudPersonas.DataKeyNames = new string[] { "Id" };
         gvSolicitudPersonas.DataBind();
+
+
     }
 
-    private void FillSolicitudVehiculos()
+    private void FillSolicitudVehiculos(int pageIndex)
     {
-        //gvSolicitudVehiculos.DataSource = SolicitudRecursosVehiculos.GetVehiculosKmEnSolicitud(BiFactory.Sol.Id_Solicitud);gvSolicitudVehiculos.DataSource = SolicitudRecursosVehiculos.GetVehiculosKmEnSolicitud(BiFactory.Sol.Id_Solicitud);
-        gvSolicitudVehiculos.DataSource = SolicitudRecursosVehiculos.GetVehiculosEnSolicitud(BiFactory.Sol.Id_Solicitud);
+        DbDataReader reader = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
+        DataTable table = new DataTable();
+        table.Load(reader);
+
+        gvSolicitudVehiculos.DataSource = table;
+        gvSolicitudVehiculos.PageIndex = pageIndex;
         gvSolicitudVehiculos.DataKeyNames = new string[] { "Id" };
         gvSolicitudVehiculos.DataBind();
     }
@@ -197,9 +213,9 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
 
     private void CargarCombos()
     {
-        foreach (Antares.model.Vehiculos v in Antares.model.Vehiculos.GetVehiculosActivos())
+        foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.GetVehiculosActivos())
         {
-            lstVehiculos.Items.Add(new ListItem(v.Marca + " " + v.Modelo + " " + v.Patente, v.IdVehiculos.ToString()));
+            lstVehiculos.Items.Add(new ListItem(vehi.NUnidad + "-" + vehi.Marca + " " + vehi.Modelo + " - " + vehi.Patente, vehi.IdVehiculos.ToString()));
         }
         foreach (Antares.model.Personal p in Antares.model.Personal.FindAll())
         {
@@ -219,82 +235,49 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
     
     protected void btnAceptarSolicitud_Click(object sender, EventArgs e)
     {
-        Solicitud Sol_Original = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
-        Sol_Original.Status = eEstados.Realizado.ToString();
-        Sol_Original.Update();
+        if (IsValid)
+        {
+            Solicitud Sol_Original = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
+            Sol_Original.Status = eEstados.Realizado.ToString();
+            Sol_Original.Update();
 
-        Solicitud Reporte = Solicitud.FindFirst(Expression.Eq("IdSolicitudInicial", Sol_Original.Id_Solicitud));
-        
-        SolicitudObra Obra = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
-                    
-        //SolicitudReporteObra r = new SolicitudReporteObra();
-        //r.IdSolicitud = Obra.IdSolicitud;
-        //r.RecibioConformeCliente   = txtRequisitoIngreso.Text;
-        //r.SeCumplieronRequisitosApr = txtRequisitosAprovacion.Text;
-        //r.FechaEntregaCliente = txtEntrega.Text;
-        //r.FechaActualizacion = DateTime.Now;
-        Reporte.Status = eEstados.Realizado.ToString();
-        Reporte.DescripcionReporte = txtDescripcionTrabajo.Text;
-        Reporte.Save();
-        //r.Save();
+            Solicitud Reporte = Solicitud.FindFirst(Expression.Eq("IdSolicitudInicial", Sol_Original.Id_Solicitud));
 
-        pnlReporteObras.Visible = false;
+            SolicitudObra Obra = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
 
-        ucObrasRendicion.Numero = Obra.IdSolicitud.ToString();
-        ucObrasRendicion.SolicitudInicial = Sol_Original.Id_Solicitud.ToString();
-        ucObrasRendicion.Titulo = Sol_Original.Descripcion;
-        ucObrasRendicion.Estado = Sol_Original.Status;
-        ucObrasRendicion.Cliente = cmbCliente.SelectedItem.Text;
-        ucObrasRendicion.NroOrden = Sol_Original.NroOrdenCte;
-        ucObrasRendicion.Contacto = Sol_Original.Contacto;
-        ucObrasRendicion.MailContacto = Sol_Original.ContactoMail;
-        ucObrasRendicion.TelefonoContacto = Sol_Original.ContactoTel;
-        ucObrasRendicion.DescripcionTareas = Obra.DescripcionTareas;
-        ucObrasRendicion.FechaInicio = Obra.FechaInicio;
-        ucObrasRendicion.FechaEntrega = Obra.FechaFin;
-        ucObrasRendicion.RequisitosAprobacion = Obra.RequisitosAprovacion;
-        ucObrasRendicion.RequisitosIngreso = Obra.RequisitosIngreso;
-        ucObrasRendicion.Personal = SolicitudRecursosEmpleados.GetPersonaHoras_Detalle_EnSolicitud(BiFactory.Sol.Id_Solicitud);
-        ucObrasRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
-        ucObrasRendicion.Monto = Obra.Presupuesto;
-        ucObrasRendicion.Adjuntos = Sol_Original.GetAdjuntos();
-        ucObrasRendicion.Descripcion_TrabajoRealizado = txtDescripcionTrabajo.Text;
-        ucObrasRendicion.Responsable = Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
-        ucObrasRendicion.Visible = true;
+            Reporte.Status = eEstados.Realizado.ToString();
+            Reporte.DescripcionReporte = txtDescripcionTrabajo.Text;
+            Reporte.Save();
+
+            pnlReporteObras.Visible = false;
+
+            ucObrasRendicion.Numero = Obra.IdSolicitud.ToString();
+            ucObrasRendicion.SolicitudInicial = Sol_Original.Id_Solicitud.ToString();
+            ucObrasRendicion.Titulo = Sol_Original.Descripcion;
+            ucObrasRendicion.Estado = Sol_Original.Status;
+            ucObrasRendicion.Cliente = cmbCliente.SelectedItem.Text;
+            ucObrasRendicion.NroOrden = Sol_Original.NroOrdenCte;
+            ucObrasRendicion.Contacto = Sol_Original.Contacto;
+            ucObrasRendicion.MailContacto = Sol_Original.ContactoMail;
+            ucObrasRendicion.TelefonoContacto = Sol_Original.ContactoTel;
+            ucObrasRendicion.DescripcionTareas = Obra.DescripcionTareas;
+            ucObrasRendicion.FechaInicio = Obra.FechaInicio.ToString("dd/MM/yyyy");
+            ucObrasRendicion.FechaEntrega = Obra.FechaFin.ToString("dd/MM/yyyy");
+            ucObrasRendicion.RequisitosAprobacion = Obra.RequisitosAprovacion;
+            ucObrasRendicion.RequisitosIngreso = Obra.RequisitosIngreso;
+            ucObrasRendicion.Personal = SolicitudRecursosEmpleados.GetPersonaHoras_Detalle_EnSolicitud(BiFactory.Sol.Id_Solicitud);
+            ucObrasRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
+            ucObrasRendicion.Monto = Obra.Presupuesto;
+            ucObrasRendicion.Adjuntos = Sol_Original.GetAdjuntos();
+            ucObrasRendicion.Descripcion_TrabajoRealizado = txtDescripcionTrabajo.Text;
+            ucObrasRendicion.Responsable = Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
+            ucObrasRendicion.Visible = true;
+        }
     }
 
     protected void cvVehiculos_ServerValidate(object source, ServerValidateEventArgs args)
     {
         args.IsValid = lstVehiculos.SelectedIndex >= 0;
-    }
-
-    protected void btnHorasPersonalGuardar_Click(object sender, EventArgs e)
-    {
-        if (IsValid)
-        {
-            int idPersona = int.Parse(hfHorasPersonalPersona.Value);
-            int idSolicitud = int.Parse(hfHorasPersonalSolicitud.Value);
-            DateTime fecha = DateTime.Parse(txtHorasPersonalDia.Text);
-
-            SolicitudRendicionPersonalHoras ph = SolicitudRendicionPersonalHoras.FindFirst(
-                Expression.Eq("IdSolicitud", idSolicitud),
-                Expression.Eq("IdPersona", idPersona),
-                Expression.Eq("Fecha", fecha));
-
-            if (ph == null)
-            {
-                ph = new SolicitudRendicionPersonalHoras();
-            }
-
-            ph.IdPersona = idPersona;
-            ph.IdSolicitud = idSolicitud;
-            ph.Fecha = fecha;
-            ph.Horas = decimal.Parse(ddlHorasPersonalHoras.SelectedValue);
-            ph.Descripcion = txtHorasPersonalDescripcion.Text;
-            ph.SaveAndFlush();
-            FillHorasPersonalGrid();
-            mpeHorasPersonal.Show();
-        }
     }
 
     protected void gvPersonas_RowEditing(object sender, GridViewEditEventArgs e)
@@ -321,30 +304,15 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
                 break;
             case "Obras e Instalaciones":
                 SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                fechaInicio = DateTime.Parse(sol_Obr.FechaInicio);
+                fechaInicio = sol_Obr.FechaInicio;
                 break;
         }
         cvHorasPersonal.ValueToCompare = fechaInicio.ToShortDateString();
-        FillHorasPersonalGrid();
+        FillHorasPersonalGrid(0);
         mpeHorasPersonal.Show();
     }
 
-    protected void gvHorasPersonal_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        SolicitudRendicionPersonalHoras R = SolicitudRendicionPersonalHoras.FindFirst(Expression.Eq("Id", int.Parse(gvHorasPersonal.DataKeys[e.RowIndex].Value.ToString())));
-        R.Delete();
-        FillHorasPersonalGrid();
-        mpeHorasPersonal.Show();
-    }
-
-    private void FillHorasPersonalGrid()
-    {
-        gvHorasPersonal.DataSource = SolicitudRendicionPersonalHoras.GetPersonasHorasEnSolicitud(int.Parse(hfHorasPersonalSolicitud.Value), int.Parse(hfHorasPersonalPersona.Value));
-        gvHorasPersonal.DataKeyNames = new string[] { "Id" };
-        gvHorasPersonal.DataBind();
-    }
-
-    protected void gvSolicitudVehiculos_RowEditing(object sender, GridViewEditEventArgs e)
+       protected void gvSolicitudVehiculos_RowEditing(object sender, GridViewEditEventArgs e)
     {
         txtHorasVehiculosDia.Text = string.Empty;
         ddlHorasVehiculosHoras.SelectedIndex = 0;
@@ -369,11 +337,11 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
                 break;
             case "Obras e Instalaciones":
                 SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                fechaInicio = DateTime.Parse(sol_Obr.FechaInicio);
+                fechaInicio = sol_Obr.FechaInicio;
                 break;
         }
         cvHorasVehiculos.ValueToCompare = fechaInicio.ToShortDateString();
-        FillHorasVehiculosGrid();
+        FillHorasVehiculosGrid(0);
         mpeHorasVehiculos.Show();
     }
 
@@ -402,7 +370,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
             ph.Descripcion = txtHorasVehiculosDescripcion.Text;
             ph.Kilometros = txtHorasVehiculosKilometros.Text;
             ph.SaveAndFlush();
-            FillHorasVehiculosGrid();
+            FillHorasVehiculosGrid(0);
             mpeHorasVehiculos.Show();
         }
     }
@@ -411,23 +379,168 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
     {
         SolicitudRendicionVehiculosHoras R = SolicitudRendicionVehiculosHoras.FindFirst(Expression.Eq("Id", int.Parse(gvHorasVehiculos.DataKeys[e.RowIndex].Value.ToString())));
         R.Delete();
-        FillHorasVehiculosGrid();
+        FillHorasVehiculosGrid(0);
         mpeHorasVehiculos.Show();
     }
 
-    private void FillHorasVehiculosGrid()
-    {
-        gvHorasVehiculos.DataSource = SolicitudRendicionVehiculosHoras.GetVehiculosKm_Detalle_EnSolicitud(int.Parse(hfHorasVehiculosSolicitud.Value), int.Parse(hfHorasVehiculosVehiculo.Value));
-        gvHorasVehiculos.DataKeyNames = new string[] { "Id" };
-        gvHorasVehiculos.DataBind();
-    }
-
+    
     protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
     {
         lblGastos.Visible = true;
         lblGastos.Text = "$" + txtPresupuesto.Text;
         txtPresupuesto.Text = "";
-    } 
+    }
+    
+    protected void gvSolicitudPersonas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillSolicitudEmpleados(e.NewPageIndex);
+
+    }
+
+    protected void gvSolicitudVehiculos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillSolicitudVehiculos(e.NewPageIndex);
+
+    }
+
+
+    #region Horas del PErsonal
+
+    protected void LimpiaFormulario()
+    {
+        txtHorasPersonalDia.Text = string.Empty;
+        txtHorasPersonalDescripcion.Text = string.Empty;
+        ddlHorasPersonalHoras.SelectedIndex = 0;
+
+    }
+
+    protected void gvHorasPersonal_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillHorasPersonalGrid(e.NewPageIndex);
+        mpeHorasPersonal.Show();
+    }
+
+    private void FillHorasPersonalGrid(int pageIndex)
+    {
+        DbDataReader reader = SolicitudRendicionPersonalHoras.GetPersonasHorasEnSolicitud(int.Parse(hfHorasPersonalSolicitud.Value), int.Parse(hfHorasPersonalPersona.Value));
+
+        DataTable table = new DataTable();
+        table.Load(reader);
+        gvHorasPersonal.DataSource = table;
+        gvHorasPersonal.PageIndex = pageIndex;
+        //gvHorasPersonal.Sort("Fecha", SortDirection.Ascending);
+        gvHorasPersonal.DataBind();
+
+
+    }
+
+    protected void gvHorasPersonal_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        SolicitudRendicionPersonalHoras R = SolicitudRendicionPersonalHoras.FindFirst(Expression.Eq("Id", int.Parse(gvHorasPersonal.DataKeys[e.RowIndex].Value.ToString())));
+        R.Delete();
+        FillHorasPersonalGrid(0);
+        mpeHorasPersonal.Show();
+    }
+
+    protected void btnHorasPersonalGuardar_Click(object sender, EventArgs e)
+    {
+        if (IsValid)
+        {
+            int idPersona = int.Parse(hfHorasPersonalPersona.Value);
+            int idSolicitud = int.Parse(hfHorasPersonalSolicitud.Value);
+            DateTime fecha = DateTime.Parse(txtHorasPersonalDia.Text);
+            //SolicitudRendicionPersonalHoras ph;
+            //SolicitudRendicionPersonalHoras ph = SolicitudRendicionPersonalHoras.FindFirst(
+            //    Expression.Eq("IdSolicitud", idSolicitud),
+            //    Expression.Eq("IdPersona", idPersona),
+            //    Expression.Eq("Fecha", fecha));
+
+            //if (ph == null)
+            //{
+            //    ph = new SolicitudRendicionPersonalHoras();
+            //}
+
+            SolicitudRendicionPersonalHoras ph = new SolicitudRendicionPersonalHoras();
+            ph.IdPersona = idPersona;
+            ph.IdSolicitud = idSolicitud;
+            ph.Fecha = fecha;
+            ph.Horas = decimal.Parse(ddlHorasPersonalHoras.SelectedValue);
+            ph.Descripcion = txtHorasPersonalDescripcion.Text;
+            ph.SaveAndFlush();
+            LimpiaFormulario();
+            FillHorasPersonalGrid(0);
+
+        }
+        mpeHorasPersonal.Show();
+    }
+
+    protected void cvCheckHorasRestantes_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        //args.Value
+        int idPersona = int.Parse(hfHorasPersonalPersona.Value);
+
+        CultureInfo nfo = new CultureInfo("es-ES");
+        DateTime fecha = DateTime.Parse(txtHorasPersonalDia.Text, nfo);
+        //DateTime fecha = DateTime.Parse(txtHorasPersonalDia.Text);
+        Personal P = Personal.GetById(idPersona.ToString());
+
+        decimal HorasACargar = decimal.Parse(ddlHorasPersonalHoras.SelectedValue);
+        decimal HorasCargadas_A_TalFecha = Personal.GetHorasCargadas_X_Dia(idPersona, fecha);
+        decimal HorasXSemana = decimal.Parse(AntaresHelper.Get_Config_HorasPersonaSemana());
+        decimal HorasXDia = decimal.Parse(AntaresHelper.Get_Config_HorasPersonaDia());
+
+        args.IsValid = false;
+
+        cvCheckHorasRestantes.ErrorMessage = P.Apellido + ',' + P.Nombres
+            + " ya tiene cargadas " + HorasCargadas_A_TalFecha.ToString("N2") + " Hs al " + fecha.ToShortDateString()
+            + ", Solo se pueden cargar hasta " + HorasXDia.ToString() + " Horas Diarias";
+        if ((HorasCargadas_A_TalFecha + HorasACargar) <= HorasXDia)
+        {
+            args.IsValid = true;
+        }
+
+    }
+    #endregion
+    #region KM Vehiculos
+
+    protected void gvHorasVehiculos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillHorasVehiculosGrid(e.NewPageIndex);
+        mpeHorasVehiculos.Show();
+    }
+
+    private void FillHorasVehiculosGrid(int pageIndex)
+    {
+        DbDataReader reader = SolicitudRendicionVehiculosHoras.GetVehiculosKm_Detalle_EnSolicitud(int.Parse(hfHorasVehiculosSolicitud.Value), int.Parse(hfHorasVehiculosVehiculo.Value));
+
+        DataTable table = new DataTable();
+        table.Load(reader);
+        gvHorasVehiculos.DataSource = table;
+        gvHorasVehiculos.PageIndex = pageIndex;
+        gvHorasVehiculos.DataKeyNames = new string[] { "Id" };
+        gvHorasVehiculos.DataBind();
+
+    }
+    #endregion
+
+    protected void cvPersonalIngresoHoras_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        //args.Value
+        string personas = Solicitud.PeronalSinHorasCargadasPersonal_En_Solicitud(BiFactory.Sol.Id_Solicitud);
+        args.IsValid = false;
+        if (personas != string.Empty)
+        {
+            args.IsValid = false;
+
+            cvPersonalIngresoHoras.ErrorMessage = "No se les ha cargado horas a las siguientes personas : " + personas;
+
+
+        }
+        else { args.IsValid = true; }
+
+
+    }
+    
 }
 
 

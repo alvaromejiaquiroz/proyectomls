@@ -156,7 +156,7 @@
                                                 <asp:Literal ID="litPersonal" runat="server" Text="Personal" Visible="false"></asp:Literal>
                                             </td>
                                             <td>
-                                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="150px"
+                                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="150px"  
                                                     Visible="false" CssClass="text_custom"></asp:ListBox>
                                             </td>
                                         </tr>
@@ -176,7 +176,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
+                                                <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False" AllowPaging="true" onpageindexchanging="gvSolicitudPersonas_PageIndexChanging" PageSize="5"
                                                     OnRowDeleting="gvPersonas_RowDeleting" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
@@ -235,6 +235,7 @@
                                         <tr>
                                             <td colspan="2">
                                                 <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False"
+                                                AllowPaging="true" onpageindexchanging="gvSolicitudVehiculos_PageIndexChanging" PageSize="5"
                                                     OnRowDeleting="gvSolicitudVehiculos_rowDeleting" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />

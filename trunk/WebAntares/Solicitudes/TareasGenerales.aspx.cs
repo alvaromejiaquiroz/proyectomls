@@ -31,9 +31,9 @@ public partial class Solicitudes_TareasGenerales : System.Web.UI.Page
 
         if (tarea_general != null)
         {
-            txtInicio.Text = tarea_general.FechaInicio;
-            txtFin.Text = tarea_general.FechaFin.ToString();
-            txtDuracion.Text = tarea_general.Duracion;
+            txtInicio.Text = tarea_general.FechaInicio.ToString("dd/MM/yyyy"); 
+            txtFin.Text = tarea_general.FechaFin.ToString("dd/MM/yyyy");
+            txtDuracion.Text = tarea_general.Duracion.ToString();
             txtDescripcion.Text = tarea_general.Descripcion;
             if (cmbTipoTarea.Items.FindByValue(tarea_general.IdTipotarea.ToString()) != null)
             {
@@ -76,9 +76,9 @@ public partial class Solicitudes_TareasGenerales : System.Web.UI.Page
 
         tarea_general.IdSolicitud = BiFactory.Sol.Id_Solicitud;
         tarea_general.Descripcion = txtDescripcion.Text;
-        tarea_general.FechaInicio = txtInicio.Text;
-        tarea_general.FechaFin = txtFin.Text;
-        tarea_general.Duracion = txtDuracion.Text;
+        tarea_general.FechaInicio = DateTime.Parse(txtInicio.Text); 
+        tarea_general.FechaFin = DateTime.Parse(txtFin.Text);
+        tarea_general.Duracion = Decimal.Parse(txtDuracion.Text);
         tarea_general.IdTipotarea = int.Parse(cmbTipoTarea.SelectedItem.Value);
         tarea_general.IdEmpleado = BiFactory.Empleado.IdEmpleados;
         tarea_general.SaveAndFlush();
@@ -87,9 +87,9 @@ public partial class Solicitudes_TareasGenerales : System.Web.UI.Page
         ucTareasGenerales.Numero = tarea_general.IdSolicitud.ToString();
         ucTareasGenerales.Titulo = Sol.Descripcion;
         ucTareasGenerales.Tipo = cmbTipoTarea.SelectedItem.Text;
-        ucTareasGenerales.FechaInicio = tarea_general.FechaInicio;
-        ucTareasGenerales.FechaFin = tarea_general.FechaFin;
-        ucTareasGenerales.Duracion = tarea_general.Duracion;
+        ucTareasGenerales.FechaInicio = tarea_general.FechaInicio.ToString("dd/MM/yyyy");
+        ucTareasGenerales.FechaFin = tarea_general.FechaFin.ToString("dd/MM/yyyy"); ;
+        ucTareasGenerales.Duracion = tarea_general.Duracion.ToString();
         ucTareasGenerales.Descripcion = tarea_general.Descripcion;
         ucTareasGenerales.Visible = true;
     }

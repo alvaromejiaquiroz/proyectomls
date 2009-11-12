@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Antares.model</RootNamespace>
     <AssemblyName>Antares.model</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -68,6 +68,9 @@
       <HintPath>..\..\..\..\..\..\gGos\deposito\Cajas.Model\bin\Debug\Nullables.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -108,6 +111,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Seguridad.actiw</DependentUpon>
+    </Compile>
     <Compile Include="ServiciosAfectados.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -127,6 +135,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TipoSolicitud.cs" />
+    <Compile Include="Usuarios.cs" />
     <Compile Include="Vehiculos.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +173,13 @@
     </None>
     <None Include="Modelo.actiw.diagram">
       <DependentUpon>Modelo.actiw</DependentUpon>
+    </None>
+    <None Include="Seguridad.actiw">
+      <Generator>ActiveWriterCodeGenerator</Generator>
+      <LastGenOutput>Seguridad.cs</LastGenOutput>
+    </None>
+    <None Include="Seguridad.actiw.diagram">
+      <DependentUpon>Seguridad.actiw</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

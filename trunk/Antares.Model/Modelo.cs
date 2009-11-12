@@ -391,346 +391,6 @@ namespace Antares.model {
         }
     }
     
-    [ActiveRecord("Solicitud_Obra", Schema="dbo")]
-    public partial class SolicitudObra : ActiveRecordBase<SolicitudObra> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private string _descripcionTareas;
-        
-        private string _fechaInicio;
-        
-        private string _fechaFin;
-        
-        private string _requisitosAprovacion;
-        
-        private string _requisitosIngreso;
-        
-        private string _presupuesto;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("Id_Solicitud", ColumnType="Int32")]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("Descripcion_tareas", ColumnType="String")]
-        public virtual string DescripcionTareas {
-            get {
-                return this._descripcionTareas;
-            }
-            set {
-                this._descripcionTareas = value;
-            }
-        }
-        
-        [Property("FechaInicio", ColumnType="String")]
-        public virtual string FechaInicio {
-            get {
-                return this._fechaInicio;
-            }
-            set {
-                this._fechaInicio = value;
-            }
-        }
-        
-        [Property("FechaFin", ColumnType="String")]
-        public virtual string FechaFin {
-            get {
-                return this._fechaFin;
-            }
-            set {
-                this._fechaFin = value;
-            }
-        }
-        
-        [Property("Requisitos_Aprovacion", ColumnType="String")]
-        public virtual string RequisitosAprovacion {
-            get {
-                return this._requisitosAprovacion;
-            }
-            set {
-                this._requisitosAprovacion = value;
-            }
-        }
-        
-        [Property("Requisitos_Ingreso", ColumnType="String")]
-        public virtual string RequisitosIngreso {
-            get {
-                return this._requisitosIngreso;
-            }
-            set {
-                this._requisitosIngreso = value;
-            }
-        }
-        
-        [Property("Presupuesto", ColumnType="String")]
-        public virtual string Presupuesto {
-            get {
-                return this._presupuesto;
-            }
-            set {
-                this._presupuesto = value;
-            }
-        }
-    }
-    
-    [ActiveRecord("Solicitud_Obra_Reporte_Tareas", Schema="dbo")]
-    public partial class SolicitudObraReporteTareas : ActiveRecordBase<SolicitudObraReporteTareas> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private string _tarea;
-        
-        private string _descripcionTareas;
-        
-        private string _fechaInicio;
-        
-        private string _fechaFin;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("Id_Solicitud", ColumnType="Int32")]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("Tarea", ColumnType="String")]
-        public virtual string Tarea {
-            get {
-                return this._tarea;
-            }
-            set {
-                this._tarea = value;
-            }
-        }
-        
-        [Property("Descripcion_tareas", ColumnType="String")]
-        public virtual string DescripcionTareas {
-            get {
-                return this._descripcionTareas;
-            }
-            set {
-                this._descripcionTareas = value;
-            }
-        }
-        
-        [Property("FechaInicio", ColumnType="String")]
-        public virtual string FechaInicio {
-            get {
-                return this._fechaInicio;
-            }
-            set {
-                this._fechaInicio = value;
-            }
-        }
-        
-        [Property("FechaFin", ColumnType="String")]
-        public virtual string FechaFin {
-            get {
-                return this._fechaFin;
-            }
-            set {
-                this._fechaFin = value;
-            }
-        }
-    }
-    
-    [ActiveRecord("Solicitud_Recursos_Vehiculos", Lazy=true, Schema="dbo")]
-    public partial class SolicitudRecursosVehiculos : ActiveRecordBase<SolicitudRecursosVehiculos> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private int _idVehiculo;
-        
-        private decimal _km;
-        
-        private decimal _horas;
-        
-        private string _fecha;
-        
-        private string _detalle;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("Id_Solicitud", ColumnType="Int32")]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("Id_Vehiculo", ColumnType="Int32")]
-        public virtual int IdVehiculo {
-            get {
-                return this._idVehiculo;
-            }
-            set {
-                this._idVehiculo = value;
-            }
-        }
-        
-        [Property("Km", ColumnType="Decimal")]
-        public virtual decimal Km {
-            get {
-                return this._km;
-            }
-            set {
-                this._km = value;
-            }
-        }
-        
-        [Property("Horas", ColumnType="Decimal")]
-        public virtual decimal Horas {
-            get {
-                return this._horas;
-            }
-            set {
-                this._horas = value;
-            }
-        }
-        
-        [Property("Fecha", ColumnType="String")]
-        public virtual string Fecha {
-            get {
-                return this._fecha;
-            }
-            set {
-                this._fecha = value;
-            }
-        }
-        
-        [Property("Detalle", ColumnType="String")]
-        public virtual string Detalle {
-            get {
-                return this._detalle;
-            }
-            set {
-                this._detalle = value;
-            }
-        }
-    }
-    
-    [ActiveRecord("Solicitud_Reporte_Obra", Schema="dbo")]
-    public partial class SolicitudReporteObra : ActiveRecordBase<SolicitudReporteObra> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private string _recibioConformeCliente;
-        
-        private string _seCumplieronRequisitosApr;
-        
-        private string _fechaEntregaCliente;
-        
-        private System.DateTime _fechaActualizacion;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("Id_Solicitud", ColumnType="Int32")]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("Recibio_Conforme_Cliente", ColumnType="String", NotNull=true)]
-        public virtual string RecibioConformeCliente {
-            get {
-                return this._recibioConformeCliente;
-            }
-            set {
-                this._recibioConformeCliente = value;
-            }
-        }
-        
-        [Property("Se_Cumplieron_Requisitos_Apr", ColumnType="String")]
-        public virtual string SeCumplieronRequisitosApr {
-            get {
-                return this._seCumplieronRequisitosApr;
-            }
-            set {
-                this._seCumplieronRequisitosApr = value;
-            }
-        }
-        
-        [Property("Fecha_Entrega_Cliente", ColumnType="String")]
-        public virtual string FechaEntregaCliente {
-            get {
-                return this._fechaEntregaCliente;
-            }
-            set {
-                this._fechaEntregaCliente = value;
-            }
-        }
-        
-        [Property("Fecha_Actualizacion", ColumnType="Timestamp")]
-        public virtual System.DateTime FechaActualizacion {
-            get {
-                return this._fechaActualizacion;
-            }
-            set {
-                this._fechaActualizacion = value;
-            }
-        }
-    }
-    
     [ActiveRecord("Solicitud_Recursos_Empleados", Schema="dbo")]
     public partial class SolicitudRecursosEmpleados : ActiveRecordBase<SolicitudRecursosEmpleados> {
         
@@ -1047,454 +707,6 @@ namespace Antares.model {
         }
     }
     
-    [ActiveRecord("Solicitud_Capacitacion", Schema="dbo")]
-    public partial class SolicitudCapacitacion : ActiveRecordBase<SolicitudCapacitacion> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private string _fechaInicio;
-        
-        private string _fechaFin;
-        
-        private string _descripcion;
-        
-        private string _nivel;
-        
-        private string _duracion;
-        
-        private string _areaEstudio;
-        
-        private string _instructor;
-        
-        private string _entidadEducativa;
-        
-        private string _puntuacionExamen;
-        
-        private int _idEmpleado;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("IdSolicitud", ColumnType="Int32")]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("FechaInicio", ColumnType="String")]
-        public virtual string FechaInicio {
-            get {
-                return this._fechaInicio;
-            }
-            set {
-                this._fechaInicio = value;
-            }
-        }
-        
-        [Property("FechaFin", ColumnType="String")]
-        public virtual string FechaFin {
-            get {
-                return this._fechaFin;
-            }
-            set {
-                this._fechaFin = value;
-            }
-        }
-        
-        [Property("Descripcion", ColumnType="String")]
-        public virtual string Descripcion {
-            get {
-                return this._descripcion;
-            }
-            set {
-                this._descripcion = value;
-            }
-        }
-        
-        [Property("Nivel", ColumnType="String")]
-        public virtual string Nivel {
-            get {
-                return this._nivel;
-            }
-            set {
-                this._nivel = value;
-            }
-        }
-        
-        [Property("Duracion", ColumnType="String")]
-        public virtual string Duracion {
-            get {
-                return this._duracion;
-            }
-            set {
-                this._duracion = value;
-            }
-        }
-        
-        [Property("Area_Estudio", ColumnType="String")]
-        public virtual string AreaEstudio {
-            get {
-                return this._areaEstudio;
-            }
-            set {
-                this._areaEstudio = value;
-            }
-        }
-        
-        [Property("Instructor", ColumnType="String")]
-        public virtual string Instructor {
-            get {
-                return this._instructor;
-            }
-            set {
-                this._instructor = value;
-            }
-        }
-        
-        [Property("Entidad_Educativa", ColumnType="String")]
-        public virtual string EntidadEducativa {
-            get {
-                return this._entidadEducativa;
-            }
-            set {
-                this._entidadEducativa = value;
-            }
-        }
-        
-        [Property("Puntuacion_Examen", ColumnType="String")]
-        public virtual string PuntuacionExamen {
-            get {
-                return this._puntuacionExamen;
-            }
-            set {
-                this._puntuacionExamen = value;
-            }
-        }
-        
-        [Property("Id_Empleado", ColumnType="Int32", NotNull=true)]
-        public virtual int IdEmpleado {
-            get {
-                return this._idEmpleado;
-            }
-            set {
-                this._idEmpleado = value;
-            }
-        }
-    }
-    
-    [ActiveRecord("Solicitud_Licencias", Schema="dbo")]
-    public partial class SolicitudLicencias : ActiveRecordBase<SolicitudLicencias> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private string _fechaInicio;
-        
-        private string _fechaFin;
-        
-        private string _descripcion;
-        
-        private string _duracion;
-        
-        private int _idTipolicencia;
-        
-        private int _idEmpleado;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("IdSolicitud", ColumnType="Int32")]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("FechaInicio", ColumnType="String")]
-        public virtual string FechaInicio {
-            get {
-                return this._fechaInicio;
-            }
-            set {
-                this._fechaInicio = value;
-            }
-        }
-        
-        [Property("FechaFin", ColumnType="String")]
-        public virtual string FechaFin {
-            get {
-                return this._fechaFin;
-            }
-            set {
-                this._fechaFin = value;
-            }
-        }
-        
-        [Property("Descripcion", ColumnType="String")]
-        public virtual string Descripcion {
-            get {
-                return this._descripcion;
-            }
-            set {
-                this._descripcion = value;
-            }
-        }
-        
-        [Property("Duracion", ColumnType="String")]
-        public virtual string Duracion {
-            get {
-                return this._duracion;
-            }
-            set {
-                this._duracion = value;
-            }
-        }
-        
-        [Property("Id_TipoLicencia", ColumnType="Int32")]
-        public virtual int IdTipolicencia {
-            get {
-                return this._idTipolicencia;
-            }
-            set {
-                this._idTipolicencia = value;
-            }
-        }
-        
-        [Property("Id_Empleado", ColumnType="Int32", NotNull=true)]
-        public virtual int IdEmpleado {
-            get {
-                return this._idEmpleado;
-            }
-            set {
-                this._idEmpleado = value;
-            }
-        }
-    }
-    
-    [ActiveRecord("Solicitud_Francos_Compensatorios", Schema="dbo")]
-    public partial class SolicitudFrancosCompensatorios : ActiveRecordBase<SolicitudFrancosCompensatorios> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private string _fechaInicio;
-        
-        private string _fechaFin;
-        
-        private string _duracion;
-        
-        private string _descripcion;
-        
-        private string _conElConsentimiento;
-        
-        private int _idEmpleado;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("IdSolicitud", ColumnType="Int32")]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("FechaInicio", ColumnType="String")]
-        public virtual string FechaInicio {
-            get {
-                return this._fechaInicio;
-            }
-            set {
-                this._fechaInicio = value;
-            }
-        }
-        
-        [Property("FechaFin", ColumnType="String")]
-        public virtual string FechaFin {
-            get {
-                return this._fechaFin;
-            }
-            set {
-                this._fechaFin = value;
-            }
-        }
-        
-        [Property("Duracion", ColumnType="String")]
-        public virtual string Duracion {
-            get {
-                return this._duracion;
-            }
-            set {
-                this._duracion = value;
-            }
-        }
-        
-        [Property("Descripcion", ColumnType="String")]
-        public virtual string Descripcion {
-            get {
-                return this._descripcion;
-            }
-            set {
-                this._descripcion = value;
-            }
-        }
-        
-        [Property("ConElConsentimiento", ColumnType="String")]
-        public virtual string ConElConsentimiento {
-            get {
-                return this._conElConsentimiento;
-            }
-            set {
-                this._conElConsentimiento = value;
-            }
-        }
-        
-        [Property("Id_Empleado", ColumnType="Int32", NotNull=true)]
-        public virtual int IdEmpleado {
-            get {
-                return this._idEmpleado;
-            }
-            set {
-                this._idEmpleado = value;
-            }
-        }
-    }
-    
-    [ActiveRecord("Solicitud_Tareas_Generales", Schema="dbo")]
-    public partial class SolicitudTareasGenerales : ActiveRecordBase<SolicitudTareasGenerales> {
-        
-        private int _id;
-        
-        private int _idSolicitud;
-        
-        private string _fechaInicio;
-        
-        private string _fechaFin;
-        
-        private string _descripcion;
-        
-        private string _duracion;
-        
-        private int _idTipotarea;
-        
-        private int _idEmpleado;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
-        public virtual int Id {
-            get {
-                return this._id;
-            }
-            set {
-                this._id = value;
-            }
-        }
-        
-        [Property("IdSolicitud", ColumnType="Int32")]
-        public virtual int IdSolicitud {
-            get {
-                return this._idSolicitud;
-            }
-            set {
-                this._idSolicitud = value;
-            }
-        }
-        
-        [Property("FechaInicio", ColumnType="String")]
-        public virtual string FechaInicio {
-            get {
-                return this._fechaInicio;
-            }
-            set {
-                this._fechaInicio = value;
-            }
-        }
-        
-        [Property("FechaFin", ColumnType="String")]
-        public virtual string FechaFin {
-            get {
-                return this._fechaFin;
-            }
-            set {
-                this._fechaFin = value;
-            }
-        }
-        
-        [Property("Descripcion", ColumnType="String")]
-        public virtual string Descripcion {
-            get {
-                return this._descripcion;
-            }
-            set {
-                this._descripcion = value;
-            }
-        }
-        
-        [Property("Duracion", ColumnType="String")]
-        public virtual string Duracion {
-            get {
-                return this._duracion;
-            }
-            set {
-                this._duracion = value;
-            }
-        }
-        
-        [Property("Id_TipoTarea", ColumnType="Int32")]
-        public virtual int IdTipotarea {
-            get {
-                return this._idTipotarea;
-            }
-            set {
-                this._idTipotarea = value;
-            }
-        }
-        
-        [Property("Id_Empleado", ColumnType="Int32", NotNull=true)]
-        public virtual int IdEmpleado {
-            get {
-                return this._idEmpleado;
-            }
-            set {
-                this._idEmpleado = value;
-            }
-        }
-    }
-    
     [ActiveRecord("Calidad_Archivos", Schema="dbo")]
     public partial class CalidadArchivos : ActiveRecordBase<CalidadArchivos> {
         
@@ -1771,262 +983,6 @@ namespace Antares.model {
             }
             set {
                 this._fechaActualizacion = value;
-            }
-        }
-    }
-    
-    [ActiveRecord("Solicitud", Schema="dbo")]
-    public partial class Solicitud : ActiveRecordBase<Solicitud> {
-        
-        private int _id_Solicitud;
-        
-        private int _idTipoSolicitud;
-        
-        private System.DateTime _fechaCreacion;
-        
-        private int _idUsuarioCreador;
-        
-        private string _status;
-        
-        private string _descripcion;
-        
-        private int _idCliente;
-        
-        private string _contacto;
-        
-        private string _contactoMail;
-        
-        private string _contactoTel;
-        
-        private string _nroOrdenCte;
-        
-        private string _aprobadorReprosusp;
-        
-        private string _fechaSuspencion;
-        
-        private string _fechaReprogramacion;
-        
-        private string _proximaFechaInicio;
-        
-        private string _proximaFechaFin;
-        
-        private int _idResponsable;
-        
-        private string _causa;
-        
-        private string _reporte;
-        
-        private int _idSolicitudInicial;
-        
-        private string _descripcionReporte;
-        
-        [PrimaryKey(PrimaryKeyType.Native, "Id_Solicitud", ColumnType="Int32")]
-        public virtual int Id_Solicitud {
-            get {
-                return this._id_Solicitud;
-            }
-            set {
-                this._id_Solicitud = value;
-            }
-        }
-        
-        [Property("IdTipoSolicitud", ColumnType="Int32")]
-        public virtual int IdTipoSolicitud {
-            get {
-                return this._idTipoSolicitud;
-            }
-            set {
-                this._idTipoSolicitud = value;
-            }
-        }
-        
-        [Property("FechaCreacion", ColumnType="DateTime")]
-        public virtual System.DateTime FechaCreacion {
-            get {
-                return this._fechaCreacion;
-            }
-            set {
-                this._fechaCreacion = value;
-            }
-        }
-        
-        [Property("IdUsuarioCreador", ColumnType="Int32")]
-        public virtual int IdUsuarioCreador {
-            get {
-                return this._idUsuarioCreador;
-            }
-            set {
-                this._idUsuarioCreador = value;
-            }
-        }
-        
-        [Property("Status", ColumnType="String")]
-        public virtual string Status {
-            get {
-                return this._status;
-            }
-            set {
-                this._status = value;
-            }
-        }
-        
-        [Property("Descripcion", ColumnType="String")]
-        public virtual string Descripcion {
-            get {
-                return this._descripcion;
-            }
-            set {
-                this._descripcion = value;
-            }
-        }
-        
-        [Property("IdCliente", ColumnType="Int32")]
-        public virtual int IdCliente {
-            get {
-                return this._idCliente;
-            }
-            set {
-                this._idCliente = value;
-            }
-        }
-        
-        [Property("Contacto", ColumnType="String")]
-        public virtual string Contacto {
-            get {
-                return this._contacto;
-            }
-            set {
-                this._contacto = value;
-            }
-        }
-        
-        [Property("Contacto_Mail", ColumnType="String")]
-        public virtual string ContactoMail {
-            get {
-                return this._contactoMail;
-            }
-            set {
-                this._contactoMail = value;
-            }
-        }
-        
-        [Property("Contacto_Tel", ColumnType="String")]
-        public virtual string ContactoTel {
-            get {
-                return this._contactoTel;
-            }
-            set {
-                this._contactoTel = value;
-            }
-        }
-        
-        [Property("NroOrdenCte", ColumnType="String")]
-        public virtual string NroOrdenCte {
-            get {
-                return this._nroOrdenCte;
-            }
-            set {
-                this._nroOrdenCte = value;
-            }
-        }
-        
-        [Property("Aprobador_ReproSusp", ColumnType="String")]
-        public virtual string AprobadorReprosusp {
-            get {
-                return this._aprobadorReprosusp;
-            }
-            set {
-                this._aprobadorReprosusp = value;
-            }
-        }
-        
-        [Property("Fecha_Suspencion", ColumnType="String")]
-        public virtual string FechaSuspencion {
-            get {
-                return this._fechaSuspencion;
-            }
-            set {
-                this._fechaSuspencion = value;
-            }
-        }
-        
-        [Property("Fecha_Reprogramacion", ColumnType="String")]
-        public virtual string FechaReprogramacion {
-            get {
-                return this._fechaReprogramacion;
-            }
-            set {
-                this._fechaReprogramacion = value;
-            }
-        }
-        
-        [Property("Proxima_Fecha_inicio", ColumnType="String")]
-        public virtual string ProximaFechaInicio {
-            get {
-                return this._proximaFechaInicio;
-            }
-            set {
-                this._proximaFechaInicio = value;
-            }
-        }
-        
-        [Property("Proxima_Fecha_Fin", ColumnType="String")]
-        public virtual string ProximaFechaFin {
-            get {
-                return this._proximaFechaFin;
-            }
-            set {
-                this._proximaFechaFin = value;
-            }
-        }
-        
-        [Property("IdResponsable", ColumnType="Int32")]
-        public virtual int IdResponsable {
-            get {
-                return this._idResponsable;
-            }
-            set {
-                this._idResponsable = value;
-            }
-        }
-        
-        [Property("Causa", ColumnType="String")]
-        public virtual string Causa {
-            get {
-                return this._causa;
-            }
-            set {
-                this._causa = value;
-            }
-        }
-        
-        [Property("Reporte", ColumnType="String")]
-        public virtual string Reporte {
-            get {
-                return this._reporte;
-            }
-            set {
-                this._reporte = value;
-            }
-        }
-        
-        [Property("id_Solicitud_Inicial", ColumnType="Int32")]
-        public virtual int IdSolicitudInicial {
-            get {
-                return this._idSolicitudInicial;
-            }
-            set {
-                this._idSolicitudInicial = value;
-            }
-        }
-        
-        [Property("Descripcion_Reporte", ColumnType="String", Insert=false)]
-        public virtual string DescripcionReporte {
-            get {
-                return this._descripcionReporte;
-            }
-            set {
-                this._descripcionReporte = value;
             }
         }
     }
@@ -3051,6 +2007,1162 @@ namespace Antares.model {
             }
             set {
                 this._contactoConformidadCliente = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Obra", Schema="dbo")]
+    public partial class SolicitudObra : ActiveRecordBase<SolicitudObra> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private string _descripcionTareas;
+        
+        private System.DateTime _fechaInicio;
+        
+        private System.DateTime _fechaFin;
+        
+        private string _requisitosAprovacion;
+        
+        private string _requisitosIngreso;
+        
+        private string _presupuesto;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Id_Solicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("Descripcion_tareas", ColumnType="String")]
+        public virtual string DescripcionTareas {
+            get {
+                return this._descripcionTareas;
+            }
+            set {
+                this._descripcionTareas = value;
+            }
+        }
+        
+        [Property("FechaInicio", ColumnType="DateTime")]
+        public virtual System.DateTime FechaInicio {
+            get {
+                return this._fechaInicio;
+            }
+            set {
+                this._fechaInicio = value;
+            }
+        }
+        
+        [Property("FechaFin", ColumnType="DateTime")]
+        public virtual System.DateTime FechaFin {
+            get {
+                return this._fechaFin;
+            }
+            set {
+                this._fechaFin = value;
+            }
+        }
+        
+        [Property("Requisitos_Aprovacion", ColumnType="String")]
+        public virtual string RequisitosAprovacion {
+            get {
+                return this._requisitosAprovacion;
+            }
+            set {
+                this._requisitosAprovacion = value;
+            }
+        }
+        
+        [Property("Requisitos_Ingreso", ColumnType="String")]
+        public virtual string RequisitosIngreso {
+            get {
+                return this._requisitosIngreso;
+            }
+            set {
+                this._requisitosIngreso = value;
+            }
+        }
+        
+        [Property("Presupuesto", ColumnType="String")]
+        public virtual string Presupuesto {
+            get {
+                return this._presupuesto;
+            }
+            set {
+                this._presupuesto = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Obra_Reporte_Tareas", Schema="dbo")]
+    public partial class SolicitudObraReporteTareas : ActiveRecordBase<SolicitudObraReporteTareas> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private string _tarea;
+        
+        private string _descripcionTareas;
+        
+        private System.DateTime _fechaInicio;
+        
+        private System.DateTime _fechaFin;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Id_Solicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("Tarea", ColumnType="String")]
+        public virtual string Tarea {
+            get {
+                return this._tarea;
+            }
+            set {
+                this._tarea = value;
+            }
+        }
+        
+        [Property("Descripcion_tareas", ColumnType="String")]
+        public virtual string DescripcionTareas {
+            get {
+                return this._descripcionTareas;
+            }
+            set {
+                this._descripcionTareas = value;
+            }
+        }
+        
+        [Property("FechaInicio", ColumnType="DateTime")]
+        public virtual System.DateTime FechaInicio {
+            get {
+                return this._fechaInicio;
+            }
+            set {
+                this._fechaInicio = value;
+            }
+        }
+        
+        [Property("FechaFin", ColumnType="Timestamp")]
+        public virtual System.DateTime FechaFin {
+            get {
+                return this._fechaFin;
+            }
+            set {
+                this._fechaFin = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Reporte_Obra", Schema="dbo")]
+    public partial class SolicitudReporteObra : ActiveRecordBase<SolicitudReporteObra> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private string _recibioConformeCliente;
+        
+        private string _seCumplieronRequisitosApr;
+        
+        private System.DateTime _fechaEntregaCliente;
+        
+        private System.DateTime _fechaActualizacion;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Id_Solicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("Recibio_Conforme_Cliente", ColumnType="String", NotNull=true)]
+        public virtual string RecibioConformeCliente {
+            get {
+                return this._recibioConformeCliente;
+            }
+            set {
+                this._recibioConformeCliente = value;
+            }
+        }
+        
+        [Property("Se_Cumplieron_Requisitos_Apr", ColumnType="String")]
+        public virtual string SeCumplieronRequisitosApr {
+            get {
+                return this._seCumplieronRequisitosApr;
+            }
+            set {
+                this._seCumplieronRequisitosApr = value;
+            }
+        }
+        
+        [Property("Fecha_Entrega_Cliente", ColumnType="DateTime")]
+        public virtual System.DateTime FechaEntregaCliente {
+            get {
+                return this._fechaEntregaCliente;
+            }
+            set {
+                this._fechaEntregaCliente = value;
+            }
+        }
+        
+        [Property("Fecha_Actualizacion", ColumnType="Timestamp")]
+        public virtual System.DateTime FechaActualizacion {
+            get {
+                return this._fechaActualizacion;
+            }
+            set {
+                this._fechaActualizacion = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud", Schema="dbo")]
+    public partial class Solicitud : ActiveRecordBase<Solicitud> {
+        
+        private int _id_Solicitud;
+        
+        private int _idTipoSolicitud;
+        
+        private System.DateTime _fechaCreacion;
+        
+        private int _idUsuarioCreador;
+        
+        private string _status;
+        
+        private string _descripcion;
+        
+        private int _idCliente;
+        
+        private string _contacto;
+        
+        private string _contactoMail;
+        
+        private string _contactoTel;
+        
+        private string _nroOrdenCte;
+        
+        private string _aprobadorReprosusp;
+        
+        private System.DateTime _fechaSuspencion;
+        
+        private System.DateTime _fechaReprogramacion;
+        
+        private System.DateTime _proximaFechaInicio;
+        
+        private System.DateTime _proximaFechaFin;
+        
+        private int _idResponsable;
+        
+        private string _causa;
+        
+        private string _reporte;
+        
+        private int _idSolicitudInicial;
+        
+        private bool _aprobacionTecnica;
+        
+        private System.DateTime _fechaAprobacionTecnica;
+        
+        private bool _aprobacionCalidad;
+        
+        private System.DateTime _fechaAprobacionCalidad;
+        
+        private string _descripcionReporte;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id_Solicitud", ColumnType="Int32")]
+        public virtual int Id_Solicitud {
+            get {
+                return this._id_Solicitud;
+            }
+            set {
+                this._id_Solicitud = value;
+            }
+        }
+        
+        [Property("IdTipoSolicitud", ColumnType="Int32")]
+        public virtual int IdTipoSolicitud {
+            get {
+                return this._idTipoSolicitud;
+            }
+            set {
+                this._idTipoSolicitud = value;
+            }
+        }
+        
+        [Property("FechaCreacion", ColumnType="DateTime")]
+        public virtual System.DateTime FechaCreacion {
+            get {
+                return this._fechaCreacion;
+            }
+            set {
+                this._fechaCreacion = value;
+            }
+        }
+        
+        [Property("IdUsuarioCreador", ColumnType="Int32")]
+        public virtual int IdUsuarioCreador {
+            get {
+                return this._idUsuarioCreador;
+            }
+            set {
+                this._idUsuarioCreador = value;
+            }
+        }
+        
+        [Property("Status", ColumnType="String")]
+        public virtual string Status {
+            get {
+                return this._status;
+            }
+            set {
+                this._status = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String")]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+        
+        [Property("IdCliente", ColumnType="Int32")]
+        public virtual int IdCliente {
+            get {
+                return this._idCliente;
+            }
+            set {
+                this._idCliente = value;
+            }
+        }
+        
+        [Property("Contacto", ColumnType="String")]
+        public virtual string Contacto {
+            get {
+                return this._contacto;
+            }
+            set {
+                this._contacto = value;
+            }
+        }
+        
+        [Property("Contacto_Mail", ColumnType="String")]
+        public virtual string ContactoMail {
+            get {
+                return this._contactoMail;
+            }
+            set {
+                this._contactoMail = value;
+            }
+        }
+        
+        [Property("Contacto_Tel", ColumnType="String")]
+        public virtual string ContactoTel {
+            get {
+                return this._contactoTel;
+            }
+            set {
+                this._contactoTel = value;
+            }
+        }
+        
+        [Property("NroOrdenCte", ColumnType="String")]
+        public virtual string NroOrdenCte {
+            get {
+                return this._nroOrdenCte;
+            }
+            set {
+                this._nroOrdenCte = value;
+            }
+        }
+        
+        [Property("Aprobador_ReproSusp", ColumnType="String")]
+        public virtual string AprobadorReprosusp {
+            get {
+                return this._aprobadorReprosusp;
+            }
+            set {
+                this._aprobadorReprosusp = value;
+            }
+        }
+        
+        [Property("Fecha_Suspencion", ColumnType="DateTime")]
+        public virtual System.DateTime FechaSuspencion {
+            get {
+                return this._fechaSuspencion;
+            }
+            set {
+                this._fechaSuspencion = value;
+            }
+        }
+        
+        [Property("Fecha_Reprogramacion", ColumnType="DateTime")]
+        public virtual System.DateTime FechaReprogramacion {
+            get {
+                return this._fechaReprogramacion;
+            }
+            set {
+                this._fechaReprogramacion = value;
+            }
+        }
+        
+        [Property("Proxima_Fecha_inicio", ColumnType="DateTime")]
+        public virtual System.DateTime ProximaFechaInicio {
+            get {
+                return this._proximaFechaInicio;
+            }
+            set {
+                this._proximaFechaInicio = value;
+            }
+        }
+        
+        [Property("Proxima_Fecha_Fin", ColumnType="DateTime")]
+        public virtual System.DateTime ProximaFechaFin {
+            get {
+                return this._proximaFechaFin;
+            }
+            set {
+                this._proximaFechaFin = value;
+            }
+        }
+        
+        [Property("IdResponsable", ColumnType="Int32")]
+        public virtual int IdResponsable {
+            get {
+                return this._idResponsable;
+            }
+            set {
+                this._idResponsable = value;
+            }
+        }
+        
+        [Property("Causa", ColumnType="String")]
+        public virtual string Causa {
+            get {
+                return this._causa;
+            }
+            set {
+                this._causa = value;
+            }
+        }
+        
+        [Property("Reporte", ColumnType="String")]
+        public virtual string Reporte {
+            get {
+                return this._reporte;
+            }
+            set {
+                this._reporte = value;
+            }
+        }
+        
+        [Property("id_Solicitud_Inicial", ColumnType="Int32")]
+        public virtual int IdSolicitudInicial {
+            get {
+                return this._idSolicitudInicial;
+            }
+            set {
+                this._idSolicitudInicial = value;
+            }
+        }
+        
+        [Property("Aprobacion_Tecnica", ColumnType="Boolean")]
+        public virtual bool AprobacionTecnica {
+            get {
+                return this._aprobacionTecnica;
+            }
+            set {
+                this._aprobacionTecnica = value;
+            }
+        }
+        
+        [Property("Fecha_Aprobacion_Tecnica", ColumnType="DateTime")]
+        public virtual System.DateTime FechaAprobacionTecnica {
+            get {
+                return this._fechaAprobacionTecnica;
+            }
+            set {
+                this._fechaAprobacionTecnica = value;
+            }
+        }
+        
+        [Property("Aprobacion_Calidad", ColumnType="Boolean")]
+        public virtual bool AprobacionCalidad {
+            get {
+                return this._aprobacionCalidad;
+            }
+            set {
+                this._aprobacionCalidad = value;
+            }
+        }
+        
+        [Property("Fecha_Aprobacion_Calidad", ColumnType="DateTime")]
+        public virtual System.DateTime FechaAprobacionCalidad {
+            get {
+                return this._fechaAprobacionCalidad;
+            }
+            set {
+                this._fechaAprobacionCalidad = value;
+            }
+        }
+        
+        [Property("Descripcion_Reporte", ColumnType="String")]
+        public virtual string DescripcionReporte {
+            get {
+                return this._descripcionReporte;
+            }
+            set {
+                this._descripcionReporte = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Recursos_Vehiculos", Schema="dbo")]
+    public partial class SolicitudRecursosVehiculos : ActiveRecordBase<SolicitudRecursosVehiculos> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private int _idVehiculo;
+        
+        private decimal _km;
+        
+        private decimal _horas;
+        
+        private System.DateTime _fecha;
+        
+        private string _detalle;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Id_Solicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("Id_Vehiculo", ColumnType="Int32")]
+        public virtual int IdVehiculo {
+            get {
+                return this._idVehiculo;
+            }
+            set {
+                this._idVehiculo = value;
+            }
+        }
+        
+        [Property("Km", ColumnType="Decimal")]
+        public virtual decimal Km {
+            get {
+                return this._km;
+            }
+            set {
+                this._km = value;
+            }
+        }
+        
+        [Property("Horas", ColumnType="Decimal")]
+        public virtual decimal Horas {
+            get {
+                return this._horas;
+            }
+            set {
+                this._horas = value;
+            }
+        }
+        
+        [Property("Fecha", ColumnType="DateTime")]
+        public virtual System.DateTime Fecha {
+            get {
+                return this._fecha;
+            }
+            set {
+                this._fecha = value;
+            }
+        }
+        
+        [Property("Detalle", ColumnType="String")]
+        public virtual string Detalle {
+            get {
+                return this._detalle;
+            }
+            set {
+                this._detalle = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Capacitacion", Schema="dbo")]
+    public partial class SolicitudCapacitacion : ActiveRecordBase<SolicitudCapacitacion> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private System.DateTime _fechaInicio;
+        
+        private System.DateTime _fechaFin;
+        
+        private string _descripcion;
+        
+        private string _nivel;
+        
+        private decimal _duracion;
+        
+        private string _areaEstudio;
+        
+        private string _instructor;
+        
+        private string _entidadEducativa;
+        
+        private string _puntuacionExamen;
+        
+        private int _idEmpleado;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("IdSolicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("FechaInicio", ColumnType="DateTime")]
+        public virtual System.DateTime FechaInicio {
+            get {
+                return this._fechaInicio;
+            }
+            set {
+                this._fechaInicio = value;
+            }
+        }
+        
+        [Property("FechaFin", ColumnType="Timestamp")]
+        public virtual System.DateTime FechaFin {
+            get {
+                return this._fechaFin;
+            }
+            set {
+                this._fechaFin = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String")]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+        
+        [Property("Nivel", ColumnType="String")]
+        public virtual string Nivel {
+            get {
+                return this._nivel;
+            }
+            set {
+                this._nivel = value;
+            }
+        }
+        
+        [Property("Duracion", ColumnType="Decimal")]
+        public virtual decimal Duracion {
+            get {
+                return this._duracion;
+            }
+            set {
+                this._duracion = value;
+            }
+        }
+        
+        [Property("Area_Estudio", ColumnType="String")]
+        public virtual string AreaEstudio {
+            get {
+                return this._areaEstudio;
+            }
+            set {
+                this._areaEstudio = value;
+            }
+        }
+        
+        [Property("Instructor", ColumnType="String")]
+        public virtual string Instructor {
+            get {
+                return this._instructor;
+            }
+            set {
+                this._instructor = value;
+            }
+        }
+        
+        [Property("Entidad_Educativa", ColumnType="String")]
+        public virtual string EntidadEducativa {
+            get {
+                return this._entidadEducativa;
+            }
+            set {
+                this._entidadEducativa = value;
+            }
+        }
+        
+        [Property("Puntuacion_Examen", ColumnType="String")]
+        public virtual string PuntuacionExamen {
+            get {
+                return this._puntuacionExamen;
+            }
+            set {
+                this._puntuacionExamen = value;
+            }
+        }
+        
+        [Property("Id_Empleado", ColumnType="Int32", NotNull=true)]
+        public virtual int IdEmpleado {
+            get {
+                return this._idEmpleado;
+            }
+            set {
+                this._idEmpleado = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Licencias", Schema="dbo")]
+    public partial class SolicitudLicencias : ActiveRecordBase<SolicitudLicencias> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private System.DateTime _fechaInicio;
+        
+        private System.DateTime _fechaFin;
+        
+        private string _descripcion;
+        
+        private decimal _duracion;
+        
+        private int _idTipolicencia;
+        
+        private int _idEmpleado;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("IdSolicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("FechaInicio", ColumnType="DateTime")]
+        public virtual System.DateTime FechaInicio {
+            get {
+                return this._fechaInicio;
+            }
+            set {
+                this._fechaInicio = value;
+            }
+        }
+        
+        [Property("FechaFin", ColumnType="DateTime")]
+        public virtual System.DateTime FechaFin {
+            get {
+                return this._fechaFin;
+            }
+            set {
+                this._fechaFin = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String")]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+        
+        [Property("Duracion", ColumnType="Decimal")]
+        public virtual decimal Duracion {
+            get {
+                return this._duracion;
+            }
+            set {
+                this._duracion = value;
+            }
+        }
+        
+        [Property("Id_TipoLicencia", ColumnType="Int32")]
+        public virtual int IdTipolicencia {
+            get {
+                return this._idTipolicencia;
+            }
+            set {
+                this._idTipolicencia = value;
+            }
+        }
+        
+        [Property("Id_Empleado", ColumnType="Int32", NotNull=true)]
+        public virtual int IdEmpleado {
+            get {
+                return this._idEmpleado;
+            }
+            set {
+                this._idEmpleado = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Francos_Compensatorios", Schema="dbo")]
+    public partial class SolicitudFrancosCompensatorios : ActiveRecordBase<SolicitudFrancosCompensatorios> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private System.DateTime _fechaInicio;
+        
+        private System.DateTime _fechaFin;
+        
+        private decimal _duracion;
+        
+        private string _descripcion;
+        
+        private string _conElConsentimiento;
+        
+        private int _idEmpleado;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("IdSolicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("FechaInicio", ColumnType="DateTime")]
+        public virtual System.DateTime FechaInicio {
+            get {
+                return this._fechaInicio;
+            }
+            set {
+                this._fechaInicio = value;
+            }
+        }
+        
+        [Property("FechaFin", ColumnType="DateTime")]
+        public virtual System.DateTime FechaFin {
+            get {
+                return this._fechaFin;
+            }
+            set {
+                this._fechaFin = value;
+            }
+        }
+        
+        [Property("Duracion", ColumnType="Decimal")]
+        public virtual decimal Duracion {
+            get {
+                return this._duracion;
+            }
+            set {
+                this._duracion = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String")]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+        
+        [Property("ConElConsentimiento", ColumnType="String")]
+        public virtual string ConElConsentimiento {
+            get {
+                return this._conElConsentimiento;
+            }
+            set {
+                this._conElConsentimiento = value;
+            }
+        }
+        
+        [Property("Id_Empleado", ColumnType="Int32", NotNull=true)]
+        public virtual int IdEmpleado {
+            get {
+                return this._idEmpleado;
+            }
+            set {
+                this._idEmpleado = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Tareas_Generales", Schema="dbo")]
+    public partial class SolicitudTareasGenerales : ActiveRecordBase<SolicitudTareasGenerales> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private System.DateTime _fechaInicio;
+        
+        private System.DateTime _fechaFin;
+        
+        private string _descripcion;
+        
+        private decimal _duracion;
+        
+        private int _idTipotarea;
+        
+        private int _idEmpleado;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("IdSolicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("FechaInicio", ColumnType="DateTime")]
+        public virtual System.DateTime FechaInicio {
+            get {
+                return this._fechaInicio;
+            }
+            set {
+                this._fechaInicio = value;
+            }
+        }
+        
+        [Property("FechaFin", ColumnType="DateTime")]
+        public virtual System.DateTime FechaFin {
+            get {
+                return this._fechaFin;
+            }
+            set {
+                this._fechaFin = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String")]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+        
+        [Property("Duracion", ColumnType="Decimal")]
+        public virtual decimal Duracion {
+            get {
+                return this._duracion;
+            }
+            set {
+                this._duracion = value;
+            }
+        }
+        
+        [Property("Id_TipoTarea", ColumnType="Int32")]
+        public virtual int IdTipotarea {
+            get {
+                return this._idTipotarea;
+            }
+            set {
+                this._idTipotarea = value;
+            }
+        }
+        
+        [Property("Id_Empleado", ColumnType="Int32", NotNull=true)]
+        public virtual int IdEmpleado {
+            get {
+                return this._idEmpleado;
+            }
+            set {
+                this._idEmpleado = value;
+            }
+        }
+    }
+    
+    [ActiveRecord("Solicitud_Gastos", Schema="dbo")]
+    public partial class SolicitudGastos : ActiveRecordBase<SolicitudGastos> {
+        
+        private int _id;
+        
+        private int _idSolicitud;
+        
+        private System.DateTime _fecha;
+        
+        private string _detalle;
+        
+        private decimal _total;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("IdSolicitud", ColumnType="Int32")]
+        public virtual int IdSolicitud {
+            get {
+                return this._idSolicitud;
+            }
+            set {
+                this._idSolicitud = value;
+            }
+        }
+        
+        [Property("Fecha", ColumnType="DateTime")]
+        public virtual System.DateTime Fecha {
+            get {
+                return this._fecha;
+            }
+            set {
+                this._fecha = value;
+            }
+        }
+        
+        [Property("Detalle", ColumnType="String")]
+        public virtual string Detalle {
+            get {
+                return this._detalle;
+            }
+            set {
+                this._detalle = value;
+            }
+        }
+        
+        [Property("Total", ColumnType="Decimal")]
+        public virtual decimal Total {
+            get {
+                return this._total;
+            }
+            set {
+                this._total = value;
             }
         }
     }

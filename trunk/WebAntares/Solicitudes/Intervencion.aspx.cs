@@ -59,12 +59,20 @@ public partial class _Default : System.Web.UI.Page
         {
             sol = new Solicitud();
         }
-
+        DateTime fechanula = DateTime.Parse("01/01/1900");
         sol = BiFactory.Sol;
         sol.Descripcion = txtTitulo.Text;
-        sol.FechaCreacion = System.DateTime.Now;
         sol.IdTipoSolicitud = int.Parse(ucTipoSolicitud.value);
         sol.IdUsuarioCreador = BiFactory.User.IdUsuario;
+        //Fechas
+        sol.FechaCreacion = System.DateTime.Now;
+        sol.FechaAprobacionCalidad = fechanula;
+        sol.FechaAprobacionTecnica = fechanula;
+        sol.FechaReprogramacion = fechanula;
+        sol.FechaSuspencion = fechanula;
+        sol.ProximaFechaFin = fechanula;
+        sol.ProximaFechaInicio = fechanula;
+        
         sol.Save();
     }
 

@@ -32,7 +32,7 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         {
                             case "Reprogramado":
                                 ucMantenimientoPreventivo.HabilitarDivReprogramacion = true;
-                                ucMantenimientoPreventivo.Fecha_Reprogramacion = solicitud.FechaReprogramacion;
+                                ucMantenimientoPreventivo.Fecha_Reprogramacion = solicitud.FechaReprogramacion.ToString("dd/MM/yyyy");
                                 ucMantenimientoPreventivo.Aprobador_Reprogramacion = solicitud.AprobadorReprosusp;
                             break;
                         }
@@ -94,8 +94,8 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucObras.MailContacto = solicitud.ContactoMail;
                         ucObras.TelefonoContacto = solicitud.ContactoTel;
                         ucObras.DescripcionTareas = solicitudObra.DescripcionTareas;
-                        ucObras.FechaInicio = solicitudObra.FechaInicio;
-                        ucObras.FechaEntrega = solicitudObra.FechaFin;
+                        ucObras.FechaInicio = solicitudObra.FechaInicio.ToString("dd/MM/yyyy");
+                        ucObras.FechaEntrega = solicitudObra.FechaFin.ToString("dd/MM/yyyy");
                         ucObras.RequisitosAprobacion = solicitudObra.RequisitosAprovacion;
                         ucObras.RequisitosIngreso = solicitudObra.RequisitosIngreso;
                         ucObras.Personal = SolicitudRecursosEmpleados.GetReader(solicitudObra.IdSolicitud);
@@ -109,9 +109,9 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucCapacitacion.Numero = solicitudCapacitacion.IdSolicitud.ToString();
                         ucCapacitacion.Titulo = solicitudCapacitacion.Descripcion;
                         ucCapacitacion.Nivel = solicitudCapacitacion.Nivel;
-                        ucCapacitacion.FechaInicio = solicitudCapacitacion.FechaInicio;
-                        ucCapacitacion.FechaFin = solicitudCapacitacion.FechaFin;
-                        ucCapacitacion.Duracion = solicitudCapacitacion.Duracion;
+                        ucCapacitacion.FechaInicio = solicitudCapacitacion.FechaInicio.ToShortDateString();
+                        ucCapacitacion.FechaFin = solicitudCapacitacion.FechaFin.ToShortDateString();
+                        ucCapacitacion.Duracion = solicitudCapacitacion.Duracion.ToString();
                         ucCapacitacion.AreaEstudios = solicitudCapacitacion.AreaEstudio;
                         ucCapacitacion.Instructor = solicitudCapacitacion.Instructor;
                         ucCapacitacion.EntidadEducativa = solicitudCapacitacion.EntidadEducativa;
@@ -122,8 +122,8 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         SolicitudFrancosCompensatorios solicitudFrancosCompensatorios = SolicitudFrancosCompensatorios.FindOne(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
                         ucFrancosCompensatorios.Numero = solicitudFrancosCompensatorios.IdSolicitud.ToString();
                         ucFrancosCompensatorios.Titulo = solicitud.Descripcion;
-                        ucFrancosCompensatorios.Fecha = solicitudFrancosCompensatorios.FechaInicio;
-                        ucFrancosCompensatorios.Duracion = solicitudFrancosCompensatorios.Duracion;
+                        ucFrancosCompensatorios.Fecha = solicitudFrancosCompensatorios.FechaInicio.ToShortDateString();
+                        ucFrancosCompensatorios.Duracion = solicitudFrancosCompensatorios.Duracion.ToString();
                         ucFrancosCompensatorios.Descripcion = solicitudFrancosCompensatorios.Descripcion;
                         ucFrancosCompensatorios.ConsentimientoDe = solicitudFrancosCompensatorios.ConElConsentimiento;
                         ucFrancosCompensatorios.Visible = true;
@@ -133,9 +133,9 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucLicencias.Numero = solicitudLicencias.IdSolicitud.ToString();
                         ucLicencias.Titulo = solicitud.Descripcion;
                         ucLicencias.Tipo = TipoLicencia.FindFirst(Expression.Eq("Id", solicitudLicencias.IdTipolicencia)).Descripcion;
-                        ucLicencias.FechaInicio = solicitudLicencias.FechaInicio;
-                        ucLicencias.FechaFin = solicitudLicencias.FechaFin;
-                        ucLicencias.Duracion = solicitudLicencias.Duracion;
+                        ucLicencias.FechaInicio = solicitudLicencias.FechaInicio.ToShortDateString();
+                        ucLicencias.FechaFin = solicitudLicencias.FechaFin.ToShortDateString();
+                        ucLicencias.Duracion = solicitudLicencias.Duracion.ToString();
                         ucLicencias.Descripcion = solicitudLicencias.Descripcion;
                         ucLicencias.Visible = true;
                         break;
@@ -144,9 +144,9 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucTareasGenerales.Numero = solicitudTareasGenerales.IdSolicitud.ToString();
                         ucTareasGenerales.Titulo = solicitud.Descripcion;
                         ucTareasGenerales.Tipo = TipoTarea.FindFirst(Expression.Eq("Id", solicitudTareasGenerales.IdTipotarea)).Descripcion;
-                        ucTareasGenerales.FechaInicio = solicitudTareasGenerales.FechaInicio;
-                        ucTareasGenerales.FechaFin = solicitudTareasGenerales.FechaFin;
-                        ucTareasGenerales.Duracion = solicitudTareasGenerales.Duracion;
+                        ucTareasGenerales.FechaInicio = solicitudTareasGenerales.FechaInicio.ToShortDateString();
+                        ucTareasGenerales.FechaFin = solicitudTareasGenerales.FechaFin.ToShortDateString();
+                        ucTareasGenerales.Duracion = solicitudTareasGenerales.Duracion.ToString();
                         ucTareasGenerales.Descripcion = solicitudTareasGenerales.Descripcion;
                         ucTareasGenerales.Visible = true;
                         break;

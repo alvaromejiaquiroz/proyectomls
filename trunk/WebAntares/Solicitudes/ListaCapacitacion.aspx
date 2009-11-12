@@ -23,10 +23,10 @@
                     AllowPaging="true"
                     onpageindexchanging="GridView1_PageIndexChanging">
                     <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="Id" Visible="false" />
+                    <asp:BoundField DataField="ID" HeaderText="Solicitud" Visible="true" />
                     <asp:BoundField DataField="ID_solicitud" HeaderText="IdSolicitud" Visible="false" />
-                    <asp:BoundField DataField="FechaInicio" HeaderText="Fecha de inicio" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="FechaFin" HeaderText="Fecha de fin" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="FechaInicio" HeaderText="Fecha de inicio" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"  dataformatstring="{0:dd/MM/yyyy}" />
+                    <asp:BoundField DataField="FechaFin" HeaderText="Fecha de fin" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"  dataformatstring="{0:dd/MM/yyyy}" />
                     <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="300px" />
                     <asp:BoundField DataField="Nivel" HeaderText="Nivel" HeaderStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="Duracion" HeaderText="Duración" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />

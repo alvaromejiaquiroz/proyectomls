@@ -11,6 +11,8 @@ using NHibernate.Expression;
 using Castle.ActiveRecord.Framework;
 using Castle.ActiveRecord;
 using System.Collections;
+using System.Data.Common;
+using System.Globalization;
 
 /// <summary>
 /// Mantenimiento PREVENTIVO
@@ -30,8 +32,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         {
             CargarCombos();
             FillTareas();
-            FillSolicitudEmpleados();
-            FillSolicitudVehiculos();
+            FillSolicitudEmpleados(0);
+            FillSolicitudVehiculos(0);
             LoadDataComplementaria();
             FillAdjuntosCalidad();
             string accion;
@@ -152,7 +154,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
         foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.GetVehiculosActivos())
         {
-            lstVehiculos.Items.Add(new ListItem(vehi.Marca + " " + vehi.Modelo + " " + vehi.Patente, vehi.IdVehiculos.ToString()));
+            lstVehiculos.Items.Add(new ListItem(vehi.NUnidad + "-" + vehi.Marca + " " + vehi.Modelo + " - " + vehi.Patente , vehi.IdVehiculos.ToString()));
         }
         foreach (Antares.model.Empresas emp in Antares.model.Empresas.FindAll())
         {
@@ -231,7 +233,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             }
 
         }
-        FillSolicitudEmpleados();
+        FillSolicitudEmpleados(0);
     }
 
     protected void btnAsignaVehiculoSolicitud_Click(object sender, EventArgs e)
@@ -250,28 +252,38 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                         SolicitudRecursosVehiculos t = new SolicitudRecursosVehiculos();
                         t.IdVehiculo = int.Parse(lstVehiculos.Items[i].Value.ToString());
                         t.IdSolicitud = BiFactory.Sol.Id_Solicitud;
+                        t.Fecha = DateTime.Parse("01/01/1900");
                         t.Save();
                     }
                 }
             }
-            FillSolicitudVehiculos();
+            FillSolicitudVehiculos(0);
         }
     }
 
-    private void FillSolicitudEmpleados()
+    private void FillSolicitudEmpleados(int pageIndex)
     {
-        DataTable dt = new DataTable();
-        gvSolicitudPersonas.DataSource = dt;
-        gvSolicitudPersonas.DataBind();
 
-        gvSolicitudPersonas.DataSource = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+        DbDataReader reader = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+        DataTable table = new DataTable();
+        table.Load(reader);
+
+        gvSolicitudPersonas.DataSource = table;
+        gvSolicitudPersonas.PageIndex = pageIndex;
         gvSolicitudPersonas.DataKeyNames = new string[] { "Id" };
         gvSolicitudPersonas.DataBind();
+
+        
     }
 
-    private void FillSolicitudVehiculos()
+    private void FillSolicitudVehiculos(int pageIndex)
     {
-        gvSolicitudVehiculos.DataSource = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
+        DbDataReader reader = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
+        DataTable table = new DataTable();
+        table.Load(reader);
+
+        gvSolicitudVehiculos.DataSource = table;
+        gvSolicitudVehiculos.PageIndex = pageIndex;
         gvSolicitudVehiculos.DataKeyNames = new string[] { "Id" };
         gvSolicitudVehiculos.DataBind();
     }
@@ -351,7 +363,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     {
         SolicitudRecursosEmpleados p = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudPersonas.DataKeys[e.RowIndex].Value.ToString())));
         p.Delete();
-        FillSolicitudEmpleados();
+        FillSolicitudEmpleados(0);
 
     }
 
@@ -359,7 +371,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     {
         SolicitudRecursosVehiculos v = SolicitudRecursosVehiculos.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudVehiculos.DataKeys[e.RowIndex].Value.ToString())));
         v.Delete();
-        FillSolicitudVehiculos();
+        FillSolicitudVehiculos(0);
     }
 
     protected void cmbResponsable_SelectedIndexChanged(object sender, EventArgs e)
@@ -505,6 +517,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     {
      
     }
+   
     protected void gvTareas_RowCreated(object sender, GridViewRowEventArgs e)
     {
         string accion ;
@@ -518,6 +531,18 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         }
 
     }
-   
-   
+
+    protected void gvSolicitudPersonas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillSolicitudEmpleados(e.NewPageIndex);
+        
+    }
+
+    protected void gvSolicitudVehiculos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillSolicitudVehiculos(e.NewPageIndex);
+
+    }
+
+
 }

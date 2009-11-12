@@ -25,6 +25,7 @@ namespace Antares.model
                             join personal p on sre.id_empleado = p.Id_Empleados 
                             ";
             sSQL += " where sre.id_solicitud = " + idSolicitud.ToString();
+            sSQL += " order by Responsable desc , Empleado asc";
             oConn.CommandText = sSQL;
             return oConn.ExecuteReader();
         }

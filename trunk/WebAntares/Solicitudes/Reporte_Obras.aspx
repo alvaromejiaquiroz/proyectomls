@@ -9,7 +9,7 @@
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center">
-                Reporte de obras e instalaciones
+                REPORTE DE OBRAS E INSTALACIONES
             </td>
         </tr>
         <tr>
@@ -209,6 +209,7 @@
                                         <tr>
                                             <td colspan="2">
                                                 <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
+                                                     AllowPaging="true" onpageindexchanging="gvSolicitudPersonas_PageIndexChanging" PageSize="5"
                                                     OnRowDeleting="gvPersonas_RowDeleting" OnRowEditing="gvPersonas_RowEditing"
                                                     Width="100%">
                                                     <Columns>
@@ -260,7 +261,7 @@
                                                             CssClass="text_custom"></asp:TextBox>
                                                         <asp:ImageButton ID="imgHorasPersonalDia" runat="server" CausesValidation="false"
                                                             ImageUrl="~/Images/calendario.gif" />
-                                                        <cc1:CalendarExtender ID="ceHorasPersonalDia" runat="server" Format="dd/MM/yyyy"
+                                                        <cc1:CalendarExtender ID="ceHorasPersonalDia" runat="server" Format="dd/MM/yyyy" CssClass="cal_Theme1" 
                                                             PopupButtonID="imgHorasPersonalDia" TargetControlID="txtHorasPersonalDia">
                                                         </cc1:CalendarExtender>
                                                         <asp:RequiredFieldValidator ID="rfvHorasPersonalDia" runat="server" ErrorMessage="Debe ingresar el día."
@@ -296,7 +297,17 @@
                                                             <asp:ListItem Text="9,0" Value="9"></asp:ListItem>
                                                             <asp:ListItem Text="9,5" Value="9,5"></asp:ListItem>
                                                             <asp:ListItem Text="10,0" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="10,5" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="11,0" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="11,5" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="12,0" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="12,5" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="13,0" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="13,5" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="14,0" Value="10"></asp:ListItem>
                                                         </asp:DropDownList>
+                                                           <asp:CustomValidator ID="cvCheckHorasRestantes" runat="server" ErrorMessage="" ControlToValidate="ddlHorasPersonalHoras"
+                                                        Display="None" ValidationGroup="horasPersonal" OnServerValidate="cvCheckHorasRestantes_ServerValidate"></asp:CustomValidator>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -324,6 +335,7 @@
                                                 <tr>
                                                     <td align="center" colspan="2">
                                                         <asp:GridView ID="gvHorasPersonal" runat="server" AutoGenerateColumns="False" 
+                                                             AllowPaging="true" onpageindexchanging="gvHorasPersonal_PageIndexChanging" PageSize="5"
                                                             onrowdeleting="gvHorasPersonal_RowDeleting" Width="640px">
                                                         <Columns>
                                                             <asp:BoundField DataField="Id" HeaderText="id" Visible="false" />
@@ -393,6 +405,7 @@
                                         <tr>
                                             <td colspan="2">
                                                 <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False"
+                                                AllowPaging="true" onpageindexchanging="gvSolicitudVehiculos_PageIndexChanging" PageSize="5"
                                                     OnRowDeleting="gvSolicitudVehiculos_RowDeleting" OnRowEditing="gvSolicitudVehiculos_RowEditing" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
@@ -519,6 +532,7 @@
                                                 <tr>
                                                     <td align="center" colspan="2">
                                                         <asp:GridView ID="gvHorasVehiculos" runat="server" AutoGenerateColumns="False" 
+                                                        AllowPaging="true" onpageindexchanging="gvHorasVehiculos_PageIndexChanging" PageSize="5"
                                                             onrowdeleting="gvHorasVehiculos_RowDeleting" Width="640px">
                                                         <Columns>
                                                             <asp:BoundField DataField="Id" HeaderText="id" Visible="false" />
@@ -605,7 +619,9 @@
                         <ContentTemplate>
                             <div style="width:100%;text-align:center;margin-top:30px">
                                 <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
-                                    Text="Confirmar solicitud" ValidationGroup="solicitud" CssClass="button_custom" />
+                                    Text="Confirmar Reporte" ValidationGroup="solicitud" CssClass="button_custom" />
+                                    <asp:CustomValidator ID="cvPersonalIngresoHoras" runat="server" ErrorMessage="" 
+                                    Display="None" ValidationGroup="solicitud" OnServerValidate="cvPersonalIngresoHoras_ServerValidate"></asp:CustomValidator>
                             </div>
                             <div class="text_custom">
                                 <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">

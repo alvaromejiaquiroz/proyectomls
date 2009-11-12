@@ -131,14 +131,25 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
     private bool HabilitarSegunPerfil()
     {
 
-        if (BiFactory.User.IdPerfil < 3)
+        if (AntaresHelper.GetPuedeAprobacionTecnica(BiFactory.Perfil.Detalle))
         {
             return true;
         }
         else
         {
-            return false; 
+            return false;
         }
+
+        
+     
+        //if (BiFactory.User.IdPerfil < 3)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false; 
+        //}
 
     }
 

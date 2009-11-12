@@ -32,10 +32,10 @@
         <elementListCompartment Id="5705cd54-0869-4386-bd41-8861525555d8" absoluteBounds="0.515, 6.535, 1.4700000000000002, 0.53615315755208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8515615c-8d02-4050-b93f-ca0efd00d348" isExpanded="false" absoluteBounds="2.625, 4.875, 1.5, 0.4">
+    <classShape Id="8515615c-8d02-4050-b93f-ca0efd00d348" isExpanded="false" absoluteBounds="2.5, 4.875, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudServiciosAfectados" />
       <nestedChildShapes>
-        <elementListCompartment Id="7d5d55c0-b8ef-46c2-8bad-d16c7ff48bf9" absoluteBounds="2.64, 5.285, 1.4700000000000002, 0.70050048828125011" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7d5d55c0-b8ef-46c2-8bad-d16c7ff48bf9" absoluteBounds="2.515, 5.285, 1.4700000000000002, 0.70050048828125011" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="318d05c9-00de-4496-ada9-7c06e6916ae8" isExpanded="false" absoluteBounds="2.5, 4.125, 1.5, 0.4">
@@ -60,30 +60,6 @@
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/TiposolicitudXPerfil" />
       <nestedChildShapes>
         <elementListCompartment Id="88438c5e-cff4-48f1-99c9-3758af784998" absoluteBounds="7.015, 5.41, 1.4700000000000002, 0.70050048828125011" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="0eb4a370-ba01-46f5-bffd-b72435f666d3" isExpanded="false" absoluteBounds="0.5, 3.25, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudObra" />
-      <nestedChildShapes>
-        <elementListCompartment Id="cb6c28c8-07a4-4295-905a-bc90c259520e" absoluteBounds="0.515, 3.66, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="931d4412-700f-4b74-8f4e-6ff018f3e2ed" isExpanded="false" absoluteBounds="2.5, 2.875, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudObraReporteTareas" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3ae59a2f-15ea-4ce9-9ee4-4ecc66f7b18e" absoluteBounds="2.5149999999999997, 3.285, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="09b97760-cf71-4fac-b934-0580c12576ad" isExpanded="false" absoluteBounds="0.5, 4.125, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudRecursosVehiculos" />
-      <nestedChildShapes>
-        <elementListCompartment Id="836723b1-baf0-48a9-86fa-de3fea82f50a" absoluteBounds="0.515, 4.535, 1.4700000000000002, 1.3578898111979165" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="55edf6d0-b276-482f-b537-a83c583db43b" isExpanded="false" absoluteBounds="0.5, 0.5, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudReporteObra" />
-      <nestedChildShapes>
-        <elementListCompartment Id="444a4796-7901-47ab-aa24-10e460757553" absoluteBounds="0.51499999999999968, 0.91000000000000014, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="5bc04818-bc55-458d-a635-c9b01c9c040b" isExpanded="false" absoluteBounds="0.5, 1.375, 1.5, 0.4">
@@ -116,30 +92,6 @@
         <elementListCompartment Id="459e8e63-f580-425c-bd6b-9d89a373455e" absoluteBounds="6.89, 0.91, 1.4700000000000002, 0.70050048828125011" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6f1db9a4-b625-458f-ae2c-d1423617dc68" isExpanded="false" absoluteBounds="7, 5.625, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudCapacitacion" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7b40794b-2c89-436b-98f4-9a4bfb9bebcc" absoluteBounds="7.015, 6.035, 1.4700000000000002, 2.17962646484375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="4180a071-04a4-4a11-9a37-24aae847d9a3" isExpanded="false" absoluteBounds="7, 6.125, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudLicencias" />
-      <nestedChildShapes>
-        <elementListCompartment Id="8d382392-ecb1-4a7d-bdcc-c3ec5c3c110c" absoluteBounds="7.015, 6.535, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="153c9508-152a-4e41-aff4-4ce61a9c41b0" isExpanded="false" absoluteBounds="7, 7.125, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudFrancosCompensatorios" />
-      <nestedChildShapes>
-        <elementListCompartment Id="b7d6b2b7-cc9b-4d5c-af8a-bd9d050e4061" absoluteBounds="7.015, 7.535, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="64e46438-0ea4-4d5e-b753-5db187d542cf" isExpanded="false" absoluteBounds="7, 6.625, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudTareasGenerales" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3074e0fd-0109-46c4-8a84-ee8eada10c96" absoluteBounds="7.015, 7.035, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="c13271b9-6dc1-497c-8c40-f349f401e4a5" isExpanded="false" absoluteBounds="2.5, 6.5, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/CalidadArchivos" />
       <nestedChildShapes>
@@ -164,12 +116,6 @@
         <elementListCompartment Id="304ac908-c1f3-48f9-8ccc-75eb578d60c4" absoluteBounds="0.515, 5.41, 1.4700000000000002, 1.029195149739583" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0db473e8-3044-46a3-8d2c-b1957ce4cb23" isExpanded="false" absoluteBounds="0.5, 2.25, 1.5, 0.4">
-      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Solicitud" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3d3b40d0-f662-4b4c-8e0d-64d27d5a93d0" absoluteBounds="0.515, 2.66, 1.4700000000000002, 3.65875244140625" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="8743265b-8dcb-4feb-ada1-85203adc178e" isExpanded="false" absoluteBounds="4.625, 5.625, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Sitios" />
       <nestedChildShapes>
@@ -188,10 +134,70 @@
         <elementListCompartment Id="71e32cc6-5ff3-4e7b-9ae6-2c48e9039673" absoluteBounds="0.515, 7.285, 1.4700000000000002, 6.2883097330729161" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6857f572-797a-4dac-9cba-fabf1e612e76" absoluteBounds="4.5, 3, 1.5, 2.68962646484375">
+    <classShape Id="6857f572-797a-4dac-9cba-fabf1e612e76" isExpanded="false" absoluteBounds="4.5, 3, 1.5, 0.4">
       <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudCorrectivo" />
       <nestedChildShapes>
         <elementListCompartment Id="65032c36-3561-447c-b5d6-884b907723dc" absoluteBounds="4.515, 3.41, 1.4700000000000002, 2.17962646484375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="95e1dfa4-e0df-428a-8b24-1d1750fc78af" isExpanded="false" absoluteBounds="2.5, 2.25, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudObra" />
+      <nestedChildShapes>
+        <elementListCompartment Id="83f6b940-adba-4746-bbdb-6ec268dcde59" absoluteBounds="2.515, 2.66, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="78ccd73a-9a94-4fe2-9b08-bdae49b666ee" isExpanded="false" absoluteBounds="0.5, 3.125, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudObraReporteTareas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="787e6b07-a159-4394-96a1-e679fc166831" absoluteBounds="0.515, 3.535, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="55860083-28fd-4902-9409-80422c6eb696" isExpanded="false" absoluteBounds="2.5, 3.125, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudReporteObra" />
+      <nestedChildShapes>
+        <elementListCompartment Id="42f0a1da-68b1-4208-bd5e-79263a813c48" absoluteBounds="2.515, 3.535, 1.4700000000000002, 1.19354248046875" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ac842857-0dd7-4b14-97c2-2cf2e69b75e0" isExpanded="false" absoluteBounds="0.5, 2.25, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/Solicitud" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d576c655-9b1a-4173-a89c-a2e9c2aab293" absoluteBounds="0.515, 2.66, 1.4700000000000002, 4.3161417643229161" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="265252c1-3cf8-4f6c-b861-129cbc013d46" isExpanded="false" absoluteBounds="0.5, 4, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudRecursosVehiculos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1cdb8c90-be53-43b0-a072-86ff02c63644" absoluteBounds="0.515, 4.41, 1.4700000000000002, 1.3578898111979165" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3e51b1f1-4c31-40a2-8713-40c86366d978" isExpanded="false" absoluteBounds="8.875, 0.5, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudCapacitacion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b9dc0adb-d36f-49d9-9873-6c7fc88962e5" absoluteBounds="8.89, 0.91, 1.4700000000000002, 2.17962646484375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6d75bf22-f2ca-4ed7-bd99-315c519a9b7f" isExpanded="false" absoluteBounds="8.875, 1.375, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudLicencias" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8dc2752d-7132-413a-9870-3165b2aeb30c" absoluteBounds="8.89, 1.7850000000000001, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3048b89b-ee32-4751-bb6d-03146f4639ce" isExpanded="false" absoluteBounds="9, 2.25, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudFrancosCompensatorios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fa071a45-3af0-482d-af23-3bcb03e55b41" absoluteBounds="9.015, 2.66, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e375e46a-a582-49cf-933c-d57a0959b586" isExpanded="false" absoluteBounds="9, 3.125, 1.5, 0.4">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudTareasGenerales" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7581a60a-d3be-4380-a5d1-9a139b503cfa" absoluteBounds="9.015, 3.535, 1.4700000000000002, 1.522237141927083" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="683618f4-5675-43bc-987b-15f453e88c73" absoluteBounds="4.5, 3.875, 1.5, 1.5391951497395828">
+      <modelClassMoniker name="/ba2f637b-c980-4367-bbc8-11da5d292787/SolicitudGastos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b2e4654e-3570-43e0-8db7-7dc6fc7490e4" absoluteBounds="4.515, 4.285, 1.4700000000000002, 1.029195149739583" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

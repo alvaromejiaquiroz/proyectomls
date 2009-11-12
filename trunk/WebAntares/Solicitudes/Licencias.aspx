@@ -98,7 +98,7 @@
         </tr>
         <tr>
             <td align="center" colspan="4">
-                <asp:Button ID="btnAceptar" runat="server" Text="Confirmar solicitud" OnClick="btnAceptar_Click"
+                <asp:Button ID="btnAceptar" runat="server" Text="Confirmar Solicitud" OnClick="btnAceptar_Click"
                     ValidationGroup="solicitud" CssClass="button_custom" />
             </td>
         </tr>

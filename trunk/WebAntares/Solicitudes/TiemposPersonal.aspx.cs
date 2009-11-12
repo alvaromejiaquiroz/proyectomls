@@ -34,30 +34,40 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
             cmbPersonal.Items.Add(new ListItem(p.Apellido + "," + p.Nombres, p.IdEmpleados.ToString()));
         }
     }
-
     protected void FillGrid()
     {
-        //string Semana = txtDesde.Text.ToString("yyyyMMdd");
-        
-        gvSolicitudes.DataSource = Personal.GetHorasSolicitudes(cmbPersonal.SelectedValue, txtDesde.Text);
-        //gvSolicitudes.DataKeyNames = new string[] { "Id" };
-        gvSolicitudes.DataBind();
+        int Semana = 0;
+        DateTime fecha = DateTime.Parse("1900-01-01");
+
+        if (txtSemanaAño.Text != string.Empty)
+        {
+            Semana = int.Parse(txtSemanaAño.Text);
+        }
+        if (txtDesde.Text != string.Empty)
+        {
+
+            fecha = DateTime.Parse(txtDesde.Text);
+            
+        }
+
+        gvTiempos.DataSource = null;
+        gvTiempos.DataBind();
+        gvTiempos.DataSource = Personal.GetHorasSolicitudes(cmbPersonal.SelectedValue, fecha.ToString("dd/MM/yyyy"), Semana);
+        //gvTiempos.DataKeyNames = new string[] { "ID" };
+        gvTiempos.DataBind();
+
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        //DateTime fecha_seleccionada;
-        //CultureInfo ciCurr = CultureInfo.CurrentCulture;
-
-        
-        //if (txtDesde.Text != string.Empty)
-        //{
-        //    fecha_seleccionada = DateTime.Parse(txtDesde.Text);
-        //}
-
-
-        //int semana = ciCurr.Calendar.GetWeekOfYear(fecha_seleccionada, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-        //string Semana =  fecha_seleccionada;
         FillGrid();
         
+    }
+    protected void gvTiempos_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+
+    }
+    protected void gvTiempos_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
     }
 }

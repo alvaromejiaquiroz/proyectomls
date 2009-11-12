@@ -36,7 +36,7 @@ public partial class site : System.Web.UI.MasterPage
                 UsuariosEmpleados Relacion = Antares.model.UsuariosEmpleados.FindOne(Expression.Eq("IdUsuarios", BiFactory.User.IdUsuario));
                 Imagen_Usuario.ImageUrl = "~/images/Empleados/NN.jpg";
 
-                if (Relacion != null)
+                if (Relacion != null && Relacion.IdEmpleados > 0)
                 {
                     Personal Empleado = Personal.FindOne(Expression.Eq("IdEmpleados", Relacion.IdEmpleados));
                     Imagen_Usuario.ToolTip = Empleado.Apellido + "," + Empleado.Nombres;
@@ -63,60 +63,6 @@ public partial class site : System.Web.UI.MasterPage
         }
     }
         
-    //private void BindMenu()
-    //{
-    
-    //    foreach (SiteMapNode adminNode in SiteMap.RootNode.ChildNodes)
-    //    {
-    //        if (adminNode.Roles.Count > 0)
-    //        {
-
-    //            if (adminNode.Roles.Contains(BiFactory.User.IdPerfil.ToString()))
-    //                if (true)
-    //                {
-    //                    //HtmlGenericControl uMenu = new HtmlGenericControl("Estilo_menu");
-    //                    HtmlGenericControl uMenu = new HtmlGenericControl("menu");
-    //                    uMenu.Attributes.Add("id", "raiz");
-    //                    menu.Controls.Add(uMenu);
-                       
-    //                    AddItem(adminNode.Title , adminNode.Url, uMenu);
-    //                    HtmlGenericControl uChi = new HtmlGenericControl("ul");
-    //                    uChi.Attributes.Add("id", "uno");
-    //                    uMenu.Controls.Add(uChi);
-    //                    AddChilds(adminNode, uChi);
-
-    //                }
-    //        }
-    //    }
-    //}
-
-    //private void AddChilds(SiteMapNode adminNode, HtmlGenericControl uParent)
-    //{
-    //    foreach (SiteMapNode n in adminNode.ChildNodes)
-    //    {
-    //        if (n.ChildNodes.Count > 0)
-    //        {
-    //            AddItem(n.Title, n.Url, uParent);
-    //            HtmlGenericControl uChi = new HtmlGenericControl("ul");
-    //            uChi.Attributes.Add("id", "uno");
-    //            uParent.Controls.Add(uChi);
-    //            AddChilds(n, uChi);
-    //        }
-    //        else { AddItem(n.Title, n.Url, uParent); }
-    //    }
-    //}
-
-    //public void AddItem(string text, string url, HtmlGenericControl uParent)
-    //{
-    //    HtmlAnchor a = new HtmlAnchor();
-    //    a.InnerHtml =   text ;
-    //    a.HRef = url;
-
-    //    HtmlGenericControl li = new HtmlGenericControl("li");
-    //    li.Controls.Add(a);
-    //    uParent.Controls.Add(li);
-    //}
-
     private void LoadNodos()
     {
         foreach (SiteMapNode adminNode in SiteMap.RootNode.ChildNodes)
@@ -154,6 +100,7 @@ public partial class site : System.Web.UI.MasterPage
             return text;
         }
     }
+
     protected void LoginStatus1_LoggingOut(object sender, LoginCancelEventArgs e)
     {
         Logger.Log(TipoEvento.Login, "Termino Session");

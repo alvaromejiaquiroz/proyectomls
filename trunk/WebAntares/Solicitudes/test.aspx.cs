@@ -20,25 +20,11 @@ public partial class Solicitudes_test : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //string responsable =         Solicitud.GetResponsable("670");
-        //Console.WriteLine(responsable);
+        Solicitud S = Solicitud.FindFirst(Expression.IdEq(868));
+        ucGastos.Sol = S;
+        ucGastos.MuestraGastos();
 
-        //string fecha = "30/10/2009";
-        //CultureInfo nfo = new CultureInfo("es-ES");
-        //DateTime date = DateTime.Parse(fecha, nfo);
-
-
-        //CultureInfo nfo2 = new CultureInfo("en-US");
-        //Console.WriteLine(date.ToString(nfo2));
-
-        //Label1.Text = date.ToString("yyyyMMdd");
-        if (!Page.IsPostBack)
-        {
-            //cargamenu();
-            //CargaMenu2();
-            //Menu1.DataSource = GetSiteMapDataSource();
-            //Menu1.DataBind();
-        }
+        
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
@@ -160,8 +146,11 @@ public partial class Solicitudes_test : System.Web.UI.Page
     {
         //Response.Write( WebAntares.AntaresHelper.EnviaMail("Matias"));
 
-        //WebAntares.AntaresHelper.NotificaSolicitud(712);
-        WebAntares.AntaresHelper.Loguea_Evento("hola");
+        //WebAntares.AntaresHelper.NotificaSolicitud(0);
+        //WebAntares.AntaresHelper.Loguea_Evento("hola");
+        throw (new ArgumentNullException());
+
+        
     
     }
        

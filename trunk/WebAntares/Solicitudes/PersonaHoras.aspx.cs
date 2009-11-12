@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using System.Globalization;
 using Antares.model;
 using NHibernate.Expression;
+using WebAntares;
 
 public partial class Solicitudes_PersonaHoras : System.Web.UI.Page
 {
@@ -72,7 +73,7 @@ public partial class Solicitudes_PersonaHoras : System.Web.UI.Page
                 break;
             case "Obras e Instalaciones":
                 SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-                    fecha_Inicio= DateTime.Parse(sol_Obr.FechaInicio);
+                    fecha_Inicio= sol_Obr.FechaInicio;
                     
                 break;
 
@@ -109,33 +110,41 @@ public partial class Solicitudes_PersonaHoras : System.Web.UI.Page
         //    fecha = fecha.AddDays(1);
         //}
     }
+
     protected void cmdGuardar_Click(object sender, EventArgs e)
     {
         DateTime fecha ;
+        //decimal HorasXSemana = decimal.Parse(Antares.Get_Config_HorasPersonaSemana());
+        decimal HorasXSemana = decimal.Parse(AntaresHelper.Get_Config_HorasPersonaSemana());
 
         if (jDatePick1.Text != "")
         {
 
             fecha = DateTime.Parse(jDatePick1.Text);
 
-            SolicitudRendicionPersonalHoras ph = SolicitudRendicionPersonalHoras.FindFirst(
-                Expression.Eq("IdSolicitud", IdSolicitud),
-                Expression.Eq("IdPersona", IdPersona),
-                Expression.Eq("Fecha", fecha));
-
-
-            if (ph == null)
+            decimal HorasCargadas = Personal.GetHorasCargadas_X_Dia(IdPersona, fecha);
+            if ((HorasCargadas + decimal.Parse(Tiempo1.Value)) < HorasXSemana)
             {
-                ph = new SolicitudRendicionPersonalHoras();
-            }
+                    SolicitudRendicionPersonalHoras ph = SolicitudRendicionPersonalHoras.FindFirst(
+                        Expression.Eq("IdSolicitud", IdSolicitud),
+                        Expression.Eq("IdPersona", IdPersona),
+                        Expression.Eq("Horas", decimal.Parse(Tiempo1.Value)),
+                        Expression.Eq("Descripcion", txtDescripcion.Text));
 
-            ph.IdPersona = IdPersona;
-            ph.IdSolicitud = IdSolicitud;
-            ph.Fecha = fecha;
-            ph.Horas = decimal.Parse(Tiempo1.Value);
-            ph.Descripcion = txtDescripcion.Text;
-            ph.SaveAndFlush();
-            fillGrid();
+                    if (ph == null)
+                    {
+                        ph = new SolicitudRendicionPersonalHoras();
+                    }
+
+                    ph.IdPersona = IdPersona;
+                    ph.IdSolicitud = IdSolicitud;
+                    ph.Fecha = fecha;
+                    ph.Horas = decimal.Parse(Tiempo1.Value);
+                    ph.Descripcion = txtDescripcion.Text;
+                    ph.SaveAndFlush();
+                    fillGrid();
+
+            }
         }
 
 
@@ -168,14 +177,17 @@ public partial class Solicitudes_PersonaHoras : System.Web.UI.Page
 
         
     }
+
     protected void GridView1_RowDeleted(object sender, GridViewDeletedEventArgs e)
     {
 
     }
+
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
 
     }
+
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SolicitudRendicionPersonalHoras R = SolicitudRendicionPersonalHoras.FindFirst(Expression.Eq("Id", int.Parse(GridView1.DataKeys[e.RowIndex].Value.ToString())));
