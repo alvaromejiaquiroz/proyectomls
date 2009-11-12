@@ -18,7 +18,11 @@ namespace Antares.model
             DbConnection db = (DbConnection)sess.Connection;// ActiveRecordMediator.GetSessionFactoryHolder().GetSessionFactory().GetCurrentSession().Connection;
             DbCommand oConn = db.CreateCommand();
             oConn.CommandText = SSQLQuery;
-            return oConn.ExecuteReader();
+            DbDataReader dr = null ;
+            return  oConn.ExecuteReader();
+            
+            
+
         }
     }
 }

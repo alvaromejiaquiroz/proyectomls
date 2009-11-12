@@ -22,6 +22,7 @@ namespace Antares.model
             return oConn.ExecuteReader();
 
         }
+        
         public static Vehiculos GetById(string Id)
         {
             try
@@ -36,8 +37,13 @@ namespace Antares.model
 
         public static Vehiculos[] GetVehiculosActivos()
         {
+            Order orden = new Order("NUnidad", true);
+            ICriterion[] filtro = new ICriterion[]
+            {
+                Expression.Like("Estado","activo") 
 
-           return Antares.model.Vehiculos.FindAll(Expression.Eq("Estado","activo"));
+            };
+            return Antares.model.Vehiculos.FindAll(orden,filtro);
 
         }
 

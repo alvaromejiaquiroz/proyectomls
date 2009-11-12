@@ -39,12 +39,12 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
 
         }
 
-        Cap.FechaInicio =  DateTime.Parse(txtInicio.Text).ToString();
-        Cap.FechaFin =  DateTime.Parse(txtFin.Text).ToString();
+        Cap.FechaInicio =  DateTime.Parse(txtInicio.Text);
+        Cap.FechaFin =  DateTime.Parse(txtFin.Text);
         Cap.Nivel = cmbNivelCapacitacion.SelectedValue;
         Cap.Instructor = txtInstructor.Text;
         Cap.PuntuacionExamen = txtPuntuacionExamen.Text;
-        Cap.Duracion = txtDuracion.Text;
+        Cap.Duracion = decimal.Parse(txtDuracion.Text);
         Cap.EntidadEducativa = txtEntidad.Text;
         Cap.AreaEstudio = txtAreaEstudios.Text;
         Cap.IdEmpleado = BiFactory.Empleado.IdEmpleados;
@@ -55,9 +55,9 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
         ucCapacitacion.Numero = Cap.IdSolicitud.ToString();
         ucCapacitacion.Titulo = Cap.Descripcion;
         ucCapacitacion.Nivel = Cap.Nivel;
-        ucCapacitacion.FechaInicio = Cap.FechaInicio;
-        ucCapacitacion.FechaFin = Cap.FechaFin;
-        ucCapacitacion.Duracion = Cap.Duracion;
+        ucCapacitacion.FechaInicio = Cap.FechaInicio.ToShortDateString();
+        ucCapacitacion.FechaFin = Cap.FechaFin.ToShortDateString(); 
+        ucCapacitacion.Duracion = Cap.Duracion.ToString();
         ucCapacitacion.AreaEstudios = Cap.AreaEstudio;
         ucCapacitacion.Instructor = Cap.Instructor;
         ucCapacitacion.EntidadEducativa = Cap.EntidadEducativa;
@@ -76,11 +76,11 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
             cmbNivelCapacitacion.SelectedValue = sol_Cap.Nivel;
             txtAreaEstudios.Text = sol_Cap.AreaEstudio;
             txtEntidad.Text = sol_Cap.EntidadEducativa;
-            txtDuracion.Text = sol_Cap.Duracion;
+            txtDuracion.Text = sol_Cap.Duracion.ToString();
             txtInstructor.Text = sol_Cap.Instructor;
             txtPuntuacionExamen.Text = sol_Cap.PuntuacionExamen;
-            txtInicio.Text = sol_Cap.FechaInicio;
-            txtFin.Text = sol_Cap.FechaFin;
+            txtInicio.Text = sol_Cap.FechaInicio.ToString("dd/MM/yyyy");
+            txtFin.Text = sol_Cap.FechaFin.ToString("dd/MM/yyyy");
         }
         else
         {

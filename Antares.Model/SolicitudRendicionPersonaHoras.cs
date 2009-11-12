@@ -26,7 +26,7 @@ namespace Antares.model
             return CommonFunctions.ExecuteDbReader(sSql);
 
         }
-        public static DbDataReader GetPersonasHorasEnSolicitud(int IdSolicitud, int IdEmpleado)
+        public static  DbDataReader GetPersonasHorasEnSolicitud(int IdSolicitud, int IdEmpleado)
         {
             string sSql = @"exec dbo.Prod_GetPersonasHorasEnSolicitud @idSolicitud = " + IdSolicitud.ToString() + " , @idEmpleado = " + IdEmpleado.ToString();
             return CommonFunctions.ExecuteDbReader(sSql);

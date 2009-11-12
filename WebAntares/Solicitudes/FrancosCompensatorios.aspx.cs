@@ -31,8 +31,8 @@ public partial class Solicitudes_FrancosCompensatorios : System.Web.UI.Page
         if (Fc != null)
         {
             txtDescripcion.Text = Fc.Descripcion;
-            txtDuracion.Text = Fc.Duracion;
-            txtFecha.Text = Fc.FechaInicio;
+            txtDuracion.Text = Fc.Duracion.ToString();
+            txtFecha.Text = Fc.FechaInicio.ToString("dd/MM/yyyy"); 
             txtConsentimiento.Text = Fc.ConElConsentimiento;
 
         }
@@ -56,8 +56,9 @@ public partial class Solicitudes_FrancosCompensatorios : System.Web.UI.Page
 
             Fc.IdSolicitud = BiFactory.Sol.Id_Solicitud;
             Fc.Descripcion = txtDescripcion.Text;
-            Fc.FechaInicio = DateTime.Parse(txtFecha.Text).ToString();
-            Fc.Duracion = txtDuracion.Text;
+            Fc.FechaInicio = DateTime.Parse(txtFecha.Text);
+            Fc.FechaFin = DateTime.Parse("1900-01-01");
+            Fc.Duracion = decimal.Parse(txtDuracion.Text);
             Fc.ConElConsentimiento = txtConsentimiento.Text;
             Fc.IdEmpleado = BiFactory.Empleado.IdEmpleados;
             Fc.SaveAndFlush();
@@ -66,8 +67,8 @@ public partial class Solicitudes_FrancosCompensatorios : System.Web.UI.Page
 
             ucFrancosCompensatorios.Numero = Fc.IdSolicitud.ToString();
             ucFrancosCompensatorios.Titulo = Sol.Descripcion;
-            ucFrancosCompensatorios.Fecha = Fc.FechaInicio;
-            ucFrancosCompensatorios.Duracion = Fc.Duracion;
+            ucFrancosCompensatorios.Fecha = Fc.FechaInicio.ToString("dd/MM/yyyy");
+            ucFrancosCompensatorios.Duracion = Fc.Duracion.ToString(); 
             ucFrancosCompensatorios.Descripcion = Fc.Descripcion;
             ucFrancosCompensatorios.ConsentimientoDe = Fc.ConElConsentimiento;
             ucFrancosCompensatorios.Visible = true;

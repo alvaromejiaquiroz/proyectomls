@@ -33,7 +33,7 @@
             <td>
                 <asp:TextBox ID="txtInicio" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
                 <asp:ImageButton ID="imgInicio" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
-                <cc1:CalendarExtender ID="ceInicio" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgInicio"
+                <cc1:CalendarExtender ID="ceInicio" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgInicio" CssClass="cal_Theme1" 
                     TargetControlID="txtInicio">
                 </cc1:CalendarExtender>
                 <asp:RequiredFieldValidator ID="rfvInicio" runat="server" ErrorMessage="Debe ingresar la fecha de inicio."
@@ -48,7 +48,7 @@
             <td>
                 <asp:TextBox ID="txtFin" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
                 <asp:ImageButton ID="imgfin" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
-                <cc1:CalendarExtender ID="ceFin" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFin"
+                <cc1:CalendarExtender ID="ceFin" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFin" CssClass="cal_Theme1" 
                     TargetControlID="txtFin">
                 </cc1:CalendarExtender>
                 <asp:RequiredFieldValidator ID="rfvFin" runat="server" ErrorMessage="Debe ingresar la fecha de fin."
@@ -87,7 +87,7 @@
         </tr>
         <tr>
             <td align="center" colspan="4">
-                <asp:Button ID="btnAceptar" runat="server" Text="Confirmar solicitud" OnClick="btnAceptar_Click"
+                <asp:Button ID="btnAceptar" runat="server" Text="Confirmar Solicitud" OnClick="btnAceptar_Click"
                     ValidationGroup="solicitud" CssClass="button_custom" />
             </td>
         </tr>

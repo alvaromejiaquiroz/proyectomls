@@ -90,8 +90,8 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucObrasRendicion.MailContacto = solicitud.ContactoMail;
                         ucObrasRendicion.TelefonoContacto = solicitud.ContactoTel;
                         ucObrasRendicion.DescripcionTareas = solicitudObra.DescripcionTareas;
-                        ucObrasRendicion.FechaInicio = solicitudObra.FechaInicio;
-                        ucObrasRendicion.FechaEntrega = solicitudObra.FechaFin;
+                        ucObrasRendicion.FechaInicio = solicitudObra.FechaInicio.ToString("dd/MM/yyyy");
+                        ucObrasRendicion.FechaEntrega = solicitudObra.FechaFin.ToString("dd/MM/yyyy");
                         ucObrasRendicion.RequisitosAprobacion = solicitudObra.RequisitosAprovacion;
                         ucObrasRendicion.RequisitosIngreso = solicitudObra.RequisitosIngreso;
                         ucObrasRendicion.Personal = SolicitudRecursosEmpleados.GetPersonaHoras_Detalle_EnSolicitud(solicitud.IdSolicitudInicial);

@@ -70,49 +70,6 @@
         <modelProperty Id="67e0e5c8-b194-4827-9587-2b08b9c17c48" name="IdTiposolicitud" column="Id_TipoSolicitud" columnType="Int32" length="0" />
       </properties>
     </modelClass>
-    <modelClass name="SolicitudObra" schema="dbo" table="Solicitud_Obra">
-      <properties>
-        <modelProperty Id="7c63ee95-8701-46c4-8ea9-b415887ef522" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="e0142586-da7f-4a8c-a6af-285a79eeeb6a" name="IdSolicitud" column="Id_Solicitud" columnType="Int32" length="0" />
-        <modelProperty Id="52447155-1627-4e1c-bf2e-fc7d53cc7042" name="DescripcionTareas" column="Descripcion_tareas" length="0" />
-        <modelProperty Id="16312e31-ddbf-4b5e-aa05-3687a0fdfa79" name="FechaInicio" column="FechaInicio" length="0" />
-        <modelProperty Id="b1455055-277b-42c4-9519-760fb5403020" name="FechaFin" column="FechaFin" length="0" />
-        <modelProperty Id="72485d60-72e4-4b55-bcb7-a11c313478ae" name="RequisitosAprovacion" column="Requisitos_Aprovacion" length="0" />
-        <modelProperty Id="b11b58b1-d117-42a0-9e73-1c9b4786d460" name="RequisitosIngreso" column="Requisitos_Ingreso" length="0" />
-        <modelProperty Id="9176fe07-92b6-48a6-8dbd-4933cfa87b8d" name="Presupuesto" column="Presupuesto" length="0" />
-      </properties>
-    </modelClass>
-    <modelClass name="SolicitudObraReporteTareas" schema="dbo" table="Solicitud_Obra_Reporte_Tareas">
-      <properties>
-        <modelProperty Id="39d82730-c66d-4007-814c-4e64f63b7dc3" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="7404af28-7d0b-4010-88de-4f6bad921d02" name="IdSolicitud" column="Id_Solicitud" columnType="Int32" length="0" />
-        <modelProperty Id="1d39f910-53be-4fe0-8f12-78f3bef1bc1c" name="Tarea" column="Tarea" length="0" />
-        <modelProperty Id="b7c374dd-106f-4224-8231-af9a7746ac9d" name="DescripcionTareas" column="Descripcion_tareas" length="0" />
-        <modelProperty Id="78ffa2a9-e8ad-44e0-8d88-4f9ffcb565d2" name="FechaInicio" column="FechaInicio" length="0" />
-        <modelProperty Id="c048ef1b-c74c-4d34-9a6a-7e59cdbd359a" name="FechaFin" column="FechaFin" length="0" />
-      </properties>
-    </modelClass>
-    <modelClass name="SolicitudRecursosVehiculos" lazy="true" schema="dbo" table="Solicitud_Recursos_Vehiculos">
-      <properties>
-        <modelProperty Id="6377a0dc-d928-446c-a5c0-cfecfedf68ef" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="697acb94-867b-4563-a332-3b9e6bf32f61" name="IdSolicitud" column="Id_Solicitud" columnType="Int32" length="0" />
-        <modelProperty Id="6692e0a6-f01c-4f0b-8286-f5787c66c71e" name="IdVehiculo" column="Id_Vehiculo" columnType="Int32" length="0" />
-        <modelProperty Id="4b189d89-2f60-452e-8591-2b3cf0f51e03" name="Km" column="Km" columnType="Decimal" length="0" />
-        <modelProperty Id="5d0d97ed-ceda-4d8c-976f-f591436a7bec" name="Horas" column="Horas" columnType="Decimal" length="0" />
-        <modelProperty Id="566b3dfc-100c-482d-83a3-972402f95557" name="Fecha" column="Fecha" length="0" />
-        <modelProperty Id="d376fac7-5493-4cc5-a9bf-6ad2a0b3da22" name="Detalle" column="Detalle" length="0" />
-      </properties>
-    </modelClass>
-    <modelClass name="SolicitudReporteObra" schema="dbo" table="Solicitud_Reporte_Obra">
-      <properties>
-        <modelProperty Id="7958f668-af17-41f7-a0d5-f9473a141036" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="515f9c95-bb8c-479b-b839-f2c8c11d4792" name="IdSolicitud" column="Id_Solicitud" columnType="Int32" length="0" />
-        <modelProperty Id="27078dcc-77c4-459e-a545-a420e8ec3d65" name="RecibioConformeCliente" column="Recibio_Conforme_Cliente" length="0" notNull="true" />
-        <modelProperty Id="dd37f25b-c6d0-473d-b241-4a21b2b89f67" name="SeCumplieronRequisitosApr" column="Se_Cumplieron_Requisitos_Apr" length="0" />
-        <modelProperty Id="2b1297d2-c0a2-4621-9187-76fa198725b0" name="FechaEntregaCliente" column="Fecha_Entrega_Cliente" length="0" />
-        <modelProperty Id="a92b54e6-7d6f-4f7d-b3bb-d6170178ba88" name="FechaActualizacion" column="Fecha_Actualizacion" columnType="Timestamp" length="0" />
-      </properties>
-    </modelClass>
     <modelClass name="SolicitudRecursosEmpleados" schema="dbo" table="Solicitud_Recursos_Empleados">
       <properties>
         <modelProperty Id="419fa63e-474f-450e-8188-a83b3e115e08" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
@@ -154,58 +111,6 @@
         <modelProperty Id="3f748934-24fa-433d-ac0c-ca7a8d126ee5" name="FechaInicio" column="FechaInicio" columnType="Timestamp" length="0" />
       </properties>
     </modelClass>
-    <modelClass name="SolicitudCapacitacion" schema="dbo" table="Solicitud_Capacitacion">
-      <properties>
-        <modelProperty Id="837a9f82-ab45-454a-aa42-7f04fcb18073" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="e0569419-6ec6-498f-8e8f-1dafca4de738" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
-        <modelProperty Id="919a489a-0416-4a9c-b320-1ae7b44a5619" name="FechaInicio" column="FechaInicio" length="0" />
-        <modelProperty Id="53eae421-1cc7-4712-ac18-8ddcb41d86a9" name="FechaFin" column="FechaFin" length="0" />
-        <modelProperty Id="5f063311-4477-4819-a84a-d4537065a23e" name="Descripcion" column="Descripcion" length="0" />
-        <modelProperty Id="eaeee80b-99ad-4b71-ba40-7ff529a24d2b" name="Nivel" column="Nivel" length="0" />
-        <modelProperty Id="e772a503-e9f5-406a-828a-c92658ee1aea" name="Duracion" column="Duracion" length="0" />
-        <modelProperty Id="63eae08b-2888-4447-8fdc-d19bdbb33f47" name="AreaEstudio" column="Area_Estudio" length="0" />
-        <modelProperty Id="1650ca25-715d-4304-b005-08b6958f683a" name="Instructor" column="Instructor" length="0" />
-        <modelProperty Id="42773986-4862-4037-af33-92c4b7b6c38a" name="EntidadEducativa" column="Entidad_Educativa" length="0" />
-        <modelProperty Id="7cf8b01a-e8f9-4942-b72f-9cbe557c724c" name="PuntuacionExamen" column="Puntuacion_Examen" length="0" />
-        <modelProperty Id="da84e48d-2aa8-4be7-911f-14b051bb35dc" name="IdEmpleado" column="Id_Empleado" columnType="Int32" length="0" notNull="true" />
-      </properties>
-    </modelClass>
-    <modelClass name="SolicitudLicencias" schema="dbo" table="Solicitud_Licencias">
-      <properties>
-        <modelProperty Id="da8b5531-00e5-430c-bc57-353e8d6319e8" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="266e516b-c55d-4c8b-80c0-cf8240665eab" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
-        <modelProperty Id="4cd5a145-5274-4e50-97cc-2a5795534d5e" name="FechaInicio" column="FechaInicio" length="0" />
-        <modelProperty Id="9092f58e-07d0-4805-8e00-0f54cf65be51" name="FechaFin" column="FechaFin" length="0" />
-        <modelProperty Id="b675f006-cac0-4bb9-9594-045f372535a3" name="Descripcion" column="Descripcion" length="0" />
-        <modelProperty Id="1d90992b-1f10-40de-87ad-ab2a97aea582" name="Duracion" column="Duracion" length="0" />
-        <modelProperty Id="7eb50d0b-7730-4e3c-9cc8-07c6d4cdf0a4" name="IdTipolicencia" column="Id_TipoLicencia" columnType="Int32" length="0" />
-        <modelProperty Id="821a4168-711c-4e0d-9eba-35de4e02be7a" name="IdEmpleado" column="Id_Empleado" columnType="Int32" length="0" notNull="true" />
-      </properties>
-    </modelClass>
-    <modelClass name="SolicitudFrancosCompensatorios" schema="dbo" table="Solicitud_Francos_Compensatorios">
-      <properties>
-        <modelProperty Id="7d770abc-d428-43af-9f6e-10da033c945b" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="ec94d6d8-4cad-4040-95d4-87eb39356914" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
-        <modelProperty Id="cad8af63-a67e-40ef-99b1-62d7b17a1067" name="FechaInicio" column="FechaInicio" length="0" />
-        <modelProperty Id="b184788b-ccb0-4b1f-9231-cf6754801691" name="FechaFin" column="FechaFin" length="0" />
-        <modelProperty Id="97bac2ad-3d26-4b1a-a1ad-a37104f1eeb8" name="Duracion" column="Duracion" length="0" />
-        <modelProperty Id="a5adf04b-9791-4dc5-9490-6f27beae61d2" name="Descripcion" column="Descripcion" length="0" />
-        <modelProperty Id="856c040d-53fb-4145-af86-7b94e1bdd599" name="ConElConsentimiento" column="ConElConsentimiento" length="0" />
-        <modelProperty Id="096ab505-5228-460c-89b0-6ae16e788420" name="IdEmpleado" column="Id_Empleado" columnType="Int32" length="0" notNull="true" />
-      </properties>
-    </modelClass>
-    <modelClass name="SolicitudTareasGenerales" schema="dbo" table="Solicitud_Tareas_Generales">
-      <properties>
-        <modelProperty Id="f1952f5e-db2a-47ac-9731-a34080917f37" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="911954d6-32cb-46d4-a035-4fa32626d747" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
-        <modelProperty Id="3a3ea4d1-e1a1-4d90-b88c-6bf8f6f307cf" name="FechaInicio" column="FechaInicio" length="0" />
-        <modelProperty Id="ef85c5a4-96b3-4334-a9e6-290cbd41f4c3" name="FechaFin" column="FechaFin" length="0" />
-        <modelProperty Id="0d833bde-f080-4d26-8bc9-1daf96dd1d31" name="Descripcion" column="Descripcion" length="0" />
-        <modelProperty Id="6916884c-58d1-471a-bdcc-5587af1eee23" name="Duracion" column="Duracion" length="0" />
-        <modelProperty Id="21db7989-15b6-4d10-a04f-960a13c12488" name="IdTipotarea" column="Id_TipoTarea" columnType="Int32" length="0" />
-        <modelProperty Id="562ab478-15ca-4fcf-8de5-0c814795fa3b" name="IdEmpleado" column="Id_Empleado" columnType="Int32" length="0" notNull="true" />
-      </properties>
-    </modelClass>
     <modelClass name="CalidadArchivos" schema="dbo" table="Calidad_Archivos">
       <properties>
         <modelProperty Id="d4b20125-25bb-4a74-9d69-5325b3bf3647" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
@@ -242,31 +147,6 @@
         <modelProperty Id="85cfae5b-ea12-4ad3-8919-8ce173ac3fae" name="Sector" column="Sector" length="0" />
         <modelProperty Id="21223251-91cd-4cb5-9ae8-71e0e92b242c" name="Aprobado" column="Aprobado" columnType="Boolean" length="0" />
         <modelProperty Id="dd709e3d-f72d-4081-a4b8-47813adf4ae6" name="FechaActualizacion" column="FechaActualizacion" columnType="DateTime" insert="false" length="0" update="false" />
-      </properties>
-    </modelClass>
-    <modelClass name="Solicitud" schema="dbo" table="Solicitud">
-      <properties>
-        <modelProperty Id="6672284b-4bdb-434f-adfc-df221b2cdb70" name="Id_Solicitud" column="Id_Solicitud" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="639f7204-d589-44c8-aee9-23a483371984" name="IdTipoSolicitud" column="IdTipoSolicitud" columnType="Int32" length="0" />
-        <modelProperty Id="ec313e3a-d16f-4996-87fa-c27d790a3b7f" name="FechaCreacion" column="FechaCreacion" columnType="DateTime" length="0" />
-        <modelProperty Id="5f6e5a32-690c-471c-9f27-2ca85eb6df4a" name="IdUsuarioCreador" column="IdUsuarioCreador" columnType="Int32" length="0" />
-        <modelProperty Id="3e6f99f5-734e-45ed-9e85-14f908f6577d" name="Status" column="Status" length="0" />
-        <modelProperty Id="e281405a-c0dc-4a71-96f7-75b17aac03b0" name="Descripcion" column="Descripcion" length="0" />
-        <modelProperty Id="23fc0d7f-1bbf-4b2e-93b0-29c1e775ce37" name="IdCliente" column="IdCliente" columnType="Int32" length="0" />
-        <modelProperty Id="dd355dd6-5356-4e62-81da-5aced2cbdf13" name="Contacto" column="Contacto" length="0" />
-        <modelProperty Id="bb762213-e223-4848-a779-49a1f873c002" name="ContactoMail" column="Contacto_Mail" length="0" />
-        <modelProperty Id="32f6d103-eac6-4506-9544-42128d54a84a" name="ContactoTel" column="Contacto_Tel" length="0" />
-        <modelProperty Id="56dbae99-35bf-4158-ad68-1c93185871f0" name="NroOrdenCte" column="NroOrdenCte" length="0" />
-        <modelProperty Id="b554e02a-e9e5-4afb-b2c8-fcf738c94699" name="AprobadorReprosusp" column="Aprobador_ReproSusp" length="0" />
-        <modelProperty Id="07971062-a45b-4b7a-ad4f-501322a8b812" name="FechaSuspencion" column="Fecha_Suspencion" length="0" />
-        <modelProperty Id="0c5b8cc2-f5ba-4477-9b38-0b472589aae8" name="FechaReprogramacion" column="Fecha_Reprogramacion" length="0" />
-        <modelProperty Id="af5be882-fea5-47f9-acd2-a218756988c7" name="ProximaFechaInicio" column="Proxima_Fecha_inicio" length="0" />
-        <modelProperty Id="4146f60f-c296-4232-b16d-0a7611c96d53" name="ProximaFechaFin" column="Proxima_Fecha_Fin" length="0" />
-        <modelProperty Id="1a9b03f1-9ff3-410c-8d0d-aca084b9f656" name="IdResponsable" column="IdResponsable" columnType="Int32" length="0" />
-        <modelProperty Id="382b247c-dc95-4c60-921b-674e3d602a3f" name="Causa" column="Causa" length="0" />
-        <modelProperty Id="eee0a100-43ba-4587-b3c3-4026175aa101" name="Reporte" column="Reporte" length="0" />
-        <modelProperty Id="7c116ebf-7e59-4635-b4e8-5aef5254df64" name="IdSolicitudInicial" column="id_Solicitud_Inicial" columnType="Int32" length="0" />
-        <modelProperty Id="30874b60-5781-4ae7-aea9-8d3084265571" name="DescripcionReporte" column="Descripcion_Reporte" insert="false" length="0" />
       </properties>
     </modelClass>
     <modelClass name="Sitios" schema="dbo" table="OP_Sitios">
@@ -367,6 +247,139 @@
         <modelProperty Id="47f264a7-d095-4b1b-be3a-c41cd53cce09" name="IdSitio" column="IdSitio" columnType="Int32" length="0" />
         <modelProperty Id="3734834d-abfc-434f-9567-d0a6ae83b85c" name="FechaResolucion" column="FechaResolucion" columnType="DateTime" length="0" />
         <modelProperty Id="11796cf9-eea1-4ebc-9053-6af72b5ba13c" name="ContactoConformidadCliente" column="Contacto_Conformidad_Cliente" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudObra" schema="dbo" table="Solicitud_Obra">
+      <properties>
+        <modelProperty Id="30987df0-a8e9-4adb-8f56-c778200ad152" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="15d1245b-678e-480c-bbc1-739d237f0fed" name="IdSolicitud" column="Id_Solicitud" columnType="Int32" length="0" />
+        <modelProperty Id="29c22983-1433-44b3-8333-65e3d76eab51" name="DescripcionTareas" column="Descripcion_tareas" length="0" />
+        <modelProperty Id="3a9dbdaf-a26f-4599-9f8d-59dff6fba2f6" name="FechaInicio" column="FechaInicio" columnType="DateTime" length="0" />
+        <modelProperty Id="39a246b9-d0a7-467a-8cd4-a6bca4592ac0" name="FechaFin" column="FechaFin" columnType="DateTime" length="0" />
+        <modelProperty Id="91898bd6-4e2a-4702-96db-c4ec5b856545" name="RequisitosAprovacion" column="Requisitos_Aprovacion" length="0" />
+        <modelProperty Id="ae1bc0a4-0378-4dee-9b14-fa9fed6f246f" name="RequisitosIngreso" column="Requisitos_Ingreso" length="0" />
+        <modelProperty Id="6de4700b-92ca-4381-9d71-05638887f297" name="Presupuesto" column="Presupuesto" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudObraReporteTareas" schema="dbo" table="Solicitud_Obra_Reporte_Tareas">
+      <properties>
+        <modelProperty Id="92184999-e7f6-4133-8710-b76b41e213d4" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="824a22c8-1dd6-42da-b3d1-b6d55edfce9f" name="IdSolicitud" column="Id_Solicitud" columnType="Int32" length="0" />
+        <modelProperty Id="e23aa2d2-ad7c-45b2-9582-dc7d5a3d613c" name="Tarea" column="Tarea" length="0" />
+        <modelProperty Id="b5ee8a93-66cb-45fe-a42e-ba1a5ea3bd76" name="DescripcionTareas" column="Descripcion_tareas" length="0" />
+        <modelProperty Id="8848f78a-0e70-485f-bbe6-9efb7d4753a3" name="FechaInicio" column="FechaInicio" columnType="DateTime" length="0" />
+        <modelProperty Id="a4b0fd8b-6042-4a0a-a9a2-cd18a00d6772" name="FechaFin" column="FechaFin" columnType="Timestamp" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudReporteObra" schema="dbo" table="Solicitud_Reporte_Obra">
+      <properties>
+        <modelProperty Id="5e6a3ce6-6a6c-4441-98d6-3bbdfa9bf1c4" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="9f19d26d-646b-4458-be59-f74903f70a25" name="IdSolicitud" column="Id_Solicitud" columnType="Int32" length="0" />
+        <modelProperty Id="17271bc7-3041-4827-8fdc-6dee488aff12" name="RecibioConformeCliente" column="Recibio_Conforme_Cliente" length="0" notNull="true" />
+        <modelProperty Id="aae2b157-9841-405b-b909-5552a6e10560" name="SeCumplieronRequisitosApr" column="Se_Cumplieron_Requisitos_Apr" length="0" />
+        <modelProperty Id="08cf850b-bb13-4284-8983-0070e2b17a68" name="FechaEntregaCliente" column="Fecha_Entrega_Cliente" columnType="DateTime" length="0" />
+        <modelProperty Id="39d73000-1791-4584-9f50-2aefa8463fae" name="FechaActualizacion" column="Fecha_Actualizacion" columnType="Timestamp" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="Solicitud" schema="dbo" table="Solicitud">
+      <properties>
+        <modelProperty Id="1e5fb8af-6b8c-4eaa-94ef-47b3585df704" name="Id_Solicitud" column="Id_Solicitud" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="7358707f-fdaa-47df-998e-170a73c39721" name="IdTipoSolicitud" column="IdTipoSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="98630497-c0f7-4b52-af0d-374cd99bd220" name="FechaCreacion" column="FechaCreacion" columnType="DateTime" length="0" />
+        <modelProperty Id="f6d98a4c-5fb8-49d5-8dc9-bcc34c74cd1f" name="IdUsuarioCreador" column="IdUsuarioCreador" columnType="Int32" length="0" />
+        <modelProperty Id="15dcea62-45c3-49ac-8e7c-1647dbd6863b" name="Status" column="Status" length="0" />
+        <modelProperty Id="66daa91d-c508-4346-ae22-cdc316dc42e5" name="Descripcion" column="Descripcion" length="0" />
+        <modelProperty Id="956948f7-9677-4e93-a147-a1aab3ecfb58" name="IdCliente" column="IdCliente" columnType="Int32" length="0" />
+        <modelProperty Id="6d506eae-8fc1-4656-b8c3-0580a18506f3" name="Contacto" column="Contacto" length="0" />
+        <modelProperty Id="202bf4fa-56bd-48f4-9582-c7b57728bca8" name="ContactoMail" column="Contacto_Mail" length="0" />
+        <modelProperty Id="f8b8f154-f068-4c88-8036-bfd790eef753" name="ContactoTel" column="Contacto_Tel" length="0" />
+        <modelProperty Id="2080d7a2-ba41-4975-9159-70a700f5cb5c" name="NroOrdenCte" column="NroOrdenCte" length="0" />
+        <modelProperty Id="6c30170c-167f-4b78-be84-3a5db8111815" name="AprobadorReprosusp" column="Aprobador_ReproSusp" length="0" />
+        <modelProperty Id="21f1b1be-2e53-42bb-a399-a93386f5c86a" name="FechaSuspencion" column="Fecha_Suspencion" columnType="DateTime" length="0" />
+        <modelProperty Id="b4c2af34-9735-43eb-b18c-5b301588f3ef" name="FechaReprogramacion" column="Fecha_Reprogramacion" columnType="DateTime" length="0" />
+        <modelProperty Id="a93a78d0-dd52-49cd-8540-b452022a88a7" name="ProximaFechaInicio" column="Proxima_Fecha_inicio" columnType="DateTime" length="0" />
+        <modelProperty Id="07bb9734-ced1-4b09-b2b5-db75e87df098" name="ProximaFechaFin" column="Proxima_Fecha_Fin" columnType="DateTime" length="0" />
+        <modelProperty Id="4ed2b154-a240-4b66-8882-044da4e4006b" name="IdResponsable" column="IdResponsable" columnType="Int32" length="0" />
+        <modelProperty Id="aa0697f4-cf33-4c06-9249-c7b678f07c38" name="Causa" column="Causa" length="0" />
+        <modelProperty Id="113a37bd-e7d6-420f-b4fd-7f8daa04866b" name="Reporte" column="Reporte" length="0" />
+        <modelProperty Id="d152c7dc-7321-41f2-b4e7-da328e044953" name="IdSolicitudInicial" column="id_Solicitud_Inicial" columnType="Int32" length="0" />
+        <modelProperty Id="66760346-a32a-4d07-8fb6-22d14195c261" name="AprobacionTecnica" column="Aprobacion_Tecnica" columnType="Boolean" length="0" />
+        <modelProperty Id="2a87ffb5-52dc-4fc3-84a3-fd2c86039c28" name="FechaAprobacionTecnica" column="Fecha_Aprobacion_Tecnica" columnType="DateTime" length="0" />
+        <modelProperty Id="279089c4-99ff-4b62-b929-d61e48b3806d" name="AprobacionCalidad" column="Aprobacion_Calidad" columnType="Boolean" length="0" />
+        <modelProperty Id="e3c2d1a4-04c2-41ca-9426-243912cfb15e" name="FechaAprobacionCalidad" column="Fecha_Aprobacion_Calidad" columnType="DateTime" length="0" />
+        <modelProperty Id="fb259216-d8e9-4bac-a063-22a01ec34e46" name="DescripcionReporte" column="Descripcion_Reporte" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudRecursosVehiculos" schema="dbo" table="Solicitud_Recursos_Vehiculos">
+      <properties>
+        <modelProperty Id="3e0aa16d-501a-4188-8062-dc98e2cd2ec1" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="d28c6af0-e8e1-4809-b03a-82fed3b4046f" name="IdSolicitud" column="Id_Solicitud" columnType="Int32" length="0" />
+        <modelProperty Id="29cd32c9-8c5d-4b9a-87f6-20645ebe9465" name="IdVehiculo" column="Id_Vehiculo" columnType="Int32" length="0" />
+        <modelProperty Id="6e52994f-682b-4a19-9133-b87e16b00dab" name="Km" column="Km" columnType="Decimal" length="0" />
+        <modelProperty Id="8ba1d2ff-66bc-4008-8e3b-563345708c96" name="Horas" column="Horas" columnType="Decimal" length="0" />
+        <modelProperty Id="3496ee56-6098-4312-803a-fdd7cab224ac" name="Fecha" column="Fecha" columnType="DateTime" length="0" />
+        <modelProperty Id="c9a194bb-fe12-4ee9-9b9f-80eb88e47746" name="Detalle" column="Detalle" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudCapacitacion" schema="dbo" table="Solicitud_Capacitacion">
+      <properties>
+        <modelProperty Id="9454ca4c-a136-4cfb-8873-693b1cbea583" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="b8c47d7e-8ac4-4c27-bc9e-29d1611cb1d2" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="a95496d5-25dc-4286-88cd-0eecd21c5d12" name="FechaInicio" column="FechaInicio" columnType="DateTime" length="0" />
+        <modelProperty Id="a1f6b0f0-83a2-437a-8fc0-a8b8bbe3eb8c" name="FechaFin" column="FechaFin" columnType="Timestamp" length="0" />
+        <modelProperty Id="b14910f3-3f9b-49df-a7aa-853bba9c6ae0" name="Descripcion" column="Descripcion" length="0" />
+        <modelProperty Id="002dab13-1f24-4be7-9ccf-f1f9839c27dd" name="Nivel" column="Nivel" length="0" />
+        <modelProperty Id="fc676021-ea9c-4c73-873d-17cc73aa53ca" name="Duracion" column="Duracion" columnType="Decimal" length="0" />
+        <modelProperty Id="4d1ad597-fefd-41ba-bfd4-070e641154b1" name="AreaEstudio" column="Area_Estudio" length="0" />
+        <modelProperty Id="9405a663-27f4-4eaf-ab4b-9b7d644f8819" name="Instructor" column="Instructor" length="0" />
+        <modelProperty Id="03ee1e4b-72cd-46da-bb86-d8198d04bb9c" name="EntidadEducativa" column="Entidad_Educativa" length="0" />
+        <modelProperty Id="7d948f66-05fe-4f5e-8e5c-02d2e4110332" name="PuntuacionExamen" column="Puntuacion_Examen" length="0" />
+        <modelProperty Id="e70b8ce1-c5da-45cc-8f52-259e0b104592" name="IdEmpleado" column="Id_Empleado" columnType="Int32" length="0" notNull="true" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudLicencias" schema="dbo" table="Solicitud_Licencias">
+      <properties>
+        <modelProperty Id="854cf91c-b574-4e79-aa67-741ce4c22893" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="6444374f-c1af-4815-889f-d1155d2ce000" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="e966985a-017b-40af-b723-46737814cefd" name="FechaInicio" column="FechaInicio" columnType="DateTime" length="0" />
+        <modelProperty Id="e4ce11ee-1bae-4fc0-a531-17cc4912e0f5" name="FechaFin" column="FechaFin" columnType="DateTime" length="0" />
+        <modelProperty Id="afabc13d-6250-4674-9518-eef8a404c40e" name="Descripcion" column="Descripcion" length="0" />
+        <modelProperty Id="59471099-3309-472f-9d2c-4875d5aef663" name="Duracion" column="Duracion" columnType="Decimal" length="0" />
+        <modelProperty Id="e4ed80e1-3b5d-4204-a355-41ec4838d6c6" name="IdTipolicencia" column="Id_TipoLicencia" columnType="Int32" length="0" />
+        <modelProperty Id="8a362d8f-71dd-4053-b001-2e1847d5fe0f" name="IdEmpleado" column="Id_Empleado" columnType="Int32" length="0" notNull="true" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudFrancosCompensatorios" schema="dbo" table="Solicitud_Francos_Compensatorios">
+      <properties>
+        <modelProperty Id="9f8b33ad-5183-4527-8a1b-8aceda16ae6b" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="9695bbb7-58d0-4009-bf78-ea1623820316" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="5d0ee1b5-3956-4761-8b4b-b236d205e683" name="FechaInicio" column="FechaInicio" columnType="DateTime" length="0" />
+        <modelProperty Id="ffba85e8-85f3-4d17-b157-35cf999288d4" name="FechaFin" column="FechaFin" columnType="DateTime" length="0" />
+        <modelProperty Id="f86d0495-c3a5-4190-b891-0bc179a7617a" name="Duracion" column="Duracion" columnType="Decimal" length="0" />
+        <modelProperty Id="3ae701c5-5449-436b-a883-19fd7d87283b" name="Descripcion" column="Descripcion" length="0" />
+        <modelProperty Id="f3be5b24-d3ce-4118-8534-204da92eacf7" name="ConElConsentimiento" column="ConElConsentimiento" length="0" />
+        <modelProperty Id="1c4055ff-a7d2-454a-b47c-a51ad2de462f" name="IdEmpleado" column="Id_Empleado" columnType="Int32" length="0" notNull="true" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudTareasGenerales" schema="dbo" table="Solicitud_Tareas_Generales">
+      <properties>
+        <modelProperty Id="4463ec23-691e-475a-8352-b1cdd799e369" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="9243da04-9a51-4f00-8ab6-d09b7691477a" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="5145d727-4681-41dd-be12-7b726da952b0" name="FechaInicio" column="FechaInicio" columnType="DateTime" length="0" />
+        <modelProperty Id="74422ff4-d0d4-4c73-9190-f1b1a0b71f4f" name="FechaFin" column="FechaFin" columnType="DateTime" length="0" />
+        <modelProperty Id="b4eb6d04-822c-46cd-931c-dda5d5d08b39" name="Descripcion" column="Descripcion" length="0" />
+        <modelProperty Id="618ffa42-ade9-4be5-b87e-64d6c00f7898" name="Duracion" column="Duracion" columnType="Decimal" length="0" />
+        <modelProperty Id="8961cdb6-c6da-4769-a3a9-6a5c969db821" name="IdTipotarea" column="Id_TipoTarea" columnType="Int32" length="0" />
+        <modelProperty Id="d97699af-8fc9-40b4-899d-0bcc7511f064" name="IdEmpleado" column="Id_Empleado" columnType="Int32" length="0" notNull="true" />
+      </properties>
+    </modelClass>
+    <modelClass name="SolicitudGastos" schema="dbo" table="Solicitud_Gastos">
+      <properties>
+        <modelProperty Id="1eac0a1a-6887-47da-bc12-e730a7ffd8fc" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="d393d5da-7701-4b26-8e32-dc4d15b6492c" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="ed06d2e4-ae8c-44a7-b82f-cf9dbf885e7a" name="Fecha" column="Fecha" columnType="DateTime" length="0" />
+        <modelProperty Id="d968c679-075e-441f-b710-23ee59c6613d" name="Detalle" column="Detalle" length="0" />
+        <modelProperty Id="ea3aaaa3-bc6a-4894-b26b-30612d5a3e05" name="Total" column="Total" columnType="Decimal" length="0" />
       </properties>
     </modelClass>
   </classes>

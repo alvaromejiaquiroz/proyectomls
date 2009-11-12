@@ -19,7 +19,9 @@
     { 
         // Code that runs when an unhandled error occurs
         // At this point we have information about the error
-              
+
+        //Response.Redirect("./Solicitudes/Mensaje.aspx");
+        
         HttpContext ctx = HttpContext.Current;
         if (ctx != null)
         {
@@ -28,6 +30,7 @@
             int i = 0;
             string httpPathRoot = ctx.Request.ApplicationPath;
 
+            
 
             System.Web.UI.WebControls.Table myTablaBtn = new Table();
             System.Web.UI.WebControls.Table myTabla1 = new Table();
@@ -237,9 +240,9 @@
             ctx.Response.Write(js + stringWriteBtn.ToString() + stringWrite1.ToString() + stringWrite.ToString());
 
 
-            // --------------------------------------------------
-            // To let the page finish running we clear the error
-            // --------------------------------------------------
+           ////  --------------------------------------------------
+            ////To let the page finish running we clear the error
+            ////--------------------------------------------------
             ctx.Server.ClearError();
         }
     }

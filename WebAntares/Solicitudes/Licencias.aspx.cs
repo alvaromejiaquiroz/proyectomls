@@ -34,9 +34,9 @@ public partial class Solicitudes_Licencias : System.Web.UI.Page
                 cmbTipoLicencia.SelectedItem.Value=  tipolic.Id.ToString();
 
                 txtDescripcion.Text = sol_Lic.Descripcion;
-                txtDuracion.Text = sol_Lic.Duracion;
-                txtInicio.Text = sol_Lic.FechaInicio;
-                txtFin.Text = sol_Lic.FechaFin;
+                txtDuracion.Text = sol_Lic.Duracion.ToString();
+                txtInicio.Text = sol_Lic.FechaInicio.ToString("dd/MM/yyyy");
+                txtFin.Text = sol_Lic.FechaFin.ToString("dd/MM/yyyy"); 
             }
         }
     }
@@ -78,9 +78,9 @@ public partial class Solicitudes_Licencias : System.Web.UI.Page
             }
 
             sol_Lic.Descripcion = txtDescripcion.Text;
-            sol_Lic.FechaInicio =  DateTime.Parse(txtInicio.Text).ToString();
-            sol_Lic.FechaFin =  DateTime.Parse(txtFin.Text).ToString();
-            sol_Lic.Duracion = txtDuracion.Text;
+            sol_Lic.FechaInicio =  DateTime.Parse(txtInicio.Text);
+            sol_Lic.FechaFin =  DateTime.Parse(txtFin.Text);
+            sol_Lic.Duracion = decimal.Parse(txtDuracion.Text);
             sol_Lic.IdTipolicencia = int.Parse(cmbTipoLicencia.SelectedItem.Value);
             
             
@@ -93,9 +93,9 @@ public partial class Solicitudes_Licencias : System.Web.UI.Page
             ucLicencias.Numero = sol_Lic.IdSolicitud.ToString();
             ucLicencias.Titulo = BiFactory.Sol.Descripcion;
             ucLicencias.Tipo = cmbTipoLicencia.SelectedItem.Text;
-            ucLicencias.FechaInicio = sol_Lic.FechaInicio;
-            ucLicencias.FechaFin = sol_Lic.FechaFin;
-            ucLicencias.Duracion = sol_Lic.Duracion;
+            ucLicencias.FechaInicio = sol_Lic.FechaInicio.ToString("dd/MM/yyyy"); 
+            ucLicencias.FechaFin = sol_Lic.FechaFin.ToString("dd/MM/yyyy"); 
+            ucLicencias.Duracion = sol_Lic.Duracion.ToString();
             ucLicencias.Descripcion = sol_Lic.Descripcion;
             ucLicencias.Visible = true;
         }

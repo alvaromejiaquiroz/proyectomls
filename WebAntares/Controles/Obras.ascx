@@ -175,12 +175,12 @@
     </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
-            Presupuesto
+           Presupuesto de la Obra
         </td>
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Monto
+            
         </td>
         <td colspan="2">
             <asp:Literal ID="litMonto" runat="server"></asp:Literal>

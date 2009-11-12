@@ -319,7 +319,7 @@
                         </ContentTemplate>
                     </cc1:TabPanel>
       
-                    <cc1:TabPanel ID="tpPersonal" HeaderText="Personal" runat="server">
+                    <cc1:TabPanel ID="tpPersonal" HeaderText="Responsable y Acompañante" runat="server">
                         <ContentTemplate>
                             <asp:UpdatePanel ID="upPersonas" runat="server">
                                 <ContentTemplate>
@@ -333,8 +333,7 @@
                                                 Responsable
                                             </td>
                                             <td>
-                                                <asp:DropDownList ID="cmbResponsable" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbResponsable_SelectedIndexChanged"
-                                                    CssClass="text_custom">
+                                                <asp:DropDownList ID="cmbResponsable" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbResponsable_SelectedIndexChanged" CssClass="text_custom">
                                                 </asp:DropDownList>
                                             </td>
                                         </tr>
@@ -343,7 +342,7 @@
                                                 <asp:Literal ID="litPersonal" runat="server" Text="Personal" Visible="false"></asp:Literal>
                                             </td>
                                             <td>
-                                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="150px"
+                                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="150px"  
                                                     Visible="false" CssClass="text_custom"></asp:ListBox>
                                             </td>
                                         </tr>
@@ -363,7 +362,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
+                                                <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False" AllowPaging="true" onpageindexchanging="gvSolicitudPersonas_PageIndexChanging" PageSize="5"
                                                     OnRowDeleting="gvPersonas_RowDeleting" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
@@ -385,7 +384,7 @@
                             </asp:UpdatePanel>
                         </ContentTemplate>
                     </cc1:TabPanel>
-           
+                    
                     <cc1:TabPanel ID="tpVehiculos" HeaderText="Vehículos" runat="server">
                         <ContentTemplate>
                             <asp:UpdatePanel ID="upVehiculos" runat="server">
@@ -400,8 +399,9 @@
                                                 Vehículos
                                             </td>
                                             <td>
-                                                <asp:ListBox ID="lstVehiculos" runat="server" SelectionMode="Multiple" Height="150px" CausesValidation="false"
-                                                    CssClass="text_custom"></asp:ListBox>
+                                                <asp:ListBox ID="lstVehiculos" runat="server" SelectionMode="Multiple" Height="150px" CssClass="text_custom">
+                                                </asp:ListBox>
+                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -421,7 +421,8 @@
                                         <tr>
                                             <td colspan="2">
                                                 <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False"
-                                                    OnRowDeleting="gvSolicitudVehiculos_RowDeleting" Width="100%" >
+                                                AllowPaging="true" onpageindexchanging="gvSolicitudVehiculos_PageIndexChanging" PageSize="5"
+                                                    OnRowDeleting="gvSolicitudVehiculos_rowDeleting" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
                                                         <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" Visible="False" />
@@ -437,9 +438,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <div class="text_custom">
-                                        <asp:ValidationSummary ID="vsVehiculos" runat="server" ValidationGroup="vehiculos" />
-                                    </div>
+                                    
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </ContentTemplate>

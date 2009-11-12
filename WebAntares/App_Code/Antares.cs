@@ -29,7 +29,6 @@ using System.Collections;
 namespace WebAntares
 {
 
-
     public class AntaresHelper
     {
         public AntaresHelper()
@@ -54,6 +53,8 @@ namespace WebAntares
                 msg.Subject = subject.ToString();
                 msg.Body = mensaje;
                 //msg.To.Add("1154215946@sms.ctimovil.com.ar");
+                msg.To.Add("daniela.pina@gmail.com");
+                msg.To.Add("matias.lapera@gmail.com");
                 msg.To.Add("1154215959@sms.ctimovil.com.ar");
                 msg.To.Add("1154215955@sms.ctimovil.com.ar");
                 s.Send(msg);
@@ -68,14 +69,22 @@ namespace WebAntares
 
         public static void NotificaSolicitud(int idSol)
         {
-            BiFactory.Sol = Solicitud.GetById(idSol);
-
             string subject = string.Empty;
-            string mensaje = "Se creo la Solicitud Nro." + BiFactory.Sol.Id_Solicitud.ToString() +
-                "- Tipo " + BiFactory.Sol.Tipo.Descripcion + "- Responsable:" + Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
+            string mensaje;
+            if (idSol > 0)
+            {
+                BiFactory.Sol = Solicitud.GetById(idSol);
 
-            WebAntares.AntaresHelper.EnviaMail(subject, mensaje);
+                
+                 mensaje = "Se creo la Solicitud Nro." + BiFactory.Sol.Id_Solicitud.ToString() +
+                    "- Tipo " + BiFactory.Sol.Tipo.Descripcion + "- Responsable:" + Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
 
+                WebAntares.AntaresHelper.EnviaMail(subject, mensaje);
+            }
+            else
+            {
+                WebAntares.AntaresHelper.EnviaMail(subject, "Este es un Mensaje de prueba");
+            }
 
         }
 
@@ -129,6 +138,91 @@ namespace WebAntares
             //return lista;
 
 
+        }
+
+        public static bool GetPuedeAprobacionCalidad(string Perfil)
+        {
+            bool valor= false;
+            ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
+            DbConnection db = (DbConnection)sess.Connection;
+            DbCommand oConn = db.CreateCommand();
+
+            SqlParameterCollection p;
+
+            oConn.Parameters.Add(new SqlParameter("@perfil", Perfil));
+            oConn.Parameters.Add(new SqlParameter("@objeto", "AprobacionCalidad"));
+            oConn.CommandType = CommandType.StoredProcedure;
+            oConn.CommandText = "Proc_GetAcciones";
+            DbDataReader dr = oConn.ExecuteReader();
+            while(dr.Read())
+            {
+                if (dr.HasRows)
+                {
+
+                    valor = bool.Parse(dr["valor"].ToString());
+                }
+
+            }
+
+            return valor;
+
+
+
+
+        }
+    
+        public static bool GetPuedeAprobacionTecnica(string Perfil)
+        {
+            bool valor=false;
+            ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
+            DbConnection db = (DbConnection)sess.Connection;
+            DbCommand oConn = db.CreateCommand();
+
+            SqlParameterCollection p;
+
+            oConn.Parameters.Add(new SqlParameter("@perfil", Perfil));
+            oConn.Parameters.Add(new SqlParameter("@objeto", "AprobacionTecnica"));
+            oConn.CommandType = CommandType.StoredProcedure;
+            oConn.CommandText = "Proc_GetAcciones";
+            DbDataReader dr = oConn.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+
+                    valor = bool.Parse(dr["valor"].ToString());
+                }
+
+            }
+
+            return valor;
+
+            return valor;
+
+
+
+
+        }
+
+        public static string Get_Config_HorasPersonaSemana()
+        {
+            
+            string valor = ConfigurationSettings.AppSettings["HorasPersonaSemana"];
+            return valor;
+        }
+
+        public static string Get_Config_HorasPersonaDia()
+        {
+
+            string valor = ConfigurationSettings.AppSettings["HorasPersonaDia"];
+            return valor;
+        }
+
+        public static string Get_Config_MailCoordinacionTecnica()
+        {
+
+            string valor = ConfigurationSettings.AppSettings["MailCoordinacionTecnica"];
+            return valor;
         }
     }
 

@@ -160,7 +160,7 @@ public partial class Controles_cboGeneric : System.Web.UI.UserControl
             }
             else
             {
-                table = getTable("select " + mNameId + " ," + mNameDescript + " from " + mTabla);
+                table = getTable("select " + mNameId + " ," + mNameDescript + " from " + mTabla + " order by " + mNameDescript);
             }
             DataRow dr;
             dr = table.NewRow();

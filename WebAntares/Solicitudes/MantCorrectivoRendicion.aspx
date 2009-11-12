@@ -246,7 +246,6 @@
                                 
                             </ContentTemplate>
                         </cc1:TabPanel>
-  
            
                     <cc1:TabPanel ID="tpSitio" HeaderText="Sitio" runat="server">
                         <ContentTemplate>
@@ -274,71 +273,72 @@
                         </cc1:TabPanel>
  
                     <cc1:TabPanel ID="tpPersonal" HeaderText="Personal" runat="server">
-                        <ContentTemplate>
-                            <asp:UpdatePanel ID="upPersonas" runat="server">
-                                <ContentTemplate>
-                                    <table width="600px" class="text_custom">
-                                        <tr>
-                                            <td colspan="2" style="height: 20px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding-left: 20px">
-                                                Responsable
-                                            </td>
-                                            <td>
-                                                <asp:DropDownList ID="cmbResponsable" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbResponsable_SelectedIndexChanged"
-                                                    CssClass="text_custom">
-                                                </asp:DropDownList>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding-left: 20px">
-                                                <asp:Literal ID="litPersonal" runat="server" Text="Personal" Visible="false"></asp:Literal>
-                                            </td>
-                                            <td>
-                                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="150px"
-                                                    Visible="false" CssClass="text_custom"></asp:ListBox>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" style="height: 20px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center" colspan="2">
-                                                <asp:Button ID="btnAsignaEmpleadoSolicitud" runat="server" Text="Asignar empleado"
-                                                    OnClick="btnAsignaEmpleadoSolicitud_Click" Visible="false" CssClass="button_custom" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" style="height: 20px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
-                                                    OnRowDeleting="gvPersonas_RowDeleting" OnRowEditing="gvPersonas_RowEditing" Width="100%">
-                                                    <Columns>
-                                                        <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
-                                                        <asp:BoundField DataField="Empleado" HeaderText="Empleado" HeaderStyle-HorizontalAlign="Center" />
-                                                        <asp:CheckBoxField DataField="Responsable" HeaderText="Responsable" HeaderStyle-HorizontalAlign="Center"
-                                                            ItemStyle-HorizontalAlign="Center" />
-                                                        <asp:CommandField ButtonType="Image" HeaderText="Editar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
+                            <ContentTemplate>
+                                <asp:UpdatePanel ID="upPersonas" runat="server">
+                                    <ContentTemplate>
+                                        <table width="600px" class="text_custom">
+                                            <tr>
+                                                <td colspan="2" style="height: 20px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left: 20px">
+                                                    Responsable
+                                                </td>
+                                                <td>
+                                                    <asp:DropDownList ID="cmbResponsable" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbResponsable_SelectedIndexChanged"
+                                                        CssClass="text_custom">
+                                                    </asp:DropDownList>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left: 20px">
+                                                    <asp:Literal ID="litPersonal" runat="server" Text="Personal" Visible="false"></asp:Literal>
+                                                </td>
+                                                <td>
+                                                    <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="150px"
+                                                        Visible="false" CssClass="text_custom"></asp:ListBox>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="height: 20px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" colspan="2">
+                                                    <asp:Button ID="btnAsignaEmpleadoSolicitud" runat="server" Text="Asignar empleado"
+                                                        OnClick="btnAsignaEmpleadoSolicitud_Click" Visible="false" CssClass="button_custom" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="height: 20px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
+                                                    AllowPaging="true" onpageindexchanging="gvSolicitudPersonas_PageIndexChanging" PageSize="5"
+                                                        OnRowDeleting="gvPersonas_RowDeleting" OnRowEditing="gvPersonas_RowEditing" Width="100%">
+                                                        <Columns>
+                                                            <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
+                                                            <asp:BoundField DataField="Empleado" HeaderText="Empleado" HeaderStyle-HorizontalAlign="Center" />
+                                                            <asp:CheckBoxField DataField="Responsable" HeaderText="Responsable" HeaderStyle-HorizontalAlign="Center"
+                                                                ItemStyle-HorizontalAlign="Center" />
+                                                            <asp:CommandField ButtonType="Image" HeaderText="Editar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                                                                 EditImageUrl="~/images/b_edit.gif" EditText="Editar" ShowCancelButton="False"
                                                                 ShowEditButton="True" />
-                                                        <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
-                                                            <ItemTemplate>
-                                                                <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
-                                                                    ImageUrl="~/Images/basuravacio.gif" Text="Delete" ToolTip="Eliminar" />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                </asp:GridView>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <asp:Panel ID="pnlHorasPersonal" runat="server" Style="display: none" CssClass="modalPopup">
+                                                            <asp:TemplateField HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:ImageButton ID="imgEliminar" runat="server" CausesValidation="False" CommandName="Delete"
+                                                                        ImageUrl="~/Images/basuravacio.gif" Text="Delete" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <asp:Panel ID="pnlHorasPersonal" runat="server" Style="display: none" CssClass="modalPopup">
                                             <table width="700px" class="text_custom" style="border-style: solid; border-color: #000000; border-width: 1px">
                                                 <tr class="header_custom">
                                                     <td align="center" colspan="2">
@@ -404,7 +404,13 @@
                                                             <asp:ListItem Text="9,0" Value="9"></asp:ListItem>
                                                             <asp:ListItem Text="9,5" Value="9,5"></asp:ListItem>
                                                             <asp:ListItem Text="10,0" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="11,0" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="12,0" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="13,0" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="14,0" Value="10"></asp:ListItem>
                                                         </asp:DropDownList>
+                                                        <asp:CustomValidator ID="cvCheckHorasRestantes" runat="server" ErrorMessage="" ControlToValidate="ddlHorasPersonalHoras"
+                                                        Display="None" ValidationGroup="horasPersonal" OnServerValidate="cvCheckHorasRestantes_ServerValidate"></asp:CustomValidator>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -427,12 +433,14 @@
                                                         <asp:CompareValidator ID="cvHorasPersonal" runat="server" ErrorMessage="La fecha debe ser mayor o igual a la fecha de inicio de la solicitud."
                                                             ControlToValidate="txtHorasPersonalDia" Display="None" Operator="GreaterThanEqual"
                                                             Type="Date" ValidationGroup="horasPersonal" ValueToCompare="01/01/2000"></asp:CompareValidator>
+                                                        
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="center" colspan="2">
-                                                        <asp:GridView ID="gvHorasPersonal" runat="server" AutoGenerateColumns="False" 
-                                                            onrowdeleting="gvHorasPersonal_RowDeleting" Width="640px">
+                                                        <asp:GridView ID="gvHorasPersonal" runat="server" AutoGenerateColumns="False" AllowPaging="true"  
+                                                            onrowdeleting="gvHorasPersonal_RowDeleting" Width="640px"
+                                                            onpageindexchanging="gvHorasPersonal_PageIndexChanging">
                                                         <Columns>
                                                             <asp:BoundField DataField="Id" HeaderText="id" Visible="false" />
                                                             <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
@@ -460,10 +468,10 @@
                                             CancelControlID="btnHorasPersonalCerrar" PopupControlID="pnlHorasPersonal"
                                             TargetControlID="btnHorasPersonalPopUp">
                                         </cc1:ModalPopupExtender>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </ContentTemplate>
-                    </cc1:TabPanel>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </ContentTemplate>
+                        </cc1:TabPanel>
      
                     <cc1:TabPanel ID="tpVehiculos" HeaderText="Vehículos" runat="server">
                         <ContentTemplate>
@@ -502,6 +510,7 @@
                                         <tr>
                                             <td colspan="2">
                                                 <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False"
+                                                AllowPaging="true" onpageindexchanging="gvSolicitudVehiculos_PageIndexChanging" PageSize="5"
                                                     OnRowDeleting="gvSolicitudVehiculos_RowDeleting" OnRowEditing="gvSolicitudVehiculos_RowEditing" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
@@ -628,6 +637,7 @@
                                                 <tr>
                                                     <td align="center" colspan="2">
                                                         <asp:GridView ID="gvHorasVehiculos" runat="server" AutoGenerateColumns="False" 
+                                                        AllowPaging="true" onpageindexchanging="gvHorasVehiculos_PageIndexChanging" PageSize="5"
                                                             onrowdeleting="gvHorasVehiculos_RowDeleting" Width="640px">
                                                         <Columns>
                                                             <asp:BoundField DataField="Id" HeaderText="id" Visible="false" />
@@ -782,6 +792,8 @@
                             <div style="width:100%;text-align:center;margin-top:30px">
                                 <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
                                     Text="Confirmar Reporte" ValidationGroup="solicitud" CssClass="button_custom" />
+                                <asp:CustomValidator ID="cvPersonalIngresoHoras" runat="server" ErrorMessage="" 
+                                    Display="None" ValidationGroup="solicitud" OnServerValidate="cvPersonalIngresoHoras_ServerValidate"></asp:CustomValidator>
                             </div>
                             <div class="text_custom">
                                 <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">

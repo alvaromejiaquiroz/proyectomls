@@ -74,12 +74,14 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
         TransactionScope _transaction = new TransactionScope();
         Solicitud sol;
         sol = Solicitud.GetById(idSolOrg);
+        DateTime fechanula = DateTime.Parse("01/01/1900");
         Solicitud  reporte ;//= new Solicitud();
         try {
             reporte = Solicitud.FindOne(Expression.Eq("IdSolicitudInicial", idSolOrg));
         
             if (reporte == null)
             {
+                
                 reporte = new Solicitud();
                 reporte.IdSolicitudInicial = sol.Id_Solicitud;
                 reporte.IdCliente = sol.IdCliente;
@@ -87,12 +89,19 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 reporte.IdUsuarioCreador = BiFactory.User.IdUsuario;
                 reporte.Reporte = "SI";
                 reporte.Status = eEstados.Pendiente.ToString();
-                reporte.FechaCreacion = DateTime.Now;
                 reporte.NroOrdenCte = sol.NroOrdenCte;
                 reporte.Contacto = sol.Contacto;
                 reporte.ContactoMail = sol.ContactoMail;
                 reporte.ContactoTel = sol.ContactoTel;
                 reporte.Descripcion = sol.Descripcion;
+
+                reporte.FechaCreacion = DateTime.Now;
+                reporte.FechaAprobacionCalidad = fechanula;
+                reporte.FechaAprobacionTecnica = fechanula;
+                reporte.FechaReprogramacion = fechanula;
+                reporte.FechaSuspencion = fechanula;
+                reporte.ProximaFechaInicio = fechanula;
+                reporte.ProximaFechaFin = fechanula;
                 reporte.Save();
 
                 TipoSolicitud tipo = sol.Tipo;
@@ -217,7 +226,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                     {
                         case 1:
                             sol.Status = eEstados.Reprogramado.ToString();
-                            sol.FechaReprogramacion = txtReprogramacion.Text;
+                            sol.FechaReprogramacion = DateTime.Parse(txtReprogramacion.Text);
 
                             SolicitudPreventivo sP = SolicitudPreventivo.FindOne(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
                             SolicitudTareas sT = SolicitudTareas.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
@@ -225,8 +234,8 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                             {
                             sP.FechaInicio = DateTime.Parse(txtInicio.Text);
                             sP.FechaFin = DateTime.Parse(txtFin.Text);
-                            sol.ProximaFechaInicio = sT.FechaInicio.ToString();
-                            sol.ProximaFechaFin = sT.FechaFin.ToString();
+                            sol.ProximaFechaInicio = sT.FechaInicio;
+                            sol.ProximaFechaFin = sT.FechaFin;
                             sT.FechaInicio = DateTime.Parse(txtInicio.Text);
                             sT.FechaFin = DateTime.Parse(txtFin.Text);
                             sP.Update();
@@ -235,15 +244,15 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                             break;
                         default:
                             sol.Status = eEstados.Reprogramado.ToString();
-                            sol.FechaReprogramacion = txtReprogramacion.Text;
-                            sol.ProximaFechaInicio = txtInicio.Text;
-                            sol.ProximaFechaFin = txtFin.Text;
+                            sol.FechaReprogramacion = DateTime.Parse(txtReprogramacion.Text);
+                            sol.ProximaFechaInicio = DateTime.Parse(txtInicio.Text);
+                            sol.ProximaFechaFin = DateTime.Parse(txtFin.Text);
                             break;
                     } break;
 
                 case "Cancelado":
                     sol.Status = eEstados.Cancelado.ToString();
-                    sol.FechaSuspencion = txtReprogramacion.Text;
+                    sol.FechaSuspencion = DateTime.Parse(txtReprogramacion.Text);
                     break;
             }
             sol.Update();

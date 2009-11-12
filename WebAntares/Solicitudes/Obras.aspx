@@ -10,7 +10,7 @@
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center">
-                Solicitud de obras e instalaciones
+                SOLICITUD DE OBRAS E INSTALACIONES
             </td>
         </tr>
         <tr>
@@ -162,7 +162,8 @@
                             </table>
                         </ContentTemplate>
                     </cc1:TabPanel>
-                    <cc1:TabPanel ID="tpPersonal" HeaderText="Personal" runat="server">
+                    
+                    <cc1:TabPanel ID="tpPersonal" HeaderText="Responsable y Acompañante" runat="server">
                         <ContentTemplate>
                             <asp:UpdatePanel ID="upPersonas" runat="server">
                                 <ContentTemplate>
@@ -185,7 +186,7 @@
                                                 <asp:Literal ID="litPersonal" runat="server" Text="Personal" Visible="false"></asp:Literal>
                                             </td>
                                             <td>
-                                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="150px"
+                                                <asp:ListBox ID="lstEmpleadosSolicitud" runat="server" SelectionMode="Multiple" Height="150px"  
                                                     Visible="false" CssClass="text_custom"></asp:ListBox>
                                             </td>
                                         </tr>
@@ -205,9 +206,8 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False"
-                                                    OnRowDeleting="gvPersonas_RowDeleting"
-                                                    Width="100%">
+                                                <asp:GridView ID="gvSolicitudPersonas" runat="server" AutoGenerateColumns="False" AllowPaging="true" onpageindexchanging="gvSolicitudPersonas_PageIndexChanging" PageSize="5"
+                                                    OnRowDeleting="gvPersonas_RowDeleting" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
                                                         <asp:BoundField DataField="Empleado" HeaderText="Empleado" HeaderStyle-HorizontalAlign="Center" />
@@ -265,6 +265,7 @@
                                         <tr>
                                             <td colspan="2">
                                                 <asp:GridView ID="gvSolicitudVehiculos" runat="server" AutoGenerateColumns="False"
+                                                AllowPaging="true" onpageindexchanging="gvSolicitudVehiculos_PageIndexChanging" PageSize="5"
                                                     OnRowDeleting="gvSolicitudVehiculos_RowDeleting" Width="100%">
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />

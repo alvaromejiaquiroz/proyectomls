@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web;
 using NHibernate;
 using NHibernate.Expression;
 using Castle.ActiveRecord;
 using System.Data.Common;
+using System.Globalization;
 
 namespace Antares.model
 {
@@ -78,17 +80,50 @@ namespace Antares.model
             
         }
 
-        public static DbDataReader GetHorasSolicitudes(string IdEmpleado,string Fecha)
+        public static DbDataReader GetHorasSolicitudes(string IdEmpleado,string Fecha,int Semana)
         {
 
-            string sSql = @"exec dbo.Proc_GetTiempos_Personal  @Id_Empleado =" + IdEmpleado + " , @Fecha =" + Fecha;
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal  @Id_Empleado =" + IdEmpleado + " , @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
             return CommonFunctions.ExecuteDbReader(sSql);
 
         }
 
         public static Personal[] GetPersonalActivo()
         {
-            return Antares.model.Personal.FindAll(Expression.Eq("Activo", "si"));
+           Order  orden = new Order("Apellido",true);
+           ICriterion[] filtro = new ICriterion[]
+            {
+                Expression.Like("Activo","si") 
+
+            };
+            return Antares.model.Personal.FindAll(orden,filtro);
+
+        }
+
+        public static decimal GetHorasCargadas_X_Dia(int IdEmpleado, DateTime Fecha)
+        {
+
+            string sSql = @"exec dbo.Proc_GetHorasCargadas_En_Fecha_Personal @IdEmpleado=" + 
+                    IdEmpleado.ToString() +
+                "  , @Fecha= '" + Fecha.ToString("yyyyMMdd") + "'";
+            //Mando la fecha con formato ISO 112 , por la cultura del browser, es lo unico que se me ocurrio
+
+
+            DbDataReader dr = CommonFunctions.ExecuteDbReader(sSql);
+
+            decimal HorasCargadas = decimal.MinValue;
+             while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (dr["Horas"] != System.DBNull.Value)
+                    {
+                        HorasCargadas = Decimal.Parse(dr["Horas"].ToString());
+                            
+                    }
+                }
+             }
+            return HorasCargadas;
 
         }
 
