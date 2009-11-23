@@ -33,6 +33,7 @@
         
         <siteMapNode title="Testing" roles="1">
                 <siteMapNode title="Prueba"          url="~/solicitudes/test.aspx" roles="1"/>
+                <siteMapNode title="excel"          url="~/excel.aspx" roles="1"/>
         </siteMapNode>
   </siteMapNode>
 </siteMap>

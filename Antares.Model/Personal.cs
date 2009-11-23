@@ -127,5 +127,55 @@ namespace Antares.model
 
         }
 
+        public static decimal GetHorasCargadas_Semana_Pasada(int IdEmpleado)
+        {
+
+            string sSql = @"exec dbo.Proc_Get_Horas_Trabajadas_SemanaPasada_Empleado @Id_Empleado=" +
+                    IdEmpleado.ToString();
+              
+
+            DbDataReader dr = CommonFunctions.ExecuteDbReader(sSql);
+
+            decimal HorasCargadas = decimal.MinValue;
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (dr["horas_semana_pasada"] != System.DBNull.Value)
+                    {
+                        HorasCargadas = Decimal.Parse(dr["horas_semana_pasada"].ToString());
+
+                    }
+                }
+            }
+            return HorasCargadas;
+
+        }
+       
+        public static decimal GetHorasCargadas_Semana(int IdEmpleado)
+        {
+
+            string sSql = @"exec dbo.Proc_Get_Horas_Trabajadas_Semana_Empleado @Id_Empleado=" +
+                    IdEmpleado.ToString();
+
+
+            DbDataReader dr = CommonFunctions.ExecuteDbReader(sSql);
+
+            decimal HorasCargadas = decimal.MinValue;
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (dr["horas_semana"] != System.DBNull.Value)
+                    {
+                        HorasCargadas = Decimal.Parse(dr["horas_semana"].ToString());
+
+                    }
+                }
+            }
+            return HorasCargadas;
+
+        }
+
     }
 }

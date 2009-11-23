@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="site"  %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="site"   %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -54,10 +54,12 @@
             </div>
             </td>
             <td align="center">
-                <div class="" style="height:40px;vertical-align:middle;font-size:28px;font-weight:bolder;padding-top:20px"> Sistema de Gestión </div>
+                <div class="" style="height:40px;vertical-align:middle;font-size:28px;font-weight:bolder;padding-top:20px"> 
+                    <asp:label ID="NombreSistema" runat="server"></asp:label>
+                </div>
             </td>
             <td id="header_logo" align="right">
-                <img alt="Energia en Comunicacion" src="../images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
+                <img alt="Energia en Comunicacion" src="./images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
             </td>
         </tr>
         </table>
@@ -78,14 +80,16 @@
    CONTENT CONTAINER
 	
 -->
-        <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="True" EnableScriptLocalization="True">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" 
+        EnableScriptGlobalization="True" 
+        EnableScriptLocalization="True">
         </asp:ScriptManager>
     <table border="0" cellspacing="0" cellpadding="0" id="content-container" >
         <tr>
-            <td id="content">
+            <td id="content" >
                 <table width="100%">
                     <tr>
-                        <td  colspan="50px" align="left">
+                        <td  colspan="50px" align="left" >
                             <asp:ContentPlaceHolder ID="PageContainer" runat="server" >
                            </asp:ContentPlaceHolder>
                            
@@ -118,8 +122,8 @@
     <table border="0" cellspacing="0" cellpadding="0" width="1000px" >
         <tr>
             <td align="center">
+                <asp:Label ID="VersionSistema" runat="server"></asp:Label>
                 
-                    Sistema de Gestión - ANTARES COM S.A. - v 2.0
                 
             </td>
         </tr>

@@ -18,6 +18,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
     protected override void OnInitComplete(EventArgs e)
     {
         ucAdjuntos.sol = BiFactory.Sol;
+        ucSolicitudGastos.Sol = BiFactory.Sol;
         base.OnInitComplete(e);
     }
 
@@ -152,9 +153,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         txtMail.Text = BiFactory.Sol.ContactoMail;
         txtTelefonoContacto.Text = BiFactory.Sol.ContactoTel;
         txtDescripcionTareas.Text = o.DescripcionTareas;
-        txtPresupuesto.Text = o.Presupuesto;
-        //txtInicio.Text = o.FechaInicio.Substring(0, 10);
-        //txtEntrega.Text = o.FechaFin.Substring(0, 10);
+        
         txtInicio.Text = o.FechaInicio.ToString("dd/MM/yyyy");
         txtEntrega.Text = o.FechaFin.ToString("dd/MM/yyyy");
         txtRequisitosAprovacion.Text = o.RequisitosAprovacion;
@@ -267,7 +266,10 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
             ucObrasRendicion.RequisitosIngreso = Obra.RequisitosIngreso;
             ucObrasRendicion.Personal = SolicitudRecursosEmpleados.GetPersonaHoras_Detalle_EnSolicitud(BiFactory.Sol.Id_Solicitud);
             ucObrasRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
-            ucObrasRendicion.Monto = Obra.Presupuesto;
+
+            decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+            ucObrasRendicion.Monto = gastos.ToString();
+
             ucObrasRendicion.Adjuntos = Sol_Original.GetAdjuntos();
             ucObrasRendicion.Descripcion_TrabajoRealizado = txtDescripcionTrabajo.Text;
             ucObrasRendicion.Responsable = Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
@@ -384,13 +386,6 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
     }
 
     
-    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
-    {
-        lblGastos.Visible = true;
-        lblGastos.Text = "$" + txtPresupuesto.Text;
-        txtPresupuesto.Text = "";
-    }
-    
     protected void gvSolicitudPersonas_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         FillSolicitudEmpleados(e.NewPageIndex);
@@ -427,8 +422,8 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
         DataTable table = new DataTable();
         table.Load(reader);
         gvHorasPersonal.DataSource = table;
+        gvHorasPersonal.DataKeyNames = new string[] { "Id" };
         gvHorasPersonal.PageIndex = pageIndex;
-        //gvHorasPersonal.Sort("Fecha", SortDirection.Ascending);
         gvHorasPersonal.DataBind();
 
 
@@ -436,7 +431,9 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
 
     protected void gvHorasPersonal_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        SolicitudRendicionPersonalHoras R = SolicitudRendicionPersonalHoras.FindFirst(Expression.Eq("Id", int.Parse(gvHorasPersonal.DataKeys[e.RowIndex].Value.ToString())));
+
+        int i = int.Parse(gvHorasPersonal.DataKeys[e.RowIndex].Value.ToString());
+        SolicitudRendicionPersonalHoras R = SolicitudRendicionPersonalHoras.FindFirst(Expression.Eq("Id", i));
         R.Delete();
         FillHorasPersonalGrid(0);
         mpeHorasPersonal.Show();
@@ -533,6 +530,24 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
             args.IsValid = false;
 
             cvPersonalIngresoHoras.ErrorMessage = "No se les ha cargado horas a las siguientes personas : " + personas;
+
+
+        }
+        else { args.IsValid = true; }
+
+
+    }
+
+    protected void cvGastosEnSolicitud_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+
+        decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+        args.IsValid = false;
+        if (gastos == 0)
+        {
+            args.IsValid = false;
+
+            cvGastosEnSolicitud.ErrorMessage = "No se ha cargado ningun Gasto a la Solicitud";
 
 
         }

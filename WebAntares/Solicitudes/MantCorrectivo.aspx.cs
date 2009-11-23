@@ -22,6 +22,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
 	protected override void OnInitComplete(EventArgs e)
     {
         ucAdjuntos.sol = BiFactory.Sol;
+        ucSolicitudGastos.Sol = BiFactory.Sol;
         base.OnInitComplete(e);
     }
 
@@ -63,7 +64,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             ddlHoraReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Hour.ToString();
             ddlMinutosReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Minute.ToString();
             cmbPlazoAtencion.SelectedValue = Sol_Cor.IdPlazoAtencion.ToString();
-            lblGastos.Text =  "$" + Sol_Cor.Presupuesto.ToString();
+
 
             if (Sol_Cor.Penaliza)
             { rdbPlazo.SelectedIndex = 1; }
@@ -83,7 +84,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
     {
         Solicitud sol = BiFactory.Sol;
         SolicitudCorrectivo sol_cor = SolicitudCorrectivo.FindOne(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
-
+        
         if (sol_cor != null)
         {
             txtContactoCliente.Text = sol.Contacto;
@@ -264,10 +265,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
 
             Sol_Cor.Penaliza = bool.Parse(rdbPlazo.SelectedValue);
 
-            if (txtPresupuesto.Text == "")
-            { Sol_Cor.Presupuesto = lblGastos.Text.Replace("$", ""); }
-            else
-            { Sol_Cor.Presupuesto = txtPresupuesto.Text; }
+
 
             if (cboSitios.SelectedIndex > 0)
             {
@@ -302,7 +300,10 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             ucMantenimientoCorrectivo.TelefonoContacto = sol.ContactoTel;
             ucMantenimientoCorrectivo.MailContacto = sol.ContactoMail;
             ucMantenimientoCorrectivo.Adjuntos = sol.GetAdjuntos();
-            ucMantenimientoCorrectivo.Monto = Sol_Cor.Presupuesto;
+            
+            decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoCorrectivo.Monto = gastos.ToString();
+            ucMantenimientoCorrectivo.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud)); 
             ucMantenimientoCorrectivo.Visible = true;
 
             WebAntares.AntaresHelper.NotificaSolicitud(sol.Id_Solicitud);
@@ -397,15 +398,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
 
 
     }
-
-    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
-    {
-        lblGastos.Visible = true;
-        lblGastos.Text = "$" + txtPresupuesto.Text;
-        txtPresupuesto.Text = "";
-
-    }
-
+    
     protected void gvSolicitudPersonas_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         FillSolicitudEmpleados(e.NewPageIndex);
@@ -415,6 +408,24 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
     protected void gvSolicitudVehiculos_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         FillSolicitudVehiculos(e.NewPageIndex);
+
+    }
+
+    protected void cvGastosEnSolicitud_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+      
+        decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+        args.IsValid = false;
+        if (gastos == 0 )
+        {
+            args.IsValid = false;
+
+            cvGastosEnSolicitud.ErrorMessage = "No se ha cargado ningun Gasto  a la Solicitud";
+
+
+        }
+        else { args.IsValid = true; }
+
 
     }
 

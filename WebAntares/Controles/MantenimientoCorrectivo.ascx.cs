@@ -16,7 +16,7 @@ public partial class Controles_MantenimientoCorrectivo : System.Web.UI.UserContr
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        VersionSistema.Text = WebAntares.AntaresHelper.Get_Config_VersionSistema();
     }
 
     protected void btnFinalizar_Click(object sender, EventArgs e)
@@ -129,6 +129,15 @@ public partial class Controles_MantenimientoCorrectivo : System.Web.UI.UserContr
     public string Monto
     {
         set { litMonto.Text = "$" + value; }
+    }
+
+    public SolicitudGastos[] Gastos
+    {
+        set
+        {
+            gvGastos.DataSource = value;
+            gvGastos.DataBind();
+        }
     }
 
     public bool Imprimible

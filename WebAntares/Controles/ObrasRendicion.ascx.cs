@@ -11,12 +11,13 @@ using System.Web.UI.WebControls.WebParts;
 using System.Data.Common;
 using Antares.model;
 using NHibernate.Expression;
+using WebAntares;
 
 public partial class Controles_ObrasRendicion : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        VersionSistema.Text = WebAntares.AntaresHelper.Get_Config_VersionSistema();
     }
 
     protected void btnFinalizar_Click(object sender, EventArgs e)
@@ -157,6 +158,14 @@ public partial class Controles_ObrasRendicion : System.Web.UI.UserControl
             GridView horas = (GridView)e.Row.Cells[0].FindControl("gvHorasVehiculos");
             horas.DataSource = SolicitudRendicionVehiculosHoras.GetVehiculosKm_Detalle_EnSolicitud(int.Parse(SolicitudInicial), solicitudRecursosVehiculos.IdVehiculo);
             horas.DataBind();
+        }
+    }
+    public SolicitudGastos[] Gastos
+    {
+        set
+        {
+            gvGastos.DataSource = value;
+            gvGastos.DataBind();
         }
     }
 }

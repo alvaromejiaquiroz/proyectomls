@@ -18,8 +18,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             CargarCombos();
-            cboTipoSolicitud1.rendercbo();
-            
+                        
             habilitarSegunPerfil();
             
         }
@@ -44,18 +43,36 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
 
         if (BiFactory.User.IdPerfil >5)
         {
-            cboPersonal.BindCBO();
-            cboPersonal.Value = BiFactory.Empleado.IdEmpleados.ToString();
-            cboPersonal.Enabled = false;
+            //cboPersonal.BindCBO();
+            //cboPersonal.Value = BiFactory.Empleado.IdEmpleados.ToString();
+            //cboPersonal.Enabled = false;
+            CargarCombos();
+            cmbEmpleados.SelectedValue = IdEmpleadoUsuario.ToString();
+            cmbEmpleados.Enabled = false;
+
         }
     }
     
     protected void CargarCombos()
     {
+        cmbTipoSolicitud.Items.Clear();
+        cmbTipoSolicitud.Items.Add(new ListItem("Seleccione...", "-1"));
+        foreach(TipoSolicitud ts in Antares.model.TipoSolicitud.FindAll(Expression.Sql("Descripcion in ('Mantenimiento Preventivo','Mantenimiento Correctivo','Obras e Instalaciones')")))
+        {
+            ListItem l = new ListItem(ts.Descripcion, ts.IdTiposolicitud.ToString());
+            cmbTipoSolicitud.Items.Add(l);
+        }
 
-
+        
+        cmbEmpleados.Items.Clear();
+        cmbEmpleados.Items.Add(new ListItem("Seleccione...", "-1"));
+        foreach (Antares.model.Personal per in Antares.model.Personal.GetPersonalActivo())
+        {
+            cmbEmpleados.Items.Add(new ListItem(per.Apellido + ", " + per.Nombres, per.IdEmpleados.ToString()));
+        }
+        cmbEstados.Items.Clear();
         cmbEstados.Items.Add(new ListItem("Seleccione...", "-1"));
-        foreach (Antares.model.Estados e in Antares.model.Estados.FindAll())
+        foreach (Antares.model.Estados e in Antares.model.Estados.FindAll(Expression.Sql("Detalle <> 'Anulado'" )))
         {
             ListItem l = new ListItem(e.Detalle, e.IdEstado.ToString());
             cmbEstados.Items.Add(l);
@@ -169,8 +186,8 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         if (IsValid)
         {
             IdSolicitud = txtNroSolicitud.Text;
-            TipoSolicitud = cboTipoSolicitud1.value;
-            IdEmpleado = cboPersonal.Value;
+            TipoSolicitud = cmbTipoSolicitud.SelectedValue;
+            IdEmpleado = cmbEmpleados.SelectedValue;
             Estado = cmbEstados.SelectedValue;
             Fecha = txtDesde.Text;
 

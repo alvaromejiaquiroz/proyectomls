@@ -20,11 +20,32 @@ public partial class Solicitudes_test : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        int a = 0;
+        int b;
+        b = 100 / a;
+
+
         Solicitud S = Solicitud.FindFirst(Expression.IdEq(868));
         ucGastos.Sol = S;
         ucGastos.MuestraGastos();
 
+        DateTime Hoy = DateTime.Today;
+        //txtFin.Text = Hoy.AddDays(7 - int.Parse(Hoy.DayOfWeek));
+        DayOfWeek d = DateTime.Now.DayOfWeek;
+
+        lbl.Text = DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek.ToString() + " " + DayOfWeek.Saturday;
         
+        
+
+        //lbl.Text = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)System.DateTime.Now.DayOfWeek] + " " +            System.DateTime.Now.DayOfWeek.ToString() + " " + CultureInfo.CurrentCulture.Calendar.GetDayOfWeek(DateTime.Now).ToString(); 
+        
+
+    }
+
+    protected void DiaSemana(DateTime fecha)
+    {
+       // fecha.DayOfWeek;
+
     }
     protected void Button1_Click(object sender, EventArgs e)
     {

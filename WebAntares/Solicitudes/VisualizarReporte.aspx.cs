@@ -22,6 +22,8 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
             {
                 Solicitud solicitud = Solicitud.GetById(id);
                 Solicitud solicitudInicial = Solicitud.GetById(solicitud.IdSolicitudInicial);
+                decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(solicitud.Id_Solicitud);
+
                 switch (solicitud.Tipo.IdTiposolicitud)
                 {
                     case (int)EnumTipoSolicitud.MantenimientoPreventivo:
@@ -41,10 +43,11 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucMantenimientoPreventivoRendicion.TelefonoContacto = solicitud.ContactoTel;
                         ucMantenimientoPreventivoRendicion.MailContacto = solicitud.ContactoMail;
                         ucMantenimientoPreventivoRendicion.Adjuntos = solicitudInicial.GetAdjuntos();
-                        ucMantenimientoPreventivoRendicion.Monto = solicitudPreventivo.Presupuesto;
+                        ucMantenimientoPreventivoRendicion.Monto =  gastos.ToString();
+                        ucMantenimientoPreventivoRendicion.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
+
                         ucMantenimientoPreventivoRendicion.Responsable = Solicitud.GetResponsable(solicitudPreventivo.IdSolicitud.ToString());
                         ucMantenimientoPreventivoRendicion.Descripcion_TrabajoRealizado = solicitud.DescripcionReporte;
-                        
                         ucMantenimientoPreventivoRendicion.HabilitarArchivoCalidad = true;
                         ucMantenimientoPreventivoRendicion.Calidad = solicitudInicial.GetAdjuntosCalidad();
             
@@ -74,7 +77,9 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucMantenimientoCorrectivoRendicion.TelefonoContacto = solicitud.ContactoTel;
                         ucMantenimientoCorrectivoRendicion.MailContacto = solicitud.ContactoMail;
                         ucMantenimientoCorrectivoRendicion.Adjuntos = solicitudInicial.GetAdjuntos();
-                        ucMantenimientoCorrectivoRendicion.Monto = solicitudCorrectivo.Presupuesto;
+                        ucMantenimientoCorrectivoRendicion.Monto =  gastos.ToString();
+                        ucMantenimientoCorrectivoRendicion.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
+
                         ucMantenimientoCorrectivoRendicion.Responsable = Solicitud.GetResponsable(solicitudCorrectivo.IdSolicitud.ToString());
                         ucMantenimientoCorrectivoRendicion.Visible = true;
                         break;
@@ -96,7 +101,8 @@ public partial class Solicitudes_VisualizarReporte : System.Web.UI.Page
                         ucObrasRendicion.RequisitosIngreso = solicitudObra.RequisitosIngreso;
                         ucObrasRendicion.Personal = SolicitudRecursosEmpleados.GetPersonaHoras_Detalle_EnSolicitud(solicitud.IdSolicitudInicial);
                         ucObrasRendicion.Vehiculos = SolicitudRecursosVehiculos.GetReader(solicitudObra.IdSolicitud);
-                        ucObrasRendicion.Monto = solicitudObra.Presupuesto;
+                        ucObrasRendicion.Monto =  gastos.ToString();
+                        ucObrasRendicion.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
                         ucObrasRendicion.Adjuntos = solicitudInicial.GetAdjuntos();
                         ucObrasRendicion.Responsable = Solicitud.GetResponsable(solicitudObra.IdSolicitud.ToString());
                         ucObrasRendicion.Descripcion_TrabajoRealizado = solicitud.DescripcionReporte;

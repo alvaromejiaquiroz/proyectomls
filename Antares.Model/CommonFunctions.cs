@@ -18,8 +18,19 @@ namespace Antares.model
             DbConnection db = (DbConnection)sess.Connection;// ActiveRecordMediator.GetSessionFactoryHolder().GetSessionFactory().GetCurrentSession().Connection;
             DbCommand oConn = db.CreateCommand();
             oConn.CommandText = SSQLQuery;
-            DbDataReader dr = null ;
-            return  oConn.ExecuteReader();
+
+            return oConn.ExecuteReader();
+            //try
+            //{
+
+            //    return oConn.ExecuteReader();
+            //}
+            //catch (Exception exc)
+            //{
+                
+            //    Exception miExcep = new Exception("Error al ejecutar  : " + SSQLQuery , exc.InnerException);
+            //    throw  miExcep;
+            //}
             
             
 

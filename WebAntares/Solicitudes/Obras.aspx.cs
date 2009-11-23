@@ -18,6 +18,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
     protected override void OnInitComplete(EventArgs e)
     {
         ucAdjuntos.sol = BiFactory.Sol;
+        ucSolicitudGastos.Sol = BiFactory.Sol;
         base.OnInitComplete(e);
     }
 	
@@ -31,10 +32,12 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             CargaFechas();
         }
     }
+
     public void CargaFechas()
     {
         txtInicio.Text = DateTime.Now.ToString("dd/MM/yyyy");
     }
+    
     public void CargarCombos()
     {
         foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.GetVehiculosActivos())
@@ -169,14 +172,9 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             Sol_Ob.FechaFin = DateTime.Parse(txtEntrega.Text);
             Sol_Ob.RequisitosAprovacion = txtRequisitosAprovacion.Text;
             Sol_Ob.RequisitosIngreso = txtRequisitoIngreso.Text;
-            if (txtPresupuesto.Text == "")
-            {
-                Sol_Ob.Presupuesto = lblGastos.Text.Replace("$", "");
-            }
-            else
-            {
-                Sol_Ob.Presupuesto = txtPresupuesto.Text;
-            }
+
+            Sol_Ob.Presupuesto = "0";
+            
             sol.Save();
             Sol_Ob.Save();
 
@@ -197,7 +195,10 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             ucObras.RequisitosIngreso = Sol_Ob.RequisitosIngreso;
             ucObras.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
             ucObras.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
-            ucObras.Monto = Sol_Ob.Presupuesto;
+
+            decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+            ucObras.Monto = gastos.ToString();
+
             ucObras.Adjuntos = sol.GetAdjuntos();
             ucObras.Visible = true;
             WebAntares.AntaresHelper.NotificaSolicitud(sol.Id_Solicitud);
@@ -276,13 +277,6 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
         return esValida;
     }
 
-    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
-    {
-        lblGastos.Visible = true;
-        lblGastos.Text = "$" + txtPresupuesto.Text;
-        txtPresupuesto.Text = "";
-    }
-
     protected void gvSolicitudPersonas_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         FillSolicitudEmpleados(e.NewPageIndex);
@@ -292,6 +286,24 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
     protected void gvSolicitudVehiculos_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         FillSolicitudVehiculos(e.NewPageIndex);
+
+    }
+
+    protected void cvGastosEnSolicitud_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+
+        decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+        args.IsValid = false;
+        if (gastos == 0)
+        {
+            args.IsValid = false;
+
+            cvGastosEnSolicitud.ErrorMessage = "No se ha cargado ningun Gasto a la Solicitud";
+
+
+        }
+        else { args.IsValid = true; }
+
 
     }
 

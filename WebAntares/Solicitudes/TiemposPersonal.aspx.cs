@@ -49,17 +49,21 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
             fecha = DateTime.Parse(txtDesde.Text);
             
         }
+       
 
         gvTiempos.DataSource = null;
         gvTiempos.DataBind();
-        gvTiempos.DataSource = Personal.GetHorasSolicitudes(cmbPersonal.SelectedValue, fecha.ToString("dd/MM/yyyy"), Semana);
+        gvTiempos.DataSource = Personal.GetHorasSolicitudes(cmbPersonal.SelectedValue, fecha.ToString("yyyy-MM-dd"), Semana);
         //gvTiempos.DataKeyNames = new string[] { "ID" };
         gvTiempos.DataBind();
 
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        FillGrid();
+        if (IsValid)
+        {
+            FillGrid();
+        }
         
     }
     protected void gvTiempos_RowCreated(object sender, GridViewRowEventArgs e)
@@ -69,5 +73,14 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
     protected void gvTiempos_RowDataBound(object sender, GridViewRowEventArgs e)
     {
 
+    }
+    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        args.IsValid = false;
+
+        if (cmbPersonal.SelectedIndex > 0)
+        {
+            args.IsValid = true;
+        }
     }
 }

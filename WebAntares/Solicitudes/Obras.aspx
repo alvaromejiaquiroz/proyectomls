@@ -5,6 +5,7 @@
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
 <%@ Register Src="../Controles/Adjuntos.ascx"   TagName="Adjuntos" TagPrefix="uc4" %>
 <%@ Register src="../Controles/Obras.ascx" tagname="Obras" tagprefix="uc1" %>
+<%@ Register src="../Controles/Solicitud_Gastos.ascx" tagname="Solicitud_Gastos" tagprefix="uc3" %>
 <asp:Content ID="cObras" ContentPlaceHolderID="PageContainer" Runat="Server">
     <asp:Panel ID="pnlObras" runat="server">
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
@@ -78,6 +79,7 @@
                                         <asp:TextBox ID="txtTelefonoContacto" runat="server" Width="254px" CssClass="text_custom"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="rfvTelefonoContacto" runat="server" ErrorMessage="Debe ingresar el teléfono de contacto."
                                             Display="None" ValidationGroup="solicitud" ControlToValidate="txtTelefonoContacto"></asp:RequiredFieldValidator>
+                                        
                                     </td>
                                 </tr>
                             </table>
@@ -162,7 +164,6 @@
                             </table>
                         </ContentTemplate>
                     </cc1:TabPanel>
-                    
                     <cc1:TabPanel ID="tpPersonal" HeaderText="Responsable y Acompañante" runat="server">
                         <ContentTemplate>
                             <asp:UpdatePanel ID="upPersonas" runat="server">
@@ -300,27 +301,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                       Ingresar Gastos Estimados
-                                    </td>
-                                    <td colspan="2" style="height: 20px">
-                                        <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12" CssClass="text_custom"></asp:TextBox>
-                                        <asp:CompareValidator ID="cvPresupuesto" runat="server" ErrorMessage="El monto del presupuesto no es válido."
-                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"
-                                            Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
-                                    </td>
-                                    <td colspan="2" style="height: 20px">
-                                    <asp:ImageButton runat="server" ID="btnAceptarGastos" CommandArgument="Aceptar" CommandName="Aceptar"   ImageUrl="~/images/aprobar.gif"  OnClick="btnAceptarGastos_Click"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-left: 20px">
-                                        Gastos Estimados:
-                                    </td>
-                                    <td colspan="2" style="height: 20px">
-                                       <asp:Label runat="server" ID="lblGastos" Visible="true" ForeColor="Red" Font-Bold="true" ></asp:Label>
-                                    </td>
-                                    <td colspan="2" style="height: 20px">
-                                     
+                                     <uc3:Solicitud_Gastos ID="ucSolicitudGastos" runat="server" />
                                     </td>
                                 </tr>
                             </table>
@@ -340,6 +321,7 @@
                             <div style="width:100%;text-align:center;margin-top:30px">
                                 <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
                                     Text="Confirmar solicitud" ValidationGroup="solicitud" CssClass="button_custom" />
+                                    <asp:CustomValidator ID="cvGastosEnSolicitud" runat="server" ErrorMessage="" Display="None" ValidationGroup="solicitud" OnServerValidate="cvGastosEnSolicitud_ServerValidate"></asp:CustomValidator>
                             </div>
                             <div class="text_custom">
                                 <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">

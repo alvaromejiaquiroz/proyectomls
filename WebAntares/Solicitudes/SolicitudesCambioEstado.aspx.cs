@@ -123,16 +123,6 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                         t.SaveCopyAndFlush();
                     }
 
-
-                    //copio los servicios afectados
-                    SolicitudServiciosAfectados[] ss = SolicitudServiciosAfectados.FindAll(Expression.Eq("IdSolicitud", idSolOrg));
-                    foreach (SolicitudServiciosAfectados s in ss)
-                    {
-                        s.Id = 0;
-                        s.IdSolicitud = reporte.Id_Solicitud;
-                        s.SaveCopyAndFlush();
-                    }
-
                 }
 
                 if (tipo.IdTiposolicitud == 2) ///Mantenimiento Correctivo
@@ -149,7 +139,6 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 if (tipo.IdTiposolicitud == 6) ///Obras e Instalaciones
                 {
 
-                    
                         SolicitudObra Sol_Obra = SolicitudObra.FindOne(Expression.Eq("IdSolicitud",idSolOrg));
                         Sol_Obra.Id = 0;
                         Sol_Obra.IdSolicitud = reporte.Id_Solicitud;

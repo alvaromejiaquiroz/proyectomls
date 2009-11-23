@@ -23,6 +23,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     protected override void OnInitComplete(EventArgs e)
     {
         ucAdjuntos.sol = BiFactory.Sol;
+        ucSolicitudGastos.Sol = BiFactory.Sol;
+        
         base.OnInitComplete(e);
     }
     
@@ -51,6 +53,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                     txtHasta.Enabled = false;
                     lstTareas.Enabled = false;
                     btnAgregarTarea.Enabled = false;
+                    ucSolicitudGastos.Modo = "E";
                     Session["Accion"] = null;
                 }
             }
@@ -82,9 +85,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             txtNroOrdenCliente.Text = sol.NroOrdenCte;
             txtTelefonoContacto.Text = sol.ContactoTel;
             
-            txtPresupuesto.Text = "";
-            lblGastos.Visible = true;
-            lblGastos.Text = "$"+sol_p.Presupuesto;
 
             ucAdjuntos.ListaAdjuntos(sol.Id_Solicitud.ToString());
         }
@@ -316,15 +316,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             Sol_P.FechaFin = st.FechaFin;
             Sol_P.FechaInicio = st.FechaInicio;
             
-            if (txtPresupuesto.Text == "")
-            {
-                Sol_P.Presupuesto = lblGastos.Text.Replace("$","");
-            }
-            else
-            {
-
-                Sol_P.Presupuesto = txtPresupuesto.Text;
-            }
+            
             sol.Save();
             Sol_P.Save();
             
@@ -351,7 +343,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                 ucMantenimientoPreventivo.Calidad = CalidadArchivos.FindAll(Expression.Eq("Id", S.IdCalidadArchivo)); ;
             }
 
-            ucMantenimientoPreventivo.Monto = Sol_P.Presupuesto;
+            decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoPreventivo.Monto = gastos.ToString();
 
             ucMantenimientoPreventivo.Visible = true;
 
@@ -486,7 +479,11 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         switch (e.CommandName)
         {
             case "Descargar":
-                System.IO.FileInfo file = new System.IO.FileInfo(Archivo.RutaArchivo);
+                //System.IO.FileInfo file = new System.IO.FileInfo(Archivo.RutaArchivo);
+
+                System.IO.FileInfo file = new System.IO.FileInfo(Server.MapPath( "~/Calidad/" +  Archivo.NombreArchivo));
+                //System.IO.FileInfo file = new System.IO.FileInfo(Archivo.RutaArchivo);
+
                 if (file.Exists)
                 {
                     Response.Clear();
@@ -502,14 +499,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
     protected void tcMantenimientoPreventivo_ActiveTabChanged(object sender, EventArgs e)
     {
-
-    }
-
-    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
-    {
-        lblGastos.Visible = true;
-        lblGastos.Text = "$" + txtPresupuesto.Text;
-        txtPresupuesto.Text = "";
 
     }
 
@@ -541,6 +530,24 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     protected void gvSolicitudVehiculos_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         FillSolicitudVehiculos(e.NewPageIndex);
+
+    }
+    
+    protected void cvGastosEnSolicitud_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+
+        decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+        args.IsValid = false;
+        if (gastos == 0)
+        {
+            args.IsValid = false;
+
+            cvGastosEnSolicitud.ErrorMessage = "No se ha cargado ningun Gasto estimado a la Solicitud";
+
+
+        }
+        else { args.IsValid = true; }
+
 
     }
 

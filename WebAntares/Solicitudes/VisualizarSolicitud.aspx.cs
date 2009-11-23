@@ -21,6 +21,8 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
             if (!string.IsNullOrEmpty(Request.QueryString["id"]) && int.TryParse(Request.QueryString["id"], out id))
             {
                 Solicitud solicitud = Solicitud.GetById(id);
+                decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(solicitud.Id_Solicitud);
+
                 switch (solicitud.Tipo.IdTiposolicitud)
                 {
                     case (int)EnumTipoSolicitud.MantenimientoPreventivo:
@@ -46,7 +48,9 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucMantenimientoPreventivo.TelefonoContacto = solicitud.ContactoTel;
                         ucMantenimientoPreventivo.MailContacto = solicitud.ContactoMail;
                         ucMantenimientoPreventivo.Adjuntos = solicitud.GetAdjuntos();
-                        ucMantenimientoPreventivo.Monto = solicitudPreventivo.Presupuesto;
+                        ucMantenimientoPreventivo.Monto =  gastos.ToString();
+                        ucMantenimientoPreventivo.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
+
                         SolicitudArchivoCalidad S = SolicitudArchivoCalidad.FindOne(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
                         if (S != null)
                         {
@@ -80,7 +84,8 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucMantenimientoCorrectivo.TelefonoContacto = solicitud.ContactoTel;
                         ucMantenimientoCorrectivo.MailContacto = solicitud.ContactoMail;
                         ucMantenimientoCorrectivo.Adjuntos = solicitud.GetAdjuntos();
-                        ucMantenimientoCorrectivo.Monto = solicitudCorrectivo.Presupuesto;
+                        ucMantenimientoCorrectivo.Monto =  gastos.ToString();
+                        ucMantenimientoCorrectivo.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
                         ucMantenimientoCorrectivo.Visible = true;
                         break;
                     case (int)EnumTipoSolicitud.Obras:
@@ -100,7 +105,8 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucObras.RequisitosIngreso = solicitudObra.RequisitosIngreso;
                         ucObras.Personal = SolicitudRecursosEmpleados.GetReader(solicitudObra.IdSolicitud);
                         ucObras.Vehiculos = SolicitudRecursosVehiculos.GetReader(solicitudObra.IdSolicitud);
-                        ucObras.Monto = solicitudObra.Presupuesto;
+                        ucObras.Monto =  gastos.ToString();
+                        ucObras.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
                         ucObras.Adjuntos = solicitud.GetAdjuntos();
                         ucObras.Visible = true;
                         break;

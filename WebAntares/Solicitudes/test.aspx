@@ -5,6 +5,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" Runat="Server">    
 
+<asp:Label id = "lbl"  runat="server"> </asp:Label>
+
     <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
         <DynamicMenuStyle CssClass="IE8Fix" />
     </asp:Menu>

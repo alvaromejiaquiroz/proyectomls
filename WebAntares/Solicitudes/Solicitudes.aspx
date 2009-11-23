@@ -34,7 +34,8 @@
                 Tipo de Solicitud
             </td>
             <td>
-                <uc1:cboTipoSolicitud ID="cboTipoSolicitud1"  runat="server"  />
+                 <asp:DropDownList ID="cmbTipoSolicitud" runat="server" CssClass="text_custom" Width="250px">
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
@@ -42,8 +43,8 @@
                 Empleado
             </td>
             <td>
-                <uc2:CboGeneric ID="cboPersonal" runat="server" NameId="id_empleados" NameDescript="Empleado"
-                    SourceData="vw_personas" TipoOrigen="Vista" Width="250px" />
+                <asp:DropDownList ID="cmbEmpleados" runat="server" CssClass="text_custom" Width="250px">
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>

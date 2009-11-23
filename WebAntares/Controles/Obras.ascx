@@ -13,6 +13,9 @@
             <asp:Image ID="imgAntares" runat="server" AlternateText="Antares" ToolTip="Antares" ImageUrl="~/images/LogoAntaresThumbnail.png" />
         </td>
     </tr>
+        <tr>
+        <td colspan="3" style="height: 30px"></td>
+    </tr>
     <tr>
         <td style="padding-left: 20px;width:350px">
             Número
@@ -217,6 +220,21 @@
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
+     <tr>
+    <td style="padding-left: 20px;padding-right:20px" colspan="3">
+       <asp:GridView ID="gvGastos" runat="server" AutoGenerateColumns="false" 
+                        Width="100%">
+                        <Columns>
+                            <asp:BoundField DataField="Detalle" HeaderText="Concepto" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="300px"/>
+                            <asp:BoundField DataField="Total" HeaderText="Total" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+                        </Columns>
+                    </asp:GridView>
+                    
+    </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
     <tr>
         <td align="center" colspan="3">
             <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar" 
@@ -229,7 +247,7 @@
 </table>
 <asp:Panel ID="pnlImprimir" runat="server">
     <div style="margin: 20px;text-align: center">
-        Sistema de gestión de tareas - V 1.0 - ANTARES COM S.A
+        <asp:Label ID="VersionSistema" runat="server"></asp:Label>
     </div>
     <div style="margin: 20px;text-align: center">
         <input type="button" class="button_custom" onclick="window.print()" value="Imprimir" />

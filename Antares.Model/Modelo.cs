@@ -3103,12 +3103,42 @@ namespace Antares.model {
         }
     }
     
+    [ActiveRecord("Tipo_Gasto", Schema="dbo")]
+    public partial class TipoGasto : ActiveRecordBase<TipoGasto> {
+        
+        private int _id;
+        
+        private string _descripcion;
+        
+        [PrimaryKey(PrimaryKeyType.Native, "Id", ColumnType="Int32")]
+        public virtual int Id {
+            get {
+                return this._id;
+            }
+            set {
+                this._id = value;
+            }
+        }
+        
+        [Property("Descripcion", ColumnType="String")]
+        public virtual string Descripcion {
+            get {
+                return this._descripcion;
+            }
+            set {
+                this._descripcion = value;
+            }
+        }
+    }
+    
     [ActiveRecord("Solicitud_Gastos", Schema="dbo")]
     public partial class SolicitudGastos : ActiveRecordBase<SolicitudGastos> {
         
         private int _id;
         
         private int _idSolicitud;
+        
+        private int _idTipoGasto;
         
         private System.DateTime _fecha;
         
@@ -3136,7 +3166,17 @@ namespace Antares.model {
             }
         }
         
-        [Property("Fecha", ColumnType="DateTime")]
+        [Property("IdTipoGasto", ColumnType="Int32")]
+        public virtual int IdTipoGasto {
+            get {
+                return this._idTipoGasto;
+            }
+            set {
+                this._idTipoGasto = value;
+            }
+        }
+        
+        [Property("Fecha", ColumnType="Timestamp")]
         public virtual System.DateTime Fecha {
             get {
                 return this._fecha;

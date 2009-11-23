@@ -16,7 +16,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        VersionSistema.Text = WebAntares.AntaresHelper.Get_Config_VersionSistema();
     }
 
     protected void btnFinalizar_Click(object sender, EventArgs e)
@@ -187,7 +187,9 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
         switch (e.CommandName)
         {
             case "Descargar":
-                System.IO.FileInfo file = new System.IO.FileInfo(Archivo.RutaArchivo);
+                //System.IO.FileInfo file = new System.IO.FileInfo(Archivo.RutaArchivo);
+                System.IO.FileInfo file = new System.IO.FileInfo(Server.MapPath("~/Calidad/" + Archivo.NombreArchivo));
+
                 if (file.Exists)
                 {
                     Response.Clear();
@@ -198,6 +200,14 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
                     Response.End();
                 }
                 break;
+        }
+    }
+    public SolicitudGastos[] Gastos
+    {
+        set
+        {
+            gvGastos.DataSource = value;
+            gvGastos.DataBind();
         }
     }
 }

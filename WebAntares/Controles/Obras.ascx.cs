@@ -16,7 +16,7 @@ public partial class Controles_Obras : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        VersionSistema.Text = WebAntares.AntaresHelper.Get_Config_VersionSistema();
     }
 
     protected void btnFinalizar_Click(object sender, EventArgs e)
@@ -151,6 +151,14 @@ public partial class Controles_Obras : System.Web.UI.UserControl
 
                 }
                 break;
+        }
+    }
+    public SolicitudGastos[] Gastos
+    {
+        set
+        {
+            gvGastos.DataSource = value;
+            gvGastos.DataBind();
         }
     }
 }
