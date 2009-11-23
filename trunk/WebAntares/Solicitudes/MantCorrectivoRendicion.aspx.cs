@@ -21,6 +21,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     protected override void OnInitComplete(EventArgs e)
     {
         ucAdjuntos.sol = BiFactory.Sol;
+        ucSolicitudGastos.Sol = BiFactory.Sol;
         base.OnInitComplete(e);
     }
 
@@ -57,7 +58,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             txtFechaReporte.Text = Sol_Cor.FechanotificacionCliente.ToShortDateString();
             ddlHoraReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Hour.ToString();
             ddlMinutosReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Minute.ToString();
-            lblGastos.Text = "$" + Sol_Cor.Presupuesto.ToString();
+           
             Sitios unSitio = Sitios.FindOne(Expression.Eq("IdSitio", Sol_Cor.IdSitio));
             if (unSitio != null)
             {
@@ -306,14 +307,14 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
             if (Corr != null)
             {
-                if (txtPresupuesto.Text == "")
-                {
-                    Corr.Presupuesto = lblGastos.Text.Replace("$", "");
-                }
-                else
-                {
-                    Corr.Presupuesto = txtPresupuesto.Text;
-                }
+                //if (txtPresupuesto.Text == "")
+                //{
+                //    Corr.Presupuesto = lblGastos.Text.Replace("$", "");
+                //}
+                //else
+                //{
+                //    Corr.Presupuesto = txtPresupuesto.Text;
+                //}
 
                 Corr.FechaResolucion = DateTime.Now;
                 Corr.ContactoConformidadCliente = txtContactoConformidad.Text;
@@ -350,7 +351,10 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             ucMantenimientoCorrectivoRendicion.TelefonoContacto = Sol_Original.ContactoTel;
             ucMantenimientoCorrectivoRendicion.MailContacto = Sol_Original.ContactoMail;
             ucMantenimientoCorrectivoRendicion.Adjuntos = Sol_Original.GetAdjuntos();
-            ucMantenimientoCorrectivoRendicion.Monto = Corr.Presupuesto;
+            
+            decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+            ucMantenimientoCorrectivoRendicion.Monto= gastos.ToString();
+
             ucMantenimientoCorrectivoRendicion.Responsable = Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
             ucMantenimientoCorrectivoRendicion.Visible = true;
         }        
@@ -465,13 +469,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     }
 
    
-    protected void btnAceptarGastos_Click(object sender, ImageClickEventArgs e)
-    {
-        lblGastos.Visible = true;
-        lblGastos.Text = "$" + txtPresupuesto.Text;
-        txtPresupuesto.Text = "";
-
-    }
 
     protected void gvSolicitudPersonas_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -510,8 +507,8 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         DataTable table = new DataTable();
         table.Load(reader);
         gvHorasPersonal.DataSource = table;
+        gvHorasPersonal.DataKeyNames = new string[] { "Id" };
         gvHorasPersonal.PageIndex = pageIndex;
-        //gvHorasPersonal.Sort("Fecha", SortDirection.Ascending);
         gvHorasPersonal.DataBind();
 
 
@@ -519,7 +516,9 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
     protected void gvHorasPersonal_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        SolicitudRendicionPersonalHoras R = SolicitudRendicionPersonalHoras.FindFirst(Expression.Eq("Id", int.Parse(gvHorasPersonal.DataKeys[e.RowIndex].Value.ToString())));
+
+        int i = int.Parse(gvHorasPersonal.DataKeys[e.RowIndex].Value.ToString());
+        SolicitudRendicionPersonalHoras R = SolicitudRendicionPersonalHoras.FindFirst(Expression.Eq("Id", i));
         R.Delete();
         FillHorasPersonalGrid(0);
         mpeHorasPersonal.Show();
@@ -606,6 +605,24 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             args.IsValid = false;
 
             cvPersonalIngresoHoras.ErrorMessage = "No se les ha cargado horas a las siguientes personas : " + personas;
+
+
+        }
+        else { args.IsValid = true; }
+
+
+    }
+
+    protected void cvGastosEnSolicitud_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+
+        decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+        args.IsValid = false;
+        if (gastos == 0)
+        {
+            args.IsValid = false;
+
+            cvGastosEnSolicitud.ErrorMessage = "No se ha cargado ningun Gasto a la Solicitud";
 
 
         }

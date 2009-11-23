@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model dslVersion="1.0.0.0" Id="c50b57b5-c363-415d-b45b-ad792b75b5bd" xmlns="http://schemas.microsoft.com/dsltools/ActiveWriter">
+  <additionalImports>AAEAAAD/////AQAAAAAAAAAMAgAAAF1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkRzbCwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTkwNTE0MTM5NmRkYjA3OTkEAQAAAKEBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tBbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydCwgQWx0aW5vcmVuLkFjdGl2ZVdyaXRlci5Ec2wsIFZlcnNpb249MS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj05MDUxNDEzOTZkZGIwNzk5XV0DAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgQAAB9BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydFtdAgAAAAgICQMAAAAAAAAAAAAAAAcDAAAAAAEAAAAAAAAABB1BbHRpbm9yZW4uQWN0aXZlV3JpdGVyLkltcG9ydAIAAAAL</additionalImports>
+  <classes>
+    <modelClass name="Acciones" schema="dbo" table="Acciones">
+      <properties>
+        <modelProperty Id="8cda5bd5-a619-427f-9e52-7efc4a54f597" name="IdAccion" column="IdAccion" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="4923561b-a685-44a0-aa67-7fdc3ce3b54d" name="Objeto" column="Objeto" length="0" />
+        <modelProperty Id="5383c9c7-e5f4-48bb-9e14-8c199935222d" name="Valor" column="Valor" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="AccionPerfil" schema="dbo" table="AccionPerfil">
+      <properties>
+        <modelProperty Id="5513c136-ccb7-45ba-8f4f-9770fc70bed2" name="Id" column="id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="1af8a029-e425-4819-aae1-185efd45a126" name="IdPerfil" column="IdPerfil" columnType="Int32" length="0" />
+        <modelProperty Id="af09b1f6-50cd-4ef2-9611-e3737ce34fae" name="IdAccion" column="IdAccion" columnType="Int32" length="0" />
+        <modelProperty Id="31e59858-df63-4d37-96a4-c847c0dfa6cd" name="FechaActualizacion" column="FechaActualizacion" columnType="Timestamp" length="0" />
+      </properties>
+    </modelClass>
+    <modelClass name="Perfiles" schema="dbo" table="Perfiles">
+      <properties>
+        <modelProperty Id="6cfd9395-72b7-4351-bfef-a20b44f5266f" name="IdPerfil" column="IdPerfil" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="28994b05-0eaf-4f7c-b3bc-23e0b9db144c" name="Detalle" column="Detalle" length="0" notNull="true" />
+      </properties>
+    </modelClass>
+    <modelClass name="Usuarios" schema="dbo" table="Usuarios">
+      <properties>
+        <modelProperty Id="3fe5ef95-9317-48e4-9581-515f6b591db0" name="IdUsuario" column="IdUsuario" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="b797a928-2736-42c5-be08-7a24bf3c7429" name="Nombre" column="Nombre" length="0" />
+        <modelProperty Id="3c0e6781-c0b4-4f61-aa3b-a394b6793904" name="LoginName" column="loginName" length="0" />
+        <modelProperty Id="512cee5a-0b4d-40bf-9594-5fcfaea58c1f" name="Password" column="Password" length="0" />
+        <modelProperty Id="5f73b68c-aaa7-4287-b929-20bc94e6e0dd" name="IdPerfil" column="IdPerfil" columnType="Int32" length="0" />
+        <modelProperty Id="d194754e-3340-41fd-a7b2-79b1411ac343" name="Perfiles" column="Perfiles" columnType="Int32" length="0" />
+        <modelProperty Id="c7abacd7-f52f-4d7f-bf62-6439c9cf8519" name="Foto" column="Foto" length="0" />
+      </properties>
+    </modelClass>
+  </classes>
+</model>

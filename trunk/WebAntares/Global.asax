@@ -6,6 +6,8 @@
     {
         // Código que se ejecuta al iniciarse la aplicación
         WebAntares.BiFactory.initActiveRecord();
+        
+       // System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Saturday;
        
     }
     
@@ -15,12 +17,9 @@
 
     }
         
-    void Application_Error(object sender, EventArgs e) 
+    void Application_Error_matias(object sender, EventArgs e) 
     { 
-        // Code that runs when an unhandled error occurs
-        // At this point we have information about the error
-
-        //Response.Redirect("./Solicitudes/Mensaje.aspx");
+        
         
         HttpContext ctx = HttpContext.Current;
         if (ctx != null)
@@ -31,6 +30,82 @@
             string httpPathRoot = ctx.Request.ApplicationPath;
 
             
+
+            System.Web.UI.WebControls.Table myTablaBtn = new Table();
+            System.Web.UI.WebControls.Table myTabla1 = new Table();
+            System.Web.UI.WebControls.Table myTabla = new Table();
+            System.Web.UI.WebControls.Table myTablaDeta = new Table();
+
+            
+            myTabla1.ID = "MsgError";
+            myTabla1.Style.Add("text-align", "center");
+            myTabla1.Style.Add("font-family", "verdana");
+            myTabla1.Style.Add("font-size", "12px");
+            myTabla1.Style.Add("color", "#666666");
+            myTabla1.Style.Add("width", "100%");
+            myTabla1.Style.Add("height", "97%");
+            myTabla1.Style.Add("background-position", "10% 45%");
+            myTabla1.Style.Add("display", "");
+
+            myTabla1.Rows.Add(new TableRow());
+            myTabla1.Rows[0].Cells.Add(new TableCell());
+            myTabla1.Rows[0].Style.Add("font-weight", "bold");
+            myTabla1.Rows[0].Cells[0].Text = "Disculpe las molestias, existe un problema en la pagina.";
+
+            myTabla1.Rows.Add(new TableRow());
+            myTabla1.Rows[1].Cells.Add(new TableCell());
+            myTabla1.Rows[1].Style.Add("text-align", "center");
+            myTabla1.Rows[1].Cells[0].Text = exception.Message;
+            if (e1 != null)
+            {
+                myTabla1.Rows.Add(new TableRow());
+                myTabla1.Rows[1].Cells.Add(new TableCell());
+                myTabla1.Rows[1].Style.Add("text-align", "center");
+                myTabla1.Rows[1].Cells[0].Text = e1.Message.ToString();
+            }
+
+            System.IO.StringWriter stringWrite1 = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter htmlWrite1 = new System.Web.UI.HtmlTextWriter(stringWrite1);
+            myTabla1.RenderControl(htmlWrite1);
+
+            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter htmlWrite = new System.Web.UI.HtmlTextWriter(stringWrite);
+            myTabla.RenderControl(htmlWrite);
+
+            ctx.Response.Write( stringWrite1.ToString() + stringWrite.ToString());
+
+
+           ////  --------------------------------------------------
+            ////To let the page finish running we clear the error
+            ////--------------------------------------------------
+            ctx.Server.ClearError();
+  
+            }
+ 
+    }
+
+
+    void Application_Error_X(object sender, EventArgs e)
+    {
+        Exception ex = Server.GetLastError().GetBaseException();
+        // You can perform logging here // Store it in the session
+        string msg  = ex.Message;
+        Server.Transfer("~/Errores/MostrarError.aspx?msg="+ Server.UrlEncode(msg));
+
+
+    }
+    
+    void Application_Error(object sender, EventArgs e)
+    {
+        HttpContext ctx = HttpContext.Current;
+        if (ctx != null)
+        {
+            Exception exception = ctx.Server.GetLastError();
+            Exception e1 = exception.InnerException;
+            int i = 0;
+            string httpPathRoot = ctx.Request.ApplicationPath;
+
+
 
             System.Web.UI.WebControls.Table myTablaBtn = new Table();
             System.Web.UI.WebControls.Table myTabla1 = new Table();
@@ -113,12 +188,12 @@
             i = 0;
             if (ctx.User != null)
             {
-            myTablaDeta.Rows.Add(new TableRow());
-            myTablaDeta.Rows[i].Style.Add("background-color", "#e0e0e0");
-            myTablaDeta.Rows[i].Cells.Add(new TableCell());
-            myTablaDeta.Rows[i].Cells[0].Text = "Usuario";
-            myTablaDeta.Rows[i].Cells.Add(new TableCell());
-            myTablaDeta.Rows[i].Cells[1].Text = ctx.User.Identity.Name.ToString();
+                myTablaDeta.Rows.Add(new TableRow());
+                myTablaDeta.Rows[i].Style.Add("background-color", "#e0e0e0");
+                myTablaDeta.Rows[i].Cells.Add(new TableCell());
+                myTablaDeta.Rows[i].Cells[0].Text = "Usuario";
+                myTablaDeta.Rows[i].Cells.Add(new TableCell());
+                myTablaDeta.Rows[i].Cells[1].Text = ctx.User.Identity.Name.ToString();
 
             }
             else
@@ -240,10 +315,11 @@
             ctx.Response.Write(js + stringWriteBtn.ToString() + stringWrite1.ToString() + stringWrite.ToString());
 
 
-           ////  --------------------------------------------------
+            ////  --------------------------------------------------
             ////To let the page finish running we clear the error
             ////--------------------------------------------------
             ctx.Server.ClearError();
+
         }
     }
 
@@ -251,6 +327,7 @@
     {
         // Código que se ejecuta cuando se inicia una nueva sesión
 		FormsAuthentication.SignOut();
+        
     }
 
     void Session_End(object sender, EventArgs e) 

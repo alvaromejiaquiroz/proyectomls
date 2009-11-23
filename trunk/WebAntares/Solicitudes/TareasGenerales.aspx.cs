@@ -11,6 +11,8 @@ using System.Web.UI.WebControls.WebParts;
 using Antares.model;
 using WebAntares;
 using NHibernate.Expression;
+using System.Data.Common;
+
 
 public partial class Solicitudes_TareasGenerales : System.Web.UI.Page
 {
@@ -42,7 +44,11 @@ public partial class Solicitudes_TareasGenerales : System.Web.UI.Page
         }
         else
         {
+            
+            
             txtInicio.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            
+
         }
     }
 

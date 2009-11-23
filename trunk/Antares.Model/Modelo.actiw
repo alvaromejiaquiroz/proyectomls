@@ -373,13 +373,20 @@
         <modelProperty Id="d97699af-8fc9-40b4-899d-0bcc7511f064" name="IdEmpleado" column="Id_Empleado" columnType="Int32" length="0" notNull="true" />
       </properties>
     </modelClass>
+    <modelClass name="TipoGasto" schema="dbo" table="Tipo_Gasto">
+      <properties>
+        <modelProperty Id="6277e1a7-c5f8-4558-8f11-fbd93a76b5b8" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="942b890c-352f-430a-8f8e-16f82a4f09f3" name="Descripcion" column="Descripcion" length="0" />
+      </properties>
+    </modelClass>
     <modelClass name="SolicitudGastos" schema="dbo" table="Solicitud_Gastos">
       <properties>
-        <modelProperty Id="1eac0a1a-6887-47da-bc12-e730a7ffd8fc" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
-        <modelProperty Id="d393d5da-7701-4b26-8e32-dc4d15b6492c" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
-        <modelProperty Id="ed06d2e4-ae8c-44a7-b82f-cf9dbf885e7a" name="Fecha" column="Fecha" columnType="DateTime" length="0" />
-        <modelProperty Id="d968c679-075e-441f-b710-23ee59c6613d" name="Detalle" column="Detalle" length="0" />
-        <modelProperty Id="ea3aaaa3-bc6a-4894-b26b-30612d5a3e05" name="Total" column="Total" columnType="Decimal" length="0" />
+        <modelProperty Id="97a84e07-377e-4d2b-938b-a4e24215ae60" name="Id" column="Id" columnType="Int32" length="0" notNull="true" keyType="PrimaryKey" />
+        <modelProperty Id="0dbe9a82-a379-4153-a974-62f8c5d60c06" name="IdSolicitud" column="IdSolicitud" columnType="Int32" length="0" />
+        <modelProperty Id="ff4a6b90-128d-4190-bbb4-0a87747d7c79" name="IdTipoGasto" column="IdTipoGasto" columnType="Int32" length="0" />
+        <modelProperty Id="c66facc5-1745-4204-b4ea-8e08ef0a5b1f" name="Fecha" column="Fecha" columnType="Timestamp" length="0" />
+        <modelProperty Id="0dba1bee-a2e3-4f67-bbdc-84dcdb7ceed0" name="Detalle" column="Detalle" length="0" />
+        <modelProperty Id="fe3133f3-6bb3-43ac-926f-8b13684dabb7" name="Total" column="Total" columnType="Decimal" length="0" />
       </properties>
     </modelClass>
   </classes>

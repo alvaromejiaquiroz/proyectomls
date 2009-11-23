@@ -124,12 +124,15 @@
     </Compile>
     <Compile Include="SolicitudCapacitacion.cs" />
     <Compile Include="SolicitudFrancosCompensatorios.cs" />
+    <Compile Include="SolicitudGastos.cs" />
     <Compile Include="SolicitudLicencias.cs" />
     <Compile Include="SolicitudRecursosEmpleados.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SolicitudRecursosVehiculos.cs" />
-    <Compile Include="SolicitudRendicionPersonaHoras.cs" />
+    <Compile Include="SolicitudRendicionPersonaHoras.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SolicitudRendicionVehiculosHoras.cs" />
     <Compile Include="SolicitudTarea.cs">
       <SubType>Code</SubType>

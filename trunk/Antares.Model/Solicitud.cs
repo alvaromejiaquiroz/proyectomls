@@ -559,6 +559,29 @@ where se.id_empleado = @idPersona
 
         }
 
+        public static decimal Valida_Gastos_Ingresados_Solicitud(int idSol)
+        {
+            string sSql = @"exec dbo.Proc_ValidaHoras_Gastos_Cargados_Solicitud @idSolicitud = " + idSol.ToString();
+
+            DbDataReader dr = CommonFunctions.ExecuteDbReader(sSql);
+
+            decimal gastos = decimal.Zero;
+
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (dr["Total"] != System.DBNull.Value)
+                    {
+                        decimal.TryParse(dr["Total"].ToString(),out gastos);
+
+                    }
+                }
+            }
+            return gastos;
+
+        }
+
     }
     /// <summary>
     /// Devuelve un rango de fecha inicio fin

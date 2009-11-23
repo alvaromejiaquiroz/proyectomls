@@ -69,14 +69,14 @@ namespace WebAntares
 
         public static void NotificaSolicitud(int idSol)
         {
-            string subject = string.Empty;
-            string mensaje;
+            string subject = AntaresHelper.Get_Config_Ambiente();
+            string mensaje = "Creacion Solicitud";
             if (idSol > 0)
             {
                 BiFactory.Sol = Solicitud.GetById(idSol);
 
                 
-                 mensaje = "Se creo la Solicitud Nro." + BiFactory.Sol.Id_Solicitud.ToString() +
+                 mensaje = BiFactory.User.Nombre.ToString() + "Se creo la Solicitud Nro." + BiFactory.Sol.Id_Solicitud.ToString() +
                     "- Tipo " + BiFactory.Sol.Tipo.Descripcion + "- Responsable:" + Solicitud.GetResponsable(BiFactory.Sol.Id_Solicitud.ToString());
 
                 WebAntares.AntaresHelper.EnviaMail(subject, mensaje);
@@ -85,6 +85,7 @@ namespace WebAntares
             {
                 WebAntares.AntaresHelper.EnviaMail(subject, "Este es un Mensaje de prueba");
             }
+            Loguea_Evento(mensaje);
 
         }
 
@@ -222,6 +223,27 @@ namespace WebAntares
         {
 
             string valor = ConfigurationSettings.AppSettings["MailCoordinacionTecnica"];
+            return valor;
+        }
+
+        public static string Get_Config_VersionSistema()
+        {
+
+            string valor = ConfigurationSettings.AppSettings["VersionSistema"];
+            return valor;
+        }
+
+        public static string Get_Config_NombreSistema()
+        {
+
+            string valor = ConfigurationSettings.AppSettings["NombreSistema"];
+            return valor;
+        }
+
+        public static string Get_Config_Ambiente()
+        {
+
+            string valor = ConfigurationSettings.AppSettings["AmbienteSistema"];
             return valor;
         }
     }

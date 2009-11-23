@@ -19,11 +19,17 @@
             <td>Fecha : </td>
             <td>  
             <asp:TextBox ID="txtDesde" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="vFecha" runat="server" ValidationGroup="tiempos"
+            ControlToValidate="txtDesde" Display="None" ErrorMessage="Debe Seleccionar una Fecha"
+            ></asp:RequiredFieldValidator>
             <asp:ImageButton ID="imgDesde" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
             <cc1:CalendarExtender ID="ceDesde" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgDesde" CssClass="cal_Theme1" 
                 TargetControlID="txtDesde">
             </cc1:CalendarExtender>
-                                               
+                <asp:CustomValidator ID="CustomValidator1" runat="server"  ControlToValidate="cmbPersonal"
+                    ValidationGroup="tiempos"
+                    ErrorMessage="Seleccionar un empleados" 
+                    onservervalidate="CustomValidator1_ServerValidate"  Visible="false" ></asp:CustomValidator>                     
             </td>
             <td>    </td>
                          
@@ -42,23 +48,28 @@
             </td>
             <td>
                 <asp:Button ID="Button1" runat="server" onclick="Button1_Click"  CssClass="button_custom"
-                    Text="Aceptar" />
+                    Text="Aceptar"  ValidationGroup="tiempos" CausesValidation="true"/>
+                    <asp:ValidationSummary ID="vSumary" runat="server" 
+                    DisplayMode="BulletList" 
+                    ValidationGroup="tiempos" />
             </td>
             <td>
             </td>
         </tr>
-        <tr>
             
     </table>
+
+<div style="padding-left:20px;padding-top:20px;padding-bottom:20px">
+          <asp:GridView ID="gvTiempos" runat="server" 
+          AutoGenerateColumns="true"                
+          EmptyDataText="No ser registraron horas en segun los parametros ingresados"
+          Visible="true">
+            </asp:GridView>
+</div>
         
      </ContentTemplate>
      </asp:UpdatePanel>
      
-          <asp:GridView ID="gvTiempos" runat="server" AutoGenerateColumns="true" 
-                    onrowcreated="gvTiempos_RowCreated" onrowdatabound="gvTiempos_RowDataBound"  Visible="true">
-                    <Columns>
-                    </Columns>
-            </asp:GridView>
     
      
 </asp:Content>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activeRecordMapping dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Seguridad">
+  <modelMoniker Id="c50b57b5-c363-415d-b45b-ad792b75b5bd" />
+  <nestedChildShapes>
+    <classShape Id="6b45efcf-4b40-404a-9a3c-84dc39f2caba" absoluteBounds="2.5, 0.5, 1.5, 1.2105004882812502">
+      <modelClassMoniker name="/c50b57b5-c363-415d-b45b-ad792b75b5bd/Acciones" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1c4ede00-e24b-47cc-92de-965da21fedba" absoluteBounds="2.515, 0.91, 1.4700000000000002, 0.70050048828125011" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="15daaccb-75b2-46ce-876f-46a9562d99f5" absoluteBounds="0.875, 0.5, 1.5, 1.3748478190104168">
+      <modelClassMoniker name="/c50b57b5-c363-415d-b45b-ad792b75b5bd/AccionPerfil" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2b453889-db9d-4882-b935-194b1fc44b2e" absoluteBounds="0.89, 0.91000000000000014, 1.4700000000000002, 0.86484781901041663" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="73e6382c-7502-45a8-8e11-e6559ecc557b" absoluteBounds="0.5, 2.25, 1.5, 1.0461531575520833">
+      <modelClassMoniker name="/c50b57b5-c363-415d-b45b-ad792b75b5bd/Perfiles" />
+      <nestedChildShapes>
+        <elementListCompartment Id="09226e35-fd0c-4b80-8b0b-3e692de49139" absoluteBounds="0.515, 2.66, 1.4700000000000002, 0.53615315755208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="70ebc0b6-e644-49fa-ba0d-2a06d9555178" absoluteBounds="2.5, 2.25, 1.5, 1.8678898111979159">
+      <modelClassMoniker name="/c50b57b5-c363-415d-b45b-ad792b75b5bd/Usuarios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f9a6808b-66d4-4a2c-8764-bf544adf80d1" absoluteBounds="2.515, 2.66, 1.4700000000000002, 1.3578898111979165" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</activeRecordMapping>

@@ -19,7 +19,8 @@ public partial class site : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string appPath; 
-        if (Session.IsNewSession || BiFactory.User ==null)
+        
+        if (Session.IsNewSession || BiFactory.User == null)
         {
             if (Request.RawUrl.ToLower().IndexOf("login.aspx") == -1)
             {
@@ -61,6 +62,8 @@ public partial class site : System.Web.UI.MasterPage
         {
             LoadNodos();
         }
+
+        CargaInfoSistema();
     }
         
     private void LoadNodos()
@@ -107,5 +110,11 @@ public partial class site : System.Web.UI.MasterPage
 
         Session.Abandon();
         FormsAuthentication.SignOut();
+    }
+
+    private void CargaInfoSistema()
+    {
+        VersionSistema.Text = AntaresHelper.Get_Config_VersionSistema();
+        NombreSistema.Text = AntaresHelper.Get_Config_NombreSistema();
     }
 }

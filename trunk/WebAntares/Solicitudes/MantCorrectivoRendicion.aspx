@@ -4,6 +4,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc2" %>
 <%@ Register Src="../Controles/Adjuntos.ascx" TagName="Adjuntos" TagPrefix="uc4" %>
+<%@ Register src="../Controles/Solicitud_Gastos.ascx" tagname="Solicitud_Gastos" tagprefix="uc3" %>
 
 <%@ Register src="../Controles/MantenimientoCorrectivoRendicion.ascx" tagname="MantenimientoCorrectivoRendicion" tagprefix="uc1" %>
 
@@ -404,10 +405,10 @@
                                                             <asp:ListItem Text="9,0" Value="9"></asp:ListItem>
                                                             <asp:ListItem Text="9,5" Value="9,5"></asp:ListItem>
                                                             <asp:ListItem Text="10,0" Value="10"></asp:ListItem>
-                                                            <asp:ListItem Text="11,0" Value="10"></asp:ListItem>
-                                                            <asp:ListItem Text="12,0" Value="10"></asp:ListItem>
-                                                            <asp:ListItem Text="13,0" Value="10"></asp:ListItem>
-                                                            <asp:ListItem Text="14,0" Value="10"></asp:ListItem>
+                                                            <asp:ListItem Text="11,0" Value="11"></asp:ListItem>
+                                                            <asp:ListItem Text="12,0" Value="12"></asp:ListItem>
+                                                            <asp:ListItem Text="13,0" Value="13"></asp:ListItem>
+                                                            <asp:ListItem Text="14,0" Value="14"></asp:ListItem>
                                                         </asp:DropDownList>
                                                         <asp:CustomValidator ID="cvCheckHorasRestantes" runat="server" ErrorMessage="" ControlToValidate="ddlHorasPersonalHoras"
                                                         Display="None" ValidationGroup="horasPersonal" OnServerValidate="cvCheckHorasRestantes_ServerValidate"></asp:CustomValidator>
@@ -747,9 +748,9 @@
                     </cc1:TabPanel>
 
                     <cc1:TabPanel ID="tpPresupuesto" HeaderText="Presupuesto" runat="server">
-                        <ContentTemplate>
+                    <ContentTemplate>
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                        <ContentTemplate>
+                            <ContentTemplate>
                             <table class="text_custom" width="400px">
                                 <tr>
                                     <td colspan="2" style="height: 20px">
@@ -757,33 +758,13 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 20px">
-                                       Ingresar Gastos Estimados
-                                    </td>
-                                    <td colspan="2" style="height: 20px">
-                                        <asp:TextBox ID="txtPresupuesto" runat="server" ValidationGroup="solicitud" MaxLength="12" CssClass="text_custom"></asp:TextBox>
-                                        <asp:CompareValidator ID="cvPresupuesto" runat="server" ErrorMessage="El monto del presupuesto no es válido."
-                                            Display="None" ValidationGroup="solicitud" ControlToValidate="txtPresupuesto"
-                                            Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
-                                    </td>
-                                    <td colspan="2" style="height: 20px">
-                                    
-                                    <asp:ImageButton runat="server" ID="btnAceptarGastos" CommandArgument="Aceptar" CommandName="Aceptar"   ImageUrl="~/images/aprobar.gif"  OnClick="btnAceptarGastos_Click"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-left: 20px">
-                                        Gastos Estimados:
-                                    </td>
-                                    <td colspan="2" style="height: 20px">
-                                       <asp:Label runat="server" ID="lblGastos" Visible="true" ForeColor="Red" Font-Bold="true" ></asp:Label>
-                                    </td>
-                                    <td colspan="2" style="height: 20px">
-                                     
+                                     <uc3:Solicitud_Gastos ID="ucSolicitudGastos" runat="server" />
                                     </td>
                                 </tr>
                             </table>
+                               
                             </ContentTemplate>
-                            </asp:UpdatePanel>
+                        </asp:UpdatePanel>
                         </ContentTemplate>
                     </cc1:TabPanel>
 
@@ -794,6 +775,7 @@
                                     Text="Confirmar Reporte" ValidationGroup="solicitud" CssClass="button_custom" />
                                 <asp:CustomValidator ID="cvPersonalIngresoHoras" runat="server" ErrorMessage="" 
                                     Display="None" ValidationGroup="solicitud" OnServerValidate="cvPersonalIngresoHoras_ServerValidate"></asp:CustomValidator>
+                                      <asp:CustomValidator ID="cvGastosEnSolicitud" runat="server" ErrorMessage="" Display="None" ValidationGroup="solicitud" OnServerValidate="cvGastosEnSolicitud_ServerValidate"></asp:CustomValidator>
                             </div>
                             <div class="text_custom">
                                 <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">
