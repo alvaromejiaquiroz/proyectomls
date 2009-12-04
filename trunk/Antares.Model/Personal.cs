@@ -83,7 +83,155 @@ namespace Antares.model
         public static DbDataReader GetHorasSolicitudes(string IdEmpleado,string Fecha,int Semana)
         {
 
-            string sSql = @"exec dbo.Proc_GetTiempos_Personal  @Id_Empleado =" + IdEmpleado + " , @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
+            string sSql = @"exec dbo.Proc_GetTiempos_x_Persona  @Id_Empleado =" + IdEmpleado + " , @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        #region Busqueda Todo el PErsonal
+        public static DbDataReader GetTiempos_Personal_MPREVENTIVO(string Fecha, int Semana)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_MPREVENTIVO  @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_MCORRECTIVO(string Fecha, int Semana)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_MCORRECTIVO @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_OBRAS(string Fecha, int Semana)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_OBRAS @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_LICENCIAS(string Fecha, int Semana)   
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_LICENCIAS @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+        
+        public static DbDataReader GetTiempos_Personal_FRANCOS(string Fecha, int Semana)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_FRANCOS @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+        
+        public static DbDataReader GetTiempos_Personal_TAREASGENERALES(string Fecha, int Semana)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_TAREASGENERALES @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_CAPACITACION(string Fecha, int Semana)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_CAPACITACION @Fecha ='" + Fecha + "',@Semana = " + Semana.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+        #endregion
+
+        #region Busqueda X Empleado
+
+        public static DbDataReader GetTiempos_Personal_MPREVENTIVO(string Fecha, int Semana,int IdEmpleado)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_MPREVENTIVO  @Fecha ='" + Fecha +
+                  "',@Semana = " + Semana.ToString() +
+                ",@IdEmpleado = " + IdEmpleado.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_MCORRECTIVO(string Fecha, int Semana,int IdEmpleado)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_MCORRECTIVO @Fecha ='" + Fecha +
+                  "',@Semana = " + Semana.ToString() +
+                ",@IdEmpleado = " + IdEmpleado.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_OBRAS(string Fecha, int Semana,int IdEmpleado)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_OBRAS @Fecha ='" + Fecha +
+                  "',@Semana = " + Semana.ToString() +
+                ",@IdEmpleado = " + IdEmpleado.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_LICENCIAS(string Fecha, int Semana,int IdEmpleado)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_LICENCIAS @Fecha ='" + Fecha + 
+                "',@Semana = " + Semana.ToString() + 
+                ",@IdEmpleado = " + IdEmpleado.ToString() ;
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_FRANCOS(string Fecha, int Semana,int IdEmpleado)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_FRANCOS @Fecha ='" + Fecha +
+                 "',@Semana = " + Semana.ToString() +
+                ",@IdEmpleado = " + IdEmpleado.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_TAREASGENERALES(string Fecha, int Semana,int IdEmpleado)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_TAREASGENERALES @Fecha ='" + Fecha +
+                  "',@Semana = " + Semana.ToString() +
+                ",@IdEmpleado = " + IdEmpleado.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_CAPACITACION(string Fecha, int Semana,int IdEmpleado)
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_CAPACITACION @Fecha ='" + Fecha +
+                  "',@Semana = " + Semana.ToString() +
+                ",@IdEmpleado = " + IdEmpleado.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+#endregion
+
+        public static DbDataReader GetTiempos_Personal_X_TipoSolicitud()
+        {
+
+            string sSql = @"exec dbo.Proc_GetTiempos_Personal_X_TipoSolicitud";
+            return CommonFunctions.ExecuteDbReader(sSql);
+
+        }
+
+        public static DbDataReader GetTiempos_Personal_X_TipoSolicitud_MES()
+        {
+
+            string sSql = @"exec dbo.[Proc_GetTiempos_Personal_X_TipoSolicitud_Mes_Actual]";
             return CommonFunctions.ExecuteDbReader(sSql);
 
         }
@@ -127,16 +275,16 @@ namespace Antares.model
 
         }
 
-        public static decimal GetHorasCargadas_Semana_Pasada(int IdEmpleado)
+        public static decimal GetHorasCargadas_Semana_Pasada(int IdEmpleado,DateTime fecha)
         {
 
             string sSql = @"exec dbo.Proc_Get_Horas_Trabajadas_SemanaPasada_Empleado @Id_Empleado=" +
-                    IdEmpleado.ToString();
+                     IdEmpleado.ToString() + ", @Fecha = '" + fecha.ToString("yyyy-MM-dd") + "'";
               
 
             DbDataReader dr = CommonFunctions.ExecuteDbReader(sSql);
 
-            decimal HorasCargadas = decimal.MinValue;
+            decimal HorasCargadas = 0;
             while (dr.Read())
             {
                 if (dr.HasRows)
@@ -152,16 +300,16 @@ namespace Antares.model
 
         }
        
-        public static decimal GetHorasCargadas_Semana(int IdEmpleado)
+        public static decimal GetHorasCargadas_Semana(int IdEmpleado,DateTime fecha)
         {
 
             string sSql = @"exec dbo.Proc_Get_Horas_Trabajadas_Semana_Empleado @Id_Empleado=" +
-                    IdEmpleado.ToString();
+                    IdEmpleado.ToString() + ", @Fecha = '" + fecha.ToString("yyyy-MM-dd")+ "'";
 
 
             DbDataReader dr = CommonFunctions.ExecuteDbReader(sSql);
 
-            decimal HorasCargadas = decimal.MinValue;
+            decimal HorasCargadas = 0;
             while (dr.Read())
             {
                 if (dr.HasRows)

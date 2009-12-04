@@ -31,5 +31,13 @@ namespace Antares.model
             oConn.CommandText = sSQL;
             return oConn.ExecuteReader();
         }
+
+        public static DbDataReader GetLicenciasEmpleado(string IdEmpleado)
+        {
+            string sSql = @"exec dbo.Proc_Get_Licencias_Empleado @IdEmpleado = " + IdEmpleado.ToString();
+            return CommonFunctions.ExecuteDbReader(sSql);
+        }
+
+        
     }
 }
