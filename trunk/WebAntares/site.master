@@ -21,6 +21,12 @@
                 maxDate: (input.id == desde ? $("#" + hasta).datepicker("getDate") : null)
             };
         } 
+        
+        function calendarShown(sender, args)
+            {
+                sender._popupBehavior._element.style.zIndex = 10005;
+            }
+
        
     </script>
 
@@ -63,7 +69,7 @@
             </td>
         </tr>
         </table>
-        <table border="0" cellspacing="0" cellpadding="0" width="1000px">
+    <table border="0" cellspacing="0" cellpadding="0" width="1000px">
         <tr>
             <td >
                 <asp:Menu ID="ucMenu" runat="server" Orientation="Horizontal" CssClass="text_menu" Width="100%" Height="25px"  SkinID="MenuSkin" >
@@ -84,12 +90,10 @@
         EnableScriptGlobalization="True" 
         EnableScriptLocalization="True">
         </asp:ScriptManager>
-    <table border="0" cellspacing="0" cellpadding="0" id="content-container" >
-        <tr>
-            <td id="content" >
-                <table width="100%">
+    <table border="1" cellspacing="0" cellpadding="0" id="content-container" >
+        
                     <tr>
-                        <td  colspan="50px" align="left" >
+                        <td  colspan="50px" align="left" style="height:200px;padding-bottom:20px ;padding-left:20px;padding-top:20px" >
                             <asp:ContentPlaceHolder ID="PageContainer" runat="server" >
                            </asp:ContentPlaceHolder>
                            
@@ -107,9 +111,7 @@
                         </td>
                     </tr>
                 
-            </table>
-            </td>
-        </tr>
+            
     </table>
     <!-- 
 	

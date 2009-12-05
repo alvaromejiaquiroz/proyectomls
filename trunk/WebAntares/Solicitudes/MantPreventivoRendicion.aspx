@@ -225,6 +225,7 @@
                                                 </td>
                                             </tr>
                                         </table>
+                                                           
                                         <asp:Panel ID="pnlHorasPersonal" runat="server" Style="display: none" CssClass="modalPopup">
                                             <table width="700px" class="text_custom" style="border-style: solid; border-color: #000000; border-width: 1px">
                                                 <tr class="header_custom">
@@ -255,7 +256,7 @@
                                                             CssClass="text_custom"></asp:TextBox>
                                                         <asp:ImageButton ID="imgHorasPersonalDia" runat="server" CausesValidation="false"
                                                             ImageUrl="~/Images/calendario.gif" />
-                                                        <cc1:CalendarExtender ID="ceHorasPersonalDia" runat="server" Format="dd/MM/yyyy" CssClass="cal_Theme1" 
+                                                        <cc1:CalendarExtender ID="ceHorasPersonalDia" runat="server" Format="dd/MM/yyyy" CssClass="cal_Theme1"  BehaviorID="XceHorasPersonalDia_1"
                                                             PopupButtonID="imgHorasPersonalDia" TargetControlID="txtHorasPersonalDia">
                                                         </cc1:CalendarExtender>
                                                         <asp:RequiredFieldValidator ID="rfvHorasPersonalDia" runat="server" ErrorMessage="Debe ingresar el día."
@@ -317,9 +318,14 @@
                                                             Text="Guardar" ValidationGroup="horasPersonal" CssClass="button_custom" />
                                                         <asp:Button ID="btnHorasPersonalCerrar" runat="server" Text="Cerrar" CausesValidation="false"
                                                             CssClass="button_custom" />
-                                                        <asp:CompareValidator ID="cvHorasPersonal" runat="server" ErrorMessage="La fecha debe ser mayor o igual a la fecha de inicio de la solicitud."
-                                                            ControlToValidate="txtHorasPersonalDia" Display="None" Operator="GreaterThanEqual"
-                                                            Type="Date" ValidationGroup="horasPersonal" ValueToCompare="01/01/2000"></asp:CompareValidator>
+                                                    <asp:RangeValidator ID="rngHorasPersonalValidator"  runat="server" 
+                                                    Type="Date"
+                                                    ControlToValidate="txtHorasPersonalDia"
+                                                    minimumvalue="01/01/2000" maximumvalue="31/12/2099"
+                                                     ErrorMessage="Solo se pueden cargar Horas dentro de las Fechas en las que la solicitud fue creada"
+                                                     Display="None" ValidationGroup ="horasPersonal"> 
+                                                     </asp:RangeValidator>
+                                                          
                                                         
                                                     </td>
                                                 </tr>
@@ -355,6 +361,8 @@
                                             CancelControlID="btnHorasPersonalCerrar" PopupControlID="pnlHorasPersonal"
                                             TargetControlID="btnHorasPersonalPopUp">
                                         </cc1:ModalPopupExtender>
+                                        
+                                        
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             </ContentTemplate>
@@ -416,6 +424,12 @@
                                                 </td>
                                             </tr>
                                         </table>
+                                        
+                                            </ContentTemplate>
+                                </asp:UpdatePanel>
+                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                    <ContentTemplate>
+                               
                                         <asp:Panel ID="pnlHorasVehiculos" runat="server" Style="display: none" CssClass="modalPopup">
                                             <table width="700px" class="text_custom" style="border-style: solid; border-color: #000000; border-width: 1px">
                                                 <tr class="header_custom">
@@ -446,7 +460,7 @@
                                                             CssClass="text_custom"></asp:TextBox>
                                                         <asp:ImageButton ID="imgHorasVehiculosDia" runat="server" CausesValidation="false"
                                                             ImageUrl="~/Images/calendario.gif" />
-                                                        <cc1:CalendarExtender ID="ceHorasVehiculosDia" runat="server" Format="dd/MM/yyyy" CssClass="cal_Theme1" 
+                                                        <cc1:CalendarExtender ID="ceHorasVehiculosDia" runat="server" Format="dd/MM/yyyy" CssClass="cal_Theme1"  
                                                             PopupButtonID="imgHorasVehiculosDia" TargetControlID="txtHorasVehiculosDia">
                                                         </cc1:CalendarExtender>
                                                         <asp:RequiredFieldValidator ID="rfvHorasVehiculosDia" runat="server" ErrorMessage="Debe ingresar el día."

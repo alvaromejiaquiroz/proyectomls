@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using Antares.model;
+using WebAntares;
 using NHibernate.Expression;
 
 public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
@@ -106,22 +107,25 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucObras.Personal = SolicitudRecursosEmpleados.GetReader(solicitudObra.IdSolicitud);
                         ucObras.Vehiculos = SolicitudRecursosVehiculos.GetReader(solicitudObra.IdSolicitud);
                         ucObras.Monto =  gastos.ToString();
-                        ucObras.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
+                        ucObras.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
                         ucObras.Adjuntos = solicitud.GetAdjuntos();
                         ucObras.Visible = true;
                         break;
                     case (int)EnumTipoSolicitud.Capacitacion:
                         SolicitudCapacitacion solicitudCapacitacion = SolicitudCapacitacion.FindOne(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        ucCapacitacion.Sol = solicitud;
+                        ucCapacitacion.IdEmpleado = solicitudCapacitacion.IdEmpleado;
+
                         ucCapacitacion.Numero = solicitudCapacitacion.IdSolicitud.ToString();
                         ucCapacitacion.Titulo = solicitudCapacitacion.Descripcion;
                         ucCapacitacion.Nivel = solicitudCapacitacion.Nivel;
-                        ucCapacitacion.FechaInicio = solicitudCapacitacion.FechaInicio.ToShortDateString();
-                        ucCapacitacion.FechaFin = solicitudCapacitacion.FechaFin.ToShortDateString();
-                        ucCapacitacion.Duracion = solicitudCapacitacion.Duracion.ToString();
+                        //ACA CARGO LA INFO QUE VIENE DE UN STORED CUSTOM , COMO LA FECHA INICIO Y FIN Y LAS HORAS
+                        ucCapacitacion.CargaInfoSolicitud();
                         ucCapacitacion.AreaEstudios = solicitudCapacitacion.AreaEstudio;
                         ucCapacitacion.Instructor = solicitudCapacitacion.Instructor;
                         ucCapacitacion.EntidadEducativa = solicitudCapacitacion.EntidadEducativa;
                         ucCapacitacion.PuntuacionExamen = solicitudCapacitacion.PuntuacionExamen;
+                        ucCapacitacion.Sol = solicitud;
                         ucCapacitacion.Visible = true;
                         break;
                     case (int)EnumTipoSolicitud.FrancosCompensatorios:

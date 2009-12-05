@@ -155,7 +155,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
         gvSolicitudVehiculos.DataBind();
     }
 
-
     protected void gvSolicitudVehiculos_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SolicitudRecursosVehiculos v = SolicitudRecursosVehiculos.FindFirst(Expression.Eq("Id", int.Parse(gvSolicitudVehiculos.DataKeys[e.RowIndex].Value.ToString())));
@@ -392,7 +391,12 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                 fechaInicio = sol_Obr.FechaInicio;
                 break;
         }
-        cvHorasPersonal.ValueToCompare = fechaInicio.ToShortDateString();
+        
+        rngHorasPersonalValidator.MinimumValue = fechaInicio.ToShortDateString();
+        //pongo como tope 10 dias , pero tengo que ir a buscar el viernes de la semana que viene.
+        rngHorasPersonalValidator.MinimumValue = fechaInicio.AddDays(10).ToShortDateString();
+        rngHorasPersonalValidator.MinimumValue = AntaresHelper.UltimoDiaSemana(fechaInicio.AddDays(7)).ToString("dd/MM/yyyy");
+
         FillHorasPersonalGrid(0);
         mpeHorasPersonal.Show();
     }
@@ -548,29 +552,92 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
     protected void cvCheckHorasRestantes_ServerValidate(object source, ServerValidateEventArgs args)
     {
-        //args.Value
-        int idPersona = int.Parse(hfHorasPersonalPersona.Value);
-
         CultureInfo nfo = new CultureInfo("es-ES");
         DateTime fecha = DateTime.Parse(txtHorasPersonalDia.Text, nfo);
-        Personal P = Personal.GetById(idPersona.ToString());
+        //DateTime fecha = DateTime.Parse(txtHorasPersonalDia.Text);
+        Personal Persona = Personal.GetById(hfHorasPersonalPersona.Value.ToString());
+        int idPersona = Persona.IdEmpleados;
 
         decimal HorasACargar = decimal.Parse(ddlHorasPersonalHoras.SelectedValue);
+
+        //Me traigo de la base las horas que tiene cargadas en un dia en particular
+        //en este caso el dia que selecciono en el calendario
+
         decimal HorasCargadas_A_TalFecha = Personal.GetHorasCargadas_X_Dia(idPersona, fecha);
-        decimal HorasXSemana = decimal.Parse(AntaresHelper.Get_Config_HorasPersonaSemana());
+
+        //Me traigo de la base las horas x semana que se pueden cargar a tal fecha
+        decimal HorasHabiles_Semana = AntaresHelper.Get_Config_HorasPersonaSemana_Fecha(fecha);
+
+        //Me traigo de la base las horas x semana que se podian  cargar la semana pasada
+        decimal HorasHabiles_de_la_SemanaPasada = AntaresHelper.Get_Config_HorasPersonaSemana_Fecha(fecha.AddDays(-7));
+
+        //Horas que se pueden cargar por dia, esto esta definido en el webconfig segun Daniela
         decimal HorasXDia = decimal.Parse(AntaresHelper.Get_Config_HorasPersonaDia());
+
+        //Horas que cargaron realmente la semana pasada a la fecha seleccionada
+        decimal Horas_Cargadas_Semana_Pasada = Personal.GetHorasCargadas_Semana_Pasada(idPersona, fecha);
+
+        //Horas que llevan cargadas la semana de la fecha en cuestion
+        decimal Horas_Cargadas_Semana = Personal.GetHorasCargadas_Semana(idPersona, fecha);
 
         args.IsValid = false;
 
-        cvCheckHorasRestantes.ErrorMessage = P.Apellido + ',' + P.Nombres
+        cvCheckHorasRestantes.ErrorMessage = Persona.Apellido + ',' + Persona.Nombres
             + " ya tiene cargadas " + HorasCargadas_A_TalFecha.ToString("N2") + " Hs al " + fecha.ToShortDateString()
             + ", Solo se pueden cargar hasta " + HorasXDia.ToString() + " Horas Diarias";
+
+        decimal HorasHabilitadasParaCargar = 0;
+
         if ((HorasCargadas_A_TalFecha + HorasACargar) <= HorasXDia)
         {
+
             args.IsValid = true;
+
+            if (Horas_Cargadas_Semana_Pasada > HorasHabiles_de_la_SemanaPasada)
+            {
+                // calculo la diferencia entre las hroas q me pase del estandar por semana, porque esa diferencia 
+                // la voy a restar a las que pueden
+                // cargar en la semana actual
+                HorasHabilitadasParaCargar = HorasHabiles_Semana - (Horas_Cargadas_Semana_Pasada - HorasHabiles_de_la_SemanaPasada);
+
+            }
+            else
+            {
+                HorasHabilitadasParaCargar = HorasHabiles_Semana + 9;
+            }
+
+            //Si las horas cargadas esta semana son menores a las que me quedan habilitadas para cargar
+            //Entonces OK
+            //Sino me tendria que avisar que puedo cargar las HorasHabilitadasParaCargar
+
+            if (HorasHabilitadasParaCargar >= 0 && (Horas_Cargadas_Semana + HorasACargar) <= HorasHabilitadasParaCargar)
+            {
+                args.IsValid = true;
+
+            }
+            else
+            {
+                if (HorasHabiles_de_la_SemanaPasada > Horas_Cargadas_Semana_Pasada)
+                {
+                    cvCheckHorasRestantes.ErrorMessage = "Está intentando cargar " + (Horas_Cargadas_Semana + HorasACargar).ToString() + " Hs. en una Semana - El Maximo por semana es " + (HorasHabilitadasParaCargar).ToString() + " Hs.";
+                }
+
+                else
+                {
+                    cvCheckHorasRestantes.ErrorMessage = Persona.Apellido + ',' + Persona.Nombres +
+                        " Tiene " + Horas_Cargadas_Semana_Pasada.ToString() + "Hs." +
+                        " cargadas la semana pasada  , esta semana solo puede cargar " + (HorasHabilitadasParaCargar).ToString() + " Hs." +
+                        " - Solo puede cargar  " + (HorasHabilitadasParaCargar - Horas_Cargadas_Semana).ToString() + " Hs.";
+                }
+                args.IsValid = false;
+
+            }
+
         }
 
+
     }
+
     #endregion
     #region KM Vehiculos
 

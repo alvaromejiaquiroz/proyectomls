@@ -47,7 +47,7 @@
             </td>
             <td>
                 <asp:TextBox ID="txtFin" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                <asp:ImageButton ID="imgfin" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
+                <asp:ImageButton ID="imgfin" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" visible="false"/>
                 <cc1:CalendarExtender ID="ceFin" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFin" CssClass="cal_Theme1" 
                     TargetControlID="txtFin">
                 </cc1:CalendarExtender>

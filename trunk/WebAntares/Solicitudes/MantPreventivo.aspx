@@ -55,10 +55,11 @@
                                                 Intervalo Programado
                                             </td>
                                             <td>
-                                                <asp:TextBox ID="txtDesde" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
+                                                <asp:TextBox ID="txtDesde" runat="server" MaxLength="10" Width="80px" 
+                                                    CssClass="text_custom" ontextchanged="txtDesde_TextChanged" AutoPostBack="true"></asp:TextBox>
                                                 <asp:ImageButton ID="imgDesde" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                                                 <cc1:CalendarExtender ID="ceDesde" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgDesde" CssClass="cal_Theme1" 
-                                                    TargetControlID="txtDesde">
+                                                    TargetControlID="txtDesde" >
                                                 </cc1:CalendarExtender>
                                                 <asp:RequiredFieldValidator ID="rfvDesde" runat="server" ErrorMessage="Debe ingresar la fecha desde."
                                                     ControlToValidate="txtDesde" Display="None" ValidationGroup="tareas"></asp:RequiredFieldValidator>
@@ -66,18 +67,7 @@
                                                     ControlToValidate="txtDesde" Display="None" Operator="DataTypeCheck" Type="Date"
                                                     ValidationGroup="tareas"></asp:CompareValidator>
                                                 <asp:TextBox ID="txtHasta" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                                <asp:ImageButton ID="imgHasta" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
-                                                <cc1:CalendarExtender ID="ceHasta" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgHasta" CssClass="cal_Theme1" 
-                                                    TargetControlID="txtHasta">
-                                                </cc1:CalendarExtender>
-                                                <asp:RequiredFieldValidator ID="rfvHasta" runat="server" ErrorMessage="Debe ingresar la fecha hasta."
-                                                    ControlToValidate="txtHasta" Display="None" ValidationGroup="tareas"></asp:RequiredFieldValidator>
-                                                <asp:CompareValidator ID="cvHasta" runat="server" ErrorMessage="La fecha hasta no es válida."
-                                                    ControlToValidate="txtHasta" Display="None" Operator="DataTypeCheck" Type="Date"
-                                                    ValidationGroup="tareas"></asp:CompareValidator>
-                                                <asp:CompareValidator ID="cvFecha" runat="server" ErrorMessage="La fecha de desde debe ser menor o igual que la fecha hasta."
-                                                    ControlToCompare="txtHasta" ControlToValidate="txtDesde" Display="None" Operator="LessThanEqual"
-                                                    Type="Date" ValidationGroup="tareas"></asp:CompareValidator>
+                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -112,7 +102,7 @@
                                                     <Columns>
                                                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
                                                         <asp:BoundField DataField="Id_solicitud" Visible="false" />
-                                                        <asp:BoundField DataField="Id_tarea" Visible="false" />
+                                                        <asp:BoundField DataField="Id_tarea" Visible="false"  />
                                                         <asp:BoundField DataField="tarea" HeaderText="Tarea" HeaderStyle-HorizontalAlign="Center" />
                                                         <asp:BoundField DataField="Inicio" HeaderText="Inicio" HeaderStyle-HorizontalAlign="Center"
                                                             ItemStyle-HorizontalAlign="Center" />
@@ -217,8 +207,7 @@
                                             <td>
                                                 <asp:ListBox ID="lstVehiculos" runat="server" SelectionMode="Multiple" Height="150px" CssClass="text_custom">
                                                 </asp:ListBox>
-                                                <asp:CustomValidator ID="cvVehiculos" runat="server" ErrorMessage="Debe seleccionar al menos un vehículo."
-                                                    Display="None" ValidationGroup="vehiculos" OnServerValidate="cvVehiculos_ServerValidate"></asp:CustomValidator>
+                                          
                                             </td>
                                         </tr>
                                         <tr>
@@ -228,7 +217,7 @@
                                         <tr>
                                             <td align="center" colspan="2">
                                                 <asp:Button ID="btnAsignaVehiculoSolicitud" runat="server" Text="Asignar vehículo"
-                                                    OnClick="btnAsignaVehiculoSolicitud_Click" ValidationGroup="vehiculos" CssClass="button_custom" />
+                                                    OnClick="btnAsignaVehiculoSolicitud_Click"  CssClass="button_custom" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -256,7 +245,7 @@
                                         </tr>
                                     </table>
                                     <div class="text_custom">
-                                        <asp:ValidationSummary ID="vsVehiculos" runat="server" ValidationGroup="vehiculos" />
+                                       
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -387,7 +376,7 @@
                             <div style="width:100%;text-align:center;margin-top:30px">
                                 <asp:Button ID="btnAceptarSolicitud" runat="server" OnClick="btnAceptarSolicitud_Click"
                                     Text="Confirmar Solicitud" ValidationGroup="solicitud" CssClass="button_custom" />
-                                      <asp:CustomValidator ID="cvGastosEnSolicitud" runat="server" ErrorMessage="" Display="None" ValidationGroup="solicitud" OnServerValidate="cvGastosEnSolicitud_ServerValidate"></asp:CustomValidator>
+                            <asp:CustomValidator ID="cvGastosEnSolicitud" runat="server" ErrorMessage="" Display="None" ValidationGroup="solicitud" OnServerValidate="cvGastosEnSolicitud_ServerValidate"></asp:CustomValidator>
                             </div>
                             <div class="text_custom">
                                 <asp:BulletedList ID="blErrores" runat="server" ForeColor="Red" BulletStyle="NotSet">

@@ -89,9 +89,11 @@
                     <ContentTemplate>
                         <asp:GridView ID="GridView1" runat="server" AllowPaging="true" 
                             AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand"
-                            OnRowDataBound="GridView1_RowDataBound" OnDataBound="GridView1_DataBound" 
+                            OnRowDataBound="GridView1_RowDataBound" 
                             onpageindexchanging="GridView1_PageIndexChanging"
-                            OnRowCreated="GridView1_RowCreated" EmptyDataText="No se han encontrado Solicitudes" >
+                            OnRowCreated="GridView1_RowCreated" 
+                            EmptyDataText="No se han encontrado Solicitudes" 
+                            onpageindexchanged="GridView1_PageIndexChanged" >
                             <Columns>
                                 <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" ItemStyle-Font-Bold="true"/>
                                 <asp:BoundField DataField="Tipo" HeaderText="Tipo" HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px" />

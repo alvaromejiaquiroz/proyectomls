@@ -245,8 +245,7 @@
                                             <td>
                                                 <asp:ListBox ID="lstVehiculos" runat="server" SelectionMode="Multiple" Height="150px" CssClass="text_custom">
                                                 </asp:ListBox>
-                                                <asp:CustomValidator ID="cvVehiculos" runat="server" ErrorMessage="Debe seleccionar al menos un vehículo."
-                                                    Display="None" ValidationGroup="vehiculos" OnServerValidate="cvVehiculos_ServerValidate"></asp:CustomValidator>
+                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -256,7 +255,7 @@
                                         <tr>
                                             <td align="center" colspan="2">
                                                 <asp:Button ID="btnAsignaVehiculoSolicitud" runat="server" Text="Asignar vehículo"
-                                                    OnClick="btnAsignaVehiculoSolicitud_Click" ValidationGroup="vehiculos" CssClass="button_custom" />
+                                                    OnClick="btnAsignaVehiculoSolicitud_Click"  CssClass="button_custom" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -284,7 +283,7 @@
                                         </tr>
                                     </table>
                                     <div class="text_custom">
-                                        <asp:ValidationSummary ID="vsVehiculos" runat="server" ValidationGroup="vehiculos" />
+                                       
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>

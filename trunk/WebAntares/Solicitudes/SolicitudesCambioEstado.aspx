@@ -5,6 +5,7 @@
 <%@ Register Src="../Controles/SolDetalle.ascx" TagName="SolDetalle" TagPrefix="uc1" %>
 
 <asp:Content ID="cCambioEstado" ContentPlaceHolderID="PageContainer" runat="Server">
+
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
         <tr class="header_custom">
             <td align="center" colspan="4">
@@ -18,6 +19,8 @@
         </tr>
         </table>
     
+<asp:UpdatePanel ID="uPanel" runat="server">
+<ContentTemplate>
     <table width="700px" >
      <tr>
         <td style="text-align:right;height:20px"> </td>
@@ -91,7 +94,7 @@
                                 <asp:TextBox ID="txtReprogramacion" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
                                 <asp:ImageButton ID="imgReprogramacion" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                                 <cc1:CalendarExtender ID="ceReprogramacion" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgReprogramacion"
-                                    TargetControlID="txtReprogramacion">
+                                    TargetControlID="txtReprogramacion" CssClass="cal_Theme1" >
                                 </cc1:CalendarExtender>
                                 <asp:RequiredFieldValidator ID="rfvReprogramacion" runat="server"
                                     ControlToValidate="txtReprogramacion" Display="None" ValidationGroup="reprogramacion"></asp:RequiredFieldValidator>
@@ -105,10 +108,11 @@
                                 Próxima fecha de realización desde
                             </td>
                             <td>
-                                <asp:TextBox ID="txtInicio" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
+                                <asp:TextBox ID="txtInicio" runat="server" MaxLength="10" Width="80px" 
+                                    CssClass="text_custom" ontextchanged="txtInicio_TextChanged" AutoPostBack="true"></asp:TextBox>
                                 <asp:ImageButton ID="imgInicio" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
                                 <cc1:CalendarExtender ID="ceInicio" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgInicio"
-                                    TargetControlID="txtInicio">
+                                    TargetControlID="txtInicio" CssClass="cal_Theme1" >
                                 </cc1:CalendarExtender>
                                 <asp:RequiredFieldValidator ID="rfvInicio" runat="server" ErrorMessage="Debe ingresar la próxima fecha de realización desde."
                                     ControlToValidate="txtInicio" Display="None" ValidationGroup="reprogramacion"></asp:RequiredFieldValidator>
@@ -121,18 +125,7 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtFin" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
-                                <asp:ImageButton ID="imgfin" runat="server" CausesValidation="false" ImageUrl="~/Images/calendario.gif" />
-                                <cc1:CalendarExtender ID="ceFin" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgFin"
-                                    TargetControlID="txtFin">
-                                </cc1:CalendarExtender>
-                                <asp:RequiredFieldValidator ID="rfvFin" runat="server" ErrorMessage="Debe ingresar la próxima fecha de realización hasta."
-                                    ControlToValidate="txtFin" Display="None" ValidationGroup="reprogramacion"></asp:RequiredFieldValidator>
-                                <asp:CompareValidator ID="cvFin" runat="server" ErrorMessage="La próxima fecha de realización hasta no es válida."
-                                    ControlToValidate="txtFin" Display="None" Operator="DataTypeCheck" Type="Date"
-                                    ValidationGroup="reprogramacion"></asp:CompareValidator>
-                                <asp:CompareValidator ID="cvFechas" runat="server" ErrorMessage="La próxima fecha de realización desde debe ser menor o igual que la próxima fecha de realización hasta."
-                                    ControlToCompare="txtFin" ControlToValidate="txtInicio" Display="None" Operator="LessThanEqual"
-                                    Type="Date" ValidationGroup="reprogramacion"></asp:CompareValidator>
+                                
                             </td>
                         </tr>
                         <tr>
@@ -147,14 +140,19 @@
                                     Text="Cancelar" CausesValidation="false" />
                             </td>
                         </tr>
-                        <td colspan="4">
-                            <div class="text_custom">
-                                <asp:ValidationSummary ID="vsReprogramacion" runat="server" ValidationGroup="reprogramacion" />
-                            </div>
-                        </td>
+                        <tr>
+                            <td colspan="4">
+                                <div class="text_custom">
+                                    <asp:ValidationSummary ID="vsReprogramacion" runat="server" 
+                                        ValidationGroup="reprogramacion" />
+                                </div>
+                            </td>
+                        </tr>
                     </table>
                 </asp:Panel>
             </td>
         </tr>
     </table>
+</ContentTemplate>    
+</asp:UpdatePanel>
 </asp:Content>

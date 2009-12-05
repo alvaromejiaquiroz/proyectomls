@@ -3,7 +3,7 @@
 <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
     <tr class="header_custom">
         <td align="center" colspan="3">
-            Solicitud de capacitación
+            SOLICITUD DE CAPACITACION
         </td>
     </tr>
     <tr>
@@ -13,12 +13,21 @@
             <asp:Image ID="imgAntares" runat="server" AlternateText="Antares" ToolTip="Antares" ImageUrl="~/images/LogoAntaresThumbnail.png" />
         </td>
     </tr>
+        <tr>
+        <td style="height:20px">
+            
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+
     <tr>
         <td style="padding-left: 20px;width:150px">
             Número
         </td>
         <td>
-            <asp:Literal ID="litNumero" runat="server"></asp:Literal>
+            <asp:label ID="litNumero" runat="server" Font-Bold="true" ></asp:label>
         </td>
     </tr>
     <tr>
@@ -42,7 +51,7 @@
             Fecha de inicio
         </td>
         <td colspan="2">
-            <asp:Literal ID="litFechaInicio" runat="server"></asp:Literal>
+            <asp:Literal ID="litFechaInicio" runat="server" ></asp:Literal>
         </td>
     </tr>
     <tr>
@@ -93,6 +102,27 @@
             <asp:Literal ID="litPuntuacionExamen" runat="server"></asp:Literal>
         </td>
     </tr>
+    <tr>
+    <td style="padding-top:20px;">
+        <br />
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-left: 20px" valign="top">
+            Detalle
+        </td>
+    
+        <td colspan="2" style="padding-bottom:20px">
+            <asp:GridView ID="gvHorasPersonal" runat="server" AutoGenerateColumns="False" AllowPaging="true"   Width="300px">
+                <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="id" Visible="false" />
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="left" dataformatstring="{0:dd/MM/yyyy}" />
+                    <asp:BoundField DataField="Horas" HeaderText="Horas" ItemStyle-HorizontalAlign="left" DataFormatString="{0:0.0}" />
+                </Columns>
+                </asp:GridView>
+        </td>
+        </tr>
+        
     <tr>
         <td align="center" colspan="3">
             <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar" 

@@ -38,7 +38,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left: 20px">
+                                    <td style="padding-left: 20px;vertical-align:top;">
                                         Reportó falla
                                     </td>
                                     <td>
@@ -158,7 +158,7 @@
                                 </tr>
            
                                 <tr>
-                                    <td style="padding-left: 20px">
+                                    <td style="padding-left: 20px;vertical-align:top;">
                                         Síntomas
                                     </td>
                                     <td>
@@ -170,7 +170,7 @@
                                 </tr>
                                 
                                                            <tr>
-                                    <td style="padding-left: 20px">
+                                    <td style="padding-left: 20px;vertical-align:top;">
                                         Causa probable
                                     </td>
                                     <td>

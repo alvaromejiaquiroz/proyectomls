@@ -25,7 +25,7 @@ public partial class Solicitudes_ListaLicencias : System.Web.UI.Page
     private void CargarCombo()
     {
         cmbEmpleado.Items.Add(new ListItem("Seleccione...", "-1"));
-        foreach (Antares.model.Personal p in Antares.model.Personal.FindAll())
+        foreach (Antares.model.Personal p in Antares.model.Personal.GetPersonalActivo())
         {
             cmbEmpleado.Items.Add(new ListItem(p.Apellido + ", " + p.Nombres, p.IdEmpleados.ToString()));
         }
@@ -34,7 +34,11 @@ public partial class Solicitudes_ListaLicencias : System.Web.UI.Page
     private void FillGrilla(string Id_Empleado, int pageIndex)
     {
         GridView1.DataKeyNames = new string[] { "IdSolicitud" };
-        GridView1.DataSource = Antares.model.SolicitudLicencias.FindAllByProperty("IdEmpleado", int.Parse(Id_Empleado));
+       // GridView1.DataSource = Antares.model.SolicitudLicencias.FindAllByProperty("IdEmpleado", int.Parse(Id_Empleado));
+        
+        DataTable table = new DataTable();
+        table.Load( SolicitudLicencias.GetLicenciasEmpleado(Id_Empleado));
+        GridView1.DataSource = table;
         GridView1.PageIndex = pageIndex;
         GridView1.DataBind();
     }

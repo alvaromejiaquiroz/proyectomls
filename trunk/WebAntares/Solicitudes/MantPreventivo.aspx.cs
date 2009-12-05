@@ -50,10 +50,13 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                    
                     cboSitios.Enabled = false;
                     txtDesde.Enabled = false;
+                    imgDesde.Enabled = false;
                     txtHasta.Enabled = false;
+
                     lstTareas.Enabled = false;
                     btnAgregarTarea.Enabled = false;
-                    ucSolicitudGastos.Modo = "E";
+            
+                    ucSolicitudGastos.Deshabilita_Gastos();
                     Session["Accion"] = null;
                 }
             }
@@ -145,7 +148,9 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     public void CargarCombos()
     {
         CargaComboSitios();
+   
         txtDesde.Text = DateTime.Today.ToString("dd/MM/yyyy");
+        txtHasta.Text = AntaresHelper.UltimoDiaSemana(DateTime.Today).ToString("dd/MM/yyyy");
    
         foreach (Antares.model.Tareas t in Antares.model.Tareas.FindAll())
         {
@@ -413,11 +418,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             esValida = false;
             errores.Add("Debe asignar al menos un responsable.");
         }
-        if (gvSolicitudVehiculos.Rows.Count == 0)
-        {
-            esValida = false;
-            errores.Add("Debe asignar al menos un vehículo.");
-        }
         if (!esValida)
         {
             blErrores.DataSource = errores;
@@ -551,5 +551,10 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
 
     }
 
+    protected void txtDesde_TextChanged(object sender, EventArgs e)
+    {
+        txtHasta.Text = AntaresHelper.UltimoDiaSemana(DateTime.Parse(txtDesde.Text)).ToString("dd/MM/yyyy");
 
+
+    }
 }

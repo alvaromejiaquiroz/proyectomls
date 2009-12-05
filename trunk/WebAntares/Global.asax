@@ -136,7 +136,6 @@
             myTablaBtn.Rows[0].Cells[0].Text = "<img src='" + httpPathRoot + "/Images/LogoAntaresThumbnail.png' cursor=\"hand\">";
             myTablaBtn.Rows[0].Cells.Add(new TableCell());
             myTablaBtn.Rows[0].Cells[1].Style.Add("width", "150px");
-            myTablaBtn.Rows[0].Cells[1].Text = "Reportar error.";
             myTablaBtn.Rows[0].Cells.Add(new TableCell());
             myTablaBtn.Rows[0].Cells[2].Style.Add("width", "100%");
             myTablaBtn.Rows[0].Cells[2].Style.Add("vertical-aling", "top");
@@ -153,8 +152,7 @@
             myTabla1.Style.Add("font-size", "12px");
             myTabla1.Style.Add("color", "#666666");
             myTabla1.Style.Add("width", "100%");
-            myTabla1.Style.Add("height", "97%");
-            myTabla1.Style.Add("BACKGROUND", "url('" + httpPathRoot + "/Images/ico_alerta_gr.gif') no-repeat");
+            myTabla1.Style.Add("height", "60%");
             myTabla1.Style.Add("background-position", "10% 45%");
             myTabla1.Style.Add("display", "");
 
@@ -162,12 +160,16 @@
             myTabla1.Rows[0].Cells.Add(new TableCell());
             myTabla1.Rows[0].Style.Add("font-weight", "bold");
             myTabla1.Rows[0].Cells[0].Text = "Disculpe las molestias, existe un problema en la pagina.";
-
             myTabla1.Rows.Add(new TableRow());
             myTabla1.Rows[1].Cells.Add(new TableCell());
-            myTabla1.Rows[1].Style.Add("text-align", "right");
-            myTabla1.Rows[1].Style.Add("height", "50px");
-            myTabla1.Rows[1].Cells[0].Text = "<a href=\"#\" onclick=\"OcultarMostrarTable('MsgDetalleError','MsgError');\" " +
+            myTabla1.Rows[1].Style.Add("font-weight", "bold");
+            myTabla1.Rows[1].Cells[0].Text= "<a href=\"../default.aspx\">Ir a la Pagina Principal</a> ";
+
+            myTabla1.Rows.Add(new TableRow());
+            myTabla1.Rows[2].Cells.Add(new TableCell());
+            myTabla1.Rows[2].Style.Add("text-align", "right");
+            myTabla1.Rows[2].Style.Add("height", "50px");
+            myTabla1.Rows[2].Cells[0].Text = "<a href=\"#\" onclick=\"OcultarMostrarTable('MsgDetalleError','MsgError');\" " +
                                              " style=\"color:#666666;\">Ver detalles</a>";
 
             System.IO.StringWriter stringWrite1 = new System.IO.StringWriter();

@@ -153,6 +153,7 @@ public partial class Controles_Obras : System.Web.UI.UserControl
                 break;
         }
     }
+   
     public SolicitudGastos[] Gastos
     {
         set

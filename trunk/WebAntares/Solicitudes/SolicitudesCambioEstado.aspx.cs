@@ -32,6 +32,9 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
 
         txtInicio.Text = DateTime.Today.ToString("dd/MM/yyyy");
         txtReprogramacion.Text = DateTime.Today.ToString("dd/MM/yyyy");
+
+        txtFin.Text = AntaresHelper.UltimoDiaSemana(DateTime.Today).ToString("dd/MM/yyyy");
+
      //   switch ((eEstados)int.Parse(cmbEstados.SelectedValue))
         switch (cmbEstados.SelectedValue)
         {
@@ -45,9 +48,6 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 cvReprogramacion.ErrorMessage = "La fecha de reprogramación no es válida.";
                 rfvInicio.Enabled = true;
                 cvInicio.Enabled = true;
-                rfvFin.Enabled = true;
-                cvFin.Enabled = true;
-                cvFechas.Enabled = true;
                 break;
             case "Cancelado":
                 btnAceptar.Visible = false;
@@ -59,9 +59,6 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 cvReprogramacion.ErrorMessage = "La fecha de cancelación no es válida.";
                 rfvInicio.Enabled = false;
                 cvInicio.Enabled = false;
-                rfvFin.Enabled = false;
-                cvFin.Enabled = false;
-                cvFechas.Enabled = false;
                 break;
             case "Realizado":
                 MakeRendicion(BiFactory.Sol.Id_Solicitud);
@@ -75,7 +72,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
         Solicitud sol;
         sol = Solicitud.GetById(idSolOrg);
         DateTime fechanula = DateTime.Parse("01/01/1900");
-        Solicitud  reporte ;//= new Solicitud();
+        Solicitud  reporte ;
         try {
             reporte = Solicitud.FindOne(Expression.Eq("IdSolicitudInicial", idSolOrg));
         
@@ -261,18 +258,33 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
     {
         cmbEstados.Items.Add(new ListItem("Seleccione...", "-1"));
 
-        
         cmbEstados.DataSource = AntaresHelper.GetListaEstadosAutorizados(BiFactory.Perfil.Detalle);
         cmbEstados.DataTextField = "Valor";
         cmbEstados.DataValueField = "Valor";
         cmbEstados.DataBind();
 
+        /* Los mantenimientos Correctivos que tienen penalizacion no se pueden Reprogramar */
+
+        if (BiFactory.Sol.Tipo.Descripcion == "Mantenimiento Correctivo")
+        {
+            SolicitudCorrectivo cor = SolicitudCorrectivo.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+            if (cor.Penaliza)
+            {
+                if (!cmbEstados.Items.Contains(new ListItem("Reprogramado")) || (BiFactory.Sol.Status == "Reprogramado"))
+                    {
+                        cmbEstados.Items.Remove(new ListItem("Reprogramado", "Reprogramado"));
+                    }
+            }
+        }
+        /* Si la solicitud esta reprogramada lo saco del combo */
+        
         if (!cmbEstados.Items.Contains(new ListItem("Reprogramado")) || (BiFactory.Sol.Status == "Reprogramado"))
         {
             cmbEstados.Items.Remove(new ListItem("Reprogramado", "Reprogramado"));
         }
-  
 
+        /*si el que esta logueado es el responsable de la solicitud , te deja cambiarle el estado a realizado */
+         
         int idResponsable = SolicitudRecursosEmpleados.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud), Expression.Eq("Responsable", true)).IdEmpleado;
         if (idResponsable == BiFactory.Empleado.IdEmpleados)
         {
@@ -281,6 +293,13 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 cmbEstados.Items.Add(new ListItem("Realizado", "Realizado"));
             }
         }
+
+    }
+
+   
+    protected void txtInicio_TextChanged(object sender, EventArgs e)
+    {
+        txtFin.Text = AntaresHelper.UltimoDiaSemana(DateTime.Parse(txtInicio.Text)).ToString("dd/MM/yyyy");
 
     }
 }
