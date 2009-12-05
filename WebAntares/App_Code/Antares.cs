@@ -205,11 +205,111 @@ namespace WebAntares
 
         }
 
+        public static bool GetPuedeBuscar_Listado_Capacitacion(string Perfil)
+        {
+            bool valor = false;
+            ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
+            DbConnection db = (DbConnection)sess.Connection;
+            DbCommand oConn = db.CreateCommand();
+
+            SqlParameterCollection p;
+
+            oConn.Parameters.Add(new SqlParameter("@perfil", Perfil));
+            oConn.Parameters.Add(new SqlParameter("@objeto", "BuscarCapacitacion"));
+            oConn.CommandType = CommandType.StoredProcedure;
+            oConn.CommandText = "Proc_GetAcciones";
+            DbDataReader dr = oConn.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+
+                    valor = bool.Parse(dr["valor"].ToString());
+                }
+
+            }
+
+            return valor;
+
+            return valor;
+
+
+
+
+        }
+        
+        public static bool GetPuedeBuscar_Listado_TareasGenerales(string Perfil)
+        {
+            bool valor = false;
+            ISession sess = ActiveRecordMediator.GetSessionFactoryHolder().CreateSession(typeof(Solicitud));
+            DbConnection db = (DbConnection)sess.Connection;
+            DbCommand oConn = db.CreateCommand();
+
+            SqlParameterCollection p;
+
+            oConn.Parameters.Add(new SqlParameter("@perfil", Perfil));
+            oConn.Parameters.Add(new SqlParameter("@objeto", "BuscarTareasGenerales"));
+            oConn.CommandType = CommandType.StoredProcedure;
+            oConn.CommandText = "Proc_GetAcciones";
+            DbDataReader dr = oConn.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+
+                    valor = bool.Parse(dr["valor"].ToString());
+                }
+
+            }
+
+            return valor;
+
+            return valor;
+
+
+
+
+        }
+
         public static string Get_Config_HorasPersonaSemana()
         {
             
             string valor = ConfigurationSettings.AppSettings["HorasPersonaSemana"];
             return valor;
+        }
+        
+        public static decimal Get_Config_HorasPersonaSemana_Fecha(DateTime fecha)
+        {
+
+            decimal valor = 0;
+            
+            SqlConnection db = WebAntares.CustomDAL.Get_Connection();
+            SqlCommand command = db.CreateCommand();
+
+            SqlParameterCollection p;
+            command.Parameters.Add("@fecha", SqlDbType.DateTime);
+            command.Parameters["@fecha"].Value = fecha.ToShortDateString();
+
+            command.CommandType = CommandType.StoredProcedure;
+            command.Connection = db;
+            command.CommandText = "Prc_Get_InfoSemana";
+            db.Open();
+            DbDataReader dr = command.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (dr["horassemana"] != null)
+                    {
+                        valor = decimal.Parse(dr["horassemana"].ToString());
+                    }
+                }
+            }
+            db.Close();
+
+            return valor;
+            
         }
 
         public static string Get_Config_HorasPersonaDia()
@@ -245,6 +345,45 @@ namespace WebAntares
 
             string valor = ConfigurationSettings.AppSettings["AmbienteSistema"];
             return valor;
+        }
+
+        public static DateTime UltimoDiaSemana(DateTime fecha)
+        {
+            DateTime ultimodia = DateTime.MaxValue;
+
+            SqlConnection db =  WebAntares.CustomDAL.Get_Connection();
+            SqlCommand  command = db.CreateCommand();
+
+            SqlParameterCollection p;
+            command.Parameters.Add("@fecha", SqlDbType.DateTime);
+            command.Parameters["@fecha"].Value = fecha.ToShortDateString();
+            
+            command.CommandType = CommandType.StoredProcedure;
+            command.Connection = db;
+            command.CommandText = "Prc_Get_InfoSemana";
+            db.Open();
+            DbDataReader dr = command.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (dr["fechafin"] != null)
+                    {
+                        ultimodia = DateTime.Parse(dr["fechafin"].ToString());
+                    }
+                }
+            }
+            db.Close();
+
+            return ultimodia;
+
+        }
+
+        public static DateTime FechaNula()
+        {
+            DateTime dt = DateTime.Parse("1900-01-01");
+            return dt;
         }
     }
 

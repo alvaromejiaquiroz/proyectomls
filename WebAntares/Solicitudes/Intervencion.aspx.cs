@@ -17,12 +17,12 @@ public partial class _Default : System.Web.UI.Page
         {
             lblFechaCreacionSolicitud.Text = DateTime.Now.ToString("dd/MM/yyyy");
             lblUserLogueado.Text = WebAntares.BiFactory.User.Nombre;
-
-            ucTipoSolicitud.rendercbo();
+            
+            CargarCombos();
 
             if ((Request.QueryString["Ac"] != null) && (Request.QueryString["Ac"].ToString() == "e"))
             {
-                ucTipoSolicitud.Enabled = false;
+                cmbTipoSolicitud.Enabled = false;
                 txtTitulo.Enabled = false;
                 Session["Accion"] = "e"; 
             }
@@ -36,14 +36,26 @@ public partial class _Default : System.Web.UI.Page
             }
         }
     }
+    private void CargarCombos()
+    {
+
+        cmbTipoSolicitud.Items.Clear();
+        cmbTipoSolicitud.Items.Add(new ListItem("Seleccione...", "-1"));
+        foreach (TipoSolicitud ts in Antares.model.TipoSolicitud.FindAll(Expression.Sql("Descripcion not in ('Francos Compensatorios')")))
+        {
+            ListItem l = new ListItem(ts.Descripcion, ts.IdTiposolicitud.ToString());
+            cmbTipoSolicitud.Items.Add(l);
+        }
+
+    }
 
     private void FillSolicitud(int p)
     {
         Solicitud sol = Solicitud.GetById(p);
         BiFactory.Sol = sol;
         
-        ucTipoSolicitud.value = sol.IdTipoSolicitud.ToString();
-        if (ucTipoSolicitud.value != sol.IdTipoSolicitud.ToString())
+        cmbTipoSolicitud.SelectedValue= sol.IdTipoSolicitud.ToString();
+        if (cmbTipoSolicitud.SelectedValue != sol.IdTipoSolicitud.ToString())
         {
             //si el tipo es distinto es porque no tiene perfil para modificar
             Response.Redirect("./Solicitudes.aspx");
@@ -62,7 +74,7 @@ public partial class _Default : System.Web.UI.Page
         DateTime fechanula = DateTime.Parse("01/01/1900");
         sol = BiFactory.Sol;
         sol.Descripcion = txtTitulo.Text;
-        sol.IdTipoSolicitud = int.Parse(ucTipoSolicitud.value);
+        sol.IdTipoSolicitud = int.Parse(cmbTipoSolicitud.SelectedValue);
         sol.IdUsuarioCreador = BiFactory.User.IdUsuario;
         //Fechas
         sol.FechaCreacion = System.DateTime.Now;
@@ -81,7 +93,7 @@ public partial class _Default : System.Web.UI.Page
         if (IsValid)
         {
             GrabarSolicitud();
-            switch (ucTipoSolicitud.value)
+            switch (cmbTipoSolicitud.SelectedValue)
             {
                 case "1":
                     Response.Redirect("./MantPreventivo.aspx");
@@ -110,6 +122,6 @@ public partial class _Default : System.Web.UI.Page
 
     protected void cvTipoSolicitud_ServerValidate(object source, ServerValidateEventArgs args)
     {
-        args.IsValid = !ucTipoSolicitud.value.Equals("-1");
+        args.IsValid = !cmbTipoSolicitud.SelectedValue.Equals("-1");
     }
 }

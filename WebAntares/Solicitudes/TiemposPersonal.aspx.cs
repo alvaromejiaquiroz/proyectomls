@@ -26,13 +26,7 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
     protected void CargarCombos()
     {
         
-        cmbPersonal.Items.Clear();
-        cmbPersonal.Items.Add(new ListItem("Seleccione...", "-1"));
-        
-        foreach (Antares.model.Personal p in Antares.model.Personal.GetPersonalActivo())
-        {
-            cmbPersonal.Items.Add(new ListItem(p.Apellido + "," + p.Nombres, p.IdEmpleados.ToString()));
-        }
+      
     }
     protected void FillGrid()
     {
@@ -49,13 +43,25 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
             fecha = DateTime.Parse(txtDesde.Text);
             
         }
-       
 
-        gvTiempos.DataSource = null;
-        gvTiempos.DataBind();
-        gvTiempos.DataSource = Personal.GetHorasSolicitudes(cmbPersonal.SelectedValue, fecha.ToString("yyyy-MM-dd"), Semana);
-        //gvTiempos.DataKeyNames = new string[] { "ID" };
-        gvTiempos.DataBind();
+
+        //gvCorrectivo.DataSource = null;
+        //gvCorrectivo.DataBind();
+        
+        gvPreventivo.DataSource = Personal.GetTiempos_Personal_MPREVENTIVO(fecha.ToString("yyyy-MM-dd"), Semana);
+        gvCorrectivo.DataSource = Personal.GetTiempos_Personal_MCORRECTIVO(fecha.ToString("yyyy-MM-dd"), Semana);
+        gvObras.DataSource = Personal.GetTiempos_Personal_OBRAS(fecha.ToString("yyyy-MM-dd"), Semana);
+        gvCapacitacion.DataSource = Personal.GetTiempos_Personal_CAPACITACION(fecha.ToString("yyyy-MM-dd"), Semana);
+       
+        gvLicencias.DataSource = Personal.GetTiempos_Personal_LICENCIAS(fecha.ToString("yyyy-MM-dd"), Semana);
+        gvTareasGenerales.DataSource = Personal.GetTiempos_Personal_TAREASGENERALES(fecha.ToString("yyyy-MM-dd"), Semana);
+
+        gvPreventivo.DataBind();
+        gvCorrectivo.DataBind();
+        gvObras.DataBind();
+        gvCapacitacion.DataBind();
+        gvLicencias.DataBind();
+        gvTareasGenerales.DataBind();
 
     }
     protected void Button1_Click(object sender, EventArgs e)
@@ -63,6 +69,7 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
         if (IsValid)
         {
             FillGrid();
+            pnlSolicitudes.Visible = true;
         }
         
     }
@@ -74,13 +81,5 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
     {
 
     }
-    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
-    {
-        args.IsValid = false;
-
-        if (cmbPersonal.SelectedIndex > 0)
-        {
-            args.IsValid = true;
-        }
-    }
+    
 }

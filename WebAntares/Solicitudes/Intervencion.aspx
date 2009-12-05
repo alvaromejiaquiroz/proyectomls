@@ -19,7 +19,8 @@
                 Tipo de solicitud
             </td>
             <td>
-                <uc1:cboTipoSolicitud ID="ucTipoSolicitud" runat="server" />
+                <asp:DropDownList ID="cmbTipoSolicitud" runat="server" CssClass="text_custom" Width="250px">
+                </asp:DropDownList>
                 <asp:CustomValidator ID="cvTipoSolicitud" runat="server" ErrorMessage="Debe seleccionar el tipo de solicitud."
                     Display="None" ValidationGroup="intervencion" OnServerValidate="cvTipoSolicitud_ServerValidate"></asp:CustomValidator>
             </td>

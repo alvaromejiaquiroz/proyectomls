@@ -20,6 +20,8 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
     {
         ucAdjuntos.sol = BiFactory.Sol;
         ucSolicitudGastos.Sol = BiFactory.Sol;
+        ceHorasVehiculosDia.BehaviorID = "ceVehiculoshoras1";
+        ceHorasPersonalDia.BehaviorID = "cePersonahoras1";
         base.OnInitComplete(e);
     }
 
@@ -224,6 +226,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
                         SolicitudRecursosVehiculos t = new SolicitudRecursosVehiculos();
                         t.IdVehiculo = int.Parse(lstVehiculos.Items[i].Value.ToString());
                         t.IdSolicitud = BiFactory.Sol.Id_Solicitud;
+                        t.Fecha = DateTime.Today;
                         t.Save();
                     }
                 }
@@ -416,22 +419,30 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
         litHorasPersonalPersona.Text = personal.Apellido + ", " + personal.Nombres;
         Solicitud sol = Solicitud.GetById(p.IdSolicitud);
         DateTime fechaInicio = sol.FechaCreacion;
+        DateTime fechaFin = DateTime.MinValue;
         switch (sol.Tipo.Descripcion)
         {
             case "Mantenimiento Correctivo":
                 SolicitudCorrectivo sol_Cor = SolicitudCorrectivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
                 fechaInicio = sol_Cor.FechanotificacionCliente;
+                fechaFin = sol_Cor.FechanotificacionCliente.AddDays(7);
                 break;
             case "Mantenimiento Preventivo":
                 SolicitudPreventivo sol_Pre = SolicitudPreventivo.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
                 fechaInicio = sol_Pre.FechaInicio;
+                fechaFin = sol_Pre.FechaFin;
                 break;
             case "Obras e Instalaciones":
                 SolicitudObra sol_Obr = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
                 fechaInicio = sol_Obr.FechaInicio;
+                fechaFin = sol_Obr.FechaFin;
                 break;
         }
-        cvHorasPersonal.ValueToCompare = fechaInicio.ToShortDateString();
+        //cvHorasPersonal.ValueToCompare = fechaInicio.ToShortDateString();
+        //cvFechaFinHorasPersonal.ValueToCompare = fechaFin.ToShortDateString();
+        rngHorasPersonalValidator.MinimumValue = fechaInicio.ToString("dd/MM/yyyy");
+        rngHorasPersonalValidator.MaximumValue = fechaFin.ToString("dd/MM/yyyy");
+
         FillHorasPersonalGrid(0);
         mpeHorasPersonal.Show();
     }
@@ -573,59 +584,92 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
         }
         mpeHorasPersonal.Show();
     }
-  
+
     protected void cvCheckHorasRestantes_ServerValidate(object source, ServerValidateEventArgs args)
     {
-        //args.Value
-        int idPersona = int.Parse(hfHorasPersonalPersona.Value);
-
         CultureInfo nfo = new CultureInfo("es-ES");
         DateTime fecha = DateTime.Parse(txtHorasPersonalDia.Text, nfo);
         //DateTime fecha = DateTime.Parse(txtHorasPersonalDia.Text);
-        Personal P = Personal.GetById(idPersona.ToString());
+        Personal Persona = Personal.GetById(hfHorasPersonalPersona.Value.ToString());
+        int idPersona = Persona.IdEmpleados;
 
         decimal HorasACargar = decimal.Parse(ddlHorasPersonalHoras.SelectedValue);
+
+        //Me traigo de la base las horas que tiene cargadas en un dia en particular
+        //en este caso el dia que selecciono en el calendario
+
         decimal HorasCargadas_A_TalFecha = Personal.GetHorasCargadas_X_Dia(idPersona, fecha);
-        decimal HorasXSemana = decimal.Parse(AntaresHelper.Get_Config_HorasPersonaSemana());
+
+        //Me traigo de la base las horas x semana que se pueden cargar a tal fecha
+        decimal HorasHabiles_Semana = AntaresHelper.Get_Config_HorasPersonaSemana_Fecha(fecha);
+
+        //Me traigo de la base las horas x semana que se podian  cargar la semana pasada
+        decimal HorasHabiles_de_la_SemanaPasada = AntaresHelper.Get_Config_HorasPersonaSemana_Fecha(fecha.AddDays(-7));
+
+        //Horas que se pueden cargar por dia, esto esta definido en el webconfig segun Daniela
         decimal HorasXDia = decimal.Parse(AntaresHelper.Get_Config_HorasPersonaDia());
-        decimal Horas_Cargadas_Semana_Pasada = Personal.GetHorasCargadas_Semana_Pasada(idPersona);
-        decimal Horas_Cargadas_Semana = Personal.GetHorasCargadas_Semana(idPersona);
+
+        //Horas que cargaron realmente la semana pasada a la fecha seleccionada
+        decimal Horas_Cargadas_Semana_Pasada = Personal.GetHorasCargadas_Semana_Pasada(idPersona, fecha);
+
+        //Horas que llevan cargadas la semana de la fecha en cuestion
+        decimal Horas_Cargadas_Semana = Personal.GetHorasCargadas_Semana(idPersona, fecha);
 
         args.IsValid = false;
 
-        cvCheckHorasRestantes.ErrorMessage = P.Apellido + ',' + P.Nombres
+        cvCheckHorasRestantes.ErrorMessage = Persona.Apellido + ',' + Persona.Nombres
             + " ya tiene cargadas " + HorasCargadas_A_TalFecha.ToString("N2") + " Hs al " + fecha.ToShortDateString()
             + ", Solo se pueden cargar hasta " + HorasXDia.ToString() + " Horas Diarias";
-        if ((HorasCargadas_A_TalFecha + HorasACargar) <= HorasXDia) 
+
+        decimal HorasHabilitadasParaCargar = 0;
+
+        if ((HorasCargadas_A_TalFecha + HorasACargar) <= HorasXDia)
         {
 
             args.IsValid = true;
+
+            if (Horas_Cargadas_Semana_Pasada > HorasHabiles_de_la_SemanaPasada)
+            {
+                // calculo la diferencia entre las hroas q me pase del estandar por semana, porque esa diferencia 
+                // la voy a restar a las que pueden
+                // cargar en la semana actual
+                HorasHabilitadasParaCargar = HorasHabiles_Semana - (Horas_Cargadas_Semana_Pasada - HorasHabiles_de_la_SemanaPasada);
+
+            }
+            else
+            {
+                HorasHabilitadasParaCargar = HorasHabiles_Semana + 9;
+            }
+
+            //Si las horas cargadas esta semana son menores a las que me quedan habilitadas para cargar
+            //Entonces OK
+            //Sino me tendria que avisar que puedo cargar las HorasHabilitadasParaCargar
+
+            if (HorasHabilitadasParaCargar >= 0 && (Horas_Cargadas_Semana + HorasACargar) <= HorasHabilitadasParaCargar)
+            {
+                args.IsValid = true;
+
+            }
+            else
+            {
+                if (HorasHabiles_de_la_SemanaPasada > Horas_Cargadas_Semana_Pasada)
+                {
+                    cvCheckHorasRestantes.ErrorMessage = "Está intentando cargar " + (Horas_Cargadas_Semana + HorasACargar).ToString() + " Hs. en una Semana - El Maximo por semana es " + (HorasHabilitadasParaCargar).ToString() + " Hs.";
+                }
+
+                else
+                {
+                    cvCheckHorasRestantes.ErrorMessage = Persona.Apellido + ',' + Persona.Nombres +
+                        " Tiene " + Horas_Cargadas_Semana_Pasada.ToString() + "Hs." +
+                        " cargadas la semana pasada  , esta semana solo puede cargar " + (HorasHabilitadasParaCargar).ToString() + " Hs." +
+                        " - Solo puede cargar  " + (HorasHabilitadasParaCargar - Horas_Cargadas_Semana).ToString() + " Hs.";
+                }
+                args.IsValid = false;
+
+            }
+
         }
 
-
-        decimal diferencia_semana_standar  = 0;
-        if (Horas_Cargadas_Semana_Pasada > HorasXSemana)
-        { 
-            // calculo la diferencia entre las hroas q me pase del estandar por semana, porque esa diferencia 
-            // la voy a restar a las que pueden
-            // cargar en la semana actual
-            diferencia_semana_standar = Horas_Cargadas_Semana_Pasada - HorasXSemana;
-        }
-
-        if (diferencia_semana_standar > 0 && Horas_Cargadas_Semana <= (HorasXSemana - diferencia_semana_standar))
-        {
-            args.IsValid = true;
-
-        }
-        else
-        {
-            cvCheckHorasRestantes.ErrorMessage = P.Apellido + ',' + P.Nombres +
-                " tiene " + Horas_Cargadas_Semana_Pasada.ToString() +
-                " cargadas la semana pasada  , esta semana podria cargar " + (HorasXSemana - diferencia_semana_standar).ToString();            
-        
-            args.IsValid = false;
-
-        }
 
     }
 #endregion
@@ -682,6 +726,7 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
 
 
     }
+   
     protected void cvGastosEnSolicitud_ServerValidate(object source, ServerValidateEventArgs args)
     {
 

@@ -64,7 +64,9 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             ddlHoraReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Hour.ToString();
             ddlMinutosReporte.SelectedValue = Sol_Cor.FechanotificacionCliente.Minute.ToString();
             cmbPlazoAtencion.SelectedValue = Sol_Cor.IdPlazoAtencion.ToString();
-
+            
+            ucSolicitudGastos.Deshabilita_Gastos();
+            Session["Accion"] = null;
 
             if (Sol_Cor.Penaliza)
             { rdbPlazo.SelectedIndex = 1; }
@@ -95,6 +97,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             cmbPlazoAtencion.SelectedValue = sol_cor.IdPlazoAtencion.ToString();
             cmbClientes.SelectedValue = sol.IdCliente.ToString();
             ucAdjuntos.ListaAdjuntos(sol.Id_Solicitud.ToString());
+            ucSolicitudGastos.Deshabilita_Gastos();
 
         }
     }
@@ -114,7 +117,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
     public void CargarCombos()
     {
         txtFechaReporte.Text = DateTime.Today.ToString("dd/MM/yyyy");
-        
+        //txtFechaReporte.Text = AntaresHelper.UltimoDiaSemana(DateTime.Parse(txtDesde.Text)).ToString("dd/MM/yyyy");
         foreach (Antares.model.PlazoRealizacion plazo in Antares.model.PlazoRealizacion.FindAll())
         {
             cmbPlazoAtencion.Items.Add(new ListItem(plazo.Descripcion, plazo.Id.ToString()));
@@ -359,21 +362,11 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
         bool esValida = true;
         List<string> errores = new List<string>();
         string idSol = BiFactory.Sol.Id_Solicitud.ToString();
-        //if (!Solicitud.TieneServiciosAfectados(idSol) && gvServicios.Rows.Count == 0)
-        //{
-        //    esValida = false;
-        //    errores.Add("Debe seleccionar al menos un servicio.");
-        //}
         if (!Solicitud.TieneResponsable(idSol))
         {
             esValida = false;
             errores.Add("Debe asignar al menos un responsable.");
         }
-        //if (gvSolicitudVehiculos.Rows.Count == 0)
-        //{
-        //    esValida = false;
-        //    errores.Add("Debe asignar al menos un vehículo.");
-        //}
         if (!esValida)
         {
             blErrores.DataSource = errores;

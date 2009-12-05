@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="ListaLicencias.aspx.cs" Inherits="Solicitudes_ListaLicencias" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" Runat="Server">
-    <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px">
+    <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px" >
         <tr class="header_custom">
             <td align="center" colspan="2">
                 Solicitudes de licencia
@@ -19,6 +19,7 @@
                 <asp:DropDownList ID="cmbEmpleado" runat="server" CssClass="text_custom" AutoPostBack="True" 
                     onselectedindexchanged="cmbEmpleado_SelectedIndexChanged">
                 </asp:DropDownList>
+                
             </td>
         </tr>
         <tr>
@@ -36,20 +37,21 @@
                             EmptyDataText="No se han encontrado licencias para el empleado seleccionado." 
                             onpageindexchanging="GridView1_PageIndexChanging">
                             <Columns>
-                            <asp:BoundField DataField="id" Visible="false"/>
                             <asp:BoundField DataField="IdSolicitud" HeaderText="Solicitud" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Tipo" HeaderText="Tipo" HeaderStyle-HorizontalAlign="Center"/>
                             <asp:BoundField DataField="FechaInicio" HeaderText="Inicio" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"  dataformatstring="{0:dd/MM/yyyy}" />
                             <asp:BoundField DataField="FechaFin" HeaderText="Fin" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"  dataformatstring="{0:dd/MM/yyyy}" />
-                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="300px"/>
-                            <asp:BoundField DataField="Duracion" HeaderText="Duración" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Horas" HeaderText="Horas" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField HeaderText="Visualizar" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
-                                <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar" ImageUrl="~/Images/calendario.gif" Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("IdSolicitud") %>' />
+                                <asp:HyperLink ID="lnkVisualizar" runat="server" ToolTip="Visualizar" ImageUrl="~/images/versolicitud.gif"  Target="_blank" NavigateUrl='<%# "VisualizarSolicitud.aspx?id=" + Eval("IdSolicitud") %>' />
                             </ItemTemplate>
                          </asp:TemplateField>
                             <asp:CommandField ButtonType="Image" HeaderText="Editar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                                 EditImageUrl="~/images/b_edit.gif" EditText="Editar" ShowCancelButton="False"
-                                ShowEditButton="True" />
+                                ShowEditButton="True" 
+                                Visible="false"
+                                />
                             <asp:CommandField ButtonType="Image" DeleteImageUrl="~/Images/basuravacio.gif" DeleteText="Eliminar" HeaderText="Eliminar" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                                 ShowCancelButton="False" ShowDeleteButton="True" />
                             </Columns>

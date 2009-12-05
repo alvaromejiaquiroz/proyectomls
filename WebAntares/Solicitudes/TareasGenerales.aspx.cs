@@ -30,7 +30,7 @@ public partial class Solicitudes_TareasGenerales : System.Web.UI.Page
     private void FillDatos()
     { 
         tarea_general = Antares.model.SolicitudTareasGenerales.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
-
+        
         if (tarea_general != null)
         {
             txtInicio.Text = tarea_general.FechaInicio.ToString("dd/MM/yyyy"); 
@@ -47,7 +47,7 @@ public partial class Solicitudes_TareasGenerales : System.Web.UI.Page
             
             
             txtInicio.Text = DateTime.Today.ToString("dd/MM/yyyy");
-            
+            txtFin.Text = AntaresHelper.UltimoDiaSemana(DateTime.Today).ToString("dd/MM/yyyy");
 
         }
     }

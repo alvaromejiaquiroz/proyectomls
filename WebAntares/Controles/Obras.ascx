@@ -176,19 +176,7 @@
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
-    <tr>
-        <td colspan="3" style="padding-left: 20px;font-weight:bold">
-           Presupuesto de la Obra
-        </td>
-    </tr>
-    <tr>
-        <td style="padding-left: 20px">
-            
-        </td>
-        <td colspan="2">
-            <asp:Literal ID="litMonto" runat="server"></asp:Literal>
-        </td>
-    </tr>
+  
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
@@ -219,6 +207,14 @@
     </tr>
     <tr>
         <td colspan="3" style="height: 20px"></td>
+    </tr>
+    <tr>
+        <td style="padding-left: 20px">
+            Gastos Estimados
+        </td>
+        <td colspan="2">
+            <asp:Literal ID="litMonto" runat="server"></asp:Literal>
+        </td>
     </tr>
      <tr>
     <td style="padding-left: 20px;padding-right:20px" colspan="3">

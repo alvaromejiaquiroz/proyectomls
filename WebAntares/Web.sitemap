@@ -10,10 +10,12 @@
               <siteMapNode title="Pagos" url="~/Administracion/Pagos.aspx" roles="1,3"/>
          </siteMapNode>
         <siteMapNode title="Tiempos" roles="1,4">
-            <siteMapNode title="Tiempos"  url="~/solicitudes/TiemposPersonal.aspx" roles=",2"/>
+            <siteMapNode title="Horas Personal"  url="~/solicitudes/TiemposPersonal.aspx" roles="1,2"/>
+            <siteMapNode title="Horas x Persona"  url="~/solicitudes/TiemposXPersona.aspx" roles="1,2"/>
+            <siteMapNode title="Horas x Tipo Solicitud Año Vigente"  url="~/solicitudes/Horas_X_TipoSol.aspx" roles="1,2"/>
         </siteMapNode>
-        <siteMapNode title="Licencias" roles="4">
-                <siteMapNode title="Licencias"                  url="~/solicitudes/ListaLicencias.aspx" roles="4"/>
+        <siteMapNode title="Licencias" roles="1,4">
+                <siteMapNode title="Licencias"                  url="~/solicitudes/ListaLicencias.aspx" roles="1,4"/>
                 <siteMapNode title="Francos Compensatorios"     url="~/solicitudes/ListaFrancosCompensatorios.aspx" roles="3"/>
             </siteMapNode>
 

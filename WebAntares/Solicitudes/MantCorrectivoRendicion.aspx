@@ -431,9 +431,13 @@
                                                             Text="Guardar" ValidationGroup="horasPersonal" CssClass="button_custom" />
                                                         <asp:Button ID="btnHorasPersonalCerrar" runat="server" Text="Cerrar" CausesValidation="false"
                                                             CssClass="button_custom" />
-                                                        <asp:CompareValidator ID="cvHorasPersonal" runat="server" ErrorMessage="La fecha debe ser mayor o igual a la fecha de inicio de la solicitud."
-                                                            ControlToValidate="txtHorasPersonalDia" Display="None" Operator="GreaterThanEqual"
-                                                            Type="Date" ValidationGroup="horasPersonal" ValueToCompare="01/01/2000"></asp:CompareValidator>
+                                                         <asp:RangeValidator ID="rngHorasPersonalValidator"  runat="server" 
+                                                    Type="Date"
+                                                    ControlToValidate="txtHorasPersonalDia"
+                                                    minimumvalue="01/01/2000" maximumvalue="31/12/2099"
+                                                     ErrorMessage="Ha excedido el plazo para cargar horas en la fecha solicitada"
+                                                     Display="None" ValidationGroup ="horasPersonal"> 
+                                                     </asp:RangeValidator>
                                                         
                                                     </td>
                                                 </tr>

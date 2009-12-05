@@ -11,17 +11,22 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-public partial class _Default : System.Web.UI.Page
+public partial class Errores_MostrarError : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["mensaje"] != null)
-        {
 
-            lblMensaje.Text = Session["mensaje"].ToString();
-            divMensaje.Visible = true;
-            Session.Remove("mensaje");
+        Mostrar();
 
-        }
+
     }
+    protected void Mostrar()
+    {
+        //  string mensaje = Session["LastException"].ToString();
+        string mensaje = Request.QueryString["msg"].ToString();
+        lblError.Text = mensaje;
+        //lblError.Text = Request.QueryString["msg"].ToString();
+        Server.ClearError();
+    }
+
 }

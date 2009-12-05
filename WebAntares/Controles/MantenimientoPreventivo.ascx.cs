@@ -179,6 +179,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
                 break;
         }
     }
+   
     protected void gvCalidad_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         Int32 Id = Int32.Parse(e.CommandArgument.ToString());
@@ -202,6 +203,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
                 break;
         }
     }
+
     public SolicitudGastos[] Gastos
     {
         set

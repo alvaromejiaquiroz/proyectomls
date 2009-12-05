@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 using System.Data;
 using Antares.model;
 using WebAntares;
@@ -34,6 +35,21 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         GridView1.DataSource = table;
         GridView1.PageIndex = pageIndex;
         GridView1.DataBind();
+        //Selecciono el paginador 
+        TableCell mainCell = this.GridView1.BottomPagerRow.Cells[0];
+        Table pager = (Table)mainCell.Controls[0];
+        TableRow pageRow = pager.Rows[0];
+
+        foreach (TableCell pageCell in pageRow.Cells)
+        {
+            if (pageCell.Controls[0] is Label)
+            {
+                Label lbl = (Label)pageCell.Controls[0];
+                //lbl.Font.Size = new FontUnit(FontSize.Larger);
+                lbl.Font.Size = new FontUnit(11);
+                lbl.ForeColor = System.Drawing.Color.White;
+            }
+        }
     }
 
     private void habilitarSegunPerfil()
@@ -197,18 +213,6 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         }
     }
 
-    protected void GridView1_DataBound(object sender, EventArgs e)
-    {
-        //if (BiFactory.User.IdPerfil == 1)
-        //{
-        //    GridView1.Columns[11].Visible = true;
-        //}
-        //else
-        //{
-        //    GridView1.Columns[11].Visible = false;
-        //}
-    }
-
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         
@@ -246,22 +250,21 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
             string valorTipoSolicitud  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Tipo"));
             string valorIdResponsable  = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id_Responsable"));
 
-            
+            //si el empleado logueado y es responsable de la solicitud puede editar y puede cambiar estado
+
             if (BiFactory.Empleado.IdEmpleados == int.Parse(valorIdResponsable))
             {
                 imgEditar.Visible = true;
                 imgCambiarEstado.Visible = true;
 
             }
-           
+            //si el empleado logueado es admin o un poweruser puede editar y cambiar estado
             if (BiFactory.User.IdPerfil <=5)
             {
                 imgEditar.Visible = true;
                 imgCambiarEstado.Visible = true;
             }
 
-            
-                        
             switch (valorEstado )
             {
                 case "Anulado":
@@ -413,6 +416,7 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         FillGrid(e.NewPageIndex);
+        
     }
 
     protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
@@ -441,5 +445,9 @@ public partial class Solicitudes_Solicitudes : System.Web.UI.Page
         }
       
 
+    }
+    protected void GridView1_PageIndexChanged(object sender, EventArgs e)
+    {
+       
     }
 }

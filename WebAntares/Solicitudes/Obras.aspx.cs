@@ -29,6 +29,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             CargarCombos();
             FillSolicitudEmpleados(0);
             FillSolicitudVehiculos(0);
+            LoadDataComplementaria();
             CargaFechas();
         }
     }
@@ -40,6 +41,9 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
     
     public void CargarCombos()
     {
+        txtInicio.Text = DateTime.Today.ToString("dd/MM/yyyy");
+        txtEntrega.Text = AntaresHelper.UltimoDiaSemana(DateTime.Today).ToString("dd/MM/yyyy");
+   
         foreach (Antares.model.Vehiculos vehi in Antares.model.Vehiculos.GetVehiculosActivos())
         {
             lstVehiculos.Items.Add(new ListItem(vehi.NUnidad + "-" + vehi.Marca + " " + vehi.Modelo + " - " + vehi.Patente, vehi.IdVehiculos.ToString()));
@@ -54,6 +58,35 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
         foreach (Antares.model.Personal responsable in Antares.model.Personal.GetPersonalActivo())
         {
             cmbResponsable.Items.Add(new ListItem(responsable.Apellido + ", " + responsable.Nombres, responsable.IdEmpleados.ToString()));
+        }
+    }
+
+    private void LoadDataComplementaria()
+    {
+
+        SolicitudObra obr = SolicitudObra.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+
+        if (obr != null)
+        {
+            txtContacto.Text = BiFactory.Sol.Contacto;
+            txtOrdenCompra.Text = BiFactory.Sol.NroOrdenCte;
+            cmbCliente.SelectedValue = BiFactory.Sol.IdCliente.ToString();
+            txtMail.Text = BiFactory.Sol.ContactoMail;
+            txtTelefonoContacto.Text = BiFactory.Sol.ContactoTel;
+            txtDescripcionTareas.Text = obr.DescripcionTareas;
+            
+            txtInicio.Text = obr.FechaInicio.ToString("dd/MM/yyyy");
+            txtEntrega.Text = obr.FechaFin.ToString("dd/MM/yyyy");
+            txtInicio.Enabled = false;
+            txtEntrega.Enabled = false;
+            imgEntrega.Visible = false;
+            imgInicio.Visible = false;
+
+            txtRequisitosAprovacion.Text = obr.RequisitosAprovacion;
+            txtRequisitoIngreso.Text = obr.RequisitosIngreso;
+
+            ucSolicitudGastos.Deshabilita_Gastos();
+            
         }
     }
 
@@ -156,7 +189,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
     protected void btnAceptarSolicitud_Click(object sender, EventArgs e)
     {
         Solicitud sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
-        if (IsValid && EsSolicitudValida() && !Solicitud.ExisteObra(sol.Id_Solicitud.ToString()))
+        if (IsValid && EsSolicitudValida())
         {
             sol.IdCliente = int.Parse(cmbCliente.SelectedValue);
             sol.Contacto = txtContacto.Text;
@@ -164,17 +197,23 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             sol.Status = eEstados.Pendiente.ToString();
             sol.ContactoMail = txtMail.Text;
             sol.ContactoTel = txtTelefonoContacto.Text;
-            
-            SolicitudObra Sol_Ob = new SolicitudObra();
+
+            SolicitudObra Sol_Ob = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", sol.Id_Solicitud));
+
+            if (Sol_Ob == null)
+            {
+                Sol_Ob = new SolicitudObra();
+                Sol_Ob.IdSolicitud = sol.Id_Solicitud;
+            }
+            Sol_Ob.Presupuesto = "0";
             Sol_Ob.IdSolicitud = sol.Id_Solicitud;
-            Sol_Ob.DescripcionTareas  = txtDescripcionTareas.Text;
+            Sol_Ob.DescripcionTareas = txtDescripcionTareas.Text;
             Sol_Ob.FechaInicio = DateTime.Parse(txtInicio.Text);
             Sol_Ob.FechaFin = DateTime.Parse(txtEntrega.Text);
             Sol_Ob.RequisitosAprovacion = txtRequisitosAprovacion.Text;
             Sol_Ob.RequisitosIngreso = txtRequisitoIngreso.Text;
-
             Sol_Ob.Presupuesto = "0";
-            
+           
             sol.Save();
             Sol_Ob.Save();
 
@@ -203,6 +242,63 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             ucObras.Visible = true;
             WebAntares.AntaresHelper.NotificaSolicitud(sol.Id_Solicitud);
         }
+
+
+        //{
+        //    sol.IdCliente = int.Parse(cmbCliente.SelectedValue);
+        //    sol.Contacto = txtContacto.Text;
+        //    sol.NroOrdenCte = txtOrdenCompra.Text;
+        //    sol.Status = eEstados.Pendiente.ToString();
+        //    sol.ContactoMail = txtMail.Text;
+        //    sol.ContactoTel = txtTelefonoContacto.Text;
+         
+        //if (IsValid && EsSolicitudValida() && !Solicitud.ExisteObra(sol.Id_Solicitud.ToString()))
+        //{
+        //    sol.IdCliente = int.Parse(cmbCliente.SelectedValue);
+        //    sol.Contacto = txtContacto.Text;
+        //    sol.NroOrdenCte = txtOrdenCompra.Text;
+        //    sol.Status = eEstados.Pendiente.ToString();
+        //    sol.ContactoMail = txtMail.Text;
+        //    sol.ContactoTel = txtTelefonoContacto.Text;
+            
+        //    SolicitudObra Sol_Ob = new SolicitudObra();
+        //    Sol_Ob.IdSolicitud = sol.Id_Solicitud;
+        //    Sol_Ob.DescripcionTareas  = txtDescripcionTareas.Text;
+        //    Sol_Ob.FechaInicio = DateTime.Parse(txtInicio.Text);
+        //    Sol_Ob.FechaFin = DateTime.Parse(txtEntrega.Text);
+        //    Sol_Ob.RequisitosAprovacion = txtRequisitosAprovacion.Text;
+        //    Sol_Ob.RequisitosIngreso = txtRequisitoIngreso.Text;
+
+        //    Sol_Ob.Presupuesto = "0";
+            
+        //    sol.Save();
+        //    Sol_Ob.Save();
+
+        //    pnlObras.Visible = false;
+
+        //    ucObras.Numero = Sol_Ob.IdSolicitud.ToString();
+        //    ucObras.Titulo = sol.Descripcion;
+        //    ucObras.Estado = sol.Status;
+        //    ucObras.Cliente = cmbCliente.SelectedItem.Text;
+        //    ucObras.NroOrden = sol.NroOrdenCte;
+        //    ucObras.Contacto = sol.Contacto;
+        //    ucObras.MailContacto = sol.ContactoMail;
+        //    ucObras.TelefonoContacto = sol.ContactoTel;
+        //    ucObras.DescripcionTareas = Sol_Ob.DescripcionTareas;
+        //    ucObras.FechaInicio = Sol_Ob.FechaInicio.ToString("dd/MM/yyyy");
+        //    ucObras.FechaEntrega = Sol_Ob.FechaFin.ToString("dd/MM/yyyy");
+        //    ucObras.RequisitosAprobacion = Sol_Ob.RequisitosAprovacion;
+        //    ucObras.RequisitosIngreso = Sol_Ob.RequisitosIngreso;
+        //    ucObras.Personal = SolicitudRecursosEmpleados.GetReader(BiFactory.Sol.Id_Solicitud);
+        //    ucObras.Vehiculos = SolicitudRecursosVehiculos.GetReader(BiFactory.Sol.Id_Solicitud);
+
+        //    decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+        //    ucObras.Monto = gastos.ToString();
+
+        //    ucObras.Adjuntos = sol.GetAdjuntos();
+        //    ucObras.Visible = true;
+        //    WebAntares.AntaresHelper.NotificaSolicitud(sol.Id_Solicitud);
+        //}
     }
 
     protected void gvSolicitudVehiculos_RowDeleting(object sender, GridViewDeleteEventArgs e)
