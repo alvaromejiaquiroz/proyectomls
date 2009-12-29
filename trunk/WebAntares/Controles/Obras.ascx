@@ -1,5 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Obras.ascx.cs" Inherits="Controles_Obras" %>
 
+<style type="text/css">
+    .style2
+    {
+        width: 263px;
+    }
+</style>
+
 <table width="700px" style="border-style: solid; border-color: #000000; border-width: 1px;text-align:left">
     <tr class="header_custom">
         <td align="center" colspan="3">
@@ -7,9 +14,9 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" style="height: 20px">
+        <td class="style2" >
         </td>
-        <td rowspan="3" align="right" valign="top" style="padding-right:10px">
+        <td  align="right" valign="top" style="padding-right:10px">
             <asp:Image ID="imgAntares" runat="server" AlternateText="Antares" ToolTip="Antares" ImageUrl="~/images/LogoAntaresThumbnail.png" />
         </td>
     </tr>
@@ -17,15 +24,23 @@
         <td colspan="3" style="height: 30px"></td>
     </tr>
     <tr>
-        <td style="padding-left: 20px;width:350px">
-            Número
+        <td style="padding-left: 20px;" class="style2">
+            Número de Solicitud
         </td>
         <td colspan="2">
             <asp:Literal ID="litNumero" runat="server"></asp:Literal>
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px;" class="style2">
+            Codigo de Obra
+        </td>
+        <td colspan="2">
+            <asp:Label ID="lblCodigoObra" runat="server"></asp:Label>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-left: 20px" class="style2">
             Título
         </td>
         <td colspan="2">
@@ -33,7 +48,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Estado
         </td>
         <td colspan="2">
@@ -43,13 +58,44 @@
     <tr>
         <td colspan="3" style="height: 20px"></td>
     </tr>
+       <tr>
+        <td style="padding-left: 20px;" class="style2">
+        <div id="divReprogramacion" runat="server" visible="false" 
+                style="position:inherit; width:inherit">
+        <table >
+            <tr>
+                <td><asp:Literal ID="litReprogramacion" runat="server"></asp:Literal></td>
+                <td ></td>
+            </tr>
+            <tr>
+                <td>Aprobador de la Reprogramación:</td>
+                <td style="width=300px"><asp:Literal ID="litAprobadorReprogramacion" runat="server"></asp:Literal></td>
+            </tr>
+            <tr>
+                <td>Fecha de Reprogramación:</td>
+                <td ><asp:Literal ID="litFechaReprogramacion" runat="server"></asp:Literal></td>
+            </tr>
+            <tr>
+                <td>Motivo de Reprogramación:</td>
+                <td ><asp:Literal ID="litMotivoReprogramacion" runat="server"></asp:Literal></td>
+            </tr>
+        
+        </table>
+            
+        </div>
+        </td>
+    </tr>
+   
+    <tr>
+        <td colspan="3" style="height: 20px"></td>
+    </tr>
     <tr>
         <td colspan="3" style="padding-left: 20px;font-weight:bold">
             Cliente
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Cliente
         </td>
         <td colspan="2">
@@ -57,7 +103,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Nro. de orden de compra o contrato
         </td>
         <td colspan="2">
@@ -65,7 +111,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Contacto
         </td>
         <td colspan="2">
@@ -73,7 +119,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             E-mail de contacto
         </td>
         <td colspan="2">
@@ -81,7 +127,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Teléfono de contacto
         </td>
         <td colspan="2">
@@ -97,7 +143,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Descripción de tareas solicitadas
         </td>
         <td colspan="2">
@@ -105,7 +151,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Fecha de inicio
         </td>
         <td colspan="2">
@@ -113,7 +159,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Fecha de entrega
         </td>
         <td colspan="2">
@@ -121,7 +167,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Requisitos de aprobación
         </td>
         <td colspan="2">
@@ -129,7 +175,7 @@
         </td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Requisitos de ingreso
         </td>
         <td colspan="2">
@@ -209,7 +255,7 @@
         <td colspan="3" style="height: 20px"></td>
     </tr>
     <tr>
-        <td style="padding-left: 20px">
+        <td style="padding-left: 20px" class="style2">
             Gastos Estimados
         </td>
         <td colspan="2">
@@ -221,11 +267,11 @@
        <asp:GridView ID="gvGastos" runat="server" AutoGenerateColumns="false" 
                         Width="100%">
                         <Columns>
-                            <asp:BoundField DataField="Detalle" HeaderText="Concepto" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="300px"/>
-                            <asp:BoundField DataField="Total" HeaderText="Total" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Tipo" HeaderText="Tipo Gasto" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left"/>
+                            <asp:BoundField DataField="Detalle" HeaderText="Concepto" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left"/>
+                            <asp:BoundField DataField="Total" HeaderText="Total" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left" />
                         </Columns>
-                    </asp:GridView>
-                    
+                    </asp:GridView>             
     </td>
     </tr>
     <tr>

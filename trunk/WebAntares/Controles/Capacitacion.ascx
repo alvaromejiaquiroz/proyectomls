@@ -48,22 +48,6 @@
     </tr>
     <tr>
         <td style="padding-left: 20px">
-            Fecha de inicio
-        </td>
-        <td colspan="2">
-            <asp:Literal ID="litFechaInicio" runat="server" ></asp:Literal>
-        </td>
-    </tr>
-    <tr>
-        <td style="padding-left: 20px">
-            Fecha de fin
-        </td>
-        <td colspan="2">
-            <asp:Literal ID="litFechaFin" runat="server"></asp:Literal>
-        </td>
-    </tr>
-    <tr>
-        <td style="padding-left: 20px">
             Duración
         </td>
         <td colspan="2">
@@ -118,6 +102,7 @@
                     <asp:BoundField DataField="Id" HeaderText="id" Visible="false" />
                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="left" dataformatstring="{0:dd/MM/yyyy}" />
                     <asp:BoundField DataField="Horas" HeaderText="Horas" ItemStyle-HorizontalAlign="left" DataFormatString="{0:0.0}" />
+                    <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
                 </Columns>
                 </asp:GridView>
         </td>
@@ -135,7 +120,7 @@
 </table>
 <asp:Panel ID="pnlImprimir" runat="server">
     <div style="margin: 20px;text-align: center">
-        Sistema de gestión de tareas - V 1.0 - ANTARES COM S.A
+        <asp:Label ID="VersionSistema" runat="server"></asp:Label>
     </div>
     <div style="margin: 20px;text-align: center">
         <input type="button" class="button_custom" onclick="window.print()" value="Imprimir" />

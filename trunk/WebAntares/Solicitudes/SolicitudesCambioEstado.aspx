@@ -124,7 +124,7 @@
                                 Hasta
                             </td>
                             <td>
-                                <asp:TextBox ID="txtFin" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
+                                <asp:TextBox ID="txtFin" runat="server" MaxLength="10" Width="80px" CssClass="text_custom" Enabled="false"></asp:TextBox>
                                 
                             </td>
                         </tr>

@@ -131,7 +131,7 @@ public partial class Controles_MantenimientoCorrectivo : System.Web.UI.UserContr
         set { litMonto.Text = "$" + value; }
     }
 
-    public SolicitudGastos[] Gastos
+    public DbDataReader Gastos
     {
         set
         {

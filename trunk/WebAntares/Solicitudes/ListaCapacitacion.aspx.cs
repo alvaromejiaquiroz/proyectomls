@@ -24,7 +24,6 @@ public partial class Solicitudes_ListaCapacitacion : System.Web.UI.Page
         {
             if (AntaresHelper.GetPuedeBuscar_Listado_Capacitacion(BiFactory.Perfil.Detalle))
             {
-
                 CargarCombos();
                 pnlBuscar.Visible = true;
             }
@@ -71,6 +70,10 @@ public partial class Solicitudes_ListaCapacitacion : System.Web.UI.Page
     {
        int item_seleccionado = int.Parse(GridView1.DataKeys[e.RowIndex].Value.ToString());
        Solicitud sol = Solicitud.FindFirst(Expression.Eq("Id_Solicitud", item_seleccionado));
+       if (IdEmpleado == 0)
+       {
+           IdEmpleado = int.Parse(cmbEmpleados.SelectedValue);
+       }
        if (sol != null)
        {
            sol.Delete();

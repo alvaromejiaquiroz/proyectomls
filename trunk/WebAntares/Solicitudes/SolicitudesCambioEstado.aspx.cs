@@ -69,8 +69,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
     private void MakeRendicion(int idSolOrg)
     {
         TransactionScope _transaction = new TransactionScope();
-        Solicitud sol;
-        sol = Solicitud.GetById(idSolOrg);
+        Solicitud  sol = Solicitud.GetById(idSolOrg);
         DateTime fechanula = DateTime.Parse("01/01/1900");
         Solicitud  reporte ;
         try {
@@ -165,6 +164,7 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
                 }
             }
             reporte.Save();
+            //BiFactory.Sol = reporte;
         }
         catch (Exception)
         {
@@ -296,7 +296,6 @@ public partial class Solicitudes_SolicitudesCambioEstado : System.Web.UI.Page
 
     }
 
-   
     protected void txtInicio_TextChanged(object sender, EventArgs e)
     {
         txtFin.Text = AntaresHelper.UltimoDiaSemana(DateTime.Parse(txtInicio.Text)).ToString("dd/MM/yyyy");

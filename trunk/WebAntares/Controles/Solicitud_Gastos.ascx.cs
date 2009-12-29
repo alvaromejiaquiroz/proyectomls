@@ -38,6 +38,16 @@ public partial class Controles_Gastos : System.Web.UI.UserControl
         {
             CargaCombos();
             FillGrid(0);
+            
+            if (Sol.Reporte == "SI")
+            {
+                FillGridSolicitudInicial(0,Sol.IdSolicitudInicial);
+
+                if (gvGastosSolicitudInicial.Rows.Count > 0)
+                {
+                    pnlGastosSolInicial.Visible = true;
+                }
+            }
             if (Modo == "E")
             {
                 Deshabilita_Gastos();
@@ -172,5 +182,25 @@ public partial class Controles_Gastos : System.Web.UI.UserControl
         
 
         
+    }
+
+    protected void FillGridSolicitudInicial(int pageIndex, int IdSol)
+    {
+        DataTable table = new DataTable();
+        DbDataReader reader = SolicitudGastos.GetGastosSolicitud(IdSol);
+        table.Load(reader);
+
+        gvGastosSolicitudInicial.DataSource = table;
+        gvGastosSolicitudInicial.PageIndex = pageIndex;
+        gvGastosSolicitudInicial.DataKeyNames = new string[] { "Id" };
+        gvGastosSolicitudInicial.DataBind();
+        lblGastosSolicitudInicial.Text = "$" + Solicitud.Valida_Gastos_Ingresados_Solicitud(IdSol).ToString();
+    }
+
+
+    protected void gvGastosSolicitudInicial_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FillGridSolicitudInicial(e.NewPageIndex,Sol.IdSolicitudInicial);
+
     }
 }

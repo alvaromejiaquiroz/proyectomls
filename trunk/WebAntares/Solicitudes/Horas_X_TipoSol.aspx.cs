@@ -34,6 +34,9 @@ public partial class Solicitudes_TiemposPersonal : System.Web.UI.Page
         gvHorasActualesXTipo.DataBind();
         gvHorasActualesXTipo_MES.DataSource = Personal.GetTiempos_Personal_X_TipoSolicitud_MES();
         gvHorasActualesXTipo_MES.DataBind();
+
+        gvRankingHoras.DataSource = Personal.GetRankingHorasPersonal();
+        gvRankingHoras.DataBind();
     }
     
 }

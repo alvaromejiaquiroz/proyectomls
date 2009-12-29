@@ -19,6 +19,11 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
     static Antares.model.SolicitudCapacitacion sol_Cap;
     static Antares.model.Personal _persona;
     static int IdSol;
+    static string Horas;
+    static DateTime fechainicio;
+    static DateTime fechafin;
+
+
 
     protected Personal Persona
     {
@@ -26,13 +31,13 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
         set { _persona = value; }
     }
 
-  
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
             if (BiFactory.Empleado.IdEmpleados > 0)
             {
+                cmpVFecha.ValueToCompare = DateTime.Today.ToString("dd/MM/yyyy");
                 CargarCombos();
                 FillSol();
             }
@@ -110,9 +115,16 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
             txtEntidad.Text = sol_Cap.EntidadEducativa;
             txtInstructor.Text = sol_Cap.Instructor;
             txtPuntuacionExamen.Text = sol_Cap.PuntuacionExamen;
+            Persona = Personal.GetById(sol_Cap.IdEmpleado.ToString());
+            FillHorasPersonalGrid(0);
+            MostrarSolicitud();
         }
-        
-        CargarCombos();
+        else
+        {
+            Persona = Personal.GetById(BiFactory.Empleado.IdEmpleados.ToString());
+        }
+        litHorasPersonalPersona.Text = Persona.Apellido + "," + Persona.Nombres;
+        //CargarCombos();
     }
    
     private void CargarCombos()
@@ -123,72 +135,6 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
         cmbNivelCapacitacion.Items.Add("Avanzado");
         cmbNivelCapacitacion.Items.Add("Experto");
       
-    }
-
-    protected void btnComenzarCarga_Click(object sender, EventArgs e)
-    {
-        if (IsValid)
-        {
-            Solicitud Sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
-            SolicitudCapacitacion Cap = SolicitudCapacitacion.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
-
-            if (Cap == null)
-            {
-                Cap = new SolicitudCapacitacion();
-                Cap.IdSolicitud = Sol.Id_Solicitud;
-                Cap.Descripcion = Sol.Descripcion;
-            }
-            
-            Cap.FechaInicio = AntaresHelper.FechaNula();
-            Cap.FechaFin = AntaresHelper.FechaNula();
-            Cap.Nivel = cmbNivelCapacitacion.SelectedValue;
-            Cap.Instructor = txtInstructor.Text;
-            Cap.PuntuacionExamen = txtPuntuacionExamen.Text;
-            Cap.EntidadEducativa = txtEntidad.Text;
-            Cap.AreaEstudio = txtAreaEstudios.Text;
-            Cap.IdEmpleado = BiFactory.Empleado.IdEmpleados;
-            Cap.SaveAndFlush();
-
-            //pnlCapacitacion.Visible = false;
-
-            //ucCapacitacion.Numero = Cap.IdSolicitud.ToString();
-            //ucCapacitacion.Titulo = Cap.Descripcion;
-            //ucCapacitacion.Nivel = Cap.Nivel;
-            //ucCapacitacion.FechaInicio = Cap.FechaInicio.ToShortDateString();
-            //ucCapacitacion.FechaFin = Cap.FechaFin.ToShortDateString();
-            //ucCapacitacion.Duracion = Cap.Duracion.ToString();
-            //ucCapacitacion.AreaEstudios = Cap.AreaEstudio;
-            //ucCapacitacion.Instructor = Cap.Instructor;
-            //ucCapacitacion.EntidadEducativa = Cap.EntidadEducativa;
-            //ucCapacitacion.PuntuacionExamen = Cap.PuntuacionExamen;
-            //ucCapacitacion.Visible = true;
-
-
-            txtHorasPersonalDia.Text = string.Empty;
-            ddlHorasPersonalHoras.SelectedIndex = 0;
-
-        
-            DateTime fechaInicio = Sol.FechaCreacion;
-            DateTime fechaFin = DateTime.MinValue;
-
-            this.Persona = Personal.GetById(Cap.IdEmpleado.ToString());
-            litHorasPersonalPersona.Text = Persona.Apellido + "," + Persona.Nombres;
-            rngHorasPersonalValidator.MinimumValue = fechaInicio.ToString("dd/MM/yyyy");
-            rngHorasPersonalValidator.MaximumValue = DateTime.MaxValue.ToString("dd/MM/yyyy");
-            FillHorasPersonalGrid(0);
-//            DeshabilitaPanelPrincipal();
-            //pnlHorasPersonal.Visible = true;
-            divHoras.Visible = true;
-            
-
-        }
-    }
-
-    protected void btnFinalizarCarga_Click(object sender, EventArgs e)
-    {
-        //ucSolicitud_Horas.LimpiaFormulario();
-        Response.Redirect("~/default.aspx");
-        
     }
 
     protected void DeshabilitaPanelPrincipal()
@@ -221,8 +167,8 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
 
     protected void LimpiaFormulario()
     {
-        txtHorasPersonalDia.Text = string.Empty;
-        ddlHorasPersonalHoras.SelectedIndex = 0;
+        //txtHorasPersonalDia.Text = string.Empty;
+        //ddlHorasPersonalHoras.SelectedIndex = 0;
 
     }
 
@@ -258,7 +204,7 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
 
     protected void btnHorasPersonalGuardar_Click(object sender, EventArgs e)
     {
-        vsHorasPersonal.Enabled = true;
+        
         if (IsValid)
         {
             //int idPersona = int.Parse(hfHorasPersonalPersona.Value);
@@ -270,6 +216,7 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
             ph.IdSolicitud = BiFactory.Sol.Id_Solicitud;
             ph.Fecha = fecha;
             ph.Horas = decimal.Parse(ddlHorasPersonalHoras.SelectedValue);
+            ph.Descripcion = txtHorasPersonalDescripcion.Text;
             ph.SaveAndFlush();
             LimpiaFormulario();
             FillHorasPersonalGrid(0);
@@ -279,7 +226,7 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
 
     protected void btnHorasPersonalCerrar_Click(object sender, EventArgs e)
     {
-        divHoras.Visible= false;
+//        divHoras.Visible= false;
     }
 
     
@@ -374,20 +321,157 @@ public partial class Solicitudes_Capacitacion : System.Web.UI.Page
     }
     #endregion
 
-    protected void ApagaValidadores(bool apaga)
+    protected void btnCancelar_Click(object sender, EventArgs e)
     {
-        if (apaga)
+        Response.Redirect("~/default.aspx");
+    }
+
+    protected void btnVisualizar_Click(object sender, EventArgs e)
+    {
+        ucCapacitacion.MostrarEnsolicitud = true;
+        MostrarSolicitud();
+           
+    }
+
+    protected void btnConfirmarCarga_Click(object sender, EventArgs e)
+    {
+        if (IsValid)
         {
-           // vsHorasPersonal.Enabled = false;
-            vsSolicitud.Enabled = false;
+            Solicitud Sol = Solicitud.GetById(BiFactory.Sol.Id_Solicitud);
+            SolicitudCapacitacion Cap = SolicitudCapacitacion.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+
+            if (Cap == null)
+            {
+                Cap = new SolicitudCapacitacion();
+                Cap.IdSolicitud = Sol.Id_Solicitud;
+                Cap.Descripcion = Sol.Descripcion;
+            }
+
+            Cap.FechaInicio = AntaresHelper.FechaNula();
+            Cap.FechaFin = AntaresHelper.FechaNula();
+            Cap.Nivel = cmbNivelCapacitacion.SelectedValue;
+            Cap.Instructor = txtInstructor.Text;
+            Cap.PuntuacionExamen = txtPuntuacionExamen.Text;
+            Cap.EntidadEducativa = txtEntidad.Text;
+            Cap.AreaEstudio = txtAreaEstudios.Text;
+            Cap.IdEmpleado = BiFactory.Empleado.IdEmpleados;
+            Cap.SaveAndFlush();
+            //AntaresHelper.NotificaSolicitud(Cap.IdSolicitud);
+
+            //txtHorasPersonalDia.Text = string.Empty;
+            //ddlHorasPersonalHoras.SelectedIndex = 0;
+
+
+            //DateTime fechaInicio = Sol.FechaCreacion;
+            //DateTime fechaFin = DateTime.MinValue;
+
+            //this.Persona = Personal.GetById(Cap.IdEmpleado.ToString());
+            //litHorasPersonalPersona.Text = Persona.Apellido + "," + Persona.Nombres;
+            //cmpVFecha.ValueToCompare = DateTime.Today.ToString("dd/MM/yyyy");
+            //FillHorasPersonalGrid(0);
+            Session["mensaje"] = "La solicitud " + BiFactory.Sol.Id_Solicitud.ToString() + " Ha sido creada con Exito";
+            Response.Redirect("~/default.aspx");
+
+        }
+    }
+
+    protected void btnFinalizarCarga_Click(object sender, EventArgs e)
+    {
+        MostrarSolicitud();
+    }
+
+    protected void MostrarSolicitud()
+    {
+        //ucCapacitacion.Duracion.Tipo = cmbTipoTarea.SelectedItem.Text;
+        ucCapacitacion.Titulo= BiFactory.Sol.Descripcion;
+        CargaInfoSolicitud();
+        ucCapacitacion.Numero = BiFactory.Sol.Id_Solicitud.ToString();
+        ucCapacitacion.Duracion = Horas;
+        ucCapacitacion.Nivel = cmbNivelCapacitacion.SelectedValue;
+        ucCapacitacion.AreaEstudios = txtAreaEstudios.Text;
+        ucCapacitacion.Instructor = txtInstructor.Text;
+        ucCapacitacion.EntidadEducativa = txtEntidad.Text;
+        ucCapacitacion.PuntuacionExamen = txtPuntuacionExamen.Text;
+        ucCapacitacion.Sol = BiFactory.Sol;
+        ucCapacitacion.Visible = true;
+        ucCapacitacion.FillGridHoras = SolicitudRendicionPersonalHoras.GetPersonasHorasEnSolicitud(BiFactory.Sol.Id_Solicitud, Persona.IdEmpleados);
+        ucCapacitacion.MostrarEnsolicitud = true;
+        //btnVisualizar.Visible = false;
+        btnConfirmar.Visible = true;
+
+
+
+        
+    }
+
+    public void CargaInfoSolicitud()
+    {
+        
+        Horas = Solicitud.Get_SumaHoras_X_Persona_X_Solicitud(BiFactory.Sol.Id_Solicitud, Persona.IdEmpleados).ToString();
+    }
+
+    protected void cvValidaFechas_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        args.IsValid = false;
+        DateTime fecha_a_Cargar = DateTime.Parse(txtHorasPersonalDia.Text);
+        args.IsValid = AntaresHelper.EsCorrecta_Fecha_a_Cargar(fecha_a_Cargar);
+
+        if (args.IsValid)
+        {
+            fechainicio = Solicitud.Get_PrimerDiaCargado_X_Solicitud(BiFactory.Sol.Id_Solicitud, Persona.IdEmpleados);
+
+            if (fechainicio == DateTime.MinValue)
+            {
+                //esto significa que no hay ninguna fecha cargada
+                //entonces seteo las fechas inicio y fin
+                fechainicio = AntaresHelper.PrimerDiaSemana(fecha_a_Cargar);
+                fechafin = AntaresHelper.UltimoDiaSemana(fecha_a_Cargar);
+            }
+            else
+            {
+                //esto significa que habia una sol cargada, entonces le seteo la fecha fin maxima
+                fechafin = AntaresHelper.UltimoDiaSemana(fechainicio);
+            }
+            if (fechafin > DateTime.Today)
+            {
+                fechafin = DateTime.Today;
+            }
+
+            if (fecha_a_Cargar > fechafin)
+            {
+
+                args.IsValid = false;
+                cvValidaFechas.ErrorMessage = "Solo puede cargar horas entre los dias " + fechainicio.ToString("dd/MM/yyyy") + " y " + fechafin.ToString("dd/MM/yyyy");
+            }
+
+            if (AntaresHelper.Semana(fecha_a_Cargar) != AntaresHelper.Semana(fechainicio))
+            {
+                args.IsValid = false;
+                cvValidaFechas.ErrorMessage = "Solo puede cargar horas entre los dias " + fechainicio.ToString("dd/MM/yyyy") + " y " + fechafin.ToString("dd/MM/yyyy");
+            }
         }
         else
         {
-            vsHorasPersonal.Enabled = true;
-            vsSolicitud.Enabled = true;
+            args.IsValid = false;
+            cvValidaFechas.ErrorMessage = "Solo puede cargar horas en la semana anterior on en la semana actual hasta el dia de hoy";
+
         }
 
-    }    
+    }
 
+    protected void cvValidaHorasCargadas_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        if (!Solicitud.TieneHorasCargadasPersonal_En_Solicitud(BiFactory.Sol.Id_Solicitud))
+        {
+            args.IsValid = false;
+            cvValidaHorasCargadas.ErrorMessage = "No se han cargado horas en la Solicitud";
+        }
+        else
+        {
+            args.IsValid = true;
+        }
 
+    } 
+    
+   
 }

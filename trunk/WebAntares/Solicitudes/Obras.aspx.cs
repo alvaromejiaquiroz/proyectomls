@@ -68,6 +68,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
 
         if (obr != null)
         {
+            txtNro.Text = obr.NroObra;
             txtContacto.Text = BiFactory.Sol.Contacto;
             txtOrdenCompra.Text = BiFactory.Sol.NroOrdenCte;
             cmbCliente.SelectedValue = BiFactory.Sol.IdCliente.ToString();
@@ -79,7 +80,6 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             txtEntrega.Text = obr.FechaFin.ToString("dd/MM/yyyy");
             txtInicio.Enabled = false;
             txtEntrega.Enabled = false;
-            imgEntrega.Visible = false;
             imgInicio.Visible = false;
 
             txtRequisitosAprovacion.Text = obr.RequisitosAprovacion;
@@ -206,6 +206,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
                 Sol_Ob.IdSolicitud = sol.Id_Solicitud;
             }
             Sol_Ob.Presupuesto = "0";
+            Sol_Ob.NroObra = txtNro.Text;
             Sol_Ob.IdSolicitud = sol.Id_Solicitud;
             Sol_Ob.DescripcionTareas = txtDescripcionTareas.Text;
             Sol_Ob.FechaInicio = DateTime.Parse(txtInicio.Text);
@@ -222,6 +223,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             ucObras.Numero = Sol_Ob.IdSolicitud.ToString();
             ucObras.Titulo = sol.Descripcion;
             ucObras.Estado = sol.Status;
+            ucObras.CodigoObra = Sol_Ob.NroObra;
             ucObras.Cliente = cmbCliente.SelectedItem.Text;
             ucObras.NroOrden = sol.NroOrdenCte;
             ucObras.Contacto = sol.Contacto;
@@ -360,11 +362,7 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
             esValida = false;
             errores.Add("Debe asignar al menos un responsable.");
         }
-        if (gvSolicitudVehiculos.Rows.Count == 0)
-        {
-            esValida = false;
-            errores.Add("Debe asignar al menos un vehículo.");
-        }
+       
         if (!esValida)
         {
             blErrores.DataSource = errores;
@@ -399,6 +397,13 @@ public partial class Solicitudes_Obras : System.Web.UI.Page
 
         }
         else { args.IsValid = true; }
+
+
+    }
+
+    protected void txtInicio_TextChanged(object sender, EventArgs e)
+    {
+        txtEntrega.Text = AntaresHelper.UltimoDiaSemana(DateTime.Parse(txtInicio.Text)).ToString("dd/MM/yyyy");
 
 
     }

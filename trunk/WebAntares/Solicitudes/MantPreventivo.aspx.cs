@@ -348,9 +348,10 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                 ucMantenimientoPreventivo.Calidad = CalidadArchivos.FindAll(Expression.Eq("Id", S.IdCalidadArchivo)); ;
             }
 
-            decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
+            decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(sol.Id_Solicitud);
             ucMantenimientoPreventivo.Monto = gastos.ToString();
-
+            //ucMantenimientoPreventivo.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", sol.Id_Solicitud)); 
+            ucMantenimientoPreventivo.Gastos = SolicitudGastos.GetGastosSolicitud(sol.Id_Solicitud); 
             ucMantenimientoPreventivo.Visible = true;
 
             WebAntares.AntaresHelper.NotificaSolicitud(sol.Id_Solicitud);

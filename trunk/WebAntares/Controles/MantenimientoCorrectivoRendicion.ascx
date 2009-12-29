@@ -313,11 +313,12 @@
     </tr>
      <tr>
     <td style="padding-left: 20px;padding-right:20px" colspan="3">
-       <asp:GridView ID="gvGastos" runat="server" AutoGenerateColumns="false" 
+    <asp:GridView ID="gvGastos" runat="server" AutoGenerateColumns="false" 
                         Width="100%">
                         <Columns>
-                            <asp:BoundField DataField="Detalle" HeaderText="Concepto" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="300px"/>
-                            <asp:BoundField DataField="Total" HeaderText="Total" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Tipo" HeaderText="Tipo Gasto" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left"/>
+                            <asp:BoundField DataField="Detalle" HeaderText="Concepto" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left"/>
+                            <asp:BoundField DataField="Total" HeaderText="Total" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left" />
                         </Columns>
                     </asp:GridView>
                     

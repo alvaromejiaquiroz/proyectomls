@@ -22,6 +22,11 @@
 <cc1:CalendarExtender ID="ceHasta" runat="server" Format="dd/MM/yyyy" PopupButtonID="imgHasta" CssClass="cal_Theme1"     TargetControlID="txtHasta">
 </cc1:CalendarExtender>
                                                
-    <uc1:Solicitud_Gastos ID="ucGastos" runat="server" />
+     <asp:TextBox id="txttexto" runat="server"></asp:TextBox> 
+     <asp:Button ID="btnBuscaTexto" runat ="server" onclick="btnBuscaTexto_Click" />
+    <asp:GridView ID ="gvTest" runat="server" AutoGenerateColumns="true" 
+        onrowdatabound="gvTest_RowDataBound">
+    <Columns></Columns>
+        </asp:GridView>
                                                
 </asp:Content>

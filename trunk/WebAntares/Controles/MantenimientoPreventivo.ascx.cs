@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Data.Common;
 using Antares.model;
 using NHibernate.Expression;
+using System.Data.Common;
 
 public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserControl
 {
@@ -139,6 +140,11 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
         set { litFechaReprogramacion.Text = value; }
     }
 
+    public string Motivo_Reprogramacion
+    {
+        set { litMotivoReprogramacion.Text = value; }
+    }
+
     public bool HabilitarDivReprogramacion
     {
         set
@@ -204,7 +210,7 @@ public partial class Controles_MantenimientoPreventivo : System.Web.UI.UserContr
         }
     }
 
-    public SolicitudGastos[] Gastos
+    public DbDataReader  Gastos
     {
         set
         {

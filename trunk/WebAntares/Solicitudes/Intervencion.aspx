@@ -7,7 +7,7 @@
     <table width="700px" style="border-style: solid; border-color: #000000; border-width: 2px">
         <tr class="header_custom">
             <td align="center" colspan="4">
-               <p class="Titulo_3"> Ingresar Solicitud de Intervención</p>
+               <p class="Titulo_3"> Ingresar Solicitud </p>
             </td>
         </tr>
         <tr>
@@ -16,7 +16,7 @@
         </tr>
         <tr>
             <td style="padding-left:20px">
-                Tipo de solicitud
+                Tipo de Solicitud
             </td>
             <td>
                 <asp:DropDownList ID="cmbTipoSolicitud" runat="server" CssClass="text_custom" Width="250px">
@@ -34,6 +34,13 @@
                     CssClass="text_custom"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvTitulo" runat="server" ErrorMessage="Debe ingresar el título de referencia."
                     Display="None" ControlToValidate="txtTitulo" ValidationGroup="intervencion"></asp:RequiredFieldValidator>
+                 
+                 <asp:RegularExpressionValidator  runat ="server" 
+                    ID="revDEsc" ControlToValidate="txtTitulo"
+                    ErrorMessage = "Ha ingresado algun caracter invalido"
+                    ValidationGroup="intervencion" ValidationExpression="(?<=^|>)[^><]+?(?=<|$)" 
+                    Display="None">
+                </asp:RegularExpressionValidator>     
             </td>
         </tr>
         <tr>

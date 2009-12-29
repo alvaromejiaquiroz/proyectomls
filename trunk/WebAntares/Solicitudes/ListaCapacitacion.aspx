@@ -25,7 +25,11 @@
                     <td>
                      <asp:DropDownList ID="cmbEmpleados" runat="server" CssClass="text_custom" Width="250px"> </asp:DropDownList>
                     </td>
-                </tr>            
+                </tr>    
+                <tr>
+                <td style="height:20px;"></td>
+                </tr>
+                        
             <tr>
                     <td style="padding-left:20px;height:30px">
                       <asp:Button ID="btnBuscar" runat="server" OnClick="btnBuscar_Click"  Text="Buscar" CssClass="button_custom" />

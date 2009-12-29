@@ -65,7 +65,7 @@
                 </div>
             </td>
             <td id="header_logo" align="right">
-                <img alt="Energia en Comunicacion" src="./images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
+                <img alt="Energia en Comunicacion" src="../images/LogoAntares.png" id="foto_logo" style="margin: 10px" />
             </td>
         </tr>
         </table>
@@ -93,7 +93,7 @@
     <table border="1" cellspacing="0" cellpadding="0" id="content-container" >
         
                     <tr>
-                        <td  colspan="50px" align="left" style="height:200px;padding-bottom:20px ;padding-left:20px;padding-top:20px" >
+                        <td  colspan="50px" align="left" style="height:200px;padding-bottom:20px ;padding-left:20px;padding-top:20px"  valign="top">
                             <asp:ContentPlaceHolder ID="PageContainer" runat="server" >
                            </asp:ContentPlaceHolder>
                            

@@ -28,6 +28,11 @@ public partial class Controles_Obras : System.Web.UI.UserControl
     {
         set { litNumero.Text = value; }
     }
+  
+    public string CodigoObra
+    {
+        set { lblCodigoObra.Text = value; }
+    }
 
     public string Titulo
     {
@@ -131,6 +136,30 @@ public partial class Controles_Obras : System.Web.UI.UserControl
         }
     }
 
+    public string Aprobador_Reprogramacion
+    {
+        set { litAprobadorReprogramacion.Text = value; }
+    }
+
+    public string Fecha_Reprogramacion
+    {
+        set { litFechaReprogramacion.Text = value; }
+    }
+
+    public string Motivo_Reprogramacion
+    {
+        set { litMotivoReprogramacion.Text = value; }
+    }
+
+    public bool HabilitarDivReprogramacion
+    {
+        set
+        {
+            divReprogramacion.Visible = value;
+        }
+
+    }
+
     protected void gvAdjuntos_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         Int32 Id = Int32.Parse(e.CommandArgument.ToString());
@@ -153,8 +182,8 @@ public partial class Controles_Obras : System.Web.UI.UserControl
                 break;
         }
     }
-   
-    public SolicitudGastos[] Gastos
+
+    public DbDataReader Gastos
     {
         set
         {

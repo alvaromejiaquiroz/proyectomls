@@ -109,7 +109,7 @@ public partial class Solicitudes_AprobacionSolicitudesGestion : System.Web.UI.Pa
                     break;
 
             }
-            Response.Redirect("./AprobacionSolicitudesGestion.aspx");
+            Response.Redirect("./AprobacionSolicitudesCalidad.aspx");
         }
     }
 

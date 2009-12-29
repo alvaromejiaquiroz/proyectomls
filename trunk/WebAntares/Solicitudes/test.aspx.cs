@@ -15,26 +15,28 @@ using NHibernate;
 using NHibernate.Expression;
 using Castle.ActiveRecord;
 using Antares.model;
+using System.Text.RegularExpressions;
 
 public partial class Solicitudes_test : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        int a = 0;
-        int b;
-        b = 100 / a;
+        //int a = 0;
+        //int b;
+        //b = 100 / a;
 
 
-        Solicitud S = Solicitud.FindFirst(Expression.IdEq(868));
-        ucGastos.Sol = S;
-        ucGastos.MuestraGastos();
+        //Solicitud S = Solicitud.FindFirst(Expression.IdEq(868));
+        //ucGastos.Sol = S;
+        //ucGastos.MuestraGastos();
 
-        DateTime Hoy = DateTime.Today;
-        //txtFin.Text = Hoy.AddDays(7 - int.Parse(Hoy.DayOfWeek));
-        DayOfWeek d = DateTime.Now.DayOfWeek;
+        //DateTime Hoy = DateTime.Today;
+        ////txtFin.Text = Hoy.AddDays(7 - int.Parse(Hoy.DayOfWeek));
+        //DayOfWeek d = DateTime.Now.DayOfWeek;
 
-        lbl.Text = DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek.ToString() + " " + DayOfWeek.Saturday;
-        
+        //lbl.Text = DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek.ToString() + " " + DayOfWeek.Saturday;
+
+//        FillGrid();
         
 
         //lbl.Text = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)System.DateTime.Now.DayOfWeek] + " " +            System.DateTime.Now.DayOfWeek.ToString() + " " + CultureInfo.CurrentCulture.Calendar.GetDayOfWeek(DateTime.Now).ToString(); 
@@ -61,14 +63,17 @@ public partial class Solicitudes_test : System.Web.UI.Page
 
 
     }
+    
     protected void m_Click(object sender, ImageClickEventArgs e)
     {
 
     }
+    
     protected void Menu1_MenuItemDataBound(object sender, MenuEventArgs e)
     {
         
     }
+   
     protected void cargamenu()
     {
         
@@ -163,16 +168,57 @@ public partial class Solicitudes_test : System.Web.UI.Page
     {
 
     }
+   
     protected void btnSend_Click(object sender, EventArgs e)
     {
         //Response.Write( WebAntares.AntaresHelper.EnviaMail("Matias"));
-
         //WebAntares.AntaresHelper.NotificaSolicitud(0);
         //WebAntares.AntaresHelper.Loguea_Evento("hola");
-        throw (new ArgumentNullException());
+        //throw (new ArgumentNullException());
+        AntaresHelper.SQLSendMail_a_Lista("minga","prueba de correo usando el db_mail","dbmail testing desde asp.net");
+        
 
         
     
     }
+    
+    protected void FillGrid()
+    {
+        gvTest.DataSource = CustomDAL.ExecQuery();
+        gvTest.DataBind();
+        //NHibernate.SqlCommand.WhereBuilder whe;
+
+        //string notin = " apellido not in (select nombre from silvia)";
+        //gvTest.DataSource = Personal.FindAll(Expression.Sql(notin));
+
+    }
+
+    protected void gvTest_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
        
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            TableCell cell = e.Row.Cells[1];
+            string texto_celda = cell.Text;
+            Style estilo = new Style();
+            //string a = "cilia"; //  ACA IRIA TU TEXTBOX
+            string a = txttexto.Text;
+            string[] miarray = Regex.Split(a, " ");
+            foreach (string item in miarray)
+            {
+                if (cell.Text.ToLower().Contains(item.ToLower()))
+                {   
+                    texto_celda = Regex.Replace(cell.Text, item, "<span style=\"color:Red\">" + item + "</span>").ToString();
+                }
+            }
+            cell.Text = texto_celda;
+
+        }
+
+    }
+   
+    protected void btnBuscaTexto_Click(object sender, EventArgs e)
+    {
+        FillGrid();        
+    }
 }

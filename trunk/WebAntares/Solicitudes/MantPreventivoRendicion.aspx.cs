@@ -29,17 +29,24 @@ public partial class Solicitudes_MantPreventivoRendicion : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            //lblDescripcionTrabajo.Attributes.Add("style", "overflow:hidden;");
+
+            SolicitudPreventivo sol_p = SolicitudPreventivo.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+            if (sol_p != null)
+            {
+                if(!AntaresHelper.EsCorrecta_Fecha_a_Cargar(sol_p.FechaFin))
+                //if (!AntaresHelper.PuedeGenerarReporte(sol_p.FechaFin))
+                {
+                    Session["mensaje"] = "Se ha vencido el plazo para generar el reporte de la solicitud " + sol_p.IdSolicitud.ToString();
+                    Response.Redirect("~/default.aspx");
+
+                }
+            }
             CargarCombos();
             FillTareas();
             FillSolicitudEmpleados(0);
             FillSolicitudVehiculos(0);
             FillDatosClientes();
-            
-            
-
         }
-        
     }
 
     protected void gvSolicitudVehiculos_rowDeleting(object sender, GridViewDeleteEventArgs e)

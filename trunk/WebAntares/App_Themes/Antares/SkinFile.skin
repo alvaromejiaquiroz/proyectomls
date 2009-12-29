@@ -17,17 +17,18 @@ no se permite que haya varios SkinId por tipo de control en el mismo tema.
 <asp:GridView 
 runat="server" 
 CellPadding="2" 
-ForeColor="#333333" 
+CellSpacing="0"
+ForeColor="#333333"
 GridLines="Both" 
 Font-Names="Verdana"
 >
     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-    <RowStyle BackColor="#FFFFFF" ForeColor="#333333" Font-Size="10px" HorizontalAlign="Left" />
+    <RowStyle BackColor="#E0E0E0" ForeColor="#333333" Font-Size="10px" HorizontalAlign="Left" />
     <EditRowStyle BackColor="#999999" />
     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
     <PagerStyle BackColor="#8B8B7A" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
     <HeaderStyle BackColor="#8B8B7A" Font-Bold="True" ForeColor="#FFFFFF" Wrap="False" />
-    <AlternatingRowStyle BackColor="#EAEAEA" ForeColor="#284775" Font-Size="10px" HorizontalAlign="Left" />
+    <AlternatingRowStyle BackColor="#CCCCCC" ForeColor="#284775" Font-Size="10px" HorizontalAlign="Left" />
 
 </asp:GridView>
 
@@ -42,9 +43,9 @@ Font-Names="Verdana"
     DynamicPopOutImageUrl="~/Images/flecha_menu16x16.png"
     StaticPopOutImageUrl="~/Images/flecha_menu16x16.png">
     <StaticMenuItemStyle    ForeColor="black" BorderStyle="solid" BorderWidth="1px" HorizontalPadding="2px" VerticalPadding="4px" CssClass="Menu-Skin-StaticItem" />
-    <StaticHoverStyle       ForeColor="White"  CssClass="Menu-Skin-StaticItem_Hover"/>
+    <StaticHoverStyle       ForeColor="White" CssClass="Menu-Skin-StaticItem_Hover"/>
     <DynamicMenuItemStyle   ForeColor="black" BorderStyle="solid" BorderWidth="1px" Font-Size="small" BorderColor="#648ABD" HorizontalPadding="2px" VerticalPadding="4px" Width="10.5em" CssClass="Menu-Skin-StaticItem" />
-    <DynamicHoverStyle      ForeColor="White" CssClass="Menu-Skin-StaticItem_Hover" />
+    <DynamicHoverStyle      ForeColor="White" CssClass="Menu-Skin-StaticItem_Hover"  />
     
 </asp:Menu>
 

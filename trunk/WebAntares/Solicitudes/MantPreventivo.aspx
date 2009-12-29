@@ -66,7 +66,7 @@
                                                 <asp:CompareValidator ID="cvDesde" runat="server" ErrorMessage="La fecha desde no es válida."
                                                     ControlToValidate="txtDesde" Display="None" Operator="DataTypeCheck" Type="Date"
                                                     ValidationGroup="tareas"></asp:CompareValidator>
-                                                <asp:TextBox ID="txtHasta" runat="server" MaxLength="10" Width="80px" CssClass="text_custom"></asp:TextBox>
+                                                <asp:TextBox ID="txtHasta" runat="server" MaxLength="10" Width="80px" CssClass="text_custom" Enabled="false"></asp:TextBox>
                                                 
                                             </td>
                                         </tr>
