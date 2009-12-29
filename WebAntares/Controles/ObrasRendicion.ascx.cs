@@ -30,6 +30,12 @@ public partial class Controles_ObrasRendicion : System.Web.UI.UserControl
         set { litNumero.Text = value; }
     }
 
+    public string CodigoObra
+    {
+        set { lblCodigoObra.Text = value; }
+    }
+
+
     public string SolicitudInicial
     {
         get { return ViewState["SolicitudInicial"].ToString(); }
@@ -160,7 +166,7 @@ public partial class Controles_ObrasRendicion : System.Web.UI.UserControl
             horas.DataBind();
         }
     }
-    public SolicitudGastos[] Gastos
+    public DbDataReader Gastos
     {
         set
         {

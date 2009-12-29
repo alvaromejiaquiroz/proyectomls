@@ -100,7 +100,18 @@
         HttpContext ctx = HttpContext.Current;
         if (ctx != null)
         {
+            
             Exception exception = ctx.Server.GetLastError();
+            //ctx.Request.Url.OriginalString.ToString();
+            string mensaje = "ERROR GlobalAsax : " + ctx.User.Identity.Name.ToString() + " - "+ ctx.Request.Url.ToString() + " - "  + exception.Message;
+            if (exception.InnerException != null)
+            {
+                mensaje += " " + exception.InnerException.Message;
+            }
+            WebAntares.AntaresHelper.Loguea_Evento(mensaje);
+            Logger.LogToFile("EMAIL", mensaje);
+            
+            
             Exception e1 = exception.InnerException;
             int i = 0;
             string httpPathRoot = ctx.Request.ApplicationPath;

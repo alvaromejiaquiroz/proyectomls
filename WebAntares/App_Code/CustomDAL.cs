@@ -36,6 +36,18 @@ namespace WebAntares
             return conn;
 
         }
+        public static SqlDataReader ExecQuery()
+        {
+            SqlConnection conn = Get_Connection();
+            SqlCommand cmd = new SqlCommand("select apellido, nombres, zona, base  from personal where nombres like '%daniel%'", conn);
+            cmd.CommandType = CommandType.Text;
+            conn.Open();
+            SqlDataReader rd = cmd.ExecuteReader();
+//            conn.Close();
+            return rd;
+
+
+        }
 
 
        

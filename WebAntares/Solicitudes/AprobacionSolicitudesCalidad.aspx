@@ -17,7 +17,7 @@ EnableEventValidation="false"
         </tr>
 
         <tr>
-            <td>
+            <td align="center">
               <asp:UpdatePanel ID="upSSolicitudes" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <asp:GridView ID="GridView1" runat="server" AllowPaging="true" 
@@ -25,6 +25,10 @@ EnableEventValidation="false"
                             AutoGenerateColumns="False"
                             OnRowDataBound="GridView1_RowDataBound" 
                             onpageindexchanging="GridView1_PageIndexChanging" 
+                            EmptyDataText ="No existen solicitudes pendientes de aprobación"
+                            EmptyDataRowStyle-Font-Bold ="true"
+                            EmptyDataRowStyle-BorderStyle ="None"                            
+                            
                             onload="GridView1_Load"  >
                             
                             

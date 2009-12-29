@@ -37,6 +37,7 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                                 ucMantenimientoPreventivo.HabilitarDivReprogramacion = true;
                                 ucMantenimientoPreventivo.Fecha_Reprogramacion = solicitud.FechaReprogramacion.ToString("dd/MM/yyyy");
                                 ucMantenimientoPreventivo.Aprobador_Reprogramacion = solicitud.AprobadorReprosusp;
+                                ucMantenimientoPreventivo.Motivo_Reprogramacion = solicitud.Causa.ToString();
                             break;
                         }
                         ucMantenimientoPreventivo.Sitio = Sitios.FindFirst(Expression.Eq("IdSitio", solicitudPreventivo.IdSitio)).Descripcion;
@@ -50,7 +51,8 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucMantenimientoPreventivo.MailContacto = solicitud.ContactoMail;
                         ucMantenimientoPreventivo.Adjuntos = solicitud.GetAdjuntos();
                         ucMantenimientoPreventivo.Monto =  gastos.ToString();
-                        ucMantenimientoPreventivo.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
+                        //ucMantenimientoPreventivo.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
+                        ucMantenimientoPreventivo.Gastos = SolicitudGastos.GetGastosSolicitud(solicitud.Id_Solicitud); 
 
                         SolicitudArchivoCalidad S = SolicitudArchivoCalidad.FindOne(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
                         if (S != null)
@@ -86,7 +88,8 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucMantenimientoCorrectivo.MailContacto = solicitud.ContactoMail;
                         ucMantenimientoCorrectivo.Adjuntos = solicitud.GetAdjuntos();
                         ucMantenimientoCorrectivo.Monto =  gastos.ToString();
-                        ucMantenimientoCorrectivo.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
+                        //ucMantenimientoCorrectivo.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud)); 
+                        ucMantenimientoCorrectivo.Gastos = SolicitudGastos.GetGastosSolicitud(solicitud.Id_Solicitud); 
                         ucMantenimientoCorrectivo.Visible = true;
                         break;
                     case (int)EnumTipoSolicitud.Obras:
@@ -94,6 +97,16 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucObras.Numero = solicitudObra.IdSolicitud.ToString();
                         ucObras.Titulo = solicitud.Descripcion;
                         ucObras.Estado = solicitud.Status;
+                        switch (solicitud.Status)
+                        {
+                            case "Reprogramado":
+                                ucObras.HabilitarDivReprogramacion = true;
+                                ucObras.Fecha_Reprogramacion = solicitud.FechaReprogramacion.ToString("dd/MM/yyyy");
+                                ucObras.Aprobador_Reprogramacion = solicitud.AprobadorReprosusp;
+                                ucObras.Motivo_Reprogramacion = solicitud.Causa.ToString();
+                                break;
+                        }
+                        ucObras.CodigoObra = solicitudObra.NroObra.ToString();
                         ucObras.Cliente = Empresas.FindFirst(Expression.Eq("IdEmpresa", solicitud.IdCliente)).Nombre;
                         ucObras.NroOrden = solicitud.NroOrdenCte;
                         ucObras.Contacto = solicitud.Contacto;
@@ -107,7 +120,8 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucObras.Personal = SolicitudRecursosEmpleados.GetReader(solicitudObra.IdSolicitud);
                         ucObras.Vehiculos = SolicitudRecursosVehiculos.GetReader(solicitudObra.IdSolicitud);
                         ucObras.Monto =  gastos.ToString();
-                        ucObras.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        //ucObras.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", solicitud.Id_Solicitud));
+                        ucObras.Gastos = SolicitudGastos.GetGastosSolicitud(solicitudObra.IdSolicitud); 
                         ucObras.Adjuntos = solicitud.GetAdjuntos();
                         ucObras.Visible = true;
                         break;
@@ -154,10 +168,9 @@ public partial class Solicitudes_VisualizarSolicitud : System.Web.UI.Page
                         ucTareasGenerales.Numero = solicitudTareasGenerales.IdSolicitud.ToString();
                         ucTareasGenerales.Titulo = solicitud.Descripcion;
                         ucTareasGenerales.Tipo = TipoTarea.FindFirst(Expression.Eq("Id", solicitudTareasGenerales.IdTipotarea)).Descripcion;
-                        ucTareasGenerales.FechaInicio = solicitudTareasGenerales.FechaInicio.ToShortDateString();
-                        ucTareasGenerales.FechaFin = solicitudTareasGenerales.FechaFin.ToShortDateString();
-                        ucTareasGenerales.Duracion = solicitudTareasGenerales.Duracion.ToString();
+                        ucTareasGenerales.Duracion = Solicitud.Get_SumaHoras_X_Persona_X_Solicitud(solicitudTareasGenerales.IdSolicitud, solicitudTareasGenerales.IdEmpleado).ToString();
                         ucTareasGenerales.Descripcion = solicitudTareasGenerales.Descripcion;
+                        ucTareasGenerales.FillGridHoras = SolicitudRendicionPersonalHoras.GetPersonasHorasEnSolicitud(solicitudTareasGenerales.IdSolicitud, solicitudTareasGenerales.IdEmpleado);
                         ucTareasGenerales.Visible = true;
                         break;
                 }

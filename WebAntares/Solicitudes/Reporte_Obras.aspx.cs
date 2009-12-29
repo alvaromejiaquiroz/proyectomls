@@ -26,6 +26,23 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            SolicitudObra obra = SolicitudObra.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+            if (obra != null)
+            {
+                //if (!AntaresHelper.PuedeGenerarReporte(obra.FechaFin))
+                //{
+                //    Session["mensaje"] = "Se ha vencido el plazo para generar el reporte de la solicitud " + obra.IdSolicitud.ToString();
+                //    Response.Redirect("~/default.aspx");
+
+                //}
+                if (!AntaresHelper.EsCorrecta_Fecha_a_Cargar(obra.FechaInicio))
+                //if (!AntaresHelper.PuedeGenerarReporte(sol_p.FechaFin))
+                {
+                    Session["mensaje"] = "Se ha vencido el plazo para generar el reporte de la solicitud " + obra.IdSolicitud.ToString();
+                    Response.Redirect("~/default.aspx");
+
+                }
+            }
             CargarCombos();
             FillCamposObra();
             FillSolicitudVehiculos(0);
@@ -147,6 +164,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
     private void FillCamposObra()
     {
         SolicitudObra o = SolicitudObra.FindFirst(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+        txtNro.Text = o.NroObra;
         cmbCliente.SelectedValue = BiFactory.Sol.IdCliente.ToString();
         txtContacto.Text = BiFactory.Sol.Contacto;
         txtOrdenCompra.Text = BiFactory.Sol.NroOrdenCte;
@@ -251,6 +269,7 @@ public partial class Solicitudes_Reporte_Obras : System.Web.UI.Page
             pnlReporteObras.Visible = false;
 
             ucObrasRendicion.Numero = Obra.IdSolicitud.ToString();
+            ucObrasRendicion.CodigoObra = Obra.NroObra;
             ucObrasRendicion.SolicitudInicial = Sol_Original.Id_Solicitud.ToString();
             ucObrasRendicion.Titulo = Sol_Original.Descripcion;
             ucObrasRendicion.Estado = Sol_Original.Status;

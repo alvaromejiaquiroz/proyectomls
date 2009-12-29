@@ -191,7 +191,7 @@ public partial class Controles_MantenimientoCorrectivoRendicion : System.Web.UI.
         }
     }
 
-    public SolicitudGastos[] Gastos
+    public DbDataReader Gastos
     {
         set
         {

@@ -48,62 +48,91 @@
             
     </table>
 
-<asp:Panel ID="pnlSolicitudes" runat="server" visible="false">
-Mantenimientos Preventivos
+<asp:Panel ID="pnlSolicitudesPreventivas" runat="server" visible="false">
+Solicitudes Preventivas 
 <div style="padding-left:20px;padding-top:20px;padding-bottom:20px">
-          <asp:GridView ID="gvPreventivo" runat="server" 
-          AutoGenerateColumns="true"                
-          EmptyDataText="No ser registraron horas en segun los parametros ingresados"
-          Visible="true">
-            </asp:GridView>
+
+    <asp:GridView ID="gvTiemposPreventivo" runat="server" 
+                    AutoGenerateColumns="true"        
+                    Visible="false"        
+                    CaptionAlign="Top" Width="80%" 
+                    EmptyDataText=""
+                    HorizontalAlign="Left"
+                    RowStyle-HorizontalAlign ="Center">
+        <RowStyle HorizontalAlign="Center" />
+    </asp:GridView>
 </div>
+</asp:Panel>
 <br />
-Mantenimientos Correctivos
+<asp:Panel ID="pnlSolicitudesCorrectivas" runat="server" visible="false">
+Solicitudes Correctivas 
 <div style="padding-left:20px;padding-top:20px;padding-bottom:20px">
-          <asp:GridView ID="gvCorrectivo" runat="server" 
-          AutoGenerateColumns="true"                
-          EmptyDataText="No ser registraron horas en segun los parametros ingresados"
-          Visible="true">
-            </asp:GridView>
+    <asp:GridView ID="gvTiemposCorrectivo" runat="server" 
+                    AutoGenerateColumns="true"                
+                    Visible="false"
+                    EmptyDataText=""
+                    RowStyle-HorizontalAlign ="Center"
+                    CaptionAlign="Top" Width="80%">
+                    </asp:GridView>
+
 </div>
+</asp:Panel>
 <br />
-Obras
+<asp:Panel ID="pnlObras" runat="server" visible="false">
+Obras e Instalaciones
 <div style="padding-left:20px;padding-top:20px;padding-bottom:20px">
-          <asp:GridView ID="gvObras" runat="server" 
-          AutoGenerateColumns="true"                
-          EmptyDataText="No ser registraron horas en segun los parametros ingresados"
-          Visible="true">
-            </asp:GridView>
+    <asp:GridView ID="gvTiemposObra" runat="server" 
+                    AutoGenerateColumns="true"         
+                    Visible="false"       
+                    EmptyDataText=""
+                    RowStyle-HorizontalAlign ="Center"
+                    CaptionAlign="Top" Width="80%">
+                    </asp:GridView>
+
 </div>
+</asp:Panel>
 <br />
+<asp:Panel ID="pnlCapa" runat="server" visible="false">
+
 Capacitacion
+
 <div style="padding-left:20px;padding-top:20px;padding-bottom:20px">
           <asp:GridView ID="gvCapacitacion" runat="server" 
           AutoGenerateColumns="true"                
-          EmptyDataText="No ser registraron horas en segun los parametros ingresados"
+          EmptyDataText="No se registraron horas segun los parametros ingresados"
+          RowStyle-HorizontalAlign ="Center"
           Visible="true">
             </asp:GridView>
 </div>
+</asp:Panel>
 <br />
+<asp:Panel ID="pnlTG" runat="server" visible="false">
 Tareas Generales
 <div style="padding-left:20px;padding-top:20px;padding-bottom:20px">
           <asp:GridView ID="gvTareasGenerales" runat="server" 
           AutoGenerateColumns="true"                
-          EmptyDataText="No ser registraron horas en segun los parametros ingresados"
+          EmptyDataText="No se registraron horas segun los parametros ingresados"
+          RowStyle-HorizontalAlign ="Center"
           Visible="true">
             </asp:GridView>
 </div>
+</asp:Panel>
 <br />
+<asp:Panel ID="pnlLicencias" runat="server" visible="False">
 Licencias
 <div style="padding-left:20px;padding-top:20px;padding-bottom:20px">
           <asp:GridView ID="gvLicencias" runat="server" 
           AutoGenerateColumns="true"                
-          EmptyDataText="No ser registraron horas en segun los parametros ingresados"
-          Visible="true">
+          EmptyDataText="No se registraron horas segun los parametros ingresados"
+          Visible="true" 
+          RowStyle-HorizontalAlign="Center"
+          
+          >
             </asp:GridView>
 </div>
+    
+    </asp:Panel>
 
-</asp:Panel>
      </ContentTemplate>
      </asp:UpdatePanel>
      

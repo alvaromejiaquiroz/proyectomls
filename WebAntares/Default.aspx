@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" Title="Antares::Sistema de Gestion" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="PageContainer" Runat="Server">
@@ -9,7 +9,12 @@
     <table>
         <tr>
             <td align="center">
-            <asp:Label ID="lblMensaje" runat="server"  Visible = "true"  Font-Bold="true" Font-Size="Small" ForeColor="Red"></asp:Label>
+            <asp:Label ID="lblMensaje" runat="server"  Visible = "true"  Font-Bold="true" Font-Size="Small" ForeColor="black"></asp:Label>
+            </td>
+            </tr>
+            <tr>
+            <td align="center">
+            <asp:GridView ID="gvMensajes" runat="server"  Visible = "false"  ></asp:gridview>
             </td>
             </tr>
      </table>

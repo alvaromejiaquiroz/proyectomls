@@ -29,6 +29,18 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            SolicitudCorrectivo sol_c = SolicitudCorrectivo.FindOne(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud));
+            if (sol_c != null)
+            {
+                DateTime fechafin = sol_c.FechanotificacionCliente.AddDays(7);
+                if (!AntaresHelper.EsCorrecta_Fecha_a_Cargar(fechafin))
+                //if (!AntaresHelper.PuedeGenerarReporte(sol_p.FechaFin))
+                {
+                    Session["mensaje"] = "Se ha vencido el plazo para generar el reporte de la solicitud " + sol_c.IdSolicitud.ToString();
+                    Response.Redirect("~/default.aspx");
+
+                }
+            }
             CargarCombos();
             FillSolicitudEmpleados(0);
             FillSolicitudVehiculos(0);
@@ -214,11 +226,6 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
             esValida = false;
             errores.Add("Debe asignar al menos un responsable.");
         }
-        if (gvSolicitudVehiculos.Rows.Count == 0)
-        {
-            esValida = false;
-            errores.Add("Debe asignar al menos un vehículo.");
-        }
         if (!esValida)
         {
             blErrores.DataSource = errores;
@@ -243,6 +250,7 @@ public partial class Solicitudes_MantPreventivo : System.Web.UI.Page
                         SolicitudRecursosVehiculos t = new SolicitudRecursosVehiculos();
                         t.IdVehiculo = int.Parse(lstVehiculos.Items[i].Value.ToString());
                         t.IdSolicitud = BiFactory.Sol.Id_Solicitud;
+                        t.Fecha = AntaresHelper.FechaNula();
                         t.Save();
                     }
                 }

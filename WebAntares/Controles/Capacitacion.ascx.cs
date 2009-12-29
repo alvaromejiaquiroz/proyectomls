@@ -37,11 +37,9 @@ public partial class Controles_Capacitacion : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
-        {
-           // FillGridCapacitacion();
-        }
+        VersionSistema.Text = WebAntares.AntaresHelper.Get_Config_VersionSistema();
     }
+
 
     protected void btnFinalizar_Click(object sender, EventArgs e)
     {
@@ -61,16 +59,6 @@ public partial class Controles_Capacitacion : System.Web.UI.UserControl
     public string Nivel
     {
         set { litNivel.Text = value; }
-    }
-
-    public string FechaInicio
-    {
-        set { litFechaInicio.Text = value; }
-    }
-
-    public string FechaFin
-    {
-        set { litFechaFin.Text = value; }
     }
 
     public string Duracion
@@ -120,26 +108,26 @@ public partial class Controles_Capacitacion : System.Web.UI.UserControl
 
     public void CargaInfoSolicitud()
     {
-        DbDataReader dr = SolicitudCapacitacion.Get_TotalHoras_X_Persona_X_Solicitud(Sol.Id_Solicitud, this.IdEmpleado);
+        DbDataReader dr = Solicitud.Get_TotalHoras_X_Persona_X_Solicitud(Sol.Id_Solicitud, this.IdEmpleado);
         DateTime fecha = DateTime.MinValue;
         while (dr.Read())
         {
             if (dr.HasRows)
             {
 
-                if (dr["FechaInicio"] != System.DBNull.Value)
-                {
-                    fecha = DateTime.Parse(dr["FechaInicio"].ToString());
-                    FechaInicio = fecha.ToString("dd/MM/yyyy");
+                //if (dr["FechaInicio"] != System.DBNull.Value)
+                //{
+                //    fecha = DateTime.Parse(dr["FechaInicio"].ToString());
+                //    FechaInicio = fecha.ToString("dd/MM/yyyy");
 
-                }
+                //}
 
-                if (dr["FechaFin"] != System.DBNull.Value)
-                {
-                    fecha = DateTime.Parse(dr["FechaFin"].ToString());
-                    FechaFin = fecha.ToString("dd/MM/yyyy");
+                //if (dr["FechaFin"] != System.DBNull.Value)
+                //{
+                //    fecha = DateTime.Parse(dr["FechaFin"].ToString());
+                //    FechaFin = fecha.ToString("dd/MM/yyyy");
 
-                }
+                //}
 
                 if (dr["Horas"] != System.DBNull.Value)
                 {
@@ -150,6 +138,28 @@ public partial class Controles_Capacitacion : System.Web.UI.UserControl
         }
 
         FillGridCapacitacion();
+    }
+
+    public bool MostrarEnsolicitud
+    {
+        set
+        {
+            btnFinalizar.Visible = !value;
+            pnlImprimir.Visible = !value;
+            imgAntares.Visible = value;
+        }
+    }
+
+    public DbDataReader FillGridHoras
+    {
+        set
+        {
+            DataTable table = new DataTable();
+            table.Load(value);
+            gvHorasPersonal.DataSource = table;
+            gvHorasPersonal.DataKeyNames = new string[] { "Id" };
+            gvHorasPersonal.DataBind();
+        }
     }
     
 }

@@ -41,12 +41,15 @@ public partial class _Default : System.Web.UI.Page
 
         cmbTipoSolicitud.Items.Clear();
         cmbTipoSolicitud.Items.Add(new ListItem("Seleccione...", "-1"));
-        foreach (TipoSolicitud ts in Antares.model.TipoSolicitud.FindAll(Expression.Sql("Descripcion not in ('Francos Compensatorios')")))
-        {
-            ListItem l = new ListItem(ts.Descripcion, ts.IdTiposolicitud.ToString());
-            cmbTipoSolicitud.Items.Add(l);
-        }
-
+        //foreach (TipoSolicitud ts in Antares.model.TipoSolicitud.FindAll(Expression.Sql("Descripcion not in ('Francos Compensatorios')")))
+        //{
+        //    ListItem l = new ListItem(ts.Descripcion, ts.IdTiposolicitud.ToString());
+        //    cmbTipoSolicitud.Items.Add(l);
+        //}
+        cmbTipoSolicitud.DataSource = TipoSolicitud.TiposAutorizadosXPerfil(BiFactory.User.IdPerfil);
+        cmbTipoSolicitud.DataTextField = "Descripcion";
+        cmbTipoSolicitud.DataValueField = "Id_TipoSolicitud";
+        cmbTipoSolicitud.DataBind();
     }
 
     private void FillSolicitud(int p)

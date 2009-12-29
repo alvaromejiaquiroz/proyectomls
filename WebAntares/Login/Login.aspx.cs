@@ -27,7 +27,8 @@ public partial class Login_Login1t : System.Web.UI.Page
             {
                 FormsAuthentication.SetAuthCookie(BiFactory.User.Nombre, true);
                 Logger.Log(TipoEvento.Login,"Inició Session");
-                Response.Redirect("../default.aspx");
+                //Response.Redirect("../default.aspx");
+                Response.Redirect("~/solicitudes/Solicitudes.aspx");
                 
             }
             else

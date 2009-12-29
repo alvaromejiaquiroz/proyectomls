@@ -532,20 +532,21 @@ padding-top:20px;
     font-size:12px;
     font-weight:bold;
     
+    
 }
 
 .dynamic_menu_fix
 {
+
 	font-family:Verdana;
     font-size:12px;
     font-weight:bolder;
-    
     
 }
 
 .Menu-Skin-StaticItem
 {
-background-color:#EEEEEE;
+background-color:#F7F6F3;
 border-style:solid;
 border-color:#888888;
 font-weight:bold;
@@ -554,13 +555,19 @@ font-weight:bold;
 
 .Menu-Skin-StaticItem_Hover
 {
+background-image:none;
 background-color:#FFD700;
 border-style:solid;
 border-color:#888888;
 font-weight:bold;
 
-}
 
+}
+.Menu-Skin-Horizontal
+{
+background-repeat:repeat-y;
+
+}
 
 .cal_Theme1 .ajax__calendar_container   {
     background-color: #e2e2e2;
@@ -616,4 +623,12 @@ font-weight:bold;
 .cal_Theme1 .ajax__calendar_hover .ajax__calendar_title {
     /* color: #bbbbbb; */
     color: #000000; 
+}
+.remarco_resumen_tiempos
+{
+padding-top:10px;
+padding-right:20px;
+padding-left:20px;
+padding-bottom:10px
+
 }

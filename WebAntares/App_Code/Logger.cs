@@ -37,7 +37,6 @@ public static class Logger
             {
                 File.CreateText(unPath).Close();
 
-                
             }
         
         st = File.AppendText(unPath);
@@ -72,11 +71,42 @@ public static class Logger
         LogToFile(tipoEvento, detalle);
 
     }
+    
+    public static void LogToFile(string tipo ,string detalle)
+    {
+        StreamWriter st;
+        if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/Logs")))
+        {
+            Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/Logs"));
+        }
+
+        string unPath = HttpContext.Current.Server.MapPath("~/Logs/Log_" + DateTime.Today.ToString("yyyyMMdd") + ".log");
+
+        if (!File.Exists(unPath))
+        {
+            File.CreateText(unPath).Close();
+        }
+
+        st = File.AppendText(unPath);
+
+        if (detalle == null)
+        {
+            detalle = string.Empty;
+        }
+        st.WriteLine(DateTime.Now.ToString() + " - [" + tipo + "] - " + BiFactory.User.LoginName + " - " + detalle);
+        st.Close();
+
+    }
        
 }
 
 public enum TipoEvento
 {
-    Login = 1
-    
+    Login = 1,
+    AsignaPermisos = 2,
+    QuitaPermisos = 3,
+    CreaSolicitud = 4,
+    EditaSolicitud = 5,
+    ApruebaSolicitudCalidad =  6,
+    ApruebaSolicitudCoordinacion =  7
 }

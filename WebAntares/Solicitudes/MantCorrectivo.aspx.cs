@@ -306,7 +306,7 @@ public partial class Solicitudes_MantCorrectivo : System.Web.UI.Page
             
             decimal gastos = Solicitud.Valida_Gastos_Ingresados_Solicitud(BiFactory.Sol.Id_Solicitud);
             ucMantenimientoCorrectivo.Monto = gastos.ToString();
-            ucMantenimientoCorrectivo.Gastos = SolicitudGastos.FindAll(Expression.Eq("IdSolicitud", BiFactory.Sol.Id_Solicitud)); 
+            ucMantenimientoCorrectivo.Gastos = SolicitudGastos.GetGastosSolicitud(sol.Id_Solicitud); 
             ucMantenimientoCorrectivo.Visible = true;
 
             WebAntares.AntaresHelper.NotificaSolicitud(sol.Id_Solicitud);

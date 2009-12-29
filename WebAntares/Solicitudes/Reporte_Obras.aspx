@@ -22,6 +22,21 @@
         <tr>
             <td>
                 <cc1:TabContainer ID="tcReporteObras" runat="server" Height="450px">
+                    <cc1:TabPanel ID="tpNroObra" HeaderText="Nro.Obra" runat="server">
+                <ContentTemplate>
+                           <table class="text_custom" width="600px">
+                                <tr>
+                                    <td  style="height: 20px">
+                                    Número de Obra
+                                    </td>
+                                    <td>
+                                    <asp:TextBox runat="server" ID="txtNro" Text="" Enabled="false"></asp:TextBox>
+                                    
+                                </tr>
+                 </table>
+                
+                </ContentTemplate>
+                </cc1:TabPanel>
                     <cc1:TabPanel ID="tpCliente" HeaderText="Cliente" runat="server">
                         <ContentTemplate>
                             <table class="text_custom" width="600px">
@@ -123,7 +138,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left: 20px">
+                                    <td style="padding-left: 20px" valign="top">
                                         Descripción de tareas solicitadas
                                     </td>
                                     <td>
@@ -132,7 +147,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left: 20px">
+                                    <td style="padding-left: 20px"  valign="top">
                                         Fecha de inicio
                                     </td>
                                     <td>
@@ -140,7 +155,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left: 20px">
+                                    <td style="padding-left: 20px"  valign="top">
                                         Fecha de entrega
                                     </td>
                                     <td>
@@ -148,7 +163,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left: 20px">
+                                    <td style="padding-left: 20px"  valign="top">
                                         Requisitos de aprobación
                                     </td>
                                     <td>
@@ -157,7 +172,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left: 20px">
+                                    <td style="padding-left: 20px"  valign="top">
                                         Requisitos de ingreso
                                     </td>
                                     <td>

@@ -67,6 +67,10 @@
                 <td>Fecha de Reprogramación:</td>
                 <td colspan="2"><asp:Literal ID="litFechaReprogramacion" runat="server"></asp:Literal></td>
             </tr>
+            <tr>
+                <td>Motivo de Reprogramación:</td>
+                <td colspan="2"><asp:Literal ID="litMotivoReprogramacion" runat="server"></asp:Literal></td>
+            </tr>
         
         </table>
             
@@ -183,7 +187,7 @@
     </tr>
     <tr>
     <td style="padding-left: 20px;">
-    <div ID="pnlCalidad" runat="server" Visible="false">
+    <div ID="pnlCalidad" runat="server" Visible="false" style="height:100%">
                 <table >
                 <tr>
                     <td colspan="3" style="font-weight:bold;" >
@@ -192,7 +196,8 @@
                 </tr>
                 <tr>
                     <td >
-                       <asp:GridView ID="gvCalidad" runat="server" AutoGenerateColumns="False"  EmptyDataText="No Existen Registros de Calidad Asignados" Width="100%" onrowcommand="gvCalidad_RowCommand">
+                       <asp:GridView ID="gvCalidad" runat="server" AutoGenerateColumns="False"  EmptyDataText="No Existen Registros de Calidad Asignados" 
+                       Width="100%" onrowcommand="gvCalidad_RowCommand">
                                         <Columns>
                                             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="False" />
                                             <asp:BoundField DataField="NombreArchivo" HeaderText="Archivo Calidad" HeaderStyle-HorizontalAlign="Left"/> 
@@ -262,8 +267,9 @@
        <asp:GridView ID="gvGastos" runat="server" AutoGenerateColumns="false" 
                         Width="100%">
                         <Columns>
-                            <asp:BoundField DataField="Detalle" HeaderText="Concepto" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="300px"/>
-                            <asp:BoundField DataField="Total" HeaderText="Total" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="Tipo" HeaderText="Tipo Gasto" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left"/>
+                            <asp:BoundField DataField="Detalle" HeaderText="Concepto" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left"/>
+                            <asp:BoundField DataField="Total" HeaderText="Total" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left" />
                         </Columns>
                     </asp:GridView>
                     

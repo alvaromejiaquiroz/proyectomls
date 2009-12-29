@@ -13,6 +13,7 @@ using NHibernate;
 using NHibernate.Expression;
 using Castle.ActiveRecord;
 using Antares.model;
+using System.IO;
 
 public partial class site : System.Web.UI.MasterPage
 {
@@ -52,7 +53,12 @@ public partial class site : System.Web.UI.MasterPage
                     Imagen_Usuario.ToolTip = "Este usuario no esta relacionado con ningun Empleado, Contactarse con Sistemas";
                 
                 }
-               
+
+                if(!File.Exists( Server.MapPath(Imagen_Usuario.ImageUrl)))
+                {
+                    Imagen_Usuario.ImageUrl = "";
+                }
+                
                 //BindMenu();
                 
             };
